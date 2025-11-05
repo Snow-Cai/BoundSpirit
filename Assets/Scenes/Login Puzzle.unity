@@ -2725,7 +2725,7 @@ MonoBehaviour:
   usernameInput: {fileID: 1751930858}
   passwordInput: {fileID: 1789492907}
   messageText: {fileID: 867081856}
-  correctUsername: test
+  correctUsername: admin
   correctPassword: password123
   OnLoginSuccess:
     m_PersistentCalls:
