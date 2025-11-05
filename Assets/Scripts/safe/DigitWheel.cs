@@ -10,6 +10,8 @@ public class DigitWheel : MonoBehaviour
 
     [Header("Settings")]
     [Range(0, 9)] public int value = 0; // initial value
+    public AudioSource audioSource;     //audio sfx
+    public AudioClip rotateSound;
 
     void Reset()
     {
@@ -33,12 +35,16 @@ public class DigitWheel : MonoBehaviour
     public void OnUp()
     {
         value = (value + 1) % 10;
+        if(audioSource && rotateSound) 
+            audioSource.PlayOneShot(rotateSound);   //sfx for button click
         UpdateUI();
     }
 
     public void OnDown()
     {
         value = (value + 9) % 10; // +9 mod10 == -1 mod10
+        if (audioSource && rotateSound)
+            audioSource.PlayOneShot(rotateSound);   //sfx for button click
         UpdateUI();
     }
 
