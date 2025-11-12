@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class FloorTransition : MonoBehaviour
@@ -28,12 +27,39 @@ public class FloorTransition : MonoBehaviour
     private IEnumerator SwitchFloor()
     {
         float t = 0f;
-        while(t < fadeDuration)
+        Vector3 startPos = player.position;     //movement along stairs
+        Vector3 targetPos = onSecondFloor ? downstairsPosition : upstairsPosition;
+
+        while (t < fadeDuration) 
         {
             t += Time.unscaledDeltaTime;
-            fadeCanvas.alpha = Mathf.Lerp(0, 1, t / fadeDuration);
+            fadeCanvas.alpha = Mathf.Lerp(0, 1, t / fadeDuration);  //fade screen to black
+            player.position = Vector3.Lerp(startPos, targetPos, t / fadeDuration);
             yield return null;
         }
-        fadeCanvas.alpha = 1;
+        player.position = targetPos;
+
+        if(!onSecondFloor)
+        {
+            firstFloor.SetActive(false);
+            secondFloor.SetActive(true);
+            onSecondFloor = true;
+        }
+        else
+        {
+            firstFloor.SetActive(true);
+            secondFloor.SetActive(false);
+            onSecondFloor = false;
+        }
+
+        //fade screen back in
+        t = 0f;
+        while (t < fadeDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(1, 0, t / fadeDuration);
+            yield return null;
+        }
+        fadeCanvas.alpha = 0;
     }
 }
