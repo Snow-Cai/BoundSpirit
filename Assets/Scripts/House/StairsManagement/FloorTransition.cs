@@ -39,13 +39,13 @@ public class FloorTransition : MonoBehaviour
         }
         player.position = targetPos;
 
-        if(!onSecondFloor)
+        if(!onSecondFloor)      //going up
         {
             firstFloor.SetActive(false);
             secondFloor.SetActive(true);
             onSecondFloor = true;
         }
-        else
+        else                    //going down
         {
             firstFloor.SetActive(true);
             secondFloor.SetActive(false);
