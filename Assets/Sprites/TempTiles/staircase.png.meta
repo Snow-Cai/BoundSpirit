@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f42d269c7cd6a494caf36f45b654d235
+guid: 118cea91fa4917240bd6e8315876b0fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4166769176417729499
-    second: FloorTile copy_0
+      213: -6296043056521399628
+    second: Staircase 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FloorTile copy_0
+      name: Staircase 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5240392b289ac26c0800000000000000
-      internalID: -4166769176417729499
+      spriteID: 4b23a7da236ff98a0800000000000000
+      internalID: -6296043056521399628
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FloorTile copy_0: -4166769176417729499
+      Staircase 1_0: -6296043056521399628
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
