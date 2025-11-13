@@ -295,7 +295,7 @@ MonoBehaviour:
   upButton: {fileID: 846574719}
   downButton: {fileID: 1893345887}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
 --- !u!1 &125088245
 GameObject:
@@ -2864,6 +2864,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &339457094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339457096}
+  - component: {fileID: 339457095}
+  m_Layer: 0
+  m_Name: SafeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &339457095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339457094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265cc9e3c0ebcc343b805f630cf4c819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SafeController_SixDigits
+  digitWheels:
+  - {fileID: 816387803}
+  - {fileID: 1705035515}
+  - {fileID: 48789847}
+  - {fileID: 1595529275}
+  - {fileID: 781241628}
+  - {fileID: 1255962000}
+  submitButton: {fileID: 1462458039}
+  feedbackText: {fileID: 534583219}
+  targetCode: 333333
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
+  onFail:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &339457096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339457094}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 222.6, y: 186.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349928886
 GameObject:
   m_ObjectHideFlags: 0
@@ -5607,8 +5667,8 @@ CanvasGroup:
   m_GameObject: {fileID: 400853335}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &400853338
 MonoBehaviour:
@@ -12534,7 +12594,7 @@ MonoBehaviour:
   upButton: {fileID: 1061479037}
   downButton: {fileID: 1557460447}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
 --- !u!1 &816387801
 GameObject:
@@ -12591,7 +12651,7 @@ MonoBehaviour:
   upButton: {fileID: 1004537160}
   downButton: {fileID: 997646284}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
 --- !u!1 &846574717
 GameObject:
@@ -20210,7 +20270,7 @@ MonoBehaviour:
   upButton: {fileID: 44918656}
   downButton: {fileID: 539164684}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
 --- !u!1 &1284572844
 GameObject:
@@ -20344,8 +20404,9 @@ GameObject:
   - component: {fileID: 1291626097}
   - component: {fileID: 1291626099}
   - component: {fileID: 1291626098}
+  - component: {fileID: 1291626100}
   m_Layer: 5
-  m_Name: SafeUI
+  m_Name: SafeUIPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20373,10 +20434,10 @@ RectTransform:
   - {fileID: 534583218}
   m_Father: {fileID: 1412077240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 900, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291626098
 MonoBehaviour:
@@ -20391,15 +20452,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.87058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1026824393307932312, guid: ea1cc37dcb2681f4b9018b1126af92c8, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -20416,6 +20477,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291626096}
   m_CullTransparentMesh: 1
+--- !u!225 &1291626100
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291626096}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1292891566
 GameObject:
   m_ObjectHideFlags: 0
@@ -20602,12 +20675,12 @@ GameObject:
   - component: {fileID: 1412077238}
   - component: {fileID: 1412077237}
   m_Layer: 5
-  m_Name: SafeUIPanel
+  m_Name: SafeUICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1412077237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20638,7 +20711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -20657,8 +20730,8 @@ Canvas:
   m_GameObject: {fileID: 1412077236}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1441967353}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -20668,7 +20741,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1369810399
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1412077240
@@ -21019,9 +21092,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.03451408
     y: 0
-    width: 1
+    width: 0.93167835
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -21831,7 +21904,7 @@ MonoBehaviour:
   upButton: {fileID: 1015777836}
   downButton: {fileID: 1284572846}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
 --- !u!1 &1597478601
 GameObject:
@@ -22057,8 +22130,137 @@ MonoBehaviour:
   upButton: {fileID: 908680045}
   downButton: {fileID: 1562179106}
   value: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1705309659}
   rotateSound: {fileID: 8300000, guid: bd0b8af80d6e0f1468ac19b31d9abb49, type: 3}
+--- !u!1 &1705309657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705309658}
+  - component: {fileID: 1705309659}
+  m_Layer: 0
+  m_Name: AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705309658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705309657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 7.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1705309659
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705309657}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1893345885
 GameObject:
   m_ObjectHideFlags: 0
@@ -22518,9 +22720,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SafeInteraction
   safeUIPanel: {fileID: 1291626096}
-  mainCamera: {fileID: 1441967353}
-  zoomSize: 3
-  zoomDuration: 0.5
   interactionRadius: 1.5
   playerTransform: {fileID: 2052781365}
 --- !u!1 &2009769494
@@ -22833,7 +23032,7 @@ Transform:
   m_GameObject: {fileID: 2052781360}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.23, y: 19.26, z: 0}
+  m_LocalPosition: {x: 3.66, y: 1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22850,3 +23049,5 @@ SceneRoots:
   - {fileID: 1916271636}
   - {fileID: 883013064}
   - {fileID: 1412077240}
+  - {fileID: 339457096}
+  - {fileID: 1705309658}
