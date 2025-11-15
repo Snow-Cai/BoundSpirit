@@ -4,7 +4,7 @@ public class StairsTrigger : MonoBehaviour
 {
     public StairsManager stairsManager;
     public bool goingUp = true;
-    public float pushDistance = 0.5f;
+    public float pushDistance = 1.5f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

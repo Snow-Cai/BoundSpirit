@@ -57,6 +57,9 @@ TagManager:
   - name: SecondFloor
     uniqueID: 2319672673
     locked: 0
+  - name: Furniture
+    uniqueID: 1833890833
+    locked: 0
   - name: Player
     uniqueID: 3550711313
     locked: 0
