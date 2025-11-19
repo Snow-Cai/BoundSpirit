@@ -23,6 +23,10 @@ public class SafeControllerKeypad : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip buttonPressSound;
+    public AudioClip knobTurnSound;
+    public AudioClip keyholeEmptySound;
+    public AudioClip keyInsertSound;
+    public AudioClip keyPickupSound;
 
     [Header("Events")]
     public UnityEngine.Events.UnityEvent onUnlock;
@@ -100,6 +104,7 @@ public class SafeControllerKeypad : MonoBehaviour
     {
         if (successLight != null)
             successLight.color = UnityEngine.Color.green;
+        inputText.text = "UNLOCKED";
         if (knob != null)
             StartCoroutine(RotateKnob());
         onUnlock?.Invoke();
@@ -107,6 +112,8 @@ public class SafeControllerKeypad : MonoBehaviour
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe
     {
+        if (audioSource && knobTurnSound)
+            audioSource.PlayOneShot(knobTurnSound);
         float duration = 0.5f;
         float time = 0f;
         Quaternion startRotation = knob.localRotation;
