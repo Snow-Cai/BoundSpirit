@@ -17,7 +17,7 @@ public class SafeKeyhole : MonoBehaviour
         {
             keyInserted = true;
             if (keyInsertedVisual != null)
-                keyInsertedVisual.enabled = true;
+                keyInsertedVisual.enabled = true;                       //display visual for successful key insertion
             safeController.InsertKey();
             if (safeController.audioSource && safeController.keyInsertSound)
                 safeController.audioSource.PlayOneShot(safeController.keyInsertSound);

@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text;
 using System.Collections;
-using UnityEditor.VersionControl;
-using System.Drawing;
 
 public class SafeControllerKeypad : MonoBehaviour
 {
@@ -77,7 +75,7 @@ public class SafeControllerKeypad : MonoBehaviour
         if (successLight != null)               //red fail light
             StartCoroutine(FlashLight(3, 0.2f, UnityEngine.Color.red));     //3 flashes, 0.2s each
 
-        StartCoroutine(ClearInputAfterDelay(1f));
+        StartCoroutine(ClearInputAfterDelay(1f));       //keep error message on for a delay
         onFail?.Invoke();
     }
 
@@ -132,7 +130,7 @@ public class SafeControllerKeypad : MonoBehaviour
         keyInserted = true;
     }
 
-    void PlayButtonSound()
+    void PlayButtonSound()          //plays for all keypad buttons
     {
         if(audioSource != null && buttonPressSound != null)
             audioSource.PlayOneShot(buttonPressSound);
