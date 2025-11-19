@@ -92,12 +92,14 @@ public class MenuRevealController : MonoBehaviour
             menuCanvasGroup.blocksRaycasts = true;
         }
 
-        foreach (var go in revealButtons)
+        foreach (var go in revealButtons)       //reveal all buttons correctly
         {
             if (go == null) continue;
             var cg = go.GetComponent<CanvasGroup>();
             if (cg == null) cg = go.AddComponent<CanvasGroup>();
             cg.alpha = 1f;
+            cg.interactable = true;     //ensures buttons are interactable once skipped
+            cg.blocksRaycasts = true;
             go.transform.localScale = Vector3.one;
         }
 

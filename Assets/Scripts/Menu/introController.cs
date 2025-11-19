@@ -7,7 +7,7 @@ public class introController : MonoBehaviour
     [Header("Menu")]
     public CanvasGroup titleGroup;
     public CanvasGroup buttonsGroup;
-    public GameObject firstButton;
+    public GameObject firstSelected;
 
     [Header("Timing")]
     public float initialDelay = 1.0f;
@@ -68,8 +68,8 @@ public class introController : MonoBehaviour
             {
                 buttonsGroup.interactable = true;
                 buttonsGroup.blocksRaycasts = true;
-                if(firstButton != null && EventSystem.current != null)
-                    EventSystem.current.SetSelectedGameObject(firstButton);
+                if(firstSelected != null && EventSystem.current != null)
+                    EventSystem.current.SetSelectedGameObject(firstSelected);
             }
         }
     }
@@ -78,6 +78,7 @@ public class introController : MonoBehaviour
     {
         if (titleGroup == null) return;
         titleGroup.alpha = 1f;
+        titleGroup.interactable = true;
         titleGroup.blocksRaycasts = true;
         if (buttonsGroup == null) return;
         buttonsGroup.alpha = 1f;
@@ -86,8 +87,8 @@ public class introController : MonoBehaviour
         var reveal = buttonsGroup.GetComponent<MenuRevealController>();
         if (reveal != null)
             reveal.ForceRevealInstant();
-        if (firstButton != null && EventSystem.current != null)
-            EventSystem.current.SetSelectedGameObject(firstButton);
+        if (firstSelected != null && EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(firstSelected);
     }
 
     IEnumerator FadeCanvasGroup(CanvasGroup cg, float from, float to,float duration)

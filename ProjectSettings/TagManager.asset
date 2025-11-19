@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -44,14 +45,29 @@ TagManager:
   - name: Background
     uniqueID: 2084221091
     locked: 0
-  - name: Floor
+  - name: FirstFloor
     uniqueID: 3119423131
+    locked: 0
+  - name: Stairs
+    uniqueID: 2485931081
+    locked: 0
+  - name: BelowSecondFloor
+    uniqueID: 4142313409
+    locked: 0
+  - name: SecondFloor
+    uniqueID: 2319672673
+    locked: 0
+  - name: Furniture
+    uniqueID: 1833890833
     locked: 0
   - name: Player
     uniqueID: 3550711313
     locked: 0
   - name: Foreground
     uniqueID: 1637060161
+    locked: 0
+  - name: UI
+    uniqueID: 1369810399
     locked: 0
   m_RenderingLayers:
   - Default
