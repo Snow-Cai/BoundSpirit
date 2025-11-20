@@ -5,6 +5,7 @@ public class CharMovement : MonoBehaviour
     private Rigidbody2D rb;
     public float moveSpeed = 5f;
     private Vector2 movementInput;
+    public float pixelsPerUnit = 32f;   //PPU for snapping
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,5 +26,11 @@ public class CharMovement : MonoBehaviour
     {
         //Apply velocity to the RigidBody2D based on input and speed
         rb.linearVelocity = movementInput * moveSpeed;
+
+        //After movement snap to pixel grid to prevent jitter visually
+        Vector2 pos = rb.position;
+        pos.x = Mathf.Round(pos.x * pixelsPerUnit) / pixelsPerUnit;
+        pos.y = Mathf.Round(pos.y * pixelsPerUnit) / pixelsPerUnit;
+        rb.position = pos;
     }
 }
