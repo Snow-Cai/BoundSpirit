@@ -5212,6 +5212,7 @@ GameObject:
   - component: {fileID: 291605631}
   - component: {fileID: 291605630}
   - component: {fileID: 291605634}
+  - component: {fileID: 291605635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5253,17 +5254,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.007001877, y: -0.49712074}
+  m_Offset: {x: -0.009125233, y: -0.25183684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.53125, y: 1.96875}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.5181258, y: 0.9299829}
+  m_Size: {x: 0.7370529, y: 0.4394151}
   m_EdgeRadius: 0
 --- !u!50 &291605631
 Rigidbody2D:
@@ -5360,7 +5361,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.49, y: -1.49, z: 0}
-  m_LocalScale: {x: 0.57, y: 0.57, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1120975087}
@@ -5380,6 +5381,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharMovement
   moveSpeed: 4
   pixelsPerUnit: 32
+--- !u!114 &291605635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291605629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b2f2579880d364e92ff00431e20bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
 --- !u!1 &432719655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5645,9 +5658,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0009813543
-    y: 0.027923211
-    width: 0.99705595
+    x: 0
+    y: -0.092495635
+    width: 1.4308145
     height: 0.9424084
   near clip plane: 0.3
   far clip plane: 1000
@@ -5718,11 +5731,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
   m_ComponentVersion: 1
-  m_AssetsPPU: 32
-  m_RefResolutionX: 480
-  m_RefResolutionY: 270
+  m_AssetsPPU: 64
+  m_RefResolutionX: 960
+  m_RefResolutionY: 540
   m_CropFrame: 2
-  m_GridSnapping: 1
+  m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
