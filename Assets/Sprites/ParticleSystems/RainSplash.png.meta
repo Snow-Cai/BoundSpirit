@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 93ae99a41c5cd2d4a81260804eda938d
+guid: 3d6443a1ffc1a6445befc89ca6330004
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3521025719783926147
-    second: McIdle-1_0
-  - first:
-      213: 8729035202834451739
-    second: McIdle-1_1
+      213: -6896517158626309108
+    second: RainSplash_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,45 +100,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: McIdle-1_0
+      name: RainSplash_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 9
-        width: 64
-        height: 64
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d76d34753cdc22fc0800000000000000
-      internalID: -3521025719783926147
+      spriteID: 7d31b642f566270488bc2430daacd88c
+      internalID: -408101999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: McIdle-1_1
+      name: RainSplash_1
       rect:
         serializedVersion: 2
-        x: 14
+        x: 32
         y: 0
-        width: 45
-        height: 9
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b1dc3d0c443c32970800000000000000
-      internalID: 8729035202834451739
+      spriteID: a36f1872025966e4ba90e40946c468ef
+      internalID: -667429911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainSplash_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8c7e4d33eb0644598d9ef3e77be7c1
+      internalID: 606858268
       vertices: []
       indices: 
       edges: []
@@ -150,7 +169,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ab4502d1061a0564d8156bb501fa9d93
     internalID: 0
     vertices: []
     indices: 
@@ -158,10 +177,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      - key: SpriteEditor.SliceOnImport
+        value: False
     nameFileIdTable:
-      McIdle-1_0: -3521025719783926147
-      McIdle-1_1: 8729035202834451739
+      RainSplash_0: -408101999
+      RainSplash_1: -667429911
+      RainSplash_2: 606858268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
