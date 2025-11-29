@@ -5,6 +5,12 @@ public class CutsceneController : MonoBehaviour
 {
     public CameraFollow camFollow; //CameraFollow script
     public CharMovement charMovement;   //CharMovement script
+    public float CutsceneLength = 7f;
+
+    private void Start()
+    {
+        StartOpeningCutscene();
+    }
 
     void StartOpeningCutscene()
     {
@@ -17,7 +23,7 @@ public class CutsceneController : MonoBehaviour
 
     IEnumerator RunOpeningCutscene()
     {
-        yield return new WaitForSeconds(5f);    //cutscene duration
+        yield return new WaitForSeconds(CutsceneLength);    //cutscene duration
         if(camFollow != null )
             camFollow.enabled = true;   //re-enable camera follow
         if (charMovement != null)       
