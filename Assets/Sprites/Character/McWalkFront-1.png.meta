@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 93ae99a41c5cd2d4a81260804eda938d
+guid: 9c786e44662dc56479905d0a19bd5782
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3521025719783926147
-    second: McIdle-1_0
+      213: -3462233434499712406
+    second: McWalkFront-1_0
   - first:
-      213: 8729035202834451739
-    second: McIdle-1_1
+      213: -1814043960425120444
+    second: McWalkFront-1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,12 +49,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
-  spriteExtrude: 10
+  spriteMode: 1
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -103,29 +103,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: McIdle-1_0
+      name: McWalkFront-1_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 9
-        width: 64
-        height: 64
+        x: 12
+        y: 12
+        width: 49
+        height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d76d34753cdc22fc0800000000000000
-      internalID: -3521025719783926147
+      spriteID: a6af927f80da3ffc0800000000000000
+      internalID: -3462233434499712406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: McIdle-1_1
+      name: McWalkFront-1_1
       rect:
         serializedVersion: 2
         x: 14
@@ -133,15 +133,15 @@ TextureImporter:
         width: 45
         height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1dc3d0c443c32970800000000000000
-      internalID: 8729035202834451739
+      spriteID: 44dfae311a833d6e0800000000000000
+      internalID: -1814043960425120444
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      McIdle-1_0: -3521025719783926147
-      McIdle-1_1: 8729035202834451739
+      McWalkFront-1_0: -3462233434499712406
+      McWalkFront-1_1: -1814043960425120444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
