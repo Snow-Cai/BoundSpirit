@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class KeyPickup : MonoBehaviour
+public class ItemPickup : MonoBehaviour
 {
-    public string itemID = "SafeKey";
+    public ItemData itemID;             //set per item 
     public float pickupDistance = 2f;
-    public SafeControllerKeypad safeController;
+    public PlayerInventory inventory;
+    public AudioClip pickupSound;
 
     private Transform player;
 
@@ -17,20 +18,19 @@ public class KeyPickup : MonoBehaviour
         }
         if (player != null && Vector2.Distance(player.position, transform.position) <= pickupDistance)
         {
-            if (Input.GetKeyDown(KeyCode.E))     //player is able to pick up key when within distance
+            if (Input.GetKeyDown(KeyCode.E))     //player is able to pick up item when within distance
             {
                 PickUp();
             }
         }
     }
 
-    void PickUp()       //pick up key and remove from the world
+    void PickUp()       //pick up item with SFX and remove from the world
     {
-        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
         if (inventory != null)
         {
             inventory.PickUpItem(itemID);
-            AudioSource.PlayClipAtPoint(safeController.keyPickupSound, transform.position);
+            AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             Destroy(gameObject);
         }
     }
