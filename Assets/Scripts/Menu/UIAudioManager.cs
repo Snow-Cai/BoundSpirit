@@ -22,6 +22,7 @@ public class UIAudioManager : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();   
             audioSource.playOnAwake = false;
             audioSource.loop = false;
+
         }
         audioSource.volume = defaultVolume;
     }
