@@ -48,7 +48,7 @@ public class InventoryUI : MonoBehaviour
             RefreshUI();
     }
 
-    void RefreshUI()
+    public void RefreshUI()
     {
         for (int i = 0; i < slots.Length; i++)
         {

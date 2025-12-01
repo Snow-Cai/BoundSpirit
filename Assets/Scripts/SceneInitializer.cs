@@ -51,6 +51,9 @@ public class SceneInitializer : MonoBehaviour
             LoadPlayerPosition();
         }
 
+        //Load player inventory
+        LoadPlayerInventory();
+
         //Auto-save when entering a new scene (optional)
         if (SaveSystem.Instance != null && sceneType != SceneType.MainMenu)
         {
@@ -143,6 +146,44 @@ public class SceneInitializer : MonoBehaviour
             player.transform.rotation = defaultSpawnPoint.rotation;
             Debug.Log("Using default spawn point");
         }
+    }
+
+    void LoadPlayerInventory()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogWarning("No player found with 'Player' tag!");
+            return;
+        }
+
+        if(SaveSystem.Instance == null || !SaveSystem.Instance.HasSaveData())       //Check for save data
+        {
+            Debug.Log("No save data found. Inventory will be empty.");
+            return;
+        }
+
+        SaveData saveData = SaveSystem.Instance.GetSaveData();
+        PlayerInventory inventory = player.GetComponent<PlayerInventory>();
+        if(inventory == null)
+        {
+            Debug.LogWarning("Player is missing a PlayerInventory component!");
+        }
+        inventory.inventory.Clear();            //Clear existing inventory first
+        if(ItemDatabase.Instance != null)
+        {
+            foreach (string itemID in saveData.collectedItems)
+            {
+                ItemData item = ItemDatabase.Instance.GetItemByID(itemID);      //Finds the items in the ItemDatabase to add to inventory
+                if (item != null)
+                    inventory.inventory.Add(item);
+                else
+                    Debug.LogWarning("Saved item ID not found in ItemDatabase: " + itemID);
+            }
+        }
+        InventoryUI ui = FindFirstObjectByType<InventoryUI>();
+        if (ui != null)
+            ui.RefreshUI();
     }
 
     //Optional:Save player position when leaving scene
