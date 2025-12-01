@@ -250,7 +250,7 @@ public class DialogueSystem : MonoBehaviour
         //Play button sound
         if (UIAudioManager.Instance != null)
         {
-            UIButtonSound buttonSound = FindObjectOfType<UIButtonSound>();
+            UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
             if (buttonSound != null && buttonSound.clickSound != null)
             {
                 UIAudioManager.Instance.PlayOneShot(buttonSound.clickSound);

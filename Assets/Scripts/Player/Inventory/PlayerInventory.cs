@@ -25,8 +25,11 @@ public class PlayerInventory : MonoBehaviour
             inventory.Remove(itemID);
     }
 
-    public List<ItemData> GetItems()        //use with UI to be able to display list of items
+    public ItemData GetInventoryItem(int index)
     {
-        return inventory;       
+        if (index >= 0 && index < inventory.Count)
+            return inventory[index];
+        else
+            return null;
     }
 }

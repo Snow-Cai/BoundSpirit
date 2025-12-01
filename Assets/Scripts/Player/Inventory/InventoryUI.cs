@@ -8,21 +8,24 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryPanel;       //inventory window
     public GameObject itemSlotPrefab;
     public CharMovement movement;
-
+    private SlotUI[] slots;
     private bool isOpen = false;
 
     private void Start()
     {
+        slots = new SlotUI[9];
+        for(int i = 0; i < 9; i++)
+        {
+            GameObject slotObject = Instantiate(itemSlotPrefab.gameObject, inventorySlots);
+            slots[i] = slotObject.GetComponent<SlotUI>();
+            slots[i].slotIndex = i;
+            slots[i].SetItem(inventory.GetInventoryItem(i));
+        }
         inventoryPanel.SetActive(false);
     }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
-        {
-            ToggleInventory();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Escape) && isOpen)      //allows player to close inventory with esc key
         {
             ToggleInventory();
         }
@@ -47,14 +50,9 @@ public class InventoryUI : MonoBehaviour
 
     void RefreshUI()
     {
-        foreach (Transform child in inventorySlots)     //clear existing inventory items
-            Destroy(child.gameObject);
-        foreach (ItemData item in inventory.GetItems())     //add currently held items in inventory
+        for (int i = 0; i < slots.Length; i++)
         {
-            GameObject slot = Instantiate(itemSlotPrefab, inventorySlots);
-            Image iconImage = slot.GetComponentInChildren<Image>();
-            if (iconImage != null)
-                iconImage.sprite = item.icon;
+            slots[i].SetItem(inventory.GetInventoryItem(i));
         }
     }
 }
