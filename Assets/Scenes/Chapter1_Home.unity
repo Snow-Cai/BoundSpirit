@@ -7514,7 +7514,6 @@ Transform:
   - {fileID: 883013064}
   - {fileID: 1412077240}
   - {fileID: 957601744}
-  - {fileID: 1276532446}
   - {fileID: 493091664}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17529,7 +17528,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 971925753}
-  m_Father: {fileID: 403161366}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -18663,8 +18662,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
+    y: -0.080789946
+    width: 1.3183856
     height: 0.9694794
   near clip plane: 0.3
   far clip plane: 1000
@@ -22032,6 +22031,7 @@ SceneRoots:
   - {fileID: 1350341833}
   - {fileID: 1916271636}
   - {fileID: 403161366}
+  - {fileID: 1276532446}
   - {fileID: 1705309658}
   - {fileID: 277069549}
   - {fileID: 939070113}
