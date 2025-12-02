@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ReassemblyPuzzleManager : MonoBehaviour
 {
-    public Transform[] snapPoints;      //final target positions for the paper fragments
+    public RectTransform[] snapPoints;      //final target positions for the paper fragments
     public FragmentMovement[] fragments;
-    public float snapDistance = 0.2f;
+    public float snapDistance = 40f;
 
     public void CheckFragmentPosition(FragmentMovement fragment)
     {
@@ -12,10 +12,11 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         {
             if(fragments[i] == fragment)
             {
-                if(Vector2.Distance(fragment.transform.position, snapPoints[i].position) < snapDistance)        //check if the fragment position is within distance of its target location
+                float dist = Vector2.Distance(fragment.rectTransform.anchoredPosition, snapPoints[i].anchoredPosition);
+                if(dist < snapDistance)        //check if the fragment position is within distance of its target location
                 {
-                    fragment.transform.position = snapPoints[i].position;       //snap to the correct position
-                    fragment.GetComponent<Collider2D>().enabled = false;        //lock in the position and prevent further movement
+                    fragment.rectTransform.anchoredPosition = snapPoints[i].anchoredPosition;       //snap to the correct position
+                    fragment.locked = true;        //lock in the position and prevent further movement
                 }
                 break;
             }
@@ -27,9 +28,7 @@ public class ReassemblyPuzzleManager : MonoBehaviour
     {
         foreach(var frag in fragments)
         {
-            if (!frag.GetComponent<Collider2D>().enabled)
-                continue;       //check if all fragments have reached the target position
-            else
+            if (!frag.locked)
                 return;
         }
         Debug.Log("Reassembled clue note!");

@@ -1,29 +1,40 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FragmentMovement : MonoBehaviour
+public class FragmentMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    private bool dragging = false;
-    private Vector3 offset;
+    public RectTransform rectTransform;
+    private Canvas canvas;
+    private Vector2 offset;
+    public bool locked = false;
 
-    private void OnMouseDown()      //when clicking down
+    private void Awake()
     {
-        dragging = true;
-        offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
     }
 
-    private void OnMouseDrag()
+    public void OnPointerDown(PointerEventData eventData)      //when clicking down
     {
-        if(dragging)
+        if(locked) return;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, canvas.worldCamera, out Vector2 localPoint);
+        offset = rectTransform.anchoredPosition - localPoint;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if(locked) return;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, canvas.worldCamera, out Vector2 localPoint);
+        rectTransform.anchoredPosition = localPoint + offset;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)        //when letting go of click
+    {
+        if(locked) return;
+        var manager = FindFirstObjectByType<ReassemblyPuzzleManager>();
+        if(manager != null)
         {
-            Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-            newPos.z = 0;       //maintain z position
-            transform.position = newPos;
+            manager.CheckFragmentPosition(this);
         }
-    }
-
-    private void OnMouseUp()        //when letting go of click
-    {
-        dragging = false;
-        FindFirstObjectByType<ReassemblyPuzzleManager>().CheckFragmentPosition(this);
     }
 }
