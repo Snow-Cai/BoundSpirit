@@ -16717,6 +16717,7 @@ MonoBehaviour:
   isOnSecondFloor: 0
   isTransitioning: 0
   upStairCollider: {fileID: 1180454354}
+  downStairCollider: {fileID: 1120001820}
   floorTransition: {fileID: 1916271635}
 --- !u!61 &1120001820
 BoxCollider2D:
@@ -18587,9 +18588,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
-    height: 0.9694794
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

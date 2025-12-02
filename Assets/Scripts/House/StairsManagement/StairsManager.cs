@@ -6,6 +6,7 @@ public class StairsManager : MonoBehaviour
     public bool isOnSecondFloor = false;
     public bool isTransitioning = false;
     public Collider2D upStairCollider;
+    public Collider2D downStairCollider;
     public FloorTransition floorTransition;
 
     public void UseStairs(bool goingUp)
@@ -32,6 +33,7 @@ public class StairsManager : MonoBehaviour
         if (upStairCollider != null)
         {
             upStairCollider.enabled = !isOnSecondFloor;
+            downStairCollider.enabled = !isOnSecondFloor;
         }
     }
 }
