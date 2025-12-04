@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SafeKeyhole : MonoBehaviour
 {
     public SafeControllerKeypad safeController;
-    public string requiredItemID = "SafeKey";
+    public ItemData requiredItemID;
     public Image keyInsertedVisual;
     private bool keyInserted = false;
 
