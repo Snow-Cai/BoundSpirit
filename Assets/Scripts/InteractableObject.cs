@@ -22,6 +22,7 @@ public class InteractableObject : MonoBehaviour
     public bool isPuzzle = false;
     public string puzzleID;
     public GameObject puzzleUI; //UI to show when interacting
+    public bool isPuzzleOpen = false;   //check if puzzle screen is open
 
     [Header("UI Prompt")]
     public GameObject interactPrompt;
@@ -141,9 +142,15 @@ public class InteractableObject : MonoBehaviour
         }
 
         //Handle puzzle
-        if (isPuzzle && puzzleUI != null)
+        if (isPuzzle && puzzleUI != null && isPuzzleOpen == false)
         {
             OpenPuzzle();
+            return;
+        }
+
+        if (isPuzzle && puzzleUI != null && isPuzzleOpen == true)
+        {
+            ClosePuzzle();
             return;
         }
 
@@ -194,9 +201,20 @@ public class InteractableObject : MonoBehaviour
         if (puzzleUI != null)
         {
             puzzleUI.SetActive(true);
-
+            isPuzzleOpen = true;
             //Pause game while puzzle is open
             Time.timeScale = 0f;
+        }
+    }
+
+    void ClosePuzzle()
+    {
+        if (puzzleUI != null)
+        {
+            puzzleUI.SetActive(false);
+            isPuzzleOpen = false;
+            //Resume game after puzzle is closed
+            Time.timeScale = 1f;
         }
     }
 
