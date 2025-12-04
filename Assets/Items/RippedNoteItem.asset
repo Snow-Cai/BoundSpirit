@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemID: RIPPED_CLUE_NOTE
   itemName: Ripped Clue
-  icon: {fileID: 0}
+  icon: {fileID: 8153699781125942473, guid: 633ee7ddaaf5f3e4da3c2377d840cac2, type: 3}
