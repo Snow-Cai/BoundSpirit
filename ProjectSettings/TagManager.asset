@@ -45,20 +45,8 @@ TagManager:
   - name: Background
     uniqueID: 2084221091
     locked: 0
-  - name: FirstFloor
+  - name: Environment
     uniqueID: 3119423131
-    locked: 0
-  - name: Stairs
-    uniqueID: 2485931081
-    locked: 0
-  - name: BelowSecondFloor
-    uniqueID: 4142313409
-    locked: 0
-  - name: SecondFloor
-    uniqueID: 2319672673
-    locked: 0
-  - name: Furniture
-    uniqueID: 1833890833
     locked: 0
   - name: Player
     uniqueID: 3550711313

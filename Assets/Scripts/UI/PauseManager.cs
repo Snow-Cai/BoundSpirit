@@ -93,7 +93,7 @@ public class PauseManager : MonoBehaviour
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {
             //get the click sound from a button if available
-            UIButtonSound buttonSound = FindObjectOfType<UIButtonSound>();
+            UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
             if (buttonSound != null && buttonSound.clickSound != null)
             {
                 UIAudioManager.Instance.PlayOneShot(buttonSound.clickSound);
@@ -109,7 +109,7 @@ public class PauseManager : MonoBehaviour
         //play UI sound
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {
-            UIButtonSound buttonSound = FindObjectOfType<UIButtonSound>();
+            UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
             if (buttonSound != null && buttonSound.clickSound != null)
             {
                 UIAudioManager.Instance.PlayOneShot(buttonSound.clickSound);
