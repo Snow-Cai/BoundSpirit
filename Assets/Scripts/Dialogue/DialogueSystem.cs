@@ -202,6 +202,7 @@ public class DialogueSystem : MonoBehaviour
         {
             currentDialogue = null;
             State = DialogueState.Inactive;
+            GameInputState.DialogueActive = false;
             return;
         }
 
@@ -209,6 +210,7 @@ public class DialogueSystem : MonoBehaviour
         currentLineIndex = 0;
 
         State = DialogueState.PlayingLine;
+        GameInputState.DialogueActive = true;
 
         TryNotifyDialogueStarted(currentDialogue);
         OnDialogueStarted?.Invoke(currentDialogue);
