@@ -103,7 +103,8 @@ public class DialogueSystem : MonoBehaviour
             return;
         }
 
-        // Inline choices: show choices after a specific line index
+        // Show choices after a specific line index (inline node),
+        // but the chosen branch will go to a separate DialogueAsset.
         if (currentDialogue.choicesAfterLineIndex >= 0 &&
             currentDialogue.choices != null &&
             currentDialogue.choices.Count > 0 &&
@@ -121,7 +122,7 @@ public class DialogueSystem : MonoBehaviour
         {
             bool canShowEndChoices =
                 currentDialogue.showChoicesAtEnd &&
-                currentDialogue.choicesAfterLineIndex < 0 &&      // only if not already used inline
+                currentDialogue.choicesAfterLineIndex < 0 &&
                 currentDialogue.choices != null &&
                 currentDialogue.choices.Count > 0;
 
@@ -151,7 +152,8 @@ public class DialogueSystem : MonoBehaviour
 
     /// <summary>
     /// Called when a choice button is selected.
-    /// Saves the choice (if applicable), executes events, and branches if needed.
+    /// Saves the choice (if applicable), executes events, and branches via nextDialogue.
+    /// The current DialogueAsset always finishes after a choice.
     /// </summary>
     public void SelectChoice(DialogueChoice choice, int choiceIndex)
     {
@@ -170,28 +172,14 @@ public class DialogueSystem : MonoBehaviour
             SaveSystem.Instance.SaveDialogueChoice(currentDialogue.dialogueID, choiceIndex);
         }
 
-        // Branching: queue follow-up dialogue to run after this one finishes
+        // Branch to a separate DialogueAsset.
         if (choice.nextDialogue != null)
         {
             QueueDialogue(choice.nextDialogue);
         }
 
-        bool hasInlineChoices =
-            currentDialogue != null &&
-            currentDialogue.choicesAfterLineIndex >= 0 &&
-            currentDialogue.choicesAfterLineIndex < currentDialogue.lines.Count - 1;
-
-        if (hasInlineChoices)
-        {
-            // Resume this dialogue on the line after the one that triggered the choices
-            State = DialogueState.PlayingLine;
-            currentLineIndex = currentDialogue.choicesAfterLineIndex + 1;
-            PlayCurrentLine();
-        }
-        else
-        {
-            FinishCurrentDialogue();
-        }
+        // This asset always ends after a choice; no inline continuation.
+        FinishCurrentDialogue();
     }
 
     /// <summary>
