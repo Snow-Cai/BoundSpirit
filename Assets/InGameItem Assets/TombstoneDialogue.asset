@@ -46,5 +46,6 @@ MonoBehaviour:
     dialogueText: I have to find out what happened. I have to remember.
     voiceClip: {fileID: 0}
   choices: []
+  choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1

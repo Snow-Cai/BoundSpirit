@@ -103,13 +103,29 @@ public class DialogueSystem : MonoBehaviour
             return;
         }
 
+        // Inline choices: show choices after a specific line index
+        if (currentDialogue.choicesAfterLineIndex >= 0 &&
+            currentDialogue.choices != null &&
+            currentDialogue.choices.Count > 0 &&
+            currentLineIndex == currentDialogue.choicesAfterLineIndex)
+        {
+            State = DialogueState.WaitingForChoice;
+            OnChoicesOffered?.Invoke(currentDialogue.choices);
+            return;
+        }
+
         currentLineIndex++;
 
+        // End-of-dialogue behavior
         if (currentLineIndex >= currentDialogue.lines.Count)
         {
-            if (currentDialogue.showChoicesAtEnd &&
+            bool canShowEndChoices =
+                currentDialogue.showChoicesAtEnd &&
+                currentDialogue.choicesAfterLineIndex < 0 &&      // only if not already used inline
                 currentDialogue.choices != null &&
-                currentDialogue.choices.Count > 0)
+                currentDialogue.choices.Count > 0;
+
+            if (canShowEndChoices)
             {
                 State = DialogueState.WaitingForChoice;
                 OnChoicesOffered?.Invoke(currentDialogue.choices);
@@ -154,12 +170,28 @@ public class DialogueSystem : MonoBehaviour
             SaveSystem.Instance.SaveDialogueChoice(currentDialogue.dialogueID, choiceIndex);
         }
 
+        // Branching: queue follow-up dialogue to run after this one finishes
         if (choice.nextDialogue != null)
         {
             QueueDialogue(choice.nextDialogue);
         }
 
-        FinishCurrentDialogue();
+        bool hasInlineChoices =
+            currentDialogue != null &&
+            currentDialogue.choicesAfterLineIndex >= 0 &&
+            currentDialogue.choicesAfterLineIndex < currentDialogue.lines.Count - 1;
+
+        if (hasInlineChoices)
+        {
+            // Resume this dialogue on the line after the one that triggered the choices
+            State = DialogueState.PlayingLine;
+            currentLineIndex = currentDialogue.choicesAfterLineIndex + 1;
+            PlayCurrentLine();
+        }
+        else
+        {
+            FinishCurrentDialogue();
+        }
     }
 
     /// <summary>

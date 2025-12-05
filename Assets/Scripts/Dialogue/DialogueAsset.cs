@@ -12,6 +12,7 @@ public class DialogueAsset : ScriptableObject
 
     [Header("Choices")]
     public List<DialogueChoice> choices = new List<DialogueChoice>();
+    public int choicesAfterLineIndex = -1;
 
     [Header("Options")]
     public bool saveAfterDialogue = true;
