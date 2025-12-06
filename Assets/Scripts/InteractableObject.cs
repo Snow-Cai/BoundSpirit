@@ -10,7 +10,7 @@ public class InteractableObject : MonoBehaviour
     public float interactionRange = 2f;
 
     [Header("Dialogue")]
-    public Dialogue objectDialogue;
+    public DialogueAsset objectDialogue;
     public bool hasDialogue = true;
 
     [Header("Item Collection")]
