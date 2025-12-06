@@ -19627,8 +19627,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0078124995, y: 0.62499994}
-  m_Radius: 1.5
+  m_Offset: {x: -0.009371227, y: 0.6000001}
+  m_Radius: 0.33133742
 --- !u!114 &1422987760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19644,7 +19644,7 @@ MonoBehaviour:
   objectName: MomNPC
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: 84722f3709295d84ab2b6a4d1e490c14, type: 2}
+  objectDialogue: {fileID: 0}
   hasDialogue: 1
   isCollectible: 0
   itemID: 
