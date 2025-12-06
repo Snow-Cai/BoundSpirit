@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84dc7bb0970681348be11ece947eff15, type: 3}
+  m_Name: RippedNoteItem
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemID: RIPPED_CLUE_NOTE
+  itemName: Ripped Clue
+  icon: {fileID: 8153699781125942473, guid: 633ee7ddaaf5f3e4da3c2377d840cac2, type: 3}
