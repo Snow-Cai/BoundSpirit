@@ -7819,7 +7819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -11395,7 +11395,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -115}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &816328243
@@ -11762,11 +11762,7 @@ MonoBehaviour:
   objectName: RIPPED_CLUE_NOTE
   interactKey: 101
   interactionRange: 2
-  objectDialogue:
-    dialogueID: 
-    lines: []
-    choices: []
-    saveAfterDialogue: 1
+  objectDialogue: {fileID: 0}
   hasDialogue: 0
   isCollectible: 1
   itemID: Ripped_Note
@@ -11967,7 +11963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -15945,7 +15941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -17189,7 +17185,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8466438, y: -1.3255243}
+  m_Offset: {x: -1.496788, y: -1.13727}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17199,7 +17195,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.25727296, y: 0.8827419}
+  m_Size: {x: 0.6007652, y: 1.2592506}
   m_EdgeRadius: 0
 --- !u!114 &1180454355
 MonoBehaviour:
@@ -18483,7 +18479,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.8771667, y: 1.2912607}
+  m_Offset: {x: 1.4288478, y: 1.346797}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18493,7 +18489,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.21657562, y: 0.8593197}
+  m_Size: {x: 0.2602396, y: 0.74824715}
   m_EdgeRadius: 0
 --- !u!114 &1292891569
 MonoBehaviour:
@@ -18544,7 +18540,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.12074351, y: 1.3921032}
+  m_Offset: {x: -0.0031821728, y: 1.3921032}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18554,7 +18550,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.1222053, y: 1.1704636}
+  m_Size: {x: 2.357328, y: 1.1704636}
   m_EdgeRadius: 0
 --- !u!1001 &1322170949
 PrefabInstance:
@@ -19279,9 +19275,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.62500006
-    width: 0.99687994
-    height: 2.25
+    y: 0.0018456996
+    width: 0.9988466
+    height: 0.9966778
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -21802,11 +21798,7 @@ MonoBehaviour:
   objectName: Desk
   interactKey: 101
   interactionRange: 1
-  objectDialogue:
-    dialogueID: 
-    lines: []
-    choices: []
-    saveAfterDialogue: 1
+  objectDialogue: {fileID: 0}
   hasDialogue: 0
   isCollectible: 0
   itemID: 

@@ -7955,7 +7955,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 2
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7985,7 +7985,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 16.97191, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8687,9 +8687,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
-    height: 0.9694794
+    y: 0.0018456996
+    width: 0.9988466
+    height: 0.9966778
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9412,6 +9412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1964929241}
   - {fileID: 1979702476}
   - {fileID: 126733293}
   - {fileID: 1570460855}
@@ -9424,7 +9425,6 @@ Transform:
   - {fileID: 2025022735}
   - {fileID: 440118530}
   - {fileID: 1490956532}
-  - {fileID: 1964929241}
   - {fileID: 1833246134}
   m_Father: {fileID: 618401923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9476,7 +9476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -9699,7 +9699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &782552005
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23187,7 +23187,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 13.282349, y: 0, z: -380.5359, w: -29.78938}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -24287,16 +24287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364823bb5b450314aae49b1a0b6badb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
-  dialogueBox: {fileID: 1711469416}
-  speakerNameText: {fileID: 311390707}
-  dialogueText: {fileID: 1461720364}
-  choiceButtonContainer: {fileID: 47517460}
-  choiceButtonPrefab: {fileID: 6405202693364414078, guid: d4324b40c50bfd341a5a8e4d7edd2e43, type: 3}
-  textSpeed: 0.05
-  skipTypingOnClick: 1
-  dialogueOpenSound: {fileID: 0}
-  dialogueCloseSound: {fileID: 0}
-  textBlipSound: {fileID: 0}
+  charactersPerSecond: 40
 --- !u!4 &1671354832
 Transform:
   m_ObjectHideFlags: 0
@@ -29323,10 +29314,10 @@ RectTransform:
   - {fileID: 47517461}
   m_Father: {fileID: 1733203381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 414, y: 250}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1711469418
 MonoBehaviour:
@@ -29378,6 +29369,7 @@ GameObject:
   - component: {fileID: 1733203380}
   - component: {fileID: 1733203379}
   - component: {fileID: 1733203378}
+  - component: {fileID: 1733203382}
   m_Layer: 5
   m_Name: DialogueCanvas
   m_TagString: Untagged
@@ -29414,7 +29406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -29468,6 +29460,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1733203382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733203377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca787975089bbd8428c7c6cb517e2a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueUI
+  dialogueBox: {fileID: 1711469416}
+  speakerNameText: {fileID: 311390707}
+  dialogueText: {fileID: 1461720364}
+  choiceButtonContainer: {fileID: 47517460}
+  choiceButtonPrefab: {fileID: 0}
+  playVoiceClips: 1
 --- !u!1001 &1734126644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36870,7 +36880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_Name
-      value: Grave3 (2)
+      value: PlayerGrave
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36968,11 +36978,7 @@ MonoBehaviour:
   objectName: Your Tombstone
   interactKey: 101
   interactionRange: 2
-  objectDialogue:
-    dialogueID: 
-    lines: []
-    choices: []
-    saveAfterDialogue: 1
+  objectDialogue: {fileID: 11400000, guid: 8ecabb16e9132f24a9827100cac2f7cb, type: 2}
   hasDialogue: 1
   isCollectible: 0
   itemID: 
@@ -36993,7 +36999,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964929242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ae119cb82a393140a388bcf49cb2224, type: 3}
   m_Name: 
