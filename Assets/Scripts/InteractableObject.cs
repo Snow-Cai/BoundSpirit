@@ -33,10 +33,13 @@ public class InteractableObject : MonoBehaviour
     public AudioClip interactSound;
     public AudioClip collectSound;
 
+    [Header("NPC")]
+    private NPCController npcController;
+
     private Transform player;
     private bool playerInRange = false;
     private bool hasBeenCollected = false;
-
+    
     void Start()
     {
         //Find player
@@ -71,6 +74,9 @@ public class InteractableObject : MonoBehaviour
         {
             promptText.text = "Press " + interactKey.ToString() + " to interact";
         }
+
+        //setup npc
+        npcController = GetComponent<NPCController>();
     }
 
     void Update()
@@ -78,7 +84,8 @@ public class InteractableObject : MonoBehaviour
         if (player == null || hasBeenCollected) return;
 
         //Check distance to player
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(GetComponent<Collider2D>().bounds.center, player.position);
+
 
         if (distance <= promptDistance)
         {
@@ -122,6 +129,10 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
+        //npc set up for dialogue interaction
+        if (npcController != null)
+            npcController.StartInteraction();
+
         //Don't interact if dialogue is already active
         if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
         {
@@ -158,7 +169,23 @@ public class InteractableObject : MonoBehaviour
         if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
         {
             DialogueSystem.Instance.StartDialogue(objectDialogue);
+
+            // handle npc movement after ended dialogue ended
+            DialogueSystem.Instance.OnDialogueEnded += HandleDialogueEnd;
         }
+    }
+
+    //for npc
+    private void HandleDialogueEnd(DialogueAsset asset)
+    {
+        // Resume NPC movement
+        if (npcController != null) 
+        {
+            npcController.EndInteraction();
+        }
+            
+        // Prevent multiple events at once
+        DialogueSystem.Instance.OnDialogueEnded -= HandleDialogueEnd;
     }
 
     void CollectItem()
