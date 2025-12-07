@@ -21,6 +21,7 @@ public class GraveyardGateController : MonoBehaviour
     [Tooltip("Visual object to disable when the gate is unlocked")]
     [SerializeField] private GameObject gateVisuals;
 
+    public KeyCode InteractKey => interactKey;
     private Transform player;
 
     private void Start()
