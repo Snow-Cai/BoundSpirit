@@ -11473,7 +11473,6 @@ GameObject:
   - component: {fileID: 842411740}
   - component: {fileID: 842411739}
   - component: {fileID: 842411742}
-  - component: {fileID: 842411743}
   m_Layer: 0
   m_Name: KeyPlaceholder
   m_TagString: Untagged
@@ -11525,7 +11524,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 8}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!212 &842411740
 SpriteRenderer:
@@ -11616,18 +11615,6 @@ MonoBehaviour:
   pickupDistance: 2
   inventory: {fileID: 2000622939}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
---- !u!114 &842411743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842411738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1 &854863094
 GameObject:
   m_ObjectHideFlags: 0
@@ -19268,9 +19255,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.110776186
-    width: 1
-    height: 1.2207989
+    y: -0.16342412
+    width: 1.3982495
+    height: 1.0505836
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -21218,7 +21205,6 @@ GameObject:
   - component: {fileID: 1956579848}
   - component: {fileID: 1956579847}
   - component: {fileID: 1956579850}
-  - component: {fileID: 1956579851}
   m_Layer: 0
   m_Name: SafePlaceholder
   m_TagString: Interactable
@@ -21270,7 +21256,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1956579848
 SpriteRenderer:
@@ -21360,18 +21346,11 @@ MonoBehaviour:
   safeUIPanel: {fileID: 1291626096}
   interactionRadius: 1.5
   playerTransform: {fileID: 2000622937}
---- !u!114 &1956579851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!4 &1992049358 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+  m_PrefabInstance: {fileID: 1700747217}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1956579846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1 &2000254425
 GameObject:
   m_ObjectHideFlags: 0
@@ -21562,10 +21541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7532337006246307055, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1441967353}
+    - target: {fileID: 7566273847622432097, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21610,8 +21589,6 @@ GameObject:
   - component: {fileID: 2050588828}
   - component: {fileID: 2050588831}
   - component: {fileID: 2050588830}
-  - component: {fileID: 2050588832}
-  - component: {fileID: 2050588833}
   m_Layer: 0
   m_Name: DeskPlaceholder
   m_TagString: Untagged
@@ -21770,64 +21747,6 @@ MonoBehaviour:
   promptDistance: 3
   interactSound: {fileID: 0}
   collectSound: {fileID: 0}
---- !u!114 &2050588832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050588826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
---- !u!61 &2050588833
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050588826}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.375, y: 1.6875}
-    newSize: {x: 2.375, y: 1.6875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.375, y: 1.494291}
-  m_EdgeRadius: 0
 --- !u!1 &2079352339
 GameObject:
   m_ObjectHideFlags: 0
