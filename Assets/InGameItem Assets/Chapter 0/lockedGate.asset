@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter0_lockedGate
   lines:
   - speakerName: Akila
-    dialogueText: "There\u2019s some sort of seal on the gate. Maybe I can break
-      it\u2026"
+    dialogueText: "There\u2019s some sort of seal on the gate. Maybe there's a clue
+      nearby\u2026"
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

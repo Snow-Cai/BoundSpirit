@@ -7,12 +7,12 @@ public class GraveyardGateController : MonoBehaviour
     [SerializeField] private float interactionRange = 2f;
 
     [Header("Requirements")]
-    [SerializeField] private DialogueAsset requiredIntroDialogue; // Player must view this dialogue before leaving to next area
+    [SerializeField] private DialogueAsset requiredIntroDialogue; // Player must view this before leaving to next area
     [SerializeField] private string gatePuzzleID = "chapter0_graveyard_gate";
 
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
-    [SerializeField] private DialogueAsset lockedPuzzleDialogue; // puzzle hint dialogue
+    [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle
 
     [Header("Puzzle UI")]
     [SerializeField] private GameObject puzzleUI;
@@ -32,7 +32,6 @@ public class GraveyardGateController : MonoBehaviour
             puzzleUI.SetActive(false);
         }
 
-        // If the puzzle was already solved in a previous session, start with the gate removed.
         if (IsGatePuzzleSolved())
         {
             ApplyGateUnlockedState();
@@ -63,7 +62,6 @@ public class GraveyardGateController : MonoBehaviour
             return;
         }
 
-        // E-interaction near the gate.
         if (distance <= interactionRange && Input.GetKeyDown(interactKey))
         {
             HandleGateInteraction();
@@ -72,7 +70,6 @@ public class GraveyardGateController : MonoBehaviour
 
     private void HandleGateInteraction()
     {
-        // If the gate is already unlocked, do nothing (another system handles exit).
         if (IsGatePuzzleSolved())
         {
             Debug.Log("Gate is already unlocked. Player may proceed to the next area.");
@@ -89,7 +86,17 @@ public class GraveyardGateController : MonoBehaviour
             return;
         }
 
-        // 2. Player knows name but puzzle not solved → toggle puzzle UI.
+        // 2. Player knows name but puzzle not solved.
+        // First interaction after that: show a one-time hint before opening the puzzle.
+        if (!HasSeenPuzzleHint() &&
+            lockedPuzzleDialogue != null &&
+            DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.StartDialogue(lockedPuzzleDialogue);
+            return;
+        }
+
+        // After the hint has been seen at least once, toggle the puzzle.
         bool puzzleOpen = puzzleUI != null && puzzleUI.activeSelf;
 
         if (puzzleOpen)
@@ -109,7 +116,7 @@ public class GraveyardGateController : MonoBehaviour
             puzzleUI.SetActive(true);
         }
 
-        GameInputState.DialogueActive = true; // freeze movement while puzzle is open
+        GameInputState.DialogueActive = true;
     }
 
     private void ClosePuzzleUI()
@@ -132,6 +139,18 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         return SaveSystem.Instance.HasViewedDialogue(requiredIntroDialogue.dialogueID);
+    }
+
+    private bool HasSeenPuzzleHint()
+    {
+        if (lockedPuzzleDialogue == null ||
+            SaveSystem.Instance == null ||
+            string.IsNullOrEmpty(lockedPuzzleDialogue.dialogueID))
+        {
+            return false;
+        }
+
+        return SaveSystem.Instance.HasViewedDialogue(lockedPuzzleDialogue.dialogueID);
     }
 
     private bool IsGatePuzzleSolved()
@@ -159,13 +178,11 @@ public class GraveyardGateController : MonoBehaviour
 
     private void ApplyGateUnlockedState()
     {
-        // Hide the visual gate and its collider.
         if (gateVisuals != null)
         {
             gateVisuals.SetActive(false);
         }
 
-        // No further interaction once the gate is gone.
         enabled = false;
     }
 }

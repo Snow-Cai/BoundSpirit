@@ -1,5 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Xml.Linq;
 using TMPro;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UIElements.Experimental;
+using static Unity.Burst.Intrinsics.X86;
+using static Unity.Collections.AllocatorManager;
+using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GatePuzzleController : MonoBehaviour
 {
@@ -19,16 +28,15 @@ public class GatePuzzleController : MonoBehaviour
     [Header("Feedback")]
     [SerializeField] private DialogueAsset wrongPatternDialogue;
     [SerializeField] private bool showWrongDialogueOncePerOpen = true;
-    private bool wrongDialogueShownThisOpen;
     [SerializeField] private DialogueAsset puzzleCompleteDialogue;
 
+    private bool wrongDialogueShownThisOpen;
     private int[] currentPattern;
 
     private void Awake()
     {
         if (runeTexts == null || runeTexts.Length == 0)
         {
-            //Debug.LogWarning("GatePuzzleController: No runeTexts assigned.");
             return;
         }
 
@@ -39,7 +47,6 @@ public class GatePuzzleController : MonoBehaviour
 
         currentPattern = new int[runeTexts.Length];
 
-        // Initialize all runes to first symbol.
         for (int i = 0; i < currentPattern.Length; i++)
         {
             currentPattern[i] = 0;
@@ -50,7 +57,6 @@ public class GatePuzzleController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Reset pattern whenever the puzzle UI is opened.
         if (currentPattern == null || runeTexts == null)
         {
             return;
@@ -69,7 +75,8 @@ public class GatePuzzleController : MonoBehaviour
     {
         if (runeTexts == null ||
             symbolOptions == null ||
-            symbolOptions.Length == 0)
+            symbolOptions.Length == 0 ||
+            currentPattern == null)
         {
             return;
         }
@@ -105,7 +112,8 @@ public class GatePuzzleController : MonoBehaviour
     {
         if (runeTexts == null ||
             symbolOptions == null ||
-            symbolOptions.Length == 0)
+            symbolOptions.Length == 0 ||
+            currentPattern == null)
         {
             return;
         }
@@ -145,7 +153,7 @@ public class GatePuzzleController : MonoBehaviour
     private void HandleIncorrectPattern()
     {
         if (wrongPatternDialogue != null &&
-        DialogueSystem.Instance != null)
+            DialogueSystem.Instance != null)
         {
             if (!showWrongDialogueOncePerOpen || !wrongDialogueShownThisOpen)
             {
