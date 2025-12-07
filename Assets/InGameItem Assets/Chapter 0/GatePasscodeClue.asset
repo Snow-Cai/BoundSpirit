@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogueText: "A weathered stone plate beside the gate\u2026"
     voiceClip: {fileID: 0}
   - speakerName: 
-    dialogueText: "carved with \u25CF \u25B2 \u25A0, Circle, Triangle, Square."
+    dialogueText: "It is carved with \u25CF \u25B2 \u25A0"
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: I wonder if I use this anywhere?

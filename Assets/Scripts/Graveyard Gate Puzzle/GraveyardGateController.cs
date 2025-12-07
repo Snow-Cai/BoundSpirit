@@ -12,7 +12,7 @@ public class GraveyardGateController : MonoBehaviour
 
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
-    [SerializeField] private DialogueAsset lockedPuzzleDialogue; // Wrong puzzle attempt dialogue
+    [SerializeField] private DialogueAsset lockedPuzzleDialogue; // puzzle hint dialogue
 
     [Header("Puzzle UI")]
     [SerializeField] private GameObject puzzleUI;

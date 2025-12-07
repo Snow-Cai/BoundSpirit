@@ -18,6 +18,8 @@ public class GatePuzzleController : MonoBehaviour
 
     [Header("Feedback")]
     [SerializeField] private DialogueAsset wrongPatternDialogue;
+    [SerializeField] private bool showWrongDialogueOncePerOpen = true;
+    private bool wrongDialogueShownThisOpen;
     [SerializeField] private DialogueAsset puzzleCompleteDialogue;
 
     private int[] currentPattern;
@@ -60,6 +62,7 @@ public class GatePuzzleController : MonoBehaviour
         }
 
         RefreshRunes();
+        wrongDialogueShownThisOpen = false;
     }
 
     public void CycleRune(int index)
@@ -141,9 +144,14 @@ public class GatePuzzleController : MonoBehaviour
 
     private void HandleIncorrectPattern()
     {
-        if (wrongPatternDialogue != null && DialogueSystem.Instance != null)
+        if (wrongPatternDialogue != null &&
+        DialogueSystem.Instance != null)
         {
-            DialogueSystem.Instance.StartDialogue(wrongPatternDialogue);
+            if (!showWrongDialogueOncePerOpen || !wrongDialogueShownThisOpen)
+            {
+                DialogueSystem.Instance.StartDialogue(wrongPatternDialogue);
+                wrongDialogueShownThisOpen = true;
+            }
         }
     }
 
