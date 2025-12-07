@@ -30,12 +30,19 @@ public class SceneInitializer : MonoBehaviour
 
     void Start()
     {
+        //Reset transition flag when scene starts
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SetTransitioning(false);
+        }
+
         //Delay to ensure player is spawned first
         StartCoroutine(InitializeAfterFrame());
     }
 
     IEnumerator InitializeAfterFrame()
     {
+        yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         InitializeScene();
     }
@@ -46,7 +53,7 @@ public class SceneInitializer : MonoBehaviour
         PlaySceneMusic();
 
         //Handle Player Position (for gameplay scenes)
-        if (shouldLoadPlayerPosition && sceneType == SceneType.Gameplay || sceneType == SceneType.Safe)
+        if (shouldLoadPlayerPosition && (sceneType == SceneType.Gameplay || sceneType == SceneType.Safe))
         {
             LoadPlayerPosition();
         }
@@ -54,11 +61,8 @@ public class SceneInitializer : MonoBehaviour
         //Load player inventory
         LoadPlayerInventory();
 
-        //Auto-save when entering a new scene (optional)
-        if (SaveSystem.Instance != null && sceneType != SceneType.MainMenu)
-        {
-            SaveSystem.Instance.SaveGame();
-        }
+        //REMOVED AUTO-SAVE We'll save manually at safe times only
+        //Don't auto-save when entering scenes: this was causing the void spawning issue
     }
 
     void PlaySceneMusic()
@@ -125,17 +129,46 @@ public class SceneInitializer : MonoBehaviour
 
             //Only load position if the saved scene matches current scene
             string currentScene = SceneManager.GetActiveScene().name;
+            Debug.Log("Current scene: " + currentScene + " | Saved scene: " + saveData.currentScene);
+
             if (saveData.currentScene == currentScene)
             {
                 Vector3 savedPosition = SaveSystem.Instance.GetPlayerPosition();
 
-                //Check if position is not zero (default value)
-                if (savedPosition != Vector3.zero)
+                //Check if position is not zero (default value) AND is valid (not in void)
+                if (savedPosition != Vector3.zero && savedPosition.y > -50f)
                 {
+                    // Disable controller before moving
+                    CharacterController controller = player.GetComponent<CharacterController>();
+                    Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
+
+                    if (controller != null)
+                    {
+                        controller.enabled = false;
+                    }
+                    if (rb2d != null)
+                    {
+                        rb2d.linearVelocity = Vector2.zero; // Stop any movement
+                    }
+
                     player.transform.position = savedPosition;
                     Debug.Log("Loaded player position: " + savedPosition);
+
+                    // Re-enable controller
+                    if (controller != null)
+                    {
+                        controller.enabled = true;
+                    }
                     return;
                 }
+                else
+                {
+                    Debug.LogWarning("Saved position invalid: " + savedPosition + " - using default spawn");
+                }
+            }
+            else
+            {
+                Debug.Log("Different scene detected - using default spawn point");
             }
         }
 
@@ -144,7 +177,11 @@ public class SceneInitializer : MonoBehaviour
         {
             player.transform.position = defaultSpawnPoint.position;
             player.transform.rotation = defaultSpawnPoint.rotation;
-            Debug.Log("Using default spawn point");
+            Debug.Log("Using default spawn point at: " + defaultSpawnPoint.position);
+        }
+        else
+        {
+            Debug.LogError("No default spawn point set in SceneInitializer!");
         }
     }
 
@@ -157,7 +194,7 @@ public class SceneInitializer : MonoBehaviour
             return;
         }
 
-        if(SaveSystem.Instance == null || !SaveSystem.Instance.HasSaveData())       //Check for save data
+        if (SaveSystem.Instance == null || !SaveSystem.Instance.HasSaveData())
         {
             Debug.Log("No save data found. Inventory will be empty.");
             return;
@@ -165,16 +202,17 @@ public class SceneInitializer : MonoBehaviour
 
         SaveData saveData = SaveSystem.Instance.GetSaveData();
         PlayerInventory inventory = player.GetComponent<PlayerInventory>();
-        if(inventory == null)
+        if (inventory == null)
         {
             Debug.LogWarning("Player is missing a PlayerInventory component!");
+            return;
         }
-        inventory.inventory.Clear();            //Clear existing inventory first
-        if(ItemDatabase.Instance != null)
+        inventory.inventory.Clear();
+        if (ItemDatabase.Instance != null)
         {
             foreach (string itemID in saveData.collectedItems)
             {
-                ItemData item = ItemDatabase.Instance.GetItemByID(itemID);      //Finds the items in the ItemDatabase to add to inventory
+                ItemData item = ItemDatabase.Instance.GetItemByID(itemID);
                 if (item != null)
                     inventory.inventory.Add(item);
                 else
@@ -184,26 +222,5 @@ public class SceneInitializer : MonoBehaviour
         InventoryUI ui = FindFirstObjectByType<InventoryUI>();
         if (ui != null)
             ui.RefreshUI();
-    }
-
-    //Optional:Save player position when leaving scene
-    void OnDestroy()
-    {
-        if (sceneType == SceneType.Gameplay || sceneType == SceneType.Safe)
-        {
-            SavePlayerPosition();
-        }
-    }
-
-    void SavePlayerPosition()
-    {
-        if (SaveSystem.Instance == null) return;
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            SaveSystem.Instance.SetPlayerPosition(player.transform.position);
-            SaveSystem.Instance.SaveGame();
-        }
     }
 }
