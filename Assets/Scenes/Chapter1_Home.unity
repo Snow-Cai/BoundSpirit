@@ -976,7 +976,7 @@ MonoBehaviour:
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
-  defaultSpawnPoint: {fileID: 0}
+  defaultSpawnPoint: {fileID: 939070113}
 --- !u!4 &277069549
 Transform:
   m_ObjectHideFlags: 0
@@ -18985,9 +18985,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0018456996
-    width: 0.9988466
-    height: 0.9966778
+    y: -0.4092664
+    width: 1.8707812
+    height: 2.084942
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
