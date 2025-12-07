@@ -22,7 +22,9 @@ public class GraveyardGateController : MonoBehaviour
     [SerializeField] private GameObject gateVisuals;
 
     public KeyCode InteractKey => interactKey;
+
     private Transform player;
+    private bool puzzleHintShownThisSession;
 
     private void Start()
     {
@@ -84,16 +86,30 @@ public class GraveyardGateController : MonoBehaviour
             {
                 DialogueSystem.Instance.StartDialogue(lockedWithoutNameDialogue);
             }
+
+            // Optional: subtle guidance if they hit the gate too early.
+            ObjectiveBanner.Instance?.ShowMessage("Maybe check your surroundings first…");
+
             return;
         }
 
         // 2. Player knows name but puzzle not solved.
-        // First interaction after that: show a one-time hint before opening the puzzle.
-        if (!HasSeenPuzzleHint() &&
+        // First meaningful interaction: show a one-time hint, then always open the puzzle afterwards.
+        bool hasSeenHintPersisted = HasSeenPuzzleHint();
+        bool shouldShowHint =
+            !puzzleHintShownThisSession &&
+            !hasSeenHintPersisted &&
             lockedPuzzleDialogue != null &&
-            DialogueSystem.Instance != null)
+            DialogueSystem.Instance != null;
+
+        if (shouldShowHint)
         {
+            puzzleHintShownThisSession = true;
             DialogueSystem.Instance.StartDialogue(lockedPuzzleDialogue);
+
+            // Banner: reinforce the hint in a non-intrusive way.
+            //ObjectiveBanner.Instance?.ShowMessage("Hint: The gate’s code is hidden nearby.");
+
             return;
         }
 
@@ -173,6 +189,8 @@ public class GraveyardGateController : MonoBehaviour
 
         ClosePuzzleUI();
         ApplyGateUnlockedState();
+
+        ObjectiveBanner.Instance?.ShowMessage("Objective complete: The graveyard gate is open.");
 
         Debug.Log("Gate puzzle solved. Gate unlocked.");
     }
