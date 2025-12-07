@@ -17,7 +17,7 @@ public class MusicManager : MonoBehaviour
     public float fadeSpeed = 1f;
 
     [Header("Audio Mixer")]
-    public AudioMixerGroup musicGroup; // assign Music group
+    public AudioMixerGroup musicGroup; // assign Music mixer group (from AudioMixer, will later add Master and SFX routing).
 
     private AudioSource audioSource;
     private AudioClip currentClip;
@@ -118,7 +118,7 @@ public class MusicManager : MonoBehaviour
             audioSource.volume = musicVolume * sliderVolume;
     }
 
-    // NEW: Call this from slider
+//call from slider
     public void SetSliderVolume(float slider)
     {
         sliderVolume = Mathf.Clamp01(slider);
