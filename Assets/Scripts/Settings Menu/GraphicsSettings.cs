@@ -55,6 +55,11 @@ public class GraphicsSettings : MonoBehaviour
 
     public void SetFullscreen(bool isFullscreen)
     {
+        Debug.Log("Toggle sent value: " + isFullscreen);
+
         Screen.fullScreen = isFullscreen;
+
+        Debug.Log("Fullscreen switched to: " + Screen.fullScreen);
     }
+
 }
