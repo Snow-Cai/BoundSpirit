@@ -19181,7 +19181,7 @@ MonoBehaviour:
   objectName: MomNPC
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 0}
+  objectDialogue: {fileID: 11400000, guid: 84722f3709295d84ab2b6a4d1e490c14, type: 2}
   hasDialogue: 1
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
@@ -19255,9 +19255,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.21131447
-    width: 1.6507276
-    height: 0.89850247
+    y: -0.16342412
+    width: 1.3982495
+    height: 1.0505836
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
