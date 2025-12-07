@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -12,6 +12,10 @@ public class InteractableObject : MonoBehaviour
     [Header("Dialogue")]
     public DialogueAsset objectDialogue;
     public bool hasDialogue = true;
+
+    [SerializeField] private bool playPrimaryOnlyOnce = false;
+    [SerializeField] private DialogueAsset primaryDialogue; // Dialogue to play first time
+    [SerializeField] private DialogueAsset repeatDialogue; // Dialogue to play on after first interaction
 
     [Header("Item Collection")]
     public bool isCollectible = false;
@@ -166,12 +170,9 @@ public class InteractableObject : MonoBehaviour
         }
 
         //Handle dialogue
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
-
-            // handle npc movement after ended dialogue ended
-            DialogueSystem.Instance.OnDialogueEnded += HandleDialogueEnd;
+            PlayDialogue();
         }
     }
 
@@ -207,9 +208,9 @@ public class InteractableObject : MonoBehaviour
         }
 
         //Show dialogue if exists
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
+            PlayDialogue();
         }
 
         //Hide visual
@@ -257,10 +258,34 @@ public class InteractableObject : MonoBehaviour
         Time.timeScale = 1f;
 
         //Optionally play dialogue
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
+            PlayDialogue();
         }
+    }
+
+    private void PlayDialogue()
+    {
+        if (DialogueSystem.Instance == null)
+            return;
+
+        DialogueAsset dialogueToPlay = primaryDialogue != null ? primaryDialogue : objectDialogue;
+
+        // If primary wshould be seen once and was seen already, use repeat
+        if (playPrimaryOnlyOnce &&
+            primaryDialogue != null &&
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(primaryDialogue.dialogueID) &&
+            SaveSystem.Instance.HasViewedDialogue(primaryDialogue.dialogueID))
+        {
+            if (repeatDialogue != null)
+            {
+                dialogueToPlay = repeatDialogue;
+            }
+        }
+
+        if (dialogueToPlay != null)
+            DialogueSystem.Instance.StartDialogue(dialogueToPlay);
     }
 
     void OnDrawGizmosSelected()
