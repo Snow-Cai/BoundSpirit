@@ -1,25 +1,52 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SettingsData", menuName = "Settings/Settings Data")]
+[CreateAssetMenu(fileName = "SettingsData", menuName = "GameSettings/Settings Data")]
 public class SettingsData : ScriptableObject
 {
-    [Header("Audio")]
-    [Range(0, 1)] public float masterVolume = 1f;
-    [Range(0, 1)] public float musicVolume = 1f;
-    [Range(0, 1)] public float sfxVolume = 1f;
+    [Header("Audio Settings")]
+    [Range(0f, 1f)] public float masterVolume = 0.75f;
+    [Range(0f, 1f)] public float musicVolume = 0.75f;
+    [Range(0f, 1f)] public float sfxVolume = 0.75f;
 
-    [Header("Controls")]
-    public float moveSensitivity = 1f;
-    public bool invertYAxis = false;
-
-    [Header("Graphics")]
+    [Header("Graphics Settings")]
     public int resolutionIndex = 0;
-    public int qualityIndex = 1;
-    public bool fullscreen = true;
+    public bool isFullscreen = true;
+    public bool vSyncEnabled = true;
 
-    [Header("Accessibility")]
-    public bool colorblindMode = false;
-    public bool subtitlesEnabled = true;
-    public int subtitleSize = 16;
+    [Header("Menu State")]
+    public bool openMain = true;
+    public bool openAudio = false;
+    public bool openGraphics = false;
 
+    public void Save()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+
+        PlayerPrefs.SetInt("ResolutionIndex", resolutionIndex);
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.SetInt("VSync", vSyncEnabled ? 1 : 0);
+
+        PlayerPrefs.SetInt("MenuMain", openMain ? 1 : 0);
+        PlayerPrefs.SetInt("MenuAudio", openAudio ? 1 : 0);
+        PlayerPrefs.SetInt("MenuGraphics", openGraphics ? 1 : 0);
+
+        PlayerPrefs.Save();
+    }
+
+    public void Load()
+    {
+        masterVolume = PlayerPrefs.GetFloat("MasterVolume", masterVolume);
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", musicVolume);
+        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", sfxVolume);
+
+        resolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", resolutionIndex);
+        isFullscreen = PlayerPrefs.GetInt("Fullscreen", isFullscreen ? 1 : 0) == 1;
+        vSyncEnabled = PlayerPrefs.GetInt("VSync", vSyncEnabled ? 1 : 0) == 1;
+
+        openMain = PlayerPrefs.GetInt("MenuMain", openMain ? 1 : 0) == 1;
+        openAudio = PlayerPrefs.GetInt("MenuAudio", openAudio ? 1 : 0) == 1;
+        openGraphics = PlayerPrefs.GetInt("MenuGraphics", openGraphics ? 1 : 0) == 1;
+    }
 }
