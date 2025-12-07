@@ -8516,9 +8516,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.21131447
-    width: 1.6507276
-    height: 0.89850247
+    y: -0.110776186
+    width: 1
+    height: 1.2207989
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -23219,7 +23219,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 99519960907286725, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 1120975087}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
@@ -37024,6 +37024,12 @@ PrefabInstance:
       addedObject: {fileID: 1964929243}
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1964929244}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964929249}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1964929248}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1964929241 stripped
@@ -37079,13 +37085,65 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c19c111e01453ef488c10259de13ef0f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionHintUI
-  hintCanvasGroup: {fileID: 0}
-  hintLabel: {fileID: 0}
-  maxDistance: 2
-  hintFormat: Press {0} to interact
-  hideWhenDialogueActive: 1
-  fadeSpeed: 8
+  m_EditorClassIdentifier: Assembly-CSharp::TombstoneDialogue
+--- !u!61 &1964929248
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964929242}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 1.03125}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2, y: 2.5}
+  m_EdgeRadius: 0
+--- !u!114 &1964929249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964929242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
 --- !u!1 &1977846327
 GameObject:
   m_ObjectHideFlags: 0
