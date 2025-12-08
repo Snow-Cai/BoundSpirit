@@ -33,10 +33,5 @@ public class ItemPickup : MonoBehaviour
             AudioSource.PlayClipAtPoint(pickupSound, transform.position);
             Destroy(gameObject);
         }
-        //save to inventory
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.CollectItem(itemID.itemName);
-        }
     }
 }

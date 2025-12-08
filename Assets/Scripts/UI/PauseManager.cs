@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PauseManager : MonoBehaviour
 {
     [Header("UI References")]
     public GameObject pauseMenuUI;
+
     [Header("Audio")]
     public AudioClip pauseSound;
     public AudioClip resumeSound;
+
     private bool isPaused = false;
 
     void Start()
@@ -23,13 +26,6 @@ public class PauseManager : MonoBehaviour
         //toggle pause with escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //DON'T ALLOW PAUSING DURING TRANSITIONS
-            if (SaveSystem.Instance != null && SaveSystem.Instance.IsTransitioning())
-            {
-                Debug.Log("Cannot pause during scene transition");
-                return;
-            }
-
             if (isPaused)
             {
                 Resume();
@@ -47,21 +43,16 @@ public class PauseManager : MonoBehaviour
         {
             pauseMenuUI.SetActive(true);
         }
+
         Time.timeScale = 0f; //freeze game
         isPaused = true;
-
-        //SAVE THE GAME WHEN PAUSING
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.SaveGame();
-            Debug.Log("Game saved on pause");
-        }
 
         //pause music
         if (MusicManager.Instance != null)
         {
             MusicManager.Instance.PauseMusic();
         }
+
         //play pause sound
         if (pauseSound != null && UIAudioManager.Instance != null)
         {
@@ -75,13 +66,16 @@ public class PauseManager : MonoBehaviour
         {
             pauseMenuUI.SetActive(false);
         }
+
         Time.timeScale = 1f; //unfreeze game
         isPaused = false;
+
         //resume music
         if (MusicManager.Instance != null)
         {
             MusicManager.Instance.ResumeMusic();
         }
+
         //play resume sound
         if (resumeSound != null && UIAudioManager.Instance != null)
         {
@@ -91,25 +85,21 @@ public class PauseManager : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        //SAVE BEFORE QUITTING (only if not transitioning)
-        if (SaveSystem.Instance != null && !SaveSystem.Instance.IsTransitioning())
-        {
-            SaveSystem.Instance.SaveGame();
-            Debug.Log("Game saved before returning to menu");
-        }
-
         //unfreeze time before changing scenes
         Time.timeScale = 1f;
         isPaused = false;
+
         //play UI sound
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {
+            //get the click sound from a button if available
             UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
             if (buttonSound != null && buttonSound.clickSound != null)
             {
                 UIAudioManager.Instance.PlayOneShot(buttonSound.clickSound);
             }
         }
+
         //load main menu scene
         SceneManager.LoadScene("MenuScene");
     }
@@ -125,6 +115,7 @@ public class PauseManager : MonoBehaviour
                 UIAudioManager.Instance.PlayOneShot(buttonSound.clickSound);
             }
         }
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
