@@ -1,6 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class InteractableObject : MonoBehaviour
 {
@@ -10,8 +12,12 @@ public class InteractableObject : MonoBehaviour
     public float interactionRange = 2f;
 
     [Header("Dialogue")]
-    public Dialogue objectDialogue;
+    public DialogueAsset objectDialogue;
     public bool hasDialogue = true;
+
+    [SerializeField] private bool playPrimaryOnlyOnce = false;
+    [SerializeField] private DialogueAsset primaryDialogue; // Dialogue to play first time
+    [SerializeField] private DialogueAsset repeatDialogue; // Dialogue to play on after first interaction
 
     [Header("Item Collection")]
     public bool isCollectible = false;
@@ -24,6 +30,16 @@ public class InteractableObject : MonoBehaviour
     public GameObject puzzleUI; //UI to show when interacting
     public bool isPuzzleOpen = false;   //check if puzzle screen is open
 
+    [Header("Scene Interaction")]
+    public bool isSceneLoader = false;
+    public string sceneToLoad = "";
+
+    [Header("Informational Tidbit")]
+    [TextArea]
+    public string tidbitMessage;
+    public bool showTidbitOnSolve = false;
+
+
     [Header("UI Prompt")]
     public GameObject interactPrompt;
     public TextMeshProUGUI promptText;
@@ -33,9 +49,13 @@ public class InteractableObject : MonoBehaviour
     public AudioClip interactSound;
     public AudioClip collectSound;
 
+    [Header("NPC")]
+    private NPCController npcController;
+
     private Transform player;
     private bool playerInRange = false;
     private bool hasBeenCollected = false;
+    
 
     void Start()
     {
@@ -71,6 +91,9 @@ public class InteractableObject : MonoBehaviour
         {
             promptText.text = "Press " + interactKey.ToString() + " to interact";
         }
+
+        //setup npc
+        npcController = GetComponent<NPCController>();
     }
 
     void Update()
@@ -78,7 +101,8 @@ public class InteractableObject : MonoBehaviour
         if (player == null || hasBeenCollected) return;
 
         //Check distance to player
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(GetComponent<Collider2D>().bounds.center, player.position);
+
 
         if (distance <= promptDistance)
         {
@@ -122,9 +146,23 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
+        Debug.Log("INTERACT() FIRED on " + gameObject.name);
+        //npc set up for dialogue interaction
+        if (npcController != null) 
+        {
+            npcController.StartInteraction();
+        }
+        //check for scene to load
+        if (isSceneLoader && !string.IsNullOrEmpty(sceneToLoad))
+        {
+            LoadScene();
+            return;
+        }
+
         //Don't interact if dialogue is already active
         if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
         {
+
             return;
         }
 
@@ -155,10 +193,23 @@ public class InteractableObject : MonoBehaviour
         }
 
         //Handle dialogue
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
+            PlayDialogue();
         }
+    }
+
+    //for npc
+    private void HandleDialogueEnd(DialogueAsset asset)
+    {
+        // Resume NPC movement
+        if (npcController != null) 
+        {
+            npcController.EndInteraction();
+        }
+            
+        // Prevent multiple events at once
+        DialogueSystem.Instance.OnDialogueEnded -= HandleDialogueEnd;
     }
 
     void CollectItem()
@@ -180,9 +231,9 @@ public class InteractableObject : MonoBehaviour
         }
 
         //Show dialogue if exists
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
+            PlayDialogue();
         }
 
         //Hide visual
@@ -200,12 +251,13 @@ public class InteractableObject : MonoBehaviour
     {
         if (puzzleUI != null)
         {
+
             puzzleUI.SetActive(true);
             isPuzzleOpen = true;
-            //Pause game while puzzle is open
             Time.timeScale = 0f;
         }
     }
+
 
     void ClosePuzzle()
     {
@@ -230,10 +282,43 @@ public class InteractableObject : MonoBehaviour
         Time.timeScale = 1f;
 
         //Optionally play dialogue
-        if (hasDialogue && objectDialogue != null && DialogueSystem.Instance != null)
+        if (hasDialogue)
         {
-            DialogueSystem.Instance.StartDialogue(objectDialogue);
+            PlayDialogue();
         }
+
+        if (showTidbitOnSolve && !string.IsNullOrEmpty(tidbitMessage))
+        {
+            UICluePopup popup = Object.FindFirstObjectByType<UICluePopup>();
+            if (popup != null)
+            {
+                popup.ShowClue(tidbitMessage);
+            }
+        }
+    }
+
+    private void PlayDialogue()
+    {
+        if (DialogueSystem.Instance == null)
+            return;
+
+        DialogueAsset dialogueToPlay = primaryDialogue != null ? primaryDialogue : objectDialogue;
+
+        // If primary wshould be seen once and was seen already, use repeat
+        if (playPrimaryOnlyOnce &&
+            primaryDialogue != null &&
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(primaryDialogue.dialogueID) &&
+            SaveSystem.Instance.HasViewedDialogue(primaryDialogue.dialogueID))
+        {
+            if (repeatDialogue != null)
+            {
+                dialogueToPlay = repeatDialogue;
+            }
+        }
+
+        if (dialogueToPlay != null)
+            DialogueSystem.Instance.StartDialogue(dialogueToPlay);
     }
 
     void OnDrawGizmosSelected()
@@ -245,4 +330,17 @@ public class InteractableObject : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, promptDistance);
     }
+
+    void LoadScene()
+    {
+        if (PlayerReturnSystem.Instance != null)
+        {
+            PlayerReturnSystem.Instance.savedPosition = player.position;
+            PlayerReturnSystem.Instance.returnSceneName = "Chapter1_Home"; 
+        }
+
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
 }

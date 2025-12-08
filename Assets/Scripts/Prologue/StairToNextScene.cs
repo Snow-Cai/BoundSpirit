@@ -8,23 +8,37 @@ public class StairToNextScene : MonoBehaviour
     public float walkSpeed = 2f;
     public string nextScene = "Chapter1_Home";
     public CanvasGroup fadeScreen;
-
     private bool triggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (triggered) return;
-        if (!collision.CompareTag("Player")) return;        //check to ensure Player is the collider
+        if (!collision.CompareTag("Player")) return;
         triggered = true;
         StartCoroutine(DoStairTransition());
     }
 
     private System.Collections.IEnumerator DoStairTransition()
     {
-        if (charMovement != null)       //disable player movement
+        //SAVE BEFORE TRANSITION (player is still in safe position)
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SaveGame();
+            Debug.Log("STAIR TRANSITION: Saved game before stairs");
+        }
+
+        //NOW BLOCK FURTHER SAVES
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SetTransitioning(true);
+            Debug.Log("STAIR TRANSITION: Blocking saves during transition");
+        }
+
+        if (charMovement != null)
             charMovement.enabled = false;
+
         float t = 0f;
-        while (t < 1f)      //fade screen to black as player is moved down stairs
+        while (t < 1f)
         {
             t += Time.deltaTime * 1f;
             player.position += Vector3.down * walkSpeed * Time.deltaTime;
