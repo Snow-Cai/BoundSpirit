@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.Tilemaps.RuleTileTemplate;
 
 public class ClueJournal : MonoBehaviour
 {
