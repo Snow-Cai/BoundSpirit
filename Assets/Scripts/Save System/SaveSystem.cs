@@ -16,6 +16,9 @@ public class SaveData
     public int currentChapter;
     public string currentScene;
 
+    //chapter unlocked
+    public int highestChapterUnlocked = 0;
+
     //Puzzle Progress
     public bool safeUnlocked;
     public bool keyCollected;
@@ -133,20 +136,23 @@ public class SaveSystem : MonoBehaviour
             Debug.LogError("SAVE: No player found!");
         }
 
-        //Save player's inventory
-        PlayerInventory inv = player.GetComponent<PlayerInventory>();
-        if (inv != null)
+        //Save player's inventory (only if player exists)
+        if (player != null)
         {
-            currentSave.collectedItems = inv.GetInventoryItemIDs();
-            Debug.Log("SAVE: Inventory has been saved (" + currentSave.collectedItems.Count + " items)");
-        }
-        else
-        {
-            Debug.LogWarning("SAVE: Player has no PlayerInventory component!");
+            PlayerInventory inv = player.GetComponent<PlayerInventory>();
+            if (inv != null)
+            {
+                currentSave.collectedItems = inv.GetInventoryItemIDs();
+                Debug.Log("SAVE: Inventory has been saved (" + currentSave.collectedItems.Count + " items)");
+            }
+            else
+            {
+                Debug.LogWarning("SAVE: Player has no PlayerInventory component!");
+            }
         }
 
-            //Save current scene
-            currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        //Save current scene
+        currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Debug.Log("SAVE: Scene saved: " + currentSave.currentScene);
 
         //Save timestamp
@@ -364,6 +370,42 @@ public class SaveSystem : MonoBehaviour
             return currentSave.dialogueChoices[dialogueID];
         }
         return -1;
+    }
+
+    public bool IsChapterUnlocked(int chapterNumber)
+    {
+        if (currentSave == null)
+        {
+            return chapterNumber == 0; //only chapter 0 if no save
+        }
+
+        //a chapter is unlocked if it's <= the highest unlocked chapter
+        return chapterNumber <= currentSave.highestChapterUnlocked;
+    }
+
+    public void UnlockChapter(int chapterNumber)
+    {
+        if (currentSave == null)
+        {
+            currentSave = new SaveData();
+        }
+
+        //only update if this chapter is higher than what's currently unlocked
+        if (chapterNumber > currentSave.highestChapterUnlocked)
+        {
+            currentSave.highestChapterUnlocked = chapterNumber;
+            SaveGame(); //save immediately when unlocking
+            Debug.Log("Chapter " + chapterNumber + " unlocked!");
+        }
+    }
+
+    public int GetHighestUnlockedChapter()
+    {
+        if (currentSave == null)
+        {
+            return 0;
+        }
+        return currentSave.highestChapterUnlocked;
     }
 
     void OnApplicationQuit()
