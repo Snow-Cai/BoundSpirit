@@ -11,6 +11,12 @@ public class StairsManager : MonoBehaviour
     public SpriteRenderer stairsRenderer;
     public int belowPlayerOrder = 0;
     public int belowFloorOrder = -10;
+    void Start()
+    {
+        //Load which floor player should be on when scene starts, true means the player is on the second floor
+       isOnSecondFloor = floorTransition.LoadFloorState();
+        UpdateStairCollider();
+    }
 
     public void UseStairs(bool goingUp)
     {
