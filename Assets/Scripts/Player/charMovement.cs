@@ -21,37 +21,25 @@ public class CharMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameInputState.DialogueActive)
+        movementInput.x = UnityEngine.Input.GetAxisRaw("Horizontal"); //A/D or Left/Right
+        movementInput.y = UnityEngine.Input.GetAxisRaw("Vertical"); // W/S or Up/Down
+
+        //normalize the input vector to prevent faster diagonal movement
+        movementInput.Normalize();
+
+
+        // Track last movement direction only when moving
+        if (movementInput.sqrMagnitude > 0.1f)
         {
-            // Disable movement input during dialogue
-            movementInput = Vector2.zero;
-            anim.SetFloat("Speed", 0);
-            anim.SetFloat("MoveX", 0);
-            anim.SetFloat("MoveY", 0);
-            return;
+            lastMoveX = movementInput.x;
+            lastMoveY = movementInput.y;
         }
-        else 
-        {
-            movementInput.x = UnityEngine.Input.GetAxisRaw("Horizontal"); //A/D or Left/Right
-            movementInput.y = UnityEngine.Input.GetAxisRaw("Vertical"); // W/S or Up/Down
 
-            //normalize the input vector to prevent faster diagonal movement
-            movementInput.Normalize();
-
-
-            // Track last movement direction only when moving
-            if (movementInput.sqrMagnitude > 0.1f)
-            {
-                lastMoveX = movementInput.x;
-                lastMoveY = movementInput.y;
-            }
-
-            // Flip sprite for left/right movement
-            if (movementInput.x > 0)
-                GetComponent<SpriteRenderer>().flipX = true;  // facing left (due to how sprite originally faces)
-            else if (movementInput.x < 0)
-                GetComponent<SpriteRenderer>().flipX = false;   // facing right (due to how sprite originally faces)
-        }
+        // Flip sprite for left/right movement
+        if (movementInput.x > 0)
+            GetComponent<SpriteRenderer>().flipX = true;  // facing left (due to how sprite originally faces)
+        else if (movementInput.x < 0)
+            GetComponent<SpriteRenderer>().flipX = false;   // facing right (due to how sprite originally faces)
 
         //update animator parameters
         anim.SetFloat("MoveX", movementInput.x);
