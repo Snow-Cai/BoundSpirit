@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class InteractableObject : MonoBehaviour
 {
@@ -28,6 +30,16 @@ public class InteractableObject : MonoBehaviour
     public GameObject puzzleUI; //UI to show when interacting
     public bool isPuzzleOpen = false;   //check if puzzle screen is open
 
+    [Header("Scene Interaction")]
+    public bool isSceneLoader = false;
+    public string sceneToLoad = "";
+
+    [Header("Informational Tidbit")]
+    [TextArea]
+    public string tidbitMessage;
+    public bool showTidbitOnSolve = false;
+
+
     [Header("UI Prompt")]
     public GameObject interactPrompt;
     public TextMeshProUGUI promptText;
@@ -44,6 +56,7 @@ public class InteractableObject : MonoBehaviour
     private bool playerInRange = false;
     private bool hasBeenCollected = false;
     
+
     void Start()
     {
         //Find player
@@ -133,13 +146,23 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
+        Debug.Log("INTERACT() FIRED on " + gameObject.name);
         //npc set up for dialogue interaction
-        if (npcController != null)
+        if (npcController != null) 
+        {
             npcController.StartInteraction();
+        }
+        //check for scene to load
+        if (isSceneLoader && !string.IsNullOrEmpty(sceneToLoad))
+        {
+            LoadScene();
+            return;
+        }
 
         //Don't interact if dialogue is already active
         if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
         {
+
             return;
         }
 
@@ -228,12 +251,13 @@ public class InteractableObject : MonoBehaviour
     {
         if (puzzleUI != null)
         {
+
             puzzleUI.SetActive(true);
             isPuzzleOpen = true;
-            //Pause game while puzzle is open
             Time.timeScale = 0f;
         }
     }
+
 
     void ClosePuzzle()
     {
@@ -261,6 +285,15 @@ public class InteractableObject : MonoBehaviour
         if (hasDialogue)
         {
             PlayDialogue();
+        }
+
+        if (showTidbitOnSolve && !string.IsNullOrEmpty(tidbitMessage))
+        {
+            UICluePopup popup = Object.FindFirstObjectByType<UICluePopup>();
+            if (popup != null)
+            {
+                popup.ShowClue(tidbitMessage);
+            }
         }
     }
 
@@ -297,4 +330,17 @@ public class InteractableObject : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, promptDistance);
     }
+
+    void LoadScene()
+    {
+        if (PlayerReturnSystem.Instance != null)
+        {
+            PlayerReturnSystem.Instance.savedPosition = player.position;
+            PlayerReturnSystem.Instance.returnSceneName = "Chapter1_Home"; 
+        }
+
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
 }
