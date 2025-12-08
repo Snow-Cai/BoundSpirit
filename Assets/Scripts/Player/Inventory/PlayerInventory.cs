@@ -32,23 +32,4 @@ public class PlayerInventory : MonoBehaviour
         else
             return null;
     }
-
-    public List<string> GetInventoryItemIDs()
-    {
-        List<string> ids = new List<string>();
-        foreach (var item in inventory) 
-            ids.Add(item.itemID);
-        return ids;
-    }
-
-    public void LoadInventoryFromIDs(List<string> ids)
-    {
-        inventory.Clear();
-        foreach (string id in ids)
-        {
-            ItemData item = ItemDatabase.Instance.GetItemByID(id);
-            if(item != null)
-                inventory.Add(item);
-        }
-    }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
@@ -12,22 +11,17 @@ public class MusicManager : MonoBehaviour
     public AudioClip winMusic;
 
     [Header("Audio Settings")]
-    [Range(0f, 1f)]
-    public float musicVolume = 0.5f; // base volume
+    public float musicVolume = 0.5f;
     public float fadeSpeed = 1f;
-
-    [Header("Audio Mixer")]
-    public AudioMixerGroup musicGroup; // assign Music mixer group (from AudioMixer, will later add Master and SFX routing).
 
     private AudioSource audioSource;
     private AudioClip currentClip;
     private float targetVolume;
     private bool isFading;
 
-    private float sliderVolume = 1f; // slider multiplier (0-1)
-
     void Awake()
     {
+        //singleton pattern: keeps music playing between scenes
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -37,35 +31,35 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+        //setup audio source
         audioSource = gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
+        {
             audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         audioSource.loop = true;
         audioSource.playOnAwake = false;
-
-        if (musicGroup != null)
-            audioSource.outputAudioMixerGroup = musicGroup;
-
+        audioSource.volume = musicVolume;
         targetVolume = musicVolume;
-        audioSource.volume = musicVolume * sliderVolume;
     }
 
     void Update()
     {
+        //handle fade in/out
         if (isFading)
         {
-            // Multiply fade volume by slider value
-            audioSource.volume = Mathf.MoveTowards(audioSource.volume, targetVolume * sliderVolume, fadeSpeed * Time.unscaledDeltaTime);
+            audioSource.volume = Mathf.MoveTowards(audioSource.volume, targetVolume, fadeSpeed * Time.unscaledDeltaTime);
 
-            if (Mathf.Approximately(audioSource.volume, targetVolume * sliderVolume))
+            if (Mathf.Approximately(audioSource.volume, targetVolume))
             {
                 isFading = false;
 
+                //if fading out to 0, stop the audio
                 if (targetVolume == 0)
                 {
                     audioSource.Stop();
-                    audioSource.volume = musicVolume * sliderVolume;
+                    audioSource.volume = musicVolume;
                 }
             }
         }
@@ -74,7 +68,10 @@ public class MusicManager : MonoBehaviour
     public void PlayMusic(AudioClip clip, bool fadeIn = true)
     {
         if (clip == null) return;
-        if (currentClip == clip && audioSource.isPlaying) return;
+
+        //if same music is already playing, don't restart
+        if (currentClip == clip && audioSource.isPlaying)
+            return;
 
         currentClip = clip;
 
@@ -89,7 +86,7 @@ public class MusicManager : MonoBehaviour
         else
         {
             audioSource.clip = clip;
-            audioSource.volume = musicVolume * sliderVolume;
+            audioSource.volume = musicVolume;
             audioSource.Play();
         }
     }
@@ -107,24 +104,23 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void PauseMusic() => audioSource.Pause();
-    public void ResumeMusic() => audioSource.UnPause();
+    public void PauseMusic()
+    {
+        audioSource.Pause();
+    }
+
+    public void ResumeMusic()
+    {
+        audioSource.UnPause();
+    }
 
     public void SetVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
-        targetVolume = musicVolume;
         if (!isFading)
-            audioSource.volume = musicVolume * sliderVolume;
-    }
-
-//call from slider
-    public void SetSliderVolume(float slider)
-    {
-        sliderVolume = Mathf.Clamp01(slider);
+        {
+            audioSource.volume = musicVolume;
+        }
         targetVolume = musicVolume;
-        // Apply immediately
-        if (!isFading)
-            audioSource.volume = musicVolume * sliderVolume;
     }
 }
