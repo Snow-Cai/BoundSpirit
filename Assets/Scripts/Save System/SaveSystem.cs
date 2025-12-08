@@ -133,8 +133,20 @@ public class SaveSystem : MonoBehaviour
             Debug.LogError("SAVE: No player found!");
         }
 
-        //Save current scene
-        currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        //Save player's inventory
+        PlayerInventory inv = player.GetComponent<PlayerInventory>();
+        if (inv != null)
+        {
+            currentSave.collectedItems = inv.GetInventoryItemIDs();
+            Debug.Log("SAVE: Inventory has been saved (" + currentSave.collectedItems.Count + " items)");
+        }
+        else
+        {
+            Debug.LogWarning("SAVE: Player has no PlayerInventory component!");
+        }
+
+            //Save current scene
+            currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         Debug.Log("SAVE: Scene saved: " + currentSave.currentScene);
 
         //Save timestamp
@@ -197,18 +209,35 @@ public class SaveSystem : MonoBehaviour
     private void RestoreCollectedItems()
     {
         if (currentSave == null) return;
-
-        foreach (string itemName in currentSave.collectedItems)
+        //Deactivate items already collected from the world
+        Transform map = GameObject.Find("Map").transform;
+        foreach (Transform floor in map)
         {
-            GameObject item = GameObject.Find(itemName);
-            if (item != null)
+            Transform itemsParent = floor.Find("CollectibleItemsParent");
+            if (itemsParent == null) continue;
+            Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
+            foreach (Transform item in items)
             {
-                item.SetActive(false); //hide collected items
-                Debug.Log("Restored collected item: " + itemName);
+                if (currentSave.collectedItems.Contains(item.name))
+                {
+                    item.gameObject.SetActive(false);
+                    Debug.Log("Restored collected item: " + item.name);
+                }
+            }
+        }
+        //Restore player's inventory
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            PlayerInventory inv = player.GetComponent<PlayerInventory>();
+            if (inv != null)
+            {
+                inv.LoadInventoryFromIDs(currentSave.collectedItems);
+                Debug.Log("RESTORE: Player inventory restored! " + currentSave.collectedItems.Count + " items restored.");
             }
             else
             {
-                Debug.LogWarning("Could not find item to hide: " + itemName);
+                Debug.LogWarning("RESTORE: Player object not found!");
             }
         }
     }

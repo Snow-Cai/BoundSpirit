@@ -98,7 +98,7 @@ public class FloorTransition : MonoBehaviour
         }
     }
 
-    void LoadFloorState()
+    public bool LoadFloorState()
     {
         if (SaveSystem.Instance != null && SaveSystem.Instance.HasSaveData())
         {
@@ -110,12 +110,14 @@ public class FloorTransition : MonoBehaviour
                 firstFloor.SetActive(false);
                 secondFloor.SetActive(true);
                 Debug.Log("FLOOR STATE: Loaded - Player on second floor");
+                return true;    //return true if on the second floor
             }
             else
             {
                 firstFloor.SetActive(true);
                 secondFloor.SetActive(false);
                 Debug.Log("FLOOR STATE: Loaded - Player on first floor");
+                return false;   //return false if on the first floor
             }
         }
         else
@@ -125,6 +127,7 @@ public class FloorTransition : MonoBehaviour
             secondFloor.SetActive(false);
             onSecondFloor = false;
             Debug.Log("FLOOR STATE: No save data - defaulting to first floor");
+            return false;
         }
     }
 }
