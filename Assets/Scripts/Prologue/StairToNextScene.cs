@@ -32,6 +32,7 @@ public class StairToNextScene : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(nextScene);      //load into the next chapter
+        SaveSystem.Instance.UnlockChapter(1);
+        SceneManager.LoadScene(nextScene);
     }
 }
