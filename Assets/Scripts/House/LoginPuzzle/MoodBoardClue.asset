@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
+  m_Name: MoodBoardClue
+  m_EditorClassIdentifier: Assembly-CSharp::Clue
+  itemID: vinyl
+  itemName: 
+  icon: {fileID: 0}
+  clueID: 
+  clueName: vinylclue
+  clueLetter: 
+  clueText: '*cough cough cough* This bin of vinyls sure is dusty. I must not have
+    listened to music much. I wonder how I can cough as a ghost...'
+  hintDescription: 
+  clueIcon: {fileID: 5291862397576547624, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  isRequiredForPassword: 1
+  canBeReviewedInJournal: 1
+  canTriggerEvents: 0
+  pickupSound: {fileID: 0}
