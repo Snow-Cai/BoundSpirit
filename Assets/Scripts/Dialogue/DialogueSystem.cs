@@ -281,4 +281,20 @@ public class DialogueSystem : MonoBehaviour
 
         SaveSystem.Instance.SaveGame();
     }
+
+    // Ensure input state is reset if object is disabled or destroyed.
+    private void OnDisable()
+    {
+        // If we leave the scene while dialogue is active, make sure we don't soft-lock input.
+        if (GameInputState.DialogueActive)
+            GameInputState.DialogueActive = false;
+    }
+
+    private void OnDestroy()
+    {
+        // Extra safety in case object is destroyed during scene load
+        if (GameInputState.DialogueActive)
+            GameInputState.DialogueActive = false;
+    }
+
 }
