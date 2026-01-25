@@ -13,6 +13,7 @@ public class CutsceneController : MonoBehaviour
 
     [Header("Cutscene ID")]
     public string cutsceneID = "chapter0_intro"; //Unique ID for this cutscene
+    public bool IsCutsceneActive { get; private set; }
 
     [Header("Cutscene Elements to Hide")]
     public GameObject[] cutsceneObjects; //Canvas, text, images that should hide after cutscene
@@ -43,11 +44,15 @@ public class CutsceneController : MonoBehaviour
                 camFollow.enabled = true;
             if (charMovement != null)
                 charMovement.enabled = true;
+
+            IsCutsceneActive = false;
         }
     }
 
     void StartOpeningCutscene()
     {
+        IsCutsceneActive = true;
+
         if (charMovement != null)       //disable player movement during cutscene
             charMovement.enabled = false;
         if (camFollow != null)       //disable CameraFollow during cutscene
@@ -73,6 +78,8 @@ public class CutsceneController : MonoBehaviour
             camFollow.enabled = true;   //re-enable camera follow
         if (charMovement != null)
             charMovement.enabled = true;   //Re-enable player movement
+
+        IsCutsceneActive = false;
     }
 
     void HideCutsceneElements()

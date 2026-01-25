@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: GatePasscodeClue
+  m_Name: gatePasscodeClue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: chapter0_gate_clue_primary
+  dialogueID: Chapter0_gateCluePrimary
   lines:
   - speakerName: 
     dialogueText: "A weathered stone plate beside the gate\u2026"
