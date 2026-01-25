@@ -59,6 +59,8 @@ public class SpawnDialogueAfterCutscene : MonoBehaviour
     IEnumerator PlayAfterDelay()
     {
         yield return new WaitForSeconds(delayAfterCutscene);
+        GameInputState.DialogueActive = true;
+
         DialogueSystem.Instance.StartDialogue(introDialogue);
 
         if (SaveSystem.Instance != null)
