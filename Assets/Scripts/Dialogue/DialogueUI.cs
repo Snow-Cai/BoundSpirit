@@ -16,6 +16,24 @@ public class DialogueUI : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private bool playVoiceClips = true;
 
+    [Header("Continue Hint")]
+    [SerializeField] private TextMeshProUGUI continueHintText;
+    [SerializeField] private string showHintForDialogueID = "Chapter0_awakening"; // set to your spawn dialogue ID
+    [SerializeField] private string continueHintSaveKey = "UI_ContinueHintShown";
+    [SerializeField] private bool hideHintAfterFirstAdvance = true;
+
+    [Header("Continue Hint Polish")]
+    [SerializeField] private CanvasGroup continueHintCanvas;
+    [SerializeField] private float fadeInDuration = 0.4f;
+    [SerializeField] private float pulseMinAlpha = 0.45f;
+    [SerializeField] private float pulseMaxAlpha = 0.65f;
+    [SerializeField] private float pulseSpeed = 1.5f;
+
+    private Coroutine pulseRoutine;
+
+
+    private bool hintIsActive;
+
     private DialogueSystem dialogueSystem;
 
     private Coroutine typingCoroutine;
@@ -29,6 +47,9 @@ public class DialogueUI : MonoBehaviour
     {
         Initialize();
         HideAll();
+
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -88,6 +109,8 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleAdvanceInput()
     {
+        StopContinueHint();
+
         if (isTyping)
         {
             CompleteTextInstantly();
@@ -110,6 +133,18 @@ public class DialogueUI : MonoBehaviour
         if (choiceButtonContainer != null)
         {
             choiceButtonContainer.SetActive(false);
+        }
+
+        // Show continueHint only for the spawn dialogue
+        if (continueHintText != null && asset != null && asset.dialogueID == showHintForDialogueID)
+        {
+            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
+            if (!alreadyShown)
+            {
+                continueHintText.gameObject.SetActive(true);
+                StartContinueHint();
+                hintIsActive = true;
+            }
         }
     }
 
@@ -170,6 +205,8 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleDialogueEnded(DialogueAsset asset)
     {
+        StopContinueHint();
+
         ClearChoices();
 
         if (dialogueBox != null)
@@ -260,6 +297,66 @@ public class DialogueUI : MonoBehaviour
         }
 
         activeChoiceButtons.Clear();
+    }
+
+    void StartContinueHint()
+    {
+        // Always show the object if we intend to show the hint
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(true);
+
+        // If no CanvasGroup is assigned, just stop here (no fade/pulse)
+        if (continueHintCanvas == null)
+            return;
+
+        continueHintCanvas.alpha = 0f;
+
+        if (pulseRoutine != null)
+            StopCoroutine(pulseRoutine);
+
+        StartCoroutine(FadeInContinueHint());
+    }
+
+    IEnumerator FadeInContinueHint()
+    {
+        float t = 0f;
+
+        while (t < fadeInDuration)
+        {
+            t += Time.deltaTime;
+            continueHintCanvas.alpha = Mathf.Lerp(0f, pulseMaxAlpha, t / fadeInDuration);
+            yield return null;
+        }
+
+        pulseRoutine = StartCoroutine(PulseContinueHint());
+    }
+
+    IEnumerator PulseContinueHint()
+    {
+        float t = 0f;
+
+        while (true)
+        {
+            t += Time.deltaTime * pulseSpeed;
+            continueHintCanvas.alpha =
+                Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, (Mathf.Sin(t) + 1f) * 0.5f);
+            yield return null;
+        }
+    }
+
+    void StopContinueHint()
+    {
+        if (pulseRoutine != null)
+        {
+            StopCoroutine(pulseRoutine);
+            pulseRoutine = null;
+        }
+
+        if (continueHintCanvas != null)
+            continueHintCanvas.alpha = 0f;
+
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(false);
     }
 
     private void HideAll()
