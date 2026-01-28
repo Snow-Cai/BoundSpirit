@@ -18,7 +18,19 @@ public class LoginPuzzle : MonoBehaviour
     public UnityEvent OnLoginFail;
 
     [Header("Tidbit Popup")]
+    public UICluePopup cluePopup;
     [TextArea] public string tidbitMessage = "This is a tidbit message shown after solving the login puzzle.";
+
+    public void ResetFields()
+    {
+        usernameInput.text = "";
+        passwordInput.text = "";
+        messageText.text = "";
+    }
+    private void OnDisable()
+    {
+        ResetFields();
+    }
 
     public void TryLogin()
     {
@@ -32,9 +44,13 @@ public class LoginPuzzle : MonoBehaviour
             messageText.text = "Login Successful!";
             messageText.color = new Color(0.2f, 0.8f, 0.3f);
 
-            UICluePopup popup = FindAnyObjectByType<UICluePopup>();
+            UICluePopup popup = cluePopup;
+
+
             if (popup != null)
             {
+                popup.enabled = true;
+
                 popup.ShowClue(tidbitMessage);
             }
             else

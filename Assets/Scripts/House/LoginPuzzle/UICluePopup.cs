@@ -57,7 +57,7 @@ public class UICluePopup : MonoBehaviour
         }
         popupCanvas.alpha = 1f;
 
-        while (!Input.GetKeyDown(KeyCode.Space))
+        while (!Input.GetKeyDown(KeyCode.E))
             yield return null;
 
         t = 0f;
