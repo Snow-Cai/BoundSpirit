@@ -890,6 +890,51 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &157014375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157014377}
+  - component: {fileID: 157014376}
+  m_Layer: 0
+  m_Name: InputLockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &157014376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157014375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1dafb7b36c9214b9ce88365b23bc3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputLock
+  GameplayInputEnabled: 1
+--- !u!4 &157014377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157014375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141.18011, y: 104.08818, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &171221823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
@@ -8792,6 +8837,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458354367}
   m_CullTransparentMesh: 1
+--- !u!114 &460683952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2436553530603342782, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+  m_PrefabInstance: {fileID: 4180671459003321643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e3f36dbb2167514b8b87db2555c0970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICluePopup
 --- !u!1 &462786297
 GameObject:
   m_ObjectHideFlags: 0
@@ -21938,9 +21994,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.02534113
+    width: 0.99878204
+    height: 1.0526316
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -25160,7 +25216,7 @@ MonoBehaviour:
   itemVisual: {fileID: 0}
   isPuzzle: 1
   puzzleID: 
-  puzzleUI: {fileID: 1948428922}
+  puzzleUI: {fileID: 1973412644}
   isPuzzleOpen: 1
   tidbitMessage: 'INFO TIDBIT:
 
@@ -25701,6 +25757,7 @@ MonoBehaviour:
   OnLoginFail:
     m_PersistentCalls:
       m_Calls: []
+  cluePopup: {fileID: 460683952}
   tidbitMessage: 'INFO TIDBIT:
 
     As you''ve seen, you can often find out someone''s
@@ -26821,6 +26878,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4475275532841513678, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Color.a
       value: 0.9490196
@@ -26843,7 +26904,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8442762126738775521, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27028,6 +27093,7 @@ SceneRoots:
   - {fileID: 336624583}
   - {fileID: 359303040}
   - {fileID: 1790277582}
+  - {fileID: 4180671459003321643}
   - {fileID: 1973412648}
   - {fileID: 2039610851}
-  - {fileID: 4180671459003321643}
+  - {fileID: 157014377}
