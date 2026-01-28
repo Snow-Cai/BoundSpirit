@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b1ce9d60de59ae04bb0f84455a56e0b4
+guid: 0331ba2de2bccbc4caad0319b540c253
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4301892601049391223
-    second: Bookshelf2 1_0
+      213: 372311043381245260
+    second: Bookshelf3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bookshelf2 1_0
+      name: Bookshelf3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7702e6b378463bb30800000000000000
-      internalID: 4301892601049391223
+      spriteID: c45b1bedbe6ba2500800000000000000
+      internalID: 372311043381245260
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d0f12e8a920f79f42b2de594b04e57cd
+    spriteID: 0b2e353ad09a4184cae550a509e1da0d
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bookshelf2 1_0: 4301892601049391223
+      Bookshelf3_0: 372311043381245260
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

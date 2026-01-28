@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b1ce9d60de59ae04bb0f84455a56e0b4
+guid: bf6315f2c9a03e049b5e172ed9311914
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4301892601049391223
-    second: Bookshelf2 1_0
+      213: -6277905897154023793
+    second: KitchenCabinet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bookshelf2 1_0
+      name: KitchenCabinet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 94
-      alignment: 9
-      pivot: {x: 0.25, y: 0.1667}
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7702e6b378463bb30800000000000000
-      internalID: 4301892601049391223
+      spriteID: f8eedca29d560e8a0800000000000000
+      internalID: -6277905897154023793
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d0f12e8a920f79f42b2de594b04e57cd
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Bookshelf2 1_0: 4301892601049391223
+      KitchenCabinet_0: -6277905897154023793
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Door copy_0
+  m_Name: KitchenCabinet_0
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 3173957258973614784, guid: 73610d641696fb3489a2ef7ab5295699, type: 3}
+  m_Sprite: {fileID: -6277905897154023793, guid: bf6315f2c9a03e049b5e172ed9311914, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
