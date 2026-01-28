@@ -978,8 +978,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -13436,8 +13434,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -13900,8 +13896,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -20173,8 +20167,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -21882,8 +21874,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -21948,9 +21938,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.02534113
-    width: 0.99878204
-    height: 1.0526316
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -22393,7 +22383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.9976
+      value: 2.9433434
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalScale.y
@@ -22405,11 +22395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.82
+      value: 13.71
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.81
+      value: 23.914
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22805,8 +22795,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -23009,8 +22997,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -25176,8 +25162,6 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 1948428922}
   isPuzzleOpen: 1
-  isSceneLoader: 1
-  sceneToLoad: LoginPuzzle
   tidbitMessage: 'INFO TIDBIT:
 
     As you''ve seen, you can often find out someone''s
@@ -25904,8 +25888,6 @@ MonoBehaviour:
   puzzleID: ReassemblyPuzzle
   puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
-  isSceneLoader: 0
-  sceneToLoad: 
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -26861,7 +26843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
