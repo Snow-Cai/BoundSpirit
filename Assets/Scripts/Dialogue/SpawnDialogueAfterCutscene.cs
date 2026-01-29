@@ -48,8 +48,10 @@ public class SpawnDialogueAfterCutscene : MonoBehaviour
         if (played) return;
         if (DialogueSystem.Instance == null || introDialogue == null) return;
 
-        // If already viewed, don't play again
-        if (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue("Chapter0_awakening"))
+        //If already viewed, don't play again
+        if (SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(introDialogue.dialogueID) &&
+            SaveSystem.Instance.HasViewedDialogue(introDialogue.dialogueID))
             return;
 
         played = true;
@@ -63,7 +65,7 @@ public class SpawnDialogueAfterCutscene : MonoBehaviour
 
         DialogueSystem.Instance.StartDialogue(introDialogue);
 
-        if (SaveSystem.Instance != null)
-            SaveSystem.Instance.MarkDialogueViewed("Chapter0_awakening");
+        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(introDialogue.dialogueID))
+            SaveSystem.Instance.MarkDialogueViewed(introDialogue.dialogueID);
     }
 }

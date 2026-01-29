@@ -8,7 +8,7 @@ public class GraveyardGateController : MonoBehaviour
 
     [Header("Requirements")]
     [SerializeField] private DialogueAsset requiredIntroDialogue; // Player must view this before leaving to next area
-    [SerializeField] private string gatePuzzleID = "chapter0_graveyard_gate";
+    [SerializeField] private string gatePuzzleID = "Chapter0_graveyard_gate";
 
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
