@@ -7934,8 +7934,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GraveyardGateController
   interactKey: 101
   interactionRange: 2
-  requiredIntroDialogue: {fileID: 11400000, guid: 8ecabb16e9132f24a9827100cac2f7cb, type: 2}
-  gatePuzzleID: chapter0_graveyard_gate
+  requiredIntroDialogue: {fileID: 11400000, guid: e8a4def28c96e2c449daeea9e3e8b179, type: 2}
+  gatePuzzleID: Chapter0_graveyard_gate
   lockedWithoutNameDialogue: {fileID: 11400000, guid: 957a682d1b830ea4689600bb9ee87cb0, type: 2}
   lockedPuzzleDialogue: {fileID: 11400000, guid: af2d00f34a4fae444845041750c190df, type: 2}
   puzzleUI: {fileID: 1528216646}
@@ -8639,9 +8639,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
-    height: 0.9694794
+    y: -0.29498523
+    width: 0.998557
+    height: 1.5929203
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -23053,7 +23053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1390953173
 RectTransform:
   m_ObjectHideFlags: 0
