@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e4ce9b74d4dc7944d8e0c840cb40ee0e
+guid: 995bfe0ec674ca142b9fee0f11435e7e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3669136686480051491
-    second: SafeBox 1_0
+      213: -3450829032519752653
+    second: KitchenFridge_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SafeBox 1_0
+      name: KitchenFridge_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 50
-        height: 28
+        x: 0
+        y: 0
+        width: 32
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32d4ffd50646be230800000000000000
-      internalID: 3669136686480051491
+      spriteID: 3342e0837413c10d0800000000000000
+      internalID: -3450829032519752653
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 028fdb4ed77e11b4f8f0bd1bfb86f23a
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SafeBox 1_0: 3669136686480051491
+      KitchenFridge_0: -3450829032519752653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e4ce9b74d4dc7944d8e0c840cb40ee0e
+guid: e60515e545a073c4882387bb3a080a21
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3669136686480051491
-    second: SafeBox 1_0
+      213: -2677077273272600268
+    second: SafeBox_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SafeBox 1_0
+      name: SafeBox_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 50
-        height: 28
+        x: 8
+        y: 3
+        width: 48
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32d4ffd50646be230800000000000000
-      internalID: 3669136686480051491
+      spriteID: 439b05a576c19dad0800000000000000
+      internalID: -2677077273272600268
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SafeBox 1_0: 3669136686480051491
+      SafeBox_0: -2677077273272600268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e4ce9b74d4dc7944d8e0c840cb40ee0e
+guid: 02b7d4da44b6f424eaadd439f43444e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3669136686480051491
-    second: SafeBox 1_0
+      213: 641105979970042090
+    second: KitchenUtensils_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SafeBox 1_0
+      name: KitchenUtensils_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 2
-        width: 50
-        height: 28
+        x: 0
+        y: 0
+        width: 64
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32d4ffd50646be230800000000000000
-      internalID: 3669136686480051491
+      spriteID: ae83e77fd7aa5e800800000000000000
+      internalID: 641105979970042090
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SafeBox 1_0: 3669136686480051491
+      KitchenUtensils_0: 641105979970042090
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
