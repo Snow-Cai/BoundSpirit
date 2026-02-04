@@ -73,9 +73,42 @@ body {
   font-family: "Pixeloid Sans", system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.75;
-  background-color: var(--bg-color);
   color: var(--text-main);
+
+  background-color: #12081f;
+
+  background-image:
+    url("images/svg/moon.svg"),
+    url("images/svg/clouds.svg"),
+    url("images/svg/fog_back_1.svg"),
+    url("images/svg/land-1.svg");
+
+  background-repeat:
+    no-repeat,
+    repeat-x,
+    repeat-x,
+    repeat-x;
+
+  background-position:
+    right 5% top 4rem,   /* moon */
+    center top,          /* clouds */
+    center bottom 6rem,  /* fog */
+    center bottom;       /* land */
+
+  background-size:
+    200px,    /* moon */
+    1200px,   /* clouds */
+    1400px,   /* fog */
+    cover;    /* land */
+
+  background-attachment:
+    fixed,
+    fixed,
+    fixed,
+    fixed;
+  
 }
+
 
 
 /* =========================
