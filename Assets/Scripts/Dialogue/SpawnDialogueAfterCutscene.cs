@@ -48,24 +48,13 @@ public class SpawnDialogueAfterCutscene : MonoBehaviour
         if (played) return;
         if (DialogueSystem.Instance == null || introDialogue == null) return;
 
-        //If already viewed, don't play again
+        //If viewed, don't play again
         if (SaveSystem.Instance != null &&
             !string.IsNullOrEmpty(introDialogue.dialogueID) &&
             SaveSystem.Instance.HasViewedDialogue(introDialogue.dialogueID))
             return;
 
         played = true;
-        StartCoroutine(PlayAfterDelay());
-    }
-
-    IEnumerator PlayAfterDelay()
-    {
-        yield return new WaitForSeconds(delayAfterCutscene);
-        GameInputState.DialogueActive = true;
-
         DialogueSystem.Instance.StartDialogue(introDialogue);
-
-        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(introDialogue.dialogueID))
-            SaveSystem.Instance.MarkDialogueViewed(introDialogue.dialogueID);
     }
 }
