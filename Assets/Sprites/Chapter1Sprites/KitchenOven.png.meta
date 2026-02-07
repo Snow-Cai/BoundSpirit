@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e60515e545a073c4882387bb3a080a21
+guid: 4bab04cd20eff5c418fca8ce1ea34b4a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2677077273272600268
-    second: SafeBox_0
+      213: -2478936144794878287
+    second: KitchenOven_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SafeBox_0
+      name: KitchenOven_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 3
-        width: 48
-        height: 26
+        x: 0
+        y: 0
+        width: 32
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 439b05a576c19dad0800000000000000
-      internalID: -2677077273272600268
+      spriteID: 1beff94d5bc099dd0800000000000000
+      internalID: -2478936144794878287
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SafeBox_0: -2677077273272600268
+      KitchenOven_0: -2478936144794878287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
