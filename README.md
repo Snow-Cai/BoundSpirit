@@ -1,4 +1,4 @@
-# CS425-Senior-Project
+# CS426-Senior-Project
 ## Project Title: Bound Spirit
 Team Members: Snow Cai, Ava Chong, Evita Kanaan, Ernest Velasquez
 
