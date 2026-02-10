@@ -6230,8 +6230,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
+    y: -0.080789946
+    width: 1.3183856
     height: 0.9694794
   near clip plane: 0.3
   far clip plane: 1000
@@ -6400,7 +6400,6 @@ MonoBehaviour:
   continueHintText: {fileID: 0}
   showHintForDialogueID: Chapter0_awakening
   continueHintSaveKey: UI_ContinueHintShown
-  hideHintAfterFirstAdvance: 1
   continueHintCanvas: {fileID: 0}
   fadeInDuration: 0.4
   pulseMinAlpha: 0.45

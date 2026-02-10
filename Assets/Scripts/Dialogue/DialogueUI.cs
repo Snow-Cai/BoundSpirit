@@ -20,7 +20,6 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI continueHintText;
     [SerializeField] private string showHintForDialogueID = "Chapter0_awakening"; // set to your spawn dialogue ID
     [SerializeField] private string continueHintSaveKey = "UI_ContinueHintShown";
-    [SerializeField] private bool hideHintAfterFirstAdvance = true;
 
     [Header("Continue Hint Polish")]
     [SerializeField] private CanvasGroup continueHintCanvas;
@@ -30,9 +29,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private float pulseSpeed = 1.5f;
 
     private Coroutine pulseRoutine;
-
-
-    private bool hintIsActive;
+    private Coroutine fadeRoutine;
 
     private DialogueSystem dialogueSystem;
 
@@ -109,6 +106,13 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleAdvanceInput()
     {
+        // If hint is showing, stop it and mark it as shown
+        if (continueHintText != null && continueHintText.gameObject.activeSelf)
+        {
+            if (SaveSystem.Instance != null)
+                SaveSystem.Instance.MarkDialogueViewed(continueHintSaveKey);
+        }
+
         StopContinueHint();
 
         if (isTyping)
@@ -143,7 +147,6 @@ public class DialogueUI : MonoBehaviour
             {
                 continueHintText.gameObject.SetActive(true);
                 StartContinueHint();
-                hintIsActive = true;
             }
         }
     }
@@ -301,20 +304,28 @@ public class DialogueUI : MonoBehaviour
 
     void StartContinueHint()
     {
-        // Always show the object if we intend to show the hint
         if (continueHintText != null)
             continueHintText.gameObject.SetActive(true);
 
-        // If no CanvasGroup is assigned, just stop here (no fade/pulse)
+        // If no CanvasGroup is assigned, no fade/pulse
         if (continueHintCanvas == null)
             return;
 
         continueHintCanvas.alpha = 0f;
 
         if (pulseRoutine != null)
+        {
             StopCoroutine(pulseRoutine);
+            pulseRoutine = null;
+        }
 
-        StartCoroutine(FadeInContinueHint());
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+            fadeRoutine = null;
+        }
+
+        fadeRoutine = StartCoroutine(FadeInContinueHint());
     }
 
     IEnumerator FadeInContinueHint()
@@ -328,6 +339,7 @@ public class DialogueUI : MonoBehaviour
             yield return null;
         }
 
+        fadeRoutine = null;
         pulseRoutine = StartCoroutine(PulseContinueHint());
     }
 
@@ -346,6 +358,11 @@ public class DialogueUI : MonoBehaviour
 
     void StopContinueHint()
     {
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+            fadeRoutine = null;
+        }
         if (pulseRoutine != null)
         {
             StopCoroutine(pulseRoutine);
