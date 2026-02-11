@@ -23,11 +23,15 @@ public class InteractableObject : MonoBehaviour
     public string itemID;
     public GameObject itemVisual;
 
-    [Header("Puzzle / Computer Screen")]
+    [Header("Puzzle")]
     public bool isPuzzle = false;
     public string puzzleID;
     public GameObject puzzleUI;
     public bool isPuzzleOpen = false;
+
+    [Header("Puzzle Components")]
+    public LoginPuzzle loginPuzzle;
+
 
     [Header("Informational Tidbit")]
     [TextArea]
@@ -217,25 +221,38 @@ public class InteractableObject : MonoBehaviour
 
     void OpenPuzzle()
     {
+        if (loginPuzzle != null)
+        {
+            loginPuzzle.ResetFields();
+        }
+
         if (puzzleUI != null)
         {
             puzzleUI.SetActive(true);
-            isPuzzleOpen = true;
-            InputLock.Instance.GameplayInputEnabled = false;
-            Time.timeScale = 0f;
         }
+
+        isPuzzleOpen = true;
+        InputLock.Instance.GameplayInputEnabled = false;
+        Time.timeScale = 0f;
     }
+
 
     void ClosePuzzle()
     {
+        if (loginPuzzle != null)
+        {
+            loginPuzzle.ResetFields();
+        }
+
         if (puzzleUI != null)
         {
-              
             puzzleUI.SetActive(false);
-            isPuzzleOpen = false;
-            InputLock.Instance.GameplayInputEnabled = true;
-            Time.timeScale = 1f;
         }
+
+        isPuzzleOpen = false;
+        InputLock.Instance.GameplayInputEnabled = true;
+        Time.timeScale = 1f;
+  
     }
 
     public void OnPuzzleSolved()

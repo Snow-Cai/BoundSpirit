@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_GraveDecor
   lines:
   - speakerName: 
-    dialogueText: The writing on the tomb have worn away.
+    dialogueText: The writing on the tomb has worn away.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
