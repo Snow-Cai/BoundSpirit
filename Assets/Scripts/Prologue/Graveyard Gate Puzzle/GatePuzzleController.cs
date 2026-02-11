@@ -1,14 +1,5 @@
-﻿using System;
-using System.Xml.Linq;
-using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
-using static Unity.Burst.Intrinsics.X86;
-using static Unity.Collections.AllocatorManager;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GatePuzzleController : MonoBehaviour
 {

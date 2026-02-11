@@ -148,14 +148,15 @@ public class GraveyardGateController : MonoBehaviour
 
     private bool HasPlayerSeenRequiredDialogue()
     {
-        if (requiredIntroDialogue == null ||
-            SaveSystem.Instance == null ||
-            string.IsNullOrEmpty(requiredIntroDialogue.dialogueID))
-        {
-            return false;
-        }
+        //if (requiredIntroDialogue == null ||
+        //    SaveSystem.Instance == null ||
+        //    string.IsNullOrEmpty(requiredIntroDialogue.dialogueID))
+        //{
+        //    return false;
+        //}
 
-        return SaveSystem.Instance.HasViewedDialogue(requiredIntroDialogue.dialogueID);
+        //return SaveSystem.Instance.HasViewedDialogue(requiredIntroDialogue.dialogueID);
+        return SaveSystem.Instance != null && SaveSystem.Instance.KnowsNameIsAkila();
     }
 
     private bool HasSeenPuzzleHint()
