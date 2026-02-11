@@ -413,4 +413,17 @@ public class SaveSystem : MonoBehaviour
         SaveGame();
         Debug.Log("SAVE: Game saved on application quit!");
     }
+
+    public bool KnowsNameIsAkila()
+    {
+        return currentSave != null && currentSave.knowsNameIsAkila;
+    }
+
+    public void SetKnowsNameIsAkila(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+        currentSave.knowsNameIsAkila = value;
+        SaveGame();
+    }
+
 }
