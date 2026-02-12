@@ -7594,6 +7594,7 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -7810,6 +7811,7 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -8639,9 +8641,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.9991031
-    height: 0.9694794
+    y: -0.5625
+    width: 0
+    height: 1.125
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9886,7 +9888,6 @@ MonoBehaviour:
   charMovement: {fileID: 1494143748}
   player: {fileID: 1494143745}
   walkSpeed: 2
-  nextScene: Chapter1_Home
   fadeScreen: {fileID: 1089773648}
 --- !u!1 &896658865
 GameObject:
@@ -37449,6 +37450,7 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -39926,6 +39928,7 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}
@@ -40621,6 +40624,7 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   interactPrompt: {fileID: 0}

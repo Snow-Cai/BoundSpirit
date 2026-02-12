@@ -6,7 +6,6 @@ public class StairToNextScene : MonoBehaviour
     public CharMovement charMovement;
     public Transform player;
     public float walkSpeed = 2f;
-    public string nextScene = "Chapter1_Home";
     public CanvasGroup fadeScreen;
     private bool triggered = false;
 
@@ -15,38 +14,40 @@ public class StairToNextScene : MonoBehaviour
         if (triggered) return;
         if (!collision.CompareTag("Player")) return;
         triggered = true;
-        StartCoroutine(DoStairTransition());
+        StartCoroutine(HandleTransition());
     }
 
-    private System.Collections.IEnumerator DoStairTransition()
+    private System.Collections.IEnumerator HandleTransition()
     {
         //SAVE BEFORE TRANSITION (player is still in safe position)
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.SaveGame();
-            Debug.Log("STAIR TRANSITION: Saved game before stairs");
+            Debug.Log("TRANSITION: Saved game before transition");
         }
 
         //NOW BLOCK FURTHER SAVES
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.SetTransitioning(true);
-            Debug.Log("STAIR TRANSITION: Blocking saves during transition");
+            Debug.Log("TRANSITION: Blocking saves during transition");
         }
 
         if (charMovement != null)
             charMovement.enabled = false;
 
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextIndex = currentIndex + 1;
         float t = 0f;
         while (t < 1f)
         {
             t += Time.deltaTime * 1f;
-            player.position += Vector3.down * walkSpeed * Time.deltaTime;
+            if(currentIndex == 1)                       //If in graveyard scene go down stairs
+                player.position += Vector3.down * walkSpeed * Time.deltaTime;
             fadeScreen.alpha = t;
             yield return null;
         }
 
-        SaveSystem.Instance.UnlockChapter(1);
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene(nextIndex);
     }
 }
