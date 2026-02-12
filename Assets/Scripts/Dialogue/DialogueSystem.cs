@@ -244,6 +244,8 @@ public class DialogueSystem : MonoBehaviour
         DialogueAsset finishedDialogue = currentDialogue;
 
         TryNotifyDialogueEnded(finishedDialogue);
+        HandleDialogueCompletionEffects(finishedDialogue);
+
         OnDialogueEnded?.Invoke(finishedDialogue);
 
         currentDialogue = null;
@@ -280,6 +282,20 @@ public class DialogueSystem : MonoBehaviour
         }
 
         SaveSystem.Instance.SaveGame();
+    }
+
+    private void HandleDialogueCompletionEffects(DialogueAsset finishedDialogue)
+    {
+        if (finishedDialogue == null || SaveSystem.Instance == null)
+            return;
+
+        switch (finishedDialogue.dialogueID)
+        {
+            case "Chapter0_tombstonePrimary":
+                SaveSystem.Instance.SetKnowsNameIsAkila(true);
+                Debug.Log("Story Flag Set: knowsNameIsAkila");
+                break;
+        }
     }
 
     // Ensure input state is reset if object is disabled or destroyed.
