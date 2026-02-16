@@ -232,10 +232,12 @@ public class SaveSystem : MonoBehaviour
             Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
             foreach (Transform item in items)
             {
-                if (currentSave.collectedItems.Contains(item.name))
+                InteractableObject io = item.GetComponent<InteractableObject>();
+                string id = io != null ? io.itemID : item.name;
+                if (currentSave.collectedItems.Contains(id))
                 {
                     item.gameObject.SetActive(false);
-                    Debug.Log("Restored collected item: " + item.name);
+                    Debug.Log("Restored collected item: " + id);
                 }
             }
         }
@@ -260,25 +262,13 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) return;
 
-        //restore safe state
-        if (currentSave.safeUnlocked)
+        InteractableObject[] interactables = FindObjectsOfType<InteractableObject>(true);
+        foreach (var obj in interactables)
         {
-            GameObject safe = GameObject.Find("safeplaceholder");
-            if (safe != null)
+            if (!string.IsNullOrEmpty(obj.puzzleID) && IsPuzzleSolved(obj.puzzleID))
             {
-                //add code here to set safe to unlocked state !!!!!!!
-                Debug.Log("Safe restored to unlocked state");
-            }
-        }
-
-        //restore laptop state
-        if (currentSave.laptopUnlocked)
-        {
-            GameObject laptop = GameObject.Find("Laptop");
-            if (laptop != null)
-            {
-                //Add code here to set laptop to unlocked state !!!!!!!!!!!!!!!!!!
-                Debug.Log("Laptop restored to unlocked state");
+                obj.gameObject.SetActive(false);
+                Debug.Log("Restored solved puzzle: " + obj.puzzleID);
             }
         }
     }
