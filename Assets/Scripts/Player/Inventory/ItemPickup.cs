@@ -36,7 +36,7 @@ public class ItemPickup : MonoBehaviour
         //save to inventory
         if (SaveSystem.Instance != null)
         {
-            SaveSystem.Instance.CollectItem(itemID.itemName);
+            SaveSystem.Instance.CollectItem(itemID.itemID);
         }
     }
 }
