@@ -114,7 +114,11 @@ public class SaveSystem : MonoBehaviour
             else if (rb2d != null)
             {
                 //cause 2d check if player is on ground using raycast
-                RaycastHit2D hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.6f);
+                RaycastHit2D hit = Physics2D.Raycast(
+                    player.transform.position - new Vector3(0, 0.4f, 0),
+                    Vector2.down,
+                    0.3f
+                );
                 isGrounded = hit.collider != null;
                 Debug.Log("SAVE: 2D Grounded check: " + isGrounded);
             }
