@@ -18,11 +18,13 @@ public class introController : MonoBehaviour
 
     void Start()
     {
-        if(titleGroup != null) //Make sure starting state is correct
+        if (titleGroup != null)
         {
             titleGroup.alpha = 0f;
             titleGroup.blocksRaycasts = false;
+            titleGroup.interactable = false;
         }
+
         if (buttonsGroup != null) //Make sure starting state is correct
         {
             buttonsGroup.alpha = 0f;
@@ -39,8 +41,12 @@ public class introController : MonoBehaviour
 
     IEnumerator RunIntro()
     {
-        if (titleGroup != null)  //fade title in
+        if (titleGroup != null)
+        {
             yield return StartCoroutine(FadeCanvasGroup(titleGroup, 0f, 1f, menuFadeIn));
+            titleGroup.blocksRaycasts = true;
+            titleGroup.interactable = true;
+        }
         else
             yield return null;
 
