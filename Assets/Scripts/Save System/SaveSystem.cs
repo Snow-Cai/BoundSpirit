@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static SaveData;
 
 [System.Serializable]
 public class SaveData
@@ -28,7 +29,14 @@ public class SaveData
 
     //Dialogue Progress
     public List<string> viewedDialogues = new List<string>();
-    public Dictionary<string, int> dialogueChoices = new Dictionary<string, int>();
+    [System.Serializable]
+    public class DialogueChoiceEntry
+    {
+        public string dialogueID;
+        public int choiceIndex;
+    }
+    public List<DialogueChoiceEntry> dialogueChoices = new List<DialogueChoiceEntry>();
+    //public Dictionary<string, int> dialogueChoices = new Dictionary<string, int>();
 
     //Story Flags
     public bool knowsPlayerIsDead;
@@ -359,17 +367,18 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveDialogueChoice(string dialogueID, int choiceIndex)
     {
-        currentSave.dialogueChoices[dialogueID] = choiceIndex;
+        var existing = currentSave.dialogueChoices.Find(e => e.dialogueID == dialogueID);
+        if (existing != null)
+            existing.choiceIndex = choiceIndex;
+        else
+            currentSave.dialogueChoices.Add(new DialogueChoiceEntry { dialogueID = dialogueID, choiceIndex = choiceIndex });
         SaveGame();
     }
 
     public int GetDialogueChoice(string dialogueID)
     {
-        if (currentSave.dialogueChoices.ContainsKey(dialogueID))
-        {
-            return currentSave.dialogueChoices[dialogueID];
-        }
-        return -1;
+        var existing = currentSave.dialogueChoices.Find(e => e.dialogueID == dialogueID);
+        return existing != null ? existing.choiceIndex : -1;
     }
 
     public bool IsChapterUnlocked(int chapterNumber)
