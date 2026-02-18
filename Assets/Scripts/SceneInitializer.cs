@@ -208,7 +208,13 @@ public class SceneInitializer : MonoBehaviour
             return;
         }
         inventory.inventory.Clear();
-        if (ItemDatabase.Instance != null)
+        if (ItemDatabase.Instance == null)
+        {
+            Debug.LogError("ItemDatabase.Instance is null in scene: " +
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name +
+                " - inventory will not load!");
+        }
+        else
         {
             foreach (string itemID in saveData.collectedItems)
             {

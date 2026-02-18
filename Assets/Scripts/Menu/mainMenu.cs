@@ -36,6 +36,18 @@ public class mainMenu : MonoBehaviour
 
         UpdateChapterButtons();
     }
+
+    void Update()
+    {
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Delete))
+        {
+            SaveSystem.Instance?.DeleteSave();
+            Debug.Log("Save wiped");
+            Start();
+        }
+#endif
+    }
     void UpdateChapterButtons()
     {
         if (SaveSystem.Instance == null) return;

@@ -21,7 +21,7 @@ public class CharMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameInputState.DialogueActive)
+        if (GameInputState.DialogueActive || (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled))
         {
             // Disable movement input during dialogue
             movementInput = Vector2.zero;

@@ -37,20 +37,25 @@ public class LoginPuzzle : MonoBehaviour
 
     public void ResetFields()
     {
-        Debug.Log("RESETFIELDS CALLED on " + gameObject.name);
+        if (usernameInput == null || passwordInput == null) return;
+
         usernameInput.text = "";
         passwordInput.text = "";
 
-        messageText.text = "";
+        if (messageText != null)
+            messageText.text = "";
         messageText.color = Color.white;
 
-        usernameInput.GetComponent<RectTransform>().anchoredPosition = usernameOriginalPos;
-        passwordInput.GetComponent<RectTransform>().anchoredPosition = passwordOriginalPos;
+        if (usernameInput.GetComponent<RectTransform>() != null)
+            usernameInput.GetComponent<RectTransform>().anchoredPosition = usernameOriginalPos;
+        if (passwordInput.GetComponent<RectTransform>() != null)
+            passwordInput.GetComponent<RectTransform>().anchoredPosition = passwordOriginalPos;
     }
 
     private void OnDisable()
     {
-        ResetFields();
+        if (usernameInput != null && passwordInput != null)
+            ResetFields();
     }
 
     private IEnumerator ShakeUI(RectTransform target, Vector2 originalPos, float duration = 0.25f, float magnitude = 5f)

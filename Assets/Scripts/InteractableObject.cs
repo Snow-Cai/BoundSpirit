@@ -191,6 +191,12 @@ public class InteractableObject : MonoBehaviour
 
     void CollectItem()
     {
+        if (string.IsNullOrEmpty(itemID))
+        {
+            Debug.LogError("InteractableObject on " + gameObject.name + " has no itemID set!");
+            return;
+        }
+
         if (hasBeenCollected) return;
 
         hasBeenCollected = true;

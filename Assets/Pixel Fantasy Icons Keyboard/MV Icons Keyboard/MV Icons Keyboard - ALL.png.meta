@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 6e862b9982269254bbadd35133b203d0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21199610812816227
+    second: MV Icons Keyboard - ALL_0
+  - first:
+      213: 3773594069315819697
+    second: MV Icons Keyboard - ALL_1
+  - first:
+      213: -3888421965457456898
+    second: MV Icons Keyboard - ALL_2
+  - first:
+      213: -459535889971435055
+    second: MV Icons Keyboard - ALL_3
+  - first:
+      213: -6854142558965948074
+    second: MV Icons Keyboard - ALL_4
+  - first:
+      213: 8730407193308321243
+    second: MV Icons Keyboard - ALL_5
+  - first:
+      213: -4827748194513838190
+    second: MV Icons Keyboard - ALL_6
+  - first:
+      213: 7754031511009601637
+    second: MV Icons Keyboard - ALL_7
+  - first:
+      213: 7998234016148961481
+    second: MV Icons Keyboard - ALL_8
+  - first:
+      213: -5915751343628301990
+    second: MV Icons Keyboard - ALL_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 223
+        width: 512
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36bdfd70fe05b4000800000000000000
+      internalID: 21199610812816227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 512
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b8171c00df7e5430800000000000000
+      internalID: 3773594069315819697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 159
+        width: 512
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef0051cf2dc890ac0800000000000000
+      internalID: -3888421965457456898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 127
+        width: 512
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d9a5b4fa866f99f0800000000000000
+      internalID: -459535889971435055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 95
+        width: 512
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 651a2fc48a131e0a0800000000000000
+      internalID: -6854142558965948074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 512
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd558ad2613a82970800000000000000
+      internalID: 8730407193308321243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29f18f87894600db0800000000000000
+      internalID: -4827748194513838190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_7
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 0
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568a9ee939adb9b60800000000000000
+      internalID: 7754031511009601637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_8
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 0
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c83103167f6ffe60800000000000000
+      internalID: 7998234016148961481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MV Icons Keyboard - ALL_9
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 4
+        width: 66
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59ce77fe7707eda0800000000000000
+      internalID: -5915751343628301990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MV Icons Keyboard - ALL_0: 21199610812816227
+      MV Icons Keyboard - ALL_1: 3773594069315819697
+      MV Icons Keyboard - ALL_2: -3888421965457456898
+      MV Icons Keyboard - ALL_3: -459535889971435055
+      MV Icons Keyboard - ALL_4: -6854142558965948074
+      MV Icons Keyboard - ALL_5: 8730407193308321243
+      MV Icons Keyboard - ALL_6: -4827748194513838190
+      MV Icons Keyboard - ALL_7: 7754031511009601637
+      MV Icons Keyboard - ALL_8: 7998234016148961481
+      MV Icons Keyboard - ALL_9: -5915751343628301990
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
