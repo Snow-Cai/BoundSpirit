@@ -18,8 +18,11 @@ public class DialogueUI : MonoBehaviour
 
     [Header("Continue Hint")]
     [SerializeField] private TextMeshProUGUI continueHintText;
-    [SerializeField] private string showHintForDialogueID = "Chapter0_awakening"; // set to your spawn dialogue ID
+
+    [Header("Continue Hint: Show If Player Doesn't React")]
+    [SerializeField] private float continueHintAppearDelay = 0.6f;
     [SerializeField] private string continueHintSaveKey = "UI_ContinueHintShown";
+    [SerializeField] private bool showHintOnlyOnceEver = false;
 
     [Header("Continue Hint Polish")]
     [SerializeField] private CanvasGroup continueHintCanvas;
@@ -39,6 +42,8 @@ public class DialogueUI : MonoBehaviour
     private DialogueLine currentLine;
 
     private readonly List<Button> activeChoiceButtons = new List<Button>();
+
+    private Coroutine delayedHintCoroutine;
 
     private void Awake()
     {
@@ -113,6 +118,7 @@ public class DialogueUI : MonoBehaviour
                 SaveSystem.Instance.MarkDialogueViewed(continueHintSaveKey);
         }
 
+        CancelDelayedHint();
         StopContinueHint();
 
         if (isTyping)
@@ -139,16 +145,8 @@ public class DialogueUI : MonoBehaviour
             choiceButtonContainer.SetActive(false);
         }
 
-        // Show continueHint only for the spawn dialogue
-        if (continueHintText != null && asset != null && asset.dialogueID == showHintForDialogueID)
-        {
-            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
-            if (!alreadyShown)
-            {
-                continueHintText.gameObject.SetActive(true);
-                StartContinueHint();
-            }
-        }
+        CancelDelayedHint();
+        StopContinueHint();
     }
 
     private void HandleLineStarted(DialogueLine line)
@@ -166,6 +164,9 @@ public class DialogueUI : MonoBehaviour
             UIAudioManager.Instance.PlayOneShot(line.voiceClip);
         }
 
+        CancelDelayedHint();
+        StopContinueHint();
+
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -181,6 +182,9 @@ public class DialogueUI : MonoBehaviour
             Debug.LogWarning("DialogueUI: Choices offered but UI is not wired.");
             return;
         }
+
+        CancelDelayedHint();
+        StopContinueHint();
 
         ClearChoices();
         choiceButtonContainer.SetActive(true);
@@ -208,6 +212,7 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleDialogueEnded(DialogueAsset asset)
     {
+        CancelDelayedHint();
         StopContinueHint();
 
         ClearChoices();
@@ -269,6 +274,9 @@ public class DialogueUI : MonoBehaviour
         typingCoroutine = null;
 
         dialogueSystem.NotifyLineFinishedTyping();
+
+        // hint after a delay ONLY if player hasn't advanced
+        ScheduleDelayedHintIfNeeded();
     }
 
     private void CompleteTextInstantly()
@@ -287,6 +295,56 @@ public class DialogueUI : MonoBehaviour
         }
 
         dialogueSystem.NotifyLineFinishedTyping();
+        ScheduleDelayedHintIfNeeded();
+    }
+
+    private void ScheduleDelayedHintIfNeeded()
+    {
+        // If once-ever across the whole game
+        if (showHintOnlyOnceEver)
+        {
+            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
+            if (alreadyShown)
+                return;
+        }
+
+        // Only if waiting for player advance (not choices)
+        if (dialogueSystem.State != DialogueState.WaitingForAdvance)
+            return;
+
+        CancelDelayedHint();
+        delayedHintCoroutine = StartCoroutine(DelayedShowContinueHint());
+    }
+
+    private IEnumerator DelayedShowContinueHint()
+    {
+        yield return new WaitForSecondsRealtime(continueHintAppearDelay);
+
+        // Player might have advanced / dialogue ended / choices appeared
+        if (dialogueSystem == null || !dialogueSystem.IsDialogueActive())
+            yield break;
+
+        if (dialogueSystem.State != DialogueState.WaitingForAdvance)
+            yield break;
+
+        // If once-ever, re-check (in case something marked it)
+        if (showHintOnlyOnceEver)
+        {
+            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
+            if (alreadyShown)
+                yield break;
+        }
+
+        StartContinueHint();
+    }
+
+    private void CancelDelayedHint()
+    {
+        if (delayedHintCoroutine != null)
+        {
+            StopCoroutine(delayedHintCoroutine);
+            delayedHintCoroutine = null;
+        }
     }
 
     private void ClearChoices()
