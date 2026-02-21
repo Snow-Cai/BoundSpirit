@@ -13,6 +13,7 @@ public class GraveyardGateController : MonoBehaviour
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
     [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle
+    [SerializeField] private bool openPuzzleAfterHintDialogue;
 
     [Header("Puzzle UI")]
     [SerializeField] private GameObject puzzleUI;
@@ -39,6 +40,16 @@ public class GraveyardGateController : MonoBehaviour
         {
             ApplyGateUnlockedState();
         }
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeFromDialogueEnded();
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromDialogueEnded();
     }
 
     private void Update()
@@ -105,11 +116,12 @@ public class GraveyardGateController : MonoBehaviour
         if (shouldShowHint)
         {
             puzzleHintShownThisSession = true;
+
+            // open the puzzle immediately after this hint dialogue finishes.
+            openPuzzleAfterHintDialogue = true;
+            SubscribeToDialogueEnded();
+
             DialogueSystem.Instance.StartDialogue(lockedPuzzleDialogue);
-
-            // Banner: reinforce the hint in a non-intrusive way.
-            //ObjectiveBanner.Instance?.ShowMessage("Hint: The gate’s code is hidden nearby.");
-
             return;
         }
 
@@ -124,6 +136,58 @@ public class GraveyardGateController : MonoBehaviour
         {
             OpenPuzzleUI();
         }
+    }
+
+    private void SubscribeToDialogueEnded()
+    {
+        if (DialogueSystem.Instance == null)
+            return;
+
+        DialogueSystem.Instance.OnDialogueEnded -= HandleDialogueEnded;
+        DialogueSystem.Instance.OnDialogueEnded += HandleDialogueEnded;
+    }
+
+    private void UnsubscribeFromDialogueEnded()
+    {
+        if (DialogueSystem.Instance == null)
+            return;
+
+        DialogueSystem.Instance.OnDialogueEnded -= HandleDialogueEnded;
+    }
+
+    private void HandleDialogueEnded(DialogueAsset finished)
+    {
+        if (!openPuzzleAfterHintDialogue)
+            return;
+
+        // Only react to the gate's hint dialogue.
+        if (finished == null || lockedPuzzleDialogue == null)
+            return;
+
+        // If you have dialogueIDs, use them for precise matching.
+        if (!string.IsNullOrEmpty(lockedPuzzleDialogue.dialogueID) &&
+            finished.dialogueID != lockedPuzzleDialogue.dialogueID)
+        {
+            return;
+        }
+
+        openPuzzleAfterHintDialogue = false;
+        UnsubscribeFromDialogueEnded();
+
+        // If player walked away, don't force open.
+        if (player == null)
+            return;
+
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance > interactionRange)
+            return;
+
+        if (IsGatePuzzleSolved())
+            return;
+
+        bool puzzleOpen = puzzleUI != null && puzzleUI.activeSelf;
+        if (!puzzleOpen)
+            OpenPuzzleUI();
     }
 
     private void OpenPuzzleUI()
@@ -148,14 +212,6 @@ public class GraveyardGateController : MonoBehaviour
 
     private bool HasPlayerSeenRequiredDialogue()
     {
-        //if (requiredIntroDialogue == null ||
-        //    SaveSystem.Instance == null ||
-        //    string.IsNullOrEmpty(requiredIntroDialogue.dialogueID))
-        //{
-        //    return false;
-        //}
-
-        //return SaveSystem.Instance.HasViewedDialogue(requiredIntroDialogue.dialogueID);
         return SaveSystem.Instance != null && SaveSystem.Instance.KnowsNameIsAkila();
     }
 
