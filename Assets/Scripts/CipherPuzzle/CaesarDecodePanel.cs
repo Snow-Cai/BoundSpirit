@@ -26,7 +26,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private TMP_InputField answerInput;
     [SerializeField] private TMP_Text feedbackText;
     [SerializeField] private Button submitButton;
-    [SerializeField] private Button closeButton;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onSolved;
@@ -47,9 +46,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (submitButton != null)
             submitButton.onClick.AddListener(Submit);
 
-        if (closeButton != null)
-            closeButton.onClick.AddListener(Close);
-
         InitializeOrGate();
     }
 
@@ -57,9 +53,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         if (submitButton != null)
             submitButton.onClick.RemoveListener(Submit);
-
-        if (closeButton != null)
-            closeButton.onClick.RemoveListener(Close);
     }
 
     #endregion
@@ -119,9 +112,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = true;
-
-        // Intentional: focus input (blocks inventory while open)
-        answerInput.ActivateInputField();
     }
 
     private void ResolveDependencies()
