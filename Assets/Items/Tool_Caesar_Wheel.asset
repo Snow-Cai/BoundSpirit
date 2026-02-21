@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84dc7bb0970681348be11ece947eff15, type: 3}
+  m_Name: Tool_Caesar_Wheel
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemID: TOOL_CAESAR_WHEEL
+  itemName: Caesar Wheel
+  icon: {fileID: 2594804212466293643, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
