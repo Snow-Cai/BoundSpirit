@@ -39,7 +39,6 @@ public class CharMovement : MonoBehaviour
             //normalize the input vector to prevent faster diagonal movement
             movementInput.Normalize();
 
-
             // Track last movement direction only when moving
             if (movementInput.sqrMagnitude > 0.1f)
             {
