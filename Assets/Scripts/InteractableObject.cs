@@ -51,6 +51,7 @@ public class InteractableObject : MonoBehaviour
     private NPCController npcController;
 
     private Transform player;
+    private Collider2D objectCollider;
     private bool playerInRange = false;
     private bool hasBeenCollected = false;
 
@@ -86,6 +87,7 @@ public class InteractableObject : MonoBehaviour
         }
 
         npcController = GetComponent<NPCController>();
+        objectCollider = GetComponent<Collider2D>();
 
         if (puzzleUI != null)
         {
@@ -108,7 +110,7 @@ public class InteractableObject : MonoBehaviour
         }
 
         float distance = Vector3.Distance(
-            GetComponent<Collider2D>().bounds.center,
+            objectCollider != null ? objectCollider.bounds.center : transform.position,
             player.position
         );
 
@@ -238,7 +240,7 @@ public class InteractableObject : MonoBehaviour
         }
 
         isPuzzleOpen = true;
-        InputLock.Instance.GameplayInputEnabled = false;
+        SetGameplayInputEnabled(false);
         Time.timeScale = 0f;
     }
 
@@ -256,9 +258,17 @@ public class InteractableObject : MonoBehaviour
         }
 
         isPuzzleOpen = false;
-        InputLock.Instance.GameplayInputEnabled = true;
+        SetGameplayInputEnabled(true);
         Time.timeScale = 1f;
   
+    }
+
+    private void SetGameplayInputEnabled(bool enabled)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = enabled;
+        }
     }
 
     public void OnPuzzleSolved()

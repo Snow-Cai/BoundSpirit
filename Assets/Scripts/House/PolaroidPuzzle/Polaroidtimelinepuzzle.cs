@@ -108,7 +108,7 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
                 canvas.enabled = true;
         }
 
-        InputLock.Instance.GameplayInputEnabled = false;
+        SetGameplayInputEnabled(false);
     }
 
     public void ClosePuzzle()
@@ -133,7 +133,15 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
         }
 
-        InputLock.Instance.GameplayInputEnabled = true;
+        SetGameplayInputEnabled(true);
+    }
+
+    private void SetGameplayInputEnabled(bool enabled)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = enabled;
+        }
     }
 
     //setup
@@ -167,12 +175,8 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
         }
     }
 
-    //solution check
-    //Called automatically after every drag-drop to give live feedback
-    //Does not trigger win player must press confirm
-    public void CheckSolution()
+    private int CountCorrectPlacements()
     {
-        //highlight correct placements without revealing answer
         int correct = 0;
         for (int i = 0; i < timelineSlots.Length; i++)
         {
@@ -182,6 +186,17 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
                 correct++;
             }
         }
+
+        return correct;
+    }
+
+    //solution check
+    //Called automatically after every drag-drop to give live feedback
+    //Does not trigger win player must press confirm
+    public void CheckSolution()
+    {
+        //highlight correct placements without revealing answer
+        int correct = CountCorrectPlacements();
 
         if (feedbackText != null)
         {
@@ -250,7 +265,17 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     private void HandleFailure()
     {
-        ShowFeedback("Something doesn't feel right...");
+        int correct = CountCorrectPlacements();
+
+        if (correct >= timelineSlots.Length - 1)
+        {
+            ShowFeedback("You're close. One memory still feels out of place.");
+            ObjectiveBanner.Instance?.ShowMessage("You are close - one polaroid is still out of order.");
+        }
+        else
+        {
+            ShowFeedback("Something doesn't feel right...");
+        }
 
         if (onWrongDialogue != null && DialogueSystem.Instance != null)
         {

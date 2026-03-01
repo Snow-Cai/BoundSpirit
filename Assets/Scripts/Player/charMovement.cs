@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class CharMovement : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class CharMovement : MonoBehaviour
     private Vector2 movementInput;
     public float pixelsPerUnit = 32f;   //PPU for snapping
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
     private float lastMoveX = 0;
     private float lastMoveY = -1;
     
@@ -16,6 +16,7 @@ public class CharMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //Grab RigidBody2D component
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -47,10 +48,13 @@ public class CharMovement : MonoBehaviour
             }
 
             // Flip sprite for left/right movement
-            if (movementInput.x > 0)
-                GetComponent<SpriteRenderer>().flipX = true;  // facing left (due to how sprite originally faces)
-            else if (movementInput.x < 0)
-                GetComponent<SpriteRenderer>().flipX = false;   // facing right (due to how sprite originally faces)
+            if (spriteRenderer != null)
+            {
+                if (movementInput.x > 0)
+                    spriteRenderer.flipX = true;  // facing left (due to how sprite originally faces)
+                else if (movementInput.x < 0)
+                    spriteRenderer.flipX = false;   // facing right (due to how sprite originally faces)
+            }
         }
 
         //update animator parameters

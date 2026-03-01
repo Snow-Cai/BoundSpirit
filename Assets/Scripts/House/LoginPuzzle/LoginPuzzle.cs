@@ -12,8 +12,9 @@ public class LoginPuzzle : MonoBehaviour
     public TMP_Text messageText;
 
     [Header("Credentials")]
-    public string correctUsername = "admin";
-    public string correctPassword = "password123";
+    public LoginCredentialsData credentialsData;
+    public string fallbackUsername = "admin";
+    public string fallbackPassword = "password123";
 
     [Header("Events")]
     public UnityEvent OnLoginSuccess;
@@ -110,11 +111,14 @@ public class LoginPuzzle : MonoBehaviour
         string u = usernameInput.text.Trim();
         string p = passwordInput.text.Trim();
 
+        string validUsername = credentialsData != null ? credentialsData.username : fallbackUsername;
+        string validPassword = credentialsData != null ? credentialsData.password : fallbackPassword;
+
         bool usernameCorrect =
-            u.Equals(correctUsername, System.StringComparison.OrdinalIgnoreCase);
+            u.Equals(validUsername, System.StringComparison.OrdinalIgnoreCase);
 
         bool passwordCorrect =
-            p == correctPassword;
+            p == validPassword;
 
         // both right
         if (usernameCorrect && passwordCorrect)

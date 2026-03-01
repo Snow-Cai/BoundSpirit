@@ -228,22 +228,30 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) return;
         //Deactivate items already collected from the world
-        Transform map = GameObject.Find("Map").transform;
-        foreach (Transform floor in map)
+        GameObject mapObj = GameObject.Find("Map");
+        if (mapObj != null)
         {
-            Transform itemsParent = floor.Find("CollectibleItemsParent");
-            if (itemsParent == null) continue;
-            Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
-            foreach (Transform item in items)
+            Transform map = mapObj.transform;
+            foreach (Transform floor in map)
             {
-                InteractableObject io = item.GetComponent<InteractableObject>();
-                string id = io != null ? io.itemID : item.name;
-                if (currentSave.collectedItems.Contains(id))
+                Transform itemsParent = floor.Find("CollectibleItemsParent");
+                if (itemsParent == null) continue;
+                Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
+                foreach (Transform item in items)
                 {
-                    item.gameObject.SetActive(false);
-                    Debug.Log("Restored collected item: " + id);
+                    InteractableObject io = item.GetComponent<InteractableObject>();
+                    string id = io != null ? io.itemID : item.name;
+                    if (currentSave.collectedItems.Contains(id))
+                    {
+                        item.gameObject.SetActive(false);
+                        Debug.Log("Restored collected item: " + id);
+                    }
                 }
             }
+        }
+        else
+        {
+            Debug.LogWarning("RESTORE: Map object not found. Skipping world item restoration.");
         }
         //Restore player's inventory
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -257,7 +265,7 @@ public class SaveSystem : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("RESTORE: Player object not found!");
+                Debug.LogWarning("RESTORE: PlayerInventory component not found on Player object!");
             }
         }
     }
