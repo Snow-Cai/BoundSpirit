@@ -55,7 +55,7 @@ public class SafeControllerKeypad : MonoBehaviour
             FailMessage("Insert Key First!");
             return;
         }
-        if (currentInput.ToString() == targetCode)
+        if (CheckSafeUnlockRequirements())
             HandleUnlock();
         else
             FailMessage("Wrong Code!");
