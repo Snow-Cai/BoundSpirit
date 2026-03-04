@@ -98,6 +98,11 @@ public class SafeControllerKeypad : MonoBehaviour
         }
     }
 
+    public bool CheckSafeUnlockRequirements()
+    {
+        return currentInput.ToString() == targetCode && keyInserted;
+    }
+
     void HandleUnlock()         //unlock on success
     {
         if (successLight != null)

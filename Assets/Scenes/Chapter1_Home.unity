@@ -27366,7 +27366,7 @@ MonoBehaviour:
   successLight: {fileID: 61933680}
   knob: {fileID: 1090375420}
   maxDigits: 6
-  targetCode: 333333
+  targetCode: 010311
   keyInserted: 0
   audioSource: {fileID: 1291626102}
   buttonPressSound: {fileID: 8300000, guid: df284122aab18b14b88bbd09f53c1500, type: 3}
