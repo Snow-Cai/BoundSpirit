@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dc7bb0970681348be11ece947eff15, type: 3}
   m_Name: Note_Caesar_Library
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemID: NOTE_CAESAR_LIBRARY
+  itemID: CAESAR_NOTE
   itemName: Encripted Note
   icon: {fileID: 4258502338566667977, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}

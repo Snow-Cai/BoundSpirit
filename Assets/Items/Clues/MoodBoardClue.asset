@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
   m_Name: MoodBoardClue
   m_EditorClassIdentifier: Assembly-CSharp::Clue
-  itemID: vinyl
-  itemName: 
+  itemID: VINYL_CLUE
+  itemName: Vinyl Clue
   icon: {fileID: 0}
   clueID: 
   clueName: vinylclue
@@ -26,4 +26,3 @@ MonoBehaviour:
   isRequiredForPassword: 1
   canBeReviewedInJournal: 1
   canTriggerEvents: 0
-  pickupSound: {fileID: 0}

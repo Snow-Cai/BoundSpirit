@@ -1329,8 +1329,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1249472905}
-  - {fileID: 1798736670}
   - {fileID: 941728141}
   - {fileID: 1956579849}
   - {fileID: 2050588827}
@@ -1863,20 +1861,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
   m_PrefabInstance: {fileID: 1719132435}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &171221828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171221823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bef420b76bfa64293b0fc34c838667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CluePickup
-  clue: {fileID: 11400000, guid: 53786b593c6a4cb488c25c5a5a4edb3c, type: 2}
-  interactRange: 2
 --- !u!70 &171221829
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1934,9 +1918,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -1948,7 +1929,24 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
+--- !u!114 &171221834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171221823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 53786b593c6a4cb488c25c5a5a4edb3c, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 0
+  showCluePopup: 1
+  clue: {fileID: 11400000, guid: 53786b593c6a4cb488c25c5a5a4edb3c, type: 2}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &193723418
 GameObject:
   m_ObjectHideFlags: 0
@@ -10631,15 +10629,15 @@ Transform:
   m_Children:
   - {fileID: 1454209468}
   - {fileID: 371137719}
-  - {fileID: 1268758792}
   - {fileID: 1948428924}
-  - {fileID: 882899474}
-  - {fileID: 1548588740}
   - {fileID: 1402119188}
-  - {fileID: 171221824}
-  - {fileID: 1613116035}
   - {fileID: 614661043}
   - {fileID: 1821350467}
+  - {fileID: 1268758792}
+  - {fileID: 882899474}
+  - {fileID: 1548588740}
+  - {fileID: 171221824}
+  - {fileID: 1613116035}
   m_Father: {fileID: 125088246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400853335
@@ -16750,7 +16748,7 @@ GameObject:
   - component: {fileID: 842411741}
   - component: {fileID: 842411740}
   - component: {fileID: 842411739}
-  - component: {fileID: 842411742}
+  - component: {fileID: 842411743}
   m_Layer: 0
   m_Name: SAFE_KEY
   m_TagString: Untagged
@@ -16877,7 +16875,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1499981645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &842411742
+--- !u!114 &842411743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16886,12 +16884,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 842411738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb915486ed3811458684d84f06f6109, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
-  itemID: {fileID: 11400000, guid: dcf0c19817b9cc441be516a822f3a373, type: 2}
-  pickupDistance: 2
-  inventory: {fileID: 2000622939}
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: dcf0c19817b9cc441be516a822f3a373, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 1
+  showCluePopup: 0
+  clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &844477193
 GameObject:
@@ -17287,9 +17287,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 1
-  itemID: Ripped_Note
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -17301,7 +17298,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
 --- !u!61 &854863097
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17628,10 +17624,10 @@ GameObject:
   - component: {fileID: 882899474}
   - component: {fileID: 882899473}
   - component: {fileID: 882899475}
-  - component: {fileID: 882899476}
   - component: {fileID: 882899477}
+  - component: {fileID: 882899478}
   m_Layer: 0
-  m_Name: TopDownHouse_SmallItems_9
+  m_Name: PAINTING_CLUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17756,20 +17752,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.21875, y: 0.48557025}
   m_EdgeRadius: 0
---- !u!114 &882899476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882899472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bef420b76bfa64293b0fc34c838667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CluePickup
-  clue: {fileID: 11400000, guid: 75c243552114bc343bf7815f5e290086, type: 2}
-  interactRange: 2
 --- !u!114 &882899477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17790,9 +17772,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -17804,7 +17783,24 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
+--- !u!114 &882899478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882899472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 75c243552114bc343bf7815f5e290086, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 0
+  showCluePopup: 1
+  clue: {fileID: 11400000, guid: 75c243552114bc343bf7815f5e290086, type: 2}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &883013060
 GameObject:
   m_ObjectHideFlags: 0
@@ -26261,9 +26257,9 @@ GameObject:
   - component: {fileID: 1249472905}
   - component: {fileID: 1249472908}
   - component: {fileID: 1249472907}
-  - component: {fileID: 1249472906}
+  - component: {fileID: 1249472909}
   m_Layer: 0
-  m_Name: Casear Note
+  m_Name: CAESAR_NOTE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26278,28 +26274,12 @@ Transform:
   m_GameObject: {fileID: 1249472904}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 24.12, z: 0}
+  m_LocalPosition: {x: 0.1500001, y: 24.12, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 125088246}
+  m_Father: {fileID: 1330186957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249472906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249472904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb915486ed3811458684d84f06f6109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
-  itemID: {fileID: 11400000, guid: 3b37d604609c3ab43a55246e78d6a7d3, type: 2}
-  pickupDistance: 2
-  inventory: {fileID: 2000622939}
-  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!61 &1249472907
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26404,6 +26384,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1249472909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249472904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 3b37d604609c3ab43a55246e78d6a7d3, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 1
+  showCluePopup: 0
+  clue: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1266857953
 GameObject:
   m_ObjectHideFlags: 0
@@ -26414,8 +26412,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1266857954}
   - component: {fileID: 1266857955}
-  - component: {fileID: 1266857957}
   - component: {fileID: 1266857956}
+  - component: {fileID: 1266857957}
   m_Layer: 0
   m_Name: CRUMPLED_NOTE
   m_TagString: Untagged
@@ -26551,12 +26549,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1266857953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb915486ed3811458684d84f06f6109, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  itemID: {fileID: 11400000, guid: 8d4d2b1aee9700244aa257bf882561e5, type: 2}
-  pickupDistance: 2
-  inventory: {fileID: 2000622939}
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 8d4d2b1aee9700244aa257bf882561e5, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 1
+  showCluePopup: 0
+  clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1268758790
 GameObject:
@@ -26569,10 +26569,10 @@ GameObject:
   - component: {fileID: 1268758792}
   - component: {fileID: 1268758791}
   - component: {fileID: 1268758793}
-  - component: {fileID: 1268758794}
   - component: {fileID: 1268758795}
+  - component: {fileID: 1268758796}
   m_Layer: 0
-  m_Name: Note
+  m_Name: FLOOR_CLUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26646,7 +26646,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.10932931, y: -0.10351266, z: -0.43552, w: 0.8874991}
   m_LocalPosition: {x: 13.389, y: 23.414, z: 0.023}
-  m_LocalScale: {x: 1.9502001, y: 1.9502, z: 1.9502}
+  m_LocalScale: {x: 1.9502002, y: 1.9502, z: 1.9502}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 397034226}
@@ -26697,20 +26697,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.19401681, y: 0.19174594}
   m_EdgeRadius: 0
---- !u!114 &1268758794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268758790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bef420b76bfa64293b0fc34c838667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CluePickup
-  clue: {fileID: 11400000, guid: 212287ff65dfeb9458d7257afe4ea3f6, type: 2}
-  interactRange: 2
 --- !u!114 &1268758795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26731,9 +26717,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -26745,7 +26728,24 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
+--- !u!114 &1268758796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268758790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 212287ff65dfeb9458d7257afe4ea3f6, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 0
+  showCluePopup: 1
+  clue: {fileID: 11400000, guid: 212287ff65dfeb9458d7257afe4ea3f6, type: 2}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1273137289
 GameObject:
   m_ObjectHideFlags: 0
@@ -27785,6 +27785,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1266857954}
+  - {fileID: 1249472905}
+  - {fileID: 1798736670}
   m_Father: {fileID: 125088246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338930375
@@ -28871,9 +28873,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -28885,7 +28884,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
 --- !u!1 &1441291843
 GameObject:
   m_ObjectHideFlags: 0
@@ -29108,8 +29106,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 1.0004698
+    y: -0.053859964
+    width: 0.5555556
     height: 0.9694794
   near clip plane: 0.3
   far clip plane: 1000
@@ -30630,10 +30628,10 @@ GameObject:
   - component: {fileID: 1548588740}
   - component: {fileID: 1548588739}
   - component: {fileID: 1548588741}
-  - component: {fileID: 1548588742}
   - component: {fileID: 1548588743}
+  - component: {fileID: 1548588744}
   m_Layer: 0
-  m_Name: calendar
+  m_Name: CALENDAR_CLUE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30758,20 +30756,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.28125, y: 0.47928947}
   m_EdgeRadius: 0
---- !u!114 &1548588742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548588738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bef420b76bfa64293b0fc34c838667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CluePickup
-  clue: {fileID: 11400000, guid: bd507dcbdd4c54c4d91ca5075234d5bf, type: 2}
-  interactRange: 2
 --- !u!114 &1548588743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30792,9 +30776,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -30806,7 +30787,24 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
+--- !u!114 &1548588744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548588738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: bd507dcbdd4c54c4d91ca5075234d5bf, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 0
+  showCluePopup: 1
+  clue: {fileID: 11400000, guid: bd507dcbdd4c54c4d91ca5075234d5bf, type: 2}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1552816605
 GameObject:
   m_ObjectHideFlags: 0
@@ -31240,20 +31238,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4450748745231530425, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
   m_PrefabInstance: {fileID: 2052195676}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1613116038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613116034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05bef420b76bfa64293b0fc34c838667, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CluePickup
-  clue: {fileID: 11400000, guid: 3e5ae371775afde479b10c2e2fbf9bb1, type: 2}
-  interactRange: 2
 --- !u!61 &1613116039
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31320,9 +31304,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -31334,7 +31315,24 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
+--- !u!114 &1613116043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613116034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 3e5ae371775afde479b10c2e2fbf9bb1, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 0
+  showCluePopup: 1
+  clue: {fileID: 11400000, guid: 3e5ae371775afde479b10c2e2fbf9bb1, type: 2}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1623215455
 GameObject:
   m_ObjectHideFlags: 0
@@ -31978,7 +31976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_Name
-      value: corner desk
+      value: VINYL_CLUE
       objectReference: {fileID: 0}
     - target: {fileID: 2092518138868481420, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_LocalScale.x
@@ -32077,10 +32075,10 @@ PrefabInstance:
       addedObject: {fileID: 171221829}
     - targetCorrespondingSourceObject: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 171221828}
+      addedObject: {fileID: 171221830}
     - targetCorrespondingSourceObject: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 171221830}
+      addedObject: {fileID: 171221834}
   m_SourcePrefab: {fileID: 100100000, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
 --- !u!1 &1722491104
 GameObject:
@@ -33214,9 +33212,9 @@ GameObject:
   - component: {fileID: 1798736670}
   - component: {fileID: 1798736673}
   - component: {fileID: 1798736672}
-  - component: {fileID: 1798736671}
+  - component: {fileID: 1798736674}
   m_Layer: 0
-  m_Name: Caesar Wheel
+  m_Name: CAESAR_WHEEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33231,28 +33229,12 @@ Transform:
   m_GameObject: {fileID: 1798736669}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 24.12, z: 0}
+  m_LocalPosition: {x: 0.96000004, y: 24.12, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 125088246}
+  m_Father: {fileID: 1330186957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1798736671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798736669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb915486ed3811458684d84f06f6109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KeyPickup
-  itemID: {fileID: 11400000, guid: 45ecf1dcbd445a94485abb1f619a6529, type: 2}
-  pickupDistance: 2
-  inventory: {fileID: 2000622939}
-  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!61 &1798736672
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33357,6 +33339,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1798736674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798736669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e4979597b68d94ba224ec0eec6247c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::CollectibleObject
+  item: {fileID: 11400000, guid: 45ecf1dcbd445a94485abb1f619a6529, type: 2}
+  collectDistance: 2
+  disappearOnPickup: 1
+  showCluePopup: 0
+  clue: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
 --- !u!1 &1799466600
 GameObject:
   m_ObjectHideFlags: 0
@@ -33845,9 +33845,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 1
   puzzleID: CaesarCipher Puzzle
   puzzleUI: {fileID: 267446527}
@@ -33859,7 +33856,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
 --- !u!1 &1872680135
 GameObject:
   m_ObjectHideFlags: 0
@@ -35117,9 +35113,6 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 1973412644}
@@ -35137,7 +35130,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
 --- !u!1 &1951109361
 GameObject:
   m_ObjectHideFlags: 0
@@ -36583,12 +36575,9 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
-  isCollectible: 0
-  itemID: 
-  itemVisual: {fileID: 0}
   isPuzzle: 1
   puzzleID: ReassemblyPuzzle
-  puzzleUI: {fileID: 0}
+  puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
@@ -36597,7 +36586,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
-  collectSound: {fileID: 0}
 --- !u!1001 &2052195676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36612,7 +36600,7 @@ PrefabInstance:
       objectReference: {fileID: 3118064626333518303, guid: 458442a666a91cf4dba71ee667458375, type: 3}
     - target: {fileID: 1810896720657670023, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
       propertyPath: m_Name
-      value: Bookshelf
+      value: JOURNAL_CLUE
       objectReference: {fileID: 0}
     - target: {fileID: 4450748745231530425, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
       propertyPath: m_LocalScale.x
@@ -36699,10 +36687,10 @@ PrefabInstance:
       addedObject: {fileID: 1613116039}
     - targetCorrespondingSourceObject: {fileID: 1810896720657670023, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1613116038}
+      addedObject: {fileID: 1613116040}
     - targetCorrespondingSourceObject: {fileID: 1810896720657670023, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1613116040}
+      addedObject: {fileID: 1613116043}
   m_SourcePrefab: {fileID: 100100000, guid: 044a89d205ccd594889c92dd9ca67333, type: 3}
 --- !u!1 &2052653071
 GameObject:

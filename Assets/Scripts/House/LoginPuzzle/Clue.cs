@@ -24,9 +24,6 @@ public class Clue : ItemData
     public bool canBeReviewedInJournal = true;
     public bool canTriggerEvents = false;
 
-    [Header("Audio")]
-    public AudioClip pickupSound;
-
     //validation
     public bool IsValid()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
   m_Name: CalendarClue
   m_EditorClassIdentifier: Assembly-CSharp::Clue
-  itemID: calendarClue
+  itemID: CALENDAR_CLUE
   itemName: Calendar
   icon: {fileID: 0}
   clueID: calendarClue
@@ -26,4 +26,3 @@ MonoBehaviour:
   isRequiredForPassword: 1
   canBeReviewedInJournal: 1
   canTriggerEvents: 0
-  pickupSound: {fileID: 0}

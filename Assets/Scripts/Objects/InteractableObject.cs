@@ -18,11 +18,6 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private DialogueAsset primaryDialogue;
     [SerializeField] private DialogueAsset repeatDialogue;
 
-    [Header("Item Collection")]
-    public bool isCollectible = false;
-    public string itemID;
-    public GameObject itemVisual;
-
     [Header("Puzzle")]
     public bool isPuzzle = false;
     public string puzzleID;
@@ -31,7 +26,6 @@ public class InteractableObject : MonoBehaviour
 
     [Header("Puzzle Components")]
     public LoginPuzzle loginPuzzle;
-
 
     [Header("Informational Tidbit")]
     [TextArea]
@@ -45,7 +39,6 @@ public class InteractableObject : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip interactSound;
-    public AudioClip collectSound;
 
     [Header("NPC")]
     private NPCController npcController;
@@ -53,7 +46,6 @@ public class InteractableObject : MonoBehaviour
     private Transform player;
     private Collider2D objectCollider;
     private bool playerInRange = false;
-    private bool hasBeenCollected = false;
 
     void Start()
     {
@@ -66,19 +58,6 @@ public class InteractableObject : MonoBehaviour
         if (interactPrompt != null)
         {
             interactPrompt.SetActive(false);
-        }
-
-        if (isCollectible && SaveSystem.Instance != null)
-        {
-            if (SaveSystem.Instance.HasItem(itemID))
-            {
-                hasBeenCollected = true;
-                if (itemVisual != null)
-                {
-                    itemVisual.SetActive(false);
-                }
-                gameObject.SetActive(false);
-            }
         }
 
         if (promptText != null)
@@ -97,7 +76,7 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        if (player == null || hasBeenCollected) return;
+        if (player == null) return;
 
         // If computer screen is open, only allow closing it (unless typing)
         if (isPuzzleOpen)
@@ -173,12 +152,6 @@ public class InteractableObject : MonoBehaviour
             UIAudioManager.Instance.PlayOneShot(interactSound);
         }
 
-        if (isCollectible)
-        {
-            CollectItem();
-            return;
-        }
-
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
             OpenPuzzle();
@@ -189,42 +162,6 @@ public class InteractableObject : MonoBehaviour
         {
             PlayDialogue();
         }
-    }
-
-    void CollectItem()
-    {
-        if (string.IsNullOrEmpty(itemID))
-        {
-            Debug.LogError("InteractableObject on " + gameObject.name + " has no itemID set!");
-            return;
-        }
-
-        if (hasBeenCollected) return;
-
-        hasBeenCollected = true;
-
-        if (collectSound != null && UIAudioManager.Instance != null)
-        {
-            UIAudioManager.Instance.PlayOneShot(collectSound);
-        }
-
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.CollectItem(itemID);
-        }
-
-        if (hasDialogue)
-        {
-            PlayDialogue();
-        }
-
-        if (itemVisual != null)
-        {
-            itemVisual.SetActive(false);
-        }
-
-        HidePrompt();
-        gameObject.SetActive(false);
     }
 
     void OpenPuzzle()

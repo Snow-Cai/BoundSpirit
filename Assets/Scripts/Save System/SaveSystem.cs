@@ -236,11 +236,12 @@ public class SaveSystem : MonoBehaviour
             Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
             foreach (Transform item in items)
             {
-                InteractableObject io = item.GetComponent<InteractableObject>();
-                string id = io != null ? io.itemID : item.name;
+                CollectibleObject co = item.GetComponent<CollectibleObject>();
+                string id = co != null ? co.item.itemID : item.name;
                 if (currentSave.collectedItems.Contains(id))
                 {
-                    item.gameObject.SetActive(false);
+                    if(co.disappearOnPickup == true)
+                        item.gameObject.SetActive(false);
                     Debug.Log("Restored collected item: " + id);
                 }
             }
