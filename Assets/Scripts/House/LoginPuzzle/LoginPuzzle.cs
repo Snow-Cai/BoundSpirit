@@ -12,8 +12,8 @@ public class LoginPuzzle : MonoBehaviour
     public TMP_Text messageText;
 
     [Header("Credentials")]
-    public string correctUsername = "admin";
-    public string correctPassword = "password123";
+    public string correctUsername = "akila";
+    public string correctPassword = "2001eden";
 
     [Header("Events")]
     public UnityEvent OnLoginSuccess;
