@@ -335,6 +335,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ac290aedaa30c4a9c785c8225dc569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharMovement
+--- !u!1 &32848247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 32848249}
+  - component: {fileID: 32848248}
+  m_Layer: 0
+  m_Name: InputLockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &32848248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32848247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab1dafb7b36c9214b9ce88365b23bc3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputLock
+  GameplayInputEnabled: 1
+--- !u!4 &32848249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32848247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 141.18011, y: 104.08818, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &35954096
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +431,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentMovement
   rectTransform: {fileID: 0}
+  groupRoot: {fileID: 0}
+  movementBounds: {fileID: 0}
   locked: 0
+  connections: []
 --- !u!114 &35954099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,8 +1601,9 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 0}
   playVoiceClips: 1
   continueHintText: {fileID: 0}
-  showHintForDialogueID: Chapter0_awakening
+  continueHintAppearDelay: 0.6
   continueHintSaveKey: UI_ContinueHintShown
+  showHintOnlyOnceEver: 0
   continueHintCanvas: {fileID: 0}
   fadeInDuration: 0.4
   pulseMinAlpha: 0.45
@@ -3503,15 +3552,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33df1f0afbce26248a1fe0838c38edbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReassemblyPuzzleManager
-  snapPoints:
-  - {fileID: 1384477559}
-  - {fileID: 1154698512}
-  - {fileID: 2062351175}
   fragments:
   - {fileID: 35954098}
   - {fileID: 2068008815}
   - {fileID: 623302133}
   snapDistance: 40
+  fragmentsParent: {fileID: 0}
+  finalResult: {fileID: 0}
 --- !u!114 &557868510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4217,7 +4264,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentMovement
   rectTransform: {fileID: 0}
+  groupRoot: {fileID: 0}
+  movementBounds: {fileID: 0}
   locked: 0
+  connections: []
 --- !u!114 &623302134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4746,7 +4796,6 @@ MonoBehaviour:
   charMovement: {fileID: 28343403}
   player: {fileID: 28343402}
   walkSpeed: 2
-  nextScene: Chapter1_Home
   fadeScreen: {fileID: 1955248999}
 --- !u!61 &822698790
 BoxCollider2D:
@@ -10953,7 +11002,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: -0.080789946
-    width: 1.3183856
+    width: 1.2818733
     height: 0.9694794
   near clip plane: 0.3
   far clip plane: 1000
@@ -14098,7 +14147,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentMovement
   rectTransform: {fileID: 0}
+  groupRoot: {fileID: 0}
+  movementBounds: {fileID: 0}
   locked: 0
+  connections: []
 --- !u!114 &2068008816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19651,3 +19703,4 @@ SceneRoots:
   - {fileID: 288833025}
   - {fileID: 881650048}
   - {fileID: 207061834}
+  - {fileID: 32848249}
