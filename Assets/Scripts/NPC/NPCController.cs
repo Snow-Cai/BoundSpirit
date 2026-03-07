@@ -137,7 +137,7 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PLAYER ENTERED MOM RANGE");
+            Debug.Log("PLAYER ENTERED NPC RANGE");
             playerNearby = true;
             playerRef = other.gameObject;
         }
@@ -147,7 +147,7 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PLAYER LEFT MOM RANGE");
+            Debug.Log("PLAYER LEFT NPC RANGE");
             playerNearby = false;
             playerRef = null;
             EndInteraction();

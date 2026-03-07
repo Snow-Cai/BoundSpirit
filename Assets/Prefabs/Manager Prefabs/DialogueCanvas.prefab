@@ -258,8 +258,9 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 0}
   playVoiceClips: 1
   continueHintText: {fileID: 6999337976627734301}
-  showHintForDialogueID: Chapter0_awakening
+  continueHintAppearDelay: 0.6
   continueHintSaveKey: UI_ContinueHintShown
+  showHintOnlyOnceEver: 0
   continueHintCanvas: {fileID: 5908348052335408775}
   fadeInDuration: 0.4
   pulseMinAlpha: 0.45
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5622641, g: 0.083809115, b: 0.083809115, a: 0.050980393}
+  m_Color: {r: 0.30871752, g: 0.29142934, b: 0.3490566, a: 0.972549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

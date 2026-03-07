@@ -136,17 +136,16 @@ public class InteractableObject : MonoBehaviour
     {
         Debug.Log("INTERACT() FIRED on " + gameObject.name);
 
-        if (npcController != null)
-        {
-            npcController.StartInteraction();
-        }
-
         if (DialogueSystem.Instance != null &&
             DialogueSystem.Instance.IsDialogueActive())
         {
             return;
         }
 
+        if (npcController != null)
+        {
+            npcController.StartInteraction();
+        }
         if (interactSound != null && UIAudioManager.Instance != null)
         {
             UIAudioManager.Instance.PlayOneShot(interactSound);
@@ -255,6 +254,11 @@ public class InteractableObject : MonoBehaviour
         if (dialogueToPlay != null)
         {
             DialogueSystem.Instance.StartDialogue(dialogueToPlay);
+
+            if (npcController != null)
+            {
+                DialogueSystem.Instance.ActiveNPC = npcController;
+            }
         }
     }
 

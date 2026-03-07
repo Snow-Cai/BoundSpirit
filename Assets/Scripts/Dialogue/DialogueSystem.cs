@@ -17,6 +17,7 @@ public class DialogueSystem : MonoBehaviour
     /// Ensures only one active controller exists.
     /// </summary>
     public static DialogueSystem Instance { get; private set; }
+    public NPCController ActiveNPC;
 
     [Header("Typing Settings")]
     [Min(1f)]
@@ -250,6 +251,12 @@ public class DialogueSystem : MonoBehaviour
 
         currentDialogue = null;
         State = DialogueState.Inactive;
+
+        if (ActiveNPC != null)
+        {
+            ActiveNPC.EndInteraction();
+            ActiveNPC = null;
+        }
 
         StartNextDialogueFromQueue();
     }
