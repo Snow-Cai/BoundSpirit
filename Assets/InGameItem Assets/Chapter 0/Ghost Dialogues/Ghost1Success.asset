@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Ghost1Success
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost1Success
+  lines:
+  - speakerName: Nice Ghost
+    dialogueText: ...A rose. Thank you! Its scent is just as I remember.
+    voiceClip: {fileID: 0}
+  - speakerName: Nice Ghost
+    dialogueText: I suppose I should help you as well.
+    voiceClip: {fileID: 0}
+  - speakerName: Nice Ghost
+    dialogueText: Beyond this graveyard stands a gate sealed by old symbols.
+    voiceClip: {fileID: 0}
+  - speakerName: Nice Ghost
+    dialogueText: 'I remember the first mark clearly. '
+    voiceClip: {fileID: 0}
+  - speakerName: Nice Ghost
+    dialogueText: The circle always comes first, remember that.
+    voiceClip: {fileID: 0}
+  choices: []
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1
