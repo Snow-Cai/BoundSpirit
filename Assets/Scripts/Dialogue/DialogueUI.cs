@@ -16,6 +16,24 @@ public class DialogueUI : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private bool playVoiceClips = true;
 
+    [Header("Continue Hint")]
+    [SerializeField] private TextMeshProUGUI continueHintText;
+
+    [Header("Continue Hint: Show If Player Doesn't React")]
+    [SerializeField] private float continueHintAppearDelay = 0.6f;
+    [SerializeField] private string continueHintSaveKey = "UI_ContinueHintShown";
+    [SerializeField] private bool showHintOnlyOnceEver = false;
+
+    [Header("Continue Hint Polish")]
+    [SerializeField] private CanvasGroup continueHintCanvas;
+    [SerializeField] private float fadeInDuration = 0.4f;
+    [SerializeField] private float pulseMinAlpha = 0.45f;
+    [SerializeField] private float pulseMaxAlpha = 0.65f;
+    [SerializeField] private float pulseSpeed = 1.5f;
+
+    private Coroutine pulseRoutine;
+    private Coroutine fadeRoutine;
+
     private DialogueSystem dialogueSystem;
 
     private Coroutine typingCoroutine;
@@ -25,10 +43,15 @@ public class DialogueUI : MonoBehaviour
 
     private readonly List<Button> activeChoiceButtons = new List<Button>();
 
+    private Coroutine delayedHintCoroutine;
+
     private void Awake()
     {
         Initialize();
         HideAll();
+
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -88,6 +111,16 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleAdvanceInput()
     {
+        // If hint is showing, stop it and mark it as shown
+        if (continueHintText != null && continueHintText.gameObject.activeSelf)
+        {
+            if (SaveSystem.Instance != null)
+                SaveSystem.Instance.MarkDialogueViewed(continueHintSaveKey);
+        }
+
+        CancelDelayedHint();
+        StopContinueHint();
+
         if (isTyping)
         {
             CompleteTextInstantly();
@@ -111,6 +144,9 @@ public class DialogueUI : MonoBehaviour
         {
             choiceButtonContainer.SetActive(false);
         }
+
+        CancelDelayedHint();
+        StopContinueHint();
     }
 
     private void HandleLineStarted(DialogueLine line)
@@ -128,6 +164,9 @@ public class DialogueUI : MonoBehaviour
             UIAudioManager.Instance.PlayOneShot(line.voiceClip);
         }
 
+        CancelDelayedHint();
+        StopContinueHint();
+
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
@@ -143,6 +182,9 @@ public class DialogueUI : MonoBehaviour
             Debug.LogWarning("DialogueUI: Choices offered but UI is not wired.");
             return;
         }
+
+        CancelDelayedHint();
+        StopContinueHint();
 
         ClearChoices();
         choiceButtonContainer.SetActive(true);
@@ -170,6 +212,9 @@ public class DialogueUI : MonoBehaviour
 
     private void HandleDialogueEnded(DialogueAsset asset)
     {
+        CancelDelayedHint();
+        StopContinueHint();
+
         ClearChoices();
 
         if (dialogueBox != null)
@@ -229,6 +274,9 @@ public class DialogueUI : MonoBehaviour
         typingCoroutine = null;
 
         dialogueSystem.NotifyLineFinishedTyping();
+
+        // hint after a delay ONLY if player hasn't advanced
+        ScheduleDelayedHintIfNeeded();
     }
 
     private void CompleteTextInstantly()
@@ -247,6 +295,56 @@ public class DialogueUI : MonoBehaviour
         }
 
         dialogueSystem.NotifyLineFinishedTyping();
+        ScheduleDelayedHintIfNeeded();
+    }
+
+    private void ScheduleDelayedHintIfNeeded()
+    {
+        // If once-ever across the whole game
+        if (showHintOnlyOnceEver)
+        {
+            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
+            if (alreadyShown)
+                return;
+        }
+
+        // Only if waiting for player advance (not choices)
+        if (dialogueSystem.State != DialogueState.WaitingForAdvance)
+            return;
+
+        CancelDelayedHint();
+        delayedHintCoroutine = StartCoroutine(DelayedShowContinueHint());
+    }
+
+    private IEnumerator DelayedShowContinueHint()
+    {
+        yield return new WaitForSecondsRealtime(continueHintAppearDelay);
+
+        // Player might have advanced / dialogue ended / choices appeared
+        if (dialogueSystem == null || !dialogueSystem.IsDialogueActive())
+            yield break;
+
+        if (dialogueSystem.State != DialogueState.WaitingForAdvance)
+            yield break;
+
+        // If once-ever, re-check (in case something marked it)
+        if (showHintOnlyOnceEver)
+        {
+            bool alreadyShown = (SaveSystem.Instance != null && SaveSystem.Instance.HasViewedDialogue(continueHintSaveKey));
+            if (alreadyShown)
+                yield break;
+        }
+
+        StartContinueHint();
+    }
+
+    private void CancelDelayedHint()
+    {
+        if (delayedHintCoroutine != null)
+        {
+            StopCoroutine(delayedHintCoroutine);
+            delayedHintCoroutine = null;
+        }
     }
 
     private void ClearChoices()
@@ -260,6 +358,80 @@ public class DialogueUI : MonoBehaviour
         }
 
         activeChoiceButtons.Clear();
+    }
+
+    void StartContinueHint()
+    {
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(true);
+
+        // If no CanvasGroup is assigned, no fade/pulse
+        if (continueHintCanvas == null)
+            return;
+
+        continueHintCanvas.alpha = 0f;
+
+        if (pulseRoutine != null)
+        {
+            StopCoroutine(pulseRoutine);
+            pulseRoutine = null;
+        }
+
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+            fadeRoutine = null;
+        }
+
+        fadeRoutine = StartCoroutine(FadeInContinueHint());
+    }
+
+    IEnumerator FadeInContinueHint()
+    {
+        float t = 0f;
+
+        while (t < fadeInDuration)
+        {
+            t += Time.deltaTime;
+            continueHintCanvas.alpha = Mathf.Lerp(0f, pulseMaxAlpha, t / fadeInDuration);
+            yield return null;
+        }
+
+        fadeRoutine = null;
+        pulseRoutine = StartCoroutine(PulseContinueHint());
+    }
+
+    IEnumerator PulseContinueHint()
+    {
+        float t = 0f;
+
+        while (true)
+        {
+            t += Time.deltaTime * pulseSpeed;
+            continueHintCanvas.alpha =
+                Mathf.Lerp(pulseMinAlpha, pulseMaxAlpha, (Mathf.Sin(t) + 1f) * 0.5f);
+            yield return null;
+        }
+    }
+
+    void StopContinueHint()
+    {
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+            fadeRoutine = null;
+        }
+        if (pulseRoutine != null)
+        {
+            StopCoroutine(pulseRoutine);
+            pulseRoutine = null;
+        }
+
+        if (continueHintCanvas != null)
+            continueHintCanvas.alpha = 0f;
+
+        if (continueHintText != null)
+            continueHintText.gameObject.SetActive(false);
     }
 
     private void HideAll()

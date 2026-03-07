@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using static SaveData;
 
 [System.Serializable]
 public class SaveData
@@ -28,7 +29,14 @@ public class SaveData
 
     //Dialogue Progress
     public List<string> viewedDialogues = new List<string>();
-    public Dictionary<string, int> dialogueChoices = new Dictionary<string, int>();
+    [System.Serializable]
+    public class DialogueChoiceEntry
+    {
+        public string dialogueID;
+        public int choiceIndex;
+    }
+    public List<DialogueChoiceEntry> dialogueChoices = new List<DialogueChoiceEntry>();
+    //public Dictionary<string, int> dialogueChoices = new Dictionary<string, int>();
 
     //Story Flags
     public bool knowsPlayerIsDead;
@@ -106,7 +114,11 @@ public class SaveSystem : MonoBehaviour
             else if (rb2d != null)
             {
                 //cause 2d check if player is on ground using raycast
-                RaycastHit2D hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.6f);
+                RaycastHit2D hit = Physics2D.Raycast(
+                    player.transform.position - new Vector3(0, 0.4f, 0),
+                    Vector2.down,
+                    0.3f
+                );
                 isGrounded = hit.collider != null;
                 Debug.Log("SAVE: 2D Grounded check: " + isGrounded);
             }
@@ -224,10 +236,13 @@ public class SaveSystem : MonoBehaviour
             Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
             foreach (Transform item in items)
             {
-                if (currentSave.collectedItems.Contains(item.name))
+                CollectibleObject co = item.GetComponent<CollectibleObject>();
+                string id = co != null ? co.item.itemID : item.name;
+                if (currentSave.collectedItems.Contains(id))
                 {
-                    item.gameObject.SetActive(false);
-                    Debug.Log("Restored collected item: " + item.name);
+                    if(co.disappearOnPickup == true)
+                        item.gameObject.SetActive(false);
+                    Debug.Log("Restored collected item: " + id);
                 }
             }
         }
@@ -252,25 +267,13 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) return;
 
-        //restore safe state
-        if (currentSave.safeUnlocked)
+        InteractableObject[] interactables = FindObjectsOfType<InteractableObject>(true);
+        foreach (var obj in interactables)
         {
-            GameObject safe = GameObject.Find("safeplaceholder");
-            if (safe != null)
+            if (!string.IsNullOrEmpty(obj.puzzleID) && IsPuzzleSolved(obj.puzzleID))
             {
-                //add code here to set safe to unlocked state !!!!!!!
-                Debug.Log("Safe restored to unlocked state");
-            }
-        }
-
-        //restore laptop state
-        if (currentSave.laptopUnlocked)
-        {
-            GameObject laptop = GameObject.Find("Laptop");
-            if (laptop != null)
-            {
-                //Add code here to set laptop to unlocked state !!!!!!!!!!!!!!!!!!
-                Debug.Log("Laptop restored to unlocked state");
+                obj.gameObject.SetActive(false);
+                Debug.Log("Restored solved puzzle: " + obj.puzzleID);
             }
         }
     }
@@ -359,17 +362,18 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveDialogueChoice(string dialogueID, int choiceIndex)
     {
-        currentSave.dialogueChoices[dialogueID] = choiceIndex;
+        var existing = currentSave.dialogueChoices.Find(e => e.dialogueID == dialogueID);
+        if (existing != null)
+            existing.choiceIndex = choiceIndex;
+        else
+            currentSave.dialogueChoices.Add(new DialogueChoiceEntry { dialogueID = dialogueID, choiceIndex = choiceIndex });
         SaveGame();
     }
 
     public int GetDialogueChoice(string dialogueID)
     {
-        if (currentSave.dialogueChoices.ContainsKey(dialogueID))
-        {
-            return currentSave.dialogueChoices[dialogueID];
-        }
-        return -1;
+        var existing = currentSave.dialogueChoices.Find(e => e.dialogueID == dialogueID);
+        return existing != null ? existing.choiceIndex : -1;
     }
 
     public bool IsChapterUnlocked(int chapterNumber)
@@ -413,4 +417,17 @@ public class SaveSystem : MonoBehaviour
         SaveGame();
         Debug.Log("SAVE: Game saved on application quit!");
     }
+
+    public bool KnowsNameIsAkila()
+    {
+        return currentSave != null && currentSave.knowsNameIsAkila;
+    }
+
+    public void SetKnowsNameIsAkila(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+        currentSave.knowsNameIsAkila = value;
+        SaveGame();
+    }
+
 }
