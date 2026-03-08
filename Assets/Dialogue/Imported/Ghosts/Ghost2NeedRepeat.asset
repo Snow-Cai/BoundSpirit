@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: gatePasscodeClueRepeat
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter0_gateClueRepeat
+  m_Name: Ghost2NeedRepeat
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost2NeedRepeat
   lines:
-  - speakerName: Akila
-    dialogueText: "A  stone plate with with \u25CF \u25B2 \u25A0"
+  - speakerName: Wandering Ghost
+    dialogueText: Did you find the words I never finished?
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

@@ -15,7 +15,11 @@ MonoBehaviour:
   dialogueID: Chapter0_gateClueRepeat
   lines:
   - speakerName: Akila
-    dialogueText: A  stone plate with with \u25CF \u25B2 \u25A0
+    dialogueText: The carving beneath the gate is still visible.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: "\u201CThree memories\u2026 Return what was lost, and the path
+      will open.\u201D"
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

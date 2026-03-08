@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: lockedGate
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter0_lockedGate
+  m_Name: Ghost1NeedRepeat
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost1NeedRepeat
   lines:
-  - speakerName: Akila
-    dialogueText: "There\u2019s some sort of seal on the gate. Where have I seen
-      this before? Maybe there's a clue nearby..."
+  - speakerName: Gentle Ghost
+    dialogueText: Did you find what once carried that sweet scent?
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

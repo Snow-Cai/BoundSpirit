@@ -15,13 +15,17 @@ MonoBehaviour:
   dialogueID: Chapter0_gateCluePrimary
   lines:
   - speakerName: Akila
-    dialogueText: A weathered stone plate beside the gate\u2026
+    dialogueText: The stone beneath the gate is worn smooth by time.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: It is carved with \u25CF \u25B2 \u25A0
+    dialogueText: Three faint markings are carved into its surface.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I wonder if I use this anywhere?
+    dialogueText: 'Someone scratched a message below them:'
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: "\u201CThree memories linger in this graveyard. Return what was
+      lost\u2026 and the path will open.\u201D"
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

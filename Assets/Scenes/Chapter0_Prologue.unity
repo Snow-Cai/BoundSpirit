@@ -8007,11 +8007,11 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: 4f458c5a9b074804ca8af8273297836f, type: 2}
+  objectDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
   hasDialogue: 1
   playPrimaryOnlyOnce: 1
-  primaryDialogue: {fileID: 11400000, guid: 4f458c5a9b074804ca8af8273297836f, type: 2}
-  repeatDialogue: {fileID: 11400000, guid: 5a6acec12ce302243bcdcf5daec5ba03, type: 2}
+  primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -8389,8 +8389,8 @@ MonoBehaviour:
   interactionRange: 2
   requiredIntroDialogue: {fileID: 11400000, guid: e8a4def28c96e2c449daeea9e3e8b179, type: 2}
   gatePuzzleID: Chapter0_graveyard_gate
-  lockedWithoutNameDialogue: {fileID: 11400000, guid: 957a682d1b830ea4689600bb9ee87cb0, type: 2}
-  lockedPuzzleDialogue: {fileID: 11400000, guid: af2d00f34a4fae444845041750c190df, type: 2}
+  lockedWithoutNameDialogue: {fileID: 11400000, guid: 972eee76482b5fb42825397eeda5d71d, type: 2}
+  lockedPuzzleDialogue: {fileID: 11400000, guid: dd19c218aaf0adf458e7f82f12fb4ea5, type: 2}
   openPuzzleAfterHintDialogue: 0
   puzzleUI: {fileID: 1528216646}
   gateVisuals: {fileID: 357102266}
@@ -11504,6 +11504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requiredItem: {fileID: 11400000, guid: 9fe2ce6e4176195438d347e6304359c1, type: 2}
   needItemDialogue: {fileID: 11400000, guid: a3e9fcb6bfed8e5468f69923f6a98148, type: 2}
+  repeatNeedDialogue: {fileID: 11400000, guid: 167065bfb4d50034db247fe7e8e5931c, type: 2}
   wrongItemDialogue: {fileID: 11400000, guid: c0993bb36036a454296bee217191c2a5, type: 2}
   successDialogue: {fileID: 11400000, guid: d3d567f19ac459f4daa6af08409a1ad6, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: d5a70f91cfa5a8c4a8ac7cc9d7d63d87, type: 2}
@@ -19526,6 +19527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requiredItem: {fileID: 11400000, guid: 8e022436d1b32ba4b8e502fd051450e9, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 2a66d5a4137c5b847ba41f9af827b6b4, type: 2}
+  repeatNeedDialogue: {fileID: 11400000, guid: 456994716bb852d4380b0e6d78ef48a0, type: 2}
   wrongItemDialogue: {fileID: 11400000, guid: 12a10ee725dd76d4a8660d2ca33d3079, type: 2}
   successDialogue: {fileID: 11400000, guid: 8ae43d902291c9348b2ac818d14e4976, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: 7102cbbdb36b8f5499ec86276975167f, type: 2}
@@ -25500,50 +25502,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390953172}
   m_CullTransparentMesh: 1
---- !u!1 &1403603831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1403603833}
-  - component: {fileID: 1403603832}
-  m_Layer: 0
-  m_Name: Temp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1403603832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403603831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df90b3f1050e2b44bb9b29fd80c61b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::SaveSystem
---- !u!4 &1403603833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403603831}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 891.886, y: 435.23947, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1462062015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33696,6 +33654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requiredItem: {fileID: 11400000, guid: 4624b44d537fe4346b74753638092491, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 62400082d6996d746898706a493617d2, type: 2}
+  repeatNeedDialogue: {fileID: 11400000, guid: 26fff00041d69554aaf6717c8feedf68, type: 2}
   wrongItemDialogue: {fileID: 11400000, guid: a3d47c276e4f1cc4c849884aaf5d215a, type: 2}
   successDialogue: {fileID: 11400000, guid: 2503b68ce1a5a2e4ba03b691fac738b7, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: 7ddcfd7532042224aa0d222d309cdac9, type: 2}
@@ -43540,11 +43499,11 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: e19be0124185f4f4baff2df4ab9f159d, type: 2}
+  objectDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   hasDialogue: 1
   playPrimaryOnlyOnce: 1
-  primaryDialogue: {fileID: 11400000, guid: e19be0124185f4f4baff2df4ab9f159d, type: 2}
-  repeatDialogue: {fileID: 11400000, guid: 52dba44fef91e644a99b633b83ad908b, type: 2}
+  primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -44831,4 +44790,3 @@ SceneRoots:
   - {fileID: 1530538461}
   - {fileID: 2115767381}
   - {fileID: 1507892794}
-  - {fileID: 1403603833}

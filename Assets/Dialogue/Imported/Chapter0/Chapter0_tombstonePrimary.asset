@@ -27,7 +27,7 @@ MonoBehaviour:
     dialogueText: My hands... I can see through them. I really am... a ghost.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: What happened to me? How did I die? I need to remember...
+    dialogueText: What happened to me? How did I die?
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: There's something... unfinished. I can feel it. Something keeping
