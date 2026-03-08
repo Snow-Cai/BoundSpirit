@@ -147,6 +147,13 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        GhostHintNPC ghostHintNpc = GetComponent<GhostHintNPC>();
+        if (ghostHintNpc != null)
+        {
+            ghostHintNpc.Interact();
+            return;
+        }
+
         if (interactSound != null && UIAudioManager.Instance != null)
         {
             UIAudioManager.Instance.PlayOneShot(interactSound);

@@ -10,21 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: MomDialogue
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: 'Chapter2_mom '
+  m_Name: Ghost2Wrong
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost2Wrong
   lines:
-  - speakerName: Akila
-    dialogueText: 'MOM??? MOM! '
+  - speakerName: Wandering Ghost
+    dialogueText: "...No\u2026 that isn't it."
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: '*Brrr* Oh dear it sure is cold all of a sudden...'
+  - speakerName: Wandering Ghost
+    dialogueText: "What I lost was lighter than stone\u2026 and softer than metal."
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: I keep telling Bill to keep the windows closed! *tsk tsk*
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Mom... why can't you see me.
+  - speakerName: Wandering Ghost
+    dialogueText: It carried words that were never meant to be forgotten.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

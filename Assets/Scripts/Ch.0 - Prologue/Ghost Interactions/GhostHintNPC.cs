@@ -1,23 +1,22 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Interactable))]
 public class GhostHintNPC : MonoBehaviour
 {
-    [Header("Interaction")]
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
-    [SerializeField] private float interactionRange = 2f;
-
     [Header("Required Item")]
     [SerializeField] private ItemData requiredItem;
 
     [Header("Dialogue")]
     [SerializeField] private DialogueAsset needItemDialogue;
+    [SerializeField] private DialogueAsset repeatNeedDialogue;
+    [SerializeField] private DialogueAsset wrongItemDialogue;
     [SerializeField] private DialogueAsset successDialogue;
     [SerializeField] private DialogueAsset alreadyHelpedDialogue;
+    [SerializeField] private GhostOfferUI offerUI;
 
     [Header("Save Progress")]
-    [SerializeField] private string ghostPuzzleID = "graveyard_ghost_rose";
+    [SerializeField] private string ghostPuzzleID = "ghost1_helped";
 
-    private Transform player;
     private PlayerInventory playerInventory;
 
     private void Start()
@@ -26,39 +25,86 @@ public class GhostHintNPC : MonoBehaviour
 
         if (playerObject != null)
         {
-            player = playerObject.transform;
             playerInventory = playerObject.GetComponent<PlayerInventory>();
         }
     }
 
-    private void Update()
+    public void Interact()
     {
-        if (player == null || playerInventory == null)
+        Debug.Log("GhostHintNPC.Interact() called");
+
+        if (IsSolved())
         {
+            PlayDialogue(alreadyHelpedDialogue);
             return;
         }
 
-        if (GameInputState.DialogueActive)
+        bool hasSeenNeedDialogueBefore = HasSeenNeedDialogueBefore();
+
+        if (!hasSeenNeedDialogueBefore)
         {
+            if (needItemDialogue != null && DialogueSystem.Instance != null)
+            {
+                DialogueSystem.Instance.OnDialogueEnded -= HandleNeedDialogueEnded;
+                DialogueSystem.Instance.OnDialogueEnded += HandleNeedDialogueEnded;
+                DialogueSystem.Instance.StartDialogue(needItemDialogue);
+            }
+
             return;
         }
 
-        float distance = Vector2.Distance(transform.position, player.position);
-
-        if (distance > interactionRange)
+        if (repeatNeedDialogue != null && DialogueSystem.Instance != null)
         {
+            DialogueSystem.Instance.OnDialogueEnded -= HandleRepeatNeedDialogueEnded;
+            DialogueSystem.Instance.OnDialogueEnded += HandleRepeatNeedDialogueEnded;
+            DialogueSystem.Instance.StartDialogue(repeatNeedDialogue);
             return;
         }
 
-        if (Input.GetKeyDown(interactKey))
+        if (offerUI != null)
         {
-            HandleInteraction();
+            offerUI.Open(this);
         }
     }
 
-    private void HandleInteraction()
+    private void HandleNeedDialogueEnded(DialogueAsset finishedDialogue)
     {
-        if (SaveSystem.Instance != null && SaveSystem.Instance.IsPuzzleSolved(ghostPuzzleID))
+        if (finishedDialogue != needItemDialogue)
+        {
+            return;
+        }
+
+        DialogueSystem.Instance.OnDialogueEnded -= HandleNeedDialogueEnded;
+
+        if (offerUI != null && !IsSolved())
+        {
+            offerUI.Open(this);
+        }
+    }
+
+    private void HandleRepeatNeedDialogueEnded(DialogueAsset finishedDialogue)
+    {
+        if (finishedDialogue != repeatNeedDialogue)
+        {
+            return;
+        }
+
+        DialogueSystem.Instance.OnDialogueEnded -= HandleRepeatNeedDialogueEnded;
+
+        if (offerUI != null && !IsSolved())
+        {
+            offerUI.Open(this);
+        }
+    }
+
+    public void OfferItem(ItemData offeredItem)
+    {
+        if (playerInventory == null || offeredItem == null)
+        {
+            return;
+        }
+
+        if (IsSolved())
         {
             PlayDialogue(alreadyHelpedDialogue);
             return;
@@ -66,7 +112,13 @@ public class GhostHintNPC : MonoBehaviour
 
         if (requiredItem == null)
         {
-            Debug.LogWarning("GhostHintNPC: Required item is not assigned.");
+            Debug.LogWarning("GhostHintNPC: requiredItem is not assigned.");
+            return;
+        }
+
+        if (offeredItem != requiredItem)
+        {
+            PlayDialogue(wrongItemDialogue);
             return;
         }
 
@@ -84,8 +136,12 @@ public class GhostHintNPC : MonoBehaviour
         }
 
         PlayDialogue(successDialogue);
+    }
 
-        Debug.Log($"Ghost accepted item: {requiredItem.itemID}");
+    private bool IsSolved()
+    {
+        return SaveSystem.Instance != null &&
+               SaveSystem.Instance.IsPuzzleSolved(ghostPuzzleID);
     }
 
     private void PlayDialogue(DialogueAsset dialogue)
@@ -94,5 +150,13 @@ public class GhostHintNPC : MonoBehaviour
         {
             DialogueSystem.Instance.StartDialogue(dialogue);
         }
+    }
+
+    private bool HasSeenNeedDialogueBefore()
+    {
+        return needItemDialogue != null &&
+               SaveSystem.Instance != null &&
+               !string.IsNullOrEmpty(needItemDialogue.dialogueID) &&
+               SaveSystem.Instance.HasViewedDialogue(needItemDialogue.dialogueID);
     }
 }

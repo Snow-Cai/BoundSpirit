@@ -51,4 +51,9 @@ public class PlayerInventory : MonoBehaviour
                 inventory.Add(item);
         }
     }
+
+    public List<ItemData> GetItems()
+    {
+        return new List<ItemData>(inventory);
+    }
 }
