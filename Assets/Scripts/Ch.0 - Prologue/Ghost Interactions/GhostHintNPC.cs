@@ -13,6 +13,7 @@ public class GhostHintNPC : MonoBehaviour
     [SerializeField] private DialogueAsset successDialogue;
     [SerializeField] private DialogueAsset alreadyHelpedDialogue;
     [SerializeField] private GhostOfferUI offerUI;
+    [SerializeField] private DialogueAsset noItemsDialogue;
 
     [Header("Save Progress")]
     [SerializeField] private string ghostPuzzleID = "ghost1_helped";
@@ -61,9 +62,18 @@ public class GhostHintNPC : MonoBehaviour
             return;
         }
 
-        if (offerUI != null)
+        if (!IsSolved())
         {
-            offerUI.Open(this);
+            if (!PlayerHasAnyItems())
+            {
+                QueueDialogue(noItemsDialogue);
+                return;
+            }
+
+            if (offerUI != null)
+            {
+                offerUI.Open(this);
+            }
         }
     }
 
@@ -76,9 +86,18 @@ public class GhostHintNPC : MonoBehaviour
 
         DialogueSystem.Instance.OnDialogueEnded -= HandleNeedDialogueEnded;
 
-        if (offerUI != null && !IsSolved())
+        if (!IsSolved())
         {
-            offerUI.Open(this);
+            if (!PlayerHasAnyItems())
+            {
+                QueueDialogue(noItemsDialogue);
+                return;
+            }
+
+            if (offerUI != null)
+            {
+                offerUI.Open(this);
+            }
         }
     }
 
@@ -91,10 +110,26 @@ public class GhostHintNPC : MonoBehaviour
 
         DialogueSystem.Instance.OnDialogueEnded -= HandleRepeatNeedDialogueEnded;
 
-        if (offerUI != null && !IsSolved())
+        if (!IsSolved())
         {
-            offerUI.Open(this);
+            if (!PlayerHasAnyItems())
+            {
+                QueueDialogue(noItemsDialogue);
+                return;
+            }
+
+            if (offerUI != null)
+            {
+                offerUI.Open(this);
+            }
         }
+    }
+
+    private bool PlayerHasAnyItems()
+    {
+        return playerInventory != null &&
+               playerInventory.GetItems() != null &&
+               playerInventory.GetItems().Count > 0;
     }
 
     public void OfferItem(ItemData offeredItem)
@@ -149,6 +184,14 @@ public class GhostHintNPC : MonoBehaviour
         if (dialogue != null && DialogueSystem.Instance != null)
         {
             DialogueSystem.Instance.StartDialogue(dialogue);
+        }
+    }
+
+    private void QueueDialogue(DialogueAsset dialogue)
+    {
+        if (dialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(dialogue);
         }
     }
 

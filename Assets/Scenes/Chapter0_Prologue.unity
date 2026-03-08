@@ -8868,6 +8868,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 534551371}
   - {fileID: 2096620953}
   - {fileID: 1875596274}
   - {fileID: 1985627104}
@@ -9223,7 +9224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534551370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.5, y: 2.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9231,7 +9232,7 @@ Transform:
   - {fileID: 1802585170}
   - {fileID: 1065921482}
   - {fileID: 303893209}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 462012845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &537333982
 GameObject:
@@ -11509,6 +11510,7 @@ MonoBehaviour:
   successDialogue: {fileID: 11400000, guid: d3d567f19ac459f4daa6af08409a1ad6, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: d5a70f91cfa5a8c4a8ac7cc9d7d63d87, type: 2}
   offerUI: {fileID: 1730973973}
+  noItemsDialogue: {fileID: 11400000, guid: 3d754c2fded852d41ae01ad7ad20ebb3, type: 2}
   ghostPuzzleID: graveyard_ghost_rose
 --- !u!114 &923856397
 MonoBehaviour:
@@ -19532,6 +19534,7 @@ MonoBehaviour:
   successDialogue: {fileID: 11400000, guid: 8ae43d902291c9348b2ac818d14e4976, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: 7102cbbdb36b8f5499ec86276975167f, type: 2}
   offerUI: {fileID: 1730973973}
+  noItemsDialogue: {fileID: 11400000, guid: 3d754c2fded852d41ae01ad7ad20ebb3, type: 2}
   ghostPuzzleID: graveyard_ghost_crumpledPaper
 --- !u!114 &1272994299
 MonoBehaviour:
@@ -33659,6 +33662,7 @@ MonoBehaviour:
   successDialogue: {fileID: 11400000, guid: 2503b68ce1a5a2e4ba03b691fac738b7, type: 2}
   alreadyHelpedDialogue: {fileID: 11400000, guid: 7ddcfd7532042224aa0d222d309cdac9, type: 2}
   offerUI: {fileID: 1730973973}
+  noItemsDialogue: {fileID: 11400000, guid: 3d754c2fded852d41ae01ad7ad20ebb3, type: 2}
   ghostPuzzleID: graveyard_ghost_key
 --- !u!114 &1868248600
 MonoBehaviour:
@@ -40808,9 +40812,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1964929243}
-    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1964929248}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1964929241 stripped
 Transform:
@@ -40853,24 +40854,6 @@ MonoBehaviour:
   promptText: {fileID: 0}
   promptDistance: 3
   interactSound: {fileID: 0}
---- !u!114 &1964929248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964929242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c19c111e01453ef488c10259de13ef0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractionHintUI
-  hintCanvasGroup: {fileID: 0}
-  hintLabel: {fileID: 0}
-  maxDistance: 2
-  hintFormat: Press {0} to interact
-  hideWhenDialogueActive: 1
-  fadeSpeed: 8
 --- !u!1 &1977143318
 GameObject:
   m_ObjectHideFlags: 0
@@ -44639,6 +44622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: introDialogueID
+      value: Chapter0_awakening
+      objectReference: {fileID: 0}
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_Name
       value: InteractionHintUI
@@ -44779,7 +44766,6 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1021687228}
   - {fileID: 1494143744}
-  - {fileID: 534551371}
   - {fileID: 462012845}
   - {fileID: 1235057420}
   - {fileID: 11399264}
