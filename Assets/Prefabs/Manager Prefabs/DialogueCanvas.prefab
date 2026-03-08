@@ -258,8 +258,9 @@ MonoBehaviour:
   choiceButtonPrefab: {fileID: 0}
   playVoiceClips: 1
   continueHintText: {fileID: 6999337976627734301}
-  showHintForDialogueID: Chapter0_awakening
+  continueHintAppearDelay: 0.6
   continueHintSaveKey: UI_ContinueHintShown
+  showHintOnlyOnceEver: 0
   continueHintCanvas: {fileID: 5908348052335408775}
   fadeInDuration: 0.4
   pulseMinAlpha: 0.45
@@ -698,7 +699,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.34259203, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.34259203, y: 0, z: -181.57196, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -23,7 +23,9 @@ public class InteractionHintUI : MonoBehaviour
     [Tooltip("Hide the hint while dialogue or puzzles are active.")]
     [SerializeField] private bool hideWhenDialogueActive = true;
 
-    [Tooltip("Smooth fade speed for the hint.")]
+    [Tooltip("Do not show interaction hints until the intro dialogue has played.")]
+    [SerializeField] private bool hideUntilIntroDialogueSeen = true;
+    [SerializeField] private string introDialogueID = "Chapter0_awakening";
     [SerializeField] private float fadeSpeed = 10f;
 
     private Transform player;
@@ -52,7 +54,7 @@ public class InteractionHintUI : MonoBehaviour
         }
 
         // Hide hint whenever dialogue/puzzle is active.
-        if (hideWhenDialogueActive && GameInputState.DialogueActive)
+        if ((hideWhenDialogueActive && GameInputState.DialogueActive) || !IntroDialogueHasPlayed())
         {
             SetTargetVisible(false);
             ApplyFade();
@@ -156,6 +158,27 @@ public class InteractionHintUI : MonoBehaviour
         {
             hintLabel.text = string.Format(hintFormat, keyLabel);
         }
+    }
+
+    private bool IntroDialogueHasPlayed()
+    {
+        if (!hideUntilIntroDialogueSeen)
+        {
+            return true;
+        }
+
+        if (SaveSystem.Instance == null)
+        {
+            return false;
+        }
+
+        if (string.IsNullOrEmpty(introDialogueID))
+        {
+            return true;
+        }
+
+        bool hasPlayed = SaveSystem.Instance.HasViewedDialogue(introDialogueID);
+        return hasPlayed;
     }
 
     private string FormatKeyLabel(KeyCode key)

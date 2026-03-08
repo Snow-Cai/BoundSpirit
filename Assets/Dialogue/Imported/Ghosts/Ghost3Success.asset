@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: MomDialogue
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: 'Chapter2_mom '
+  m_Name: Ghost3Success
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost3Success
   lines:
-  - speakerName: Akila
-    dialogueText: 'MOM??? MOM! '
+  - speakerName: Restless Ghost
+    dialogueText: ...Yes. This is the one.
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: '*Brrr* Oh dear it sure is cold all of a sudden...'
+  - speakerName: Restless Ghost
+    dialogueText: "The sound it made when it turned\u2026 I remember now."
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: I keep telling Bill to keep the windows closed! *tsk tsk*
+  - speakerName: Restless Ghost
+    dialogueText: The symbol I saw that night. It was not the first or the second.
     voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Mom... why can't you see me.
+  - speakerName: Restless Ghost
+    dialogueText: That symbol was a square.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

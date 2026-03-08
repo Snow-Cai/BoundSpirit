@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: MomDialogue
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: 'Chapter2_mom '
+  m_Name: Ghost2Success
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost2Success
   lines:
-  - speakerName: Akila
-    dialogueText: 'MOM??? MOM! '
+  - speakerName: Wandering Ghost
+    dialogueText: ...So it really was still here.
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: '*Brrr* Oh dear it sure is cold all of a sudden...'
+  - speakerName: Wandering Ghost
+    dialogueText: "The words are faded now\u2026 but I can still see part of it."
     voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: I keep telling Bill to keep the windows closed! *tsk tsk*
+  - speakerName: Wandering Ghost
+    dialogueText: "There a triangle\u2026 in between the symbols."
     voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Mom... why can't you see me.
+  - speakerName: Wandering Ghost
+    dialogueText: Perhaps this is what you are searching for.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

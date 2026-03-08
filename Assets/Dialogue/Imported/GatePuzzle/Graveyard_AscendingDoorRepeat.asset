@@ -10,21 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: MomDialogue
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: 'Chapter2_mom '
+  m_Name: Graveyard_AscendingDoorRepeat
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Graveyard_AscendingDoorRepeat
   lines:
   - speakerName: Akila
-    dialogueText: 'MOM??? MOM! '
-    voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: '*Brrr* Oh dear it sure is cold all of a sudden...'
-    voiceClip: {fileID: 0}
-  - speakerName: Mom
-    dialogueText: I keep telling Bill to keep the windows closed! *tsk tsk*
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Mom... why can't you see me.
+    dialogueText: It's still not allowing me to pass.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Chapter0_tombstonePrimary
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Chapter0_tombstonePrimary
+  lines:
+  - speakerName: ???
+    dialogueText: "Akila... that's... that's my name. But why is it on a\u2014"
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: No. No, no, no. This can't be right.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I'm... I'm dead? How? When? I don't remember anything...
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: My hands... I can see through them. I really am... a ghost.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: What happened to me? How did I die?
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: There's something... unfinished. I can feel it. Something keeping
+      me here.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I have to find out what happened. I have to remember.
+    voiceClip: {fileID: 0}
+  choices: []
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1
