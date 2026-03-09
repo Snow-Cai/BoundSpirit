@@ -1989,8 +1989,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!114 &171221834
@@ -10678,6 +10678,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 742691241}
     m_Modifications:
+    - target: {fileID: 143467464861474891, guid: c151d4ad416eb674fb40b078edda8819, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 570286223703168381, guid: c151d4ad416eb674fb40b078edda8819, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.0246184
@@ -10844,6 +10848,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: db399782a29b4cf4c8a8e0e26b371192, type: 3}
+    - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 622910807}
+    - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 622910808}
     - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: objectDialogue
       value: 
@@ -12944,6 +12956,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: hideUntilIntroDialogueSeen
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
@@ -15902,6 +15918,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1697790086448972842, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4990196957088452725, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
       propertyPath: m_Name
       value: Plant2 (1)
@@ -17137,7 +17157,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1694913177206695654, guid: 65e9d27ff5725404585e752ab80db6aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18084,7 +18104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  objectName: Object
+  objectName: Photo
   interactKey: 101
   interactionRange: 2
   objectDialogue: {fileID: 0}
@@ -18099,9 +18119,9 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
-  promptDistance: 3
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 2
   interactSound: {fileID: 0}
 --- !u!114 &882899478
 MonoBehaviour:
@@ -26165,6 +26185,7 @@ GameObject:
   - component: {fileID: 1224715389}
   - component: {fileID: 1224715388}
   - component: {fileID: 1224715387}
+  - component: {fileID: 1224715390}
   m_Layer: 0
   m_Name: PolaroidCorkboard
   m_TagString: Untagged
@@ -26297,7 +26318,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -26309,6 +26330,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1224715390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224715385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: polaroidpuzzle
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1 &1227161218
 GameObject:
   m_ObjectHideFlags: 0
@@ -26801,6 +26853,7 @@ GameObject:
   - component: {fileID: 1266857955}
   - component: {fileID: 1266857956}
   - component: {fileID: 1266857957}
+  - component: {fileID: 1266857958}
   m_Layer: 0
   m_Name: CRUMPLED_NOTE
   m_TagString: Untagged
@@ -26945,6 +26998,37 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+--- !u!114 &1266857958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266857953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1 &1268758790
 GameObject:
   m_ObjectHideFlags: 0
@@ -27096,7 +27180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  objectName: Object
+  objectName: Note
   interactKey: 101
   interactionRange: 2
   objectDialogue: {fileID: 0}
@@ -27111,8 +27195,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!114 &1268758796
@@ -28775,6 +28859,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3461793804168183608, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
   m_PrefabInstance: {fileID: 5778374303959825565}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1406398733 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8001247267155398865, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+  m_PrefabInstance: {fileID: 5778374303959825565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1406471248
 GameObject:
   m_ObjectHideFlags: 0
@@ -29174,8 +29263,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.19774011
-    width: 1.6847059
+    y: -0.0075329565
+    width: 0.99999994
     height: 1.0169492
   near clip plane: 0.3
   far clip plane: 1000
@@ -30906,7 +30995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  objectName: Object
+  objectName: Calendar
   interactKey: 101
   interactionRange: 2
   objectDialogue: {fileID: 0}
@@ -30921,9 +31010,9 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
-  promptDistance: 3
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 2
   interactSound: {fileID: 0}
 --- !u!114 &1548588744
 MonoBehaviour:
@@ -31449,8 +31538,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!114 &1613116043
@@ -32204,19 +32293,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5573267823596410066, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_Size.x
-      value: 0.9279022
+      value: 1.7806015
       objectReference: {fileID: 0}
     - target: {fileID: 5573267823596410066, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_Size.y
-      value: 0.5023868
+      value: 1.2172756
       objectReference: {fileID: 0}
     - target: {fileID: 5573267823596410066, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0078315735
+      value: 0.41851807
       objectReference: {fileID: 0}
     - target: {fileID: 5573267823596410066, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_Offset.y
-      value: -0.101725206
+      value: -0.2007761
       objectReference: {fileID: 0}
     - target: {fileID: 5573267823596410066, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -34013,8 +34102,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!1 &1872680135
@@ -35287,8 +35376,8 @@ MonoBehaviour:
     through openly available informations (OSINT) or through weaseling the information
     out of the target (social engineering). It is important to safeguard your information!'
   showTidbitOnSolve: 1
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!1 &1951109361
@@ -35404,6 +35493,7 @@ GameObject:
   - component: {fileID: 1956579848}
   - component: {fileID: 1956579847}
   - component: {fileID: 1956579850}
+  - component: {fileID: 1956579851}
   m_Layer: 0
   m_Name: Safe
   m_TagString: Interactable
@@ -35545,6 +35635,37 @@ MonoBehaviour:
   safeUIPanel: {fileID: 1291626096}
   interactionRadius: 1.5
   playerTransform: {fileID: 2000622937}
+--- !u!114 &1956579851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956579846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Safe
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 2
+  interactSound: {fileID: 0}
 --- !u!1 &1973412644
 GameObject:
   m_ObjectHideFlags: 0
@@ -36115,30 +36236,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5969178539427121323, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566273847622432097, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566273847622432097, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566273847622432097, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1175544165
-      objectReference: {fileID: 0}
-    - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_Size.y
-      value: 0.34515905
-      objectReference: {fileID: 0}
-    - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.55998397
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36326,7 +36423,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -6288179971597629913, guid: 30b25c9d8882c054d9a39e09ddc3e7d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -36770,9 +36867,9 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
-  promptDistance: 3
+  interactPrompt: {fileID: 622910808}
+  promptText: {fileID: 622910807}
+  promptDistance: 2
   interactSound: {fileID: 0}
 --- !u!1001 &2052195676
 PrefabInstance:
@@ -37228,7 +37325,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4727633781103762509, guid: b89c7f8d9c161e74d949801d38c5285a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -38369,6 +38466,10 @@ PrefabInstance:
       propertyPath: repeatDialogue
       value: 
       objectReference: {fileID: 11400000, guid: 7205c7a2f9dd4af4f95733652626bfe4, type: 2}
+    - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 1406398733}
     - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: primaryDialogue
       value: 
