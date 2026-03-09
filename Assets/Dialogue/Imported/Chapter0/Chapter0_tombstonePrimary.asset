@@ -36,6 +36,9 @@ MonoBehaviour:
   - speakerName: Akila
     dialogueText: I have to find out what happened. I have to remember.
     voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: '*A mysterious book appears in front of you*'
+    voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1

@@ -17,26 +17,46 @@ public class CursorManager : MonoBehaviour
     Texture2D tintedDefaultCursor;
     Texture2D tintedTextCursor;
 
+    bool usingTextCursor = false;
+
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         tintedDefaultCursor = TintCursor(defaultCursor, defaultCursorColor);
         tintedTextCursor = TintCursor(textCursor, textCursorColor);
+
+        Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
     }
 
     void Update()
     {
-        if (EventSystem.current.currentSelectedGameObject != null)
+        if (EventSystem.current == null)
+            return;
+
+        GameObject selected = EventSystem.current.currentSelectedGameObject;
+
+        if (selected != null)
         {
-            TMP_InputField input = EventSystem.current.currentSelectedGameObject.GetComponent<TMP_InputField>();
+            TMP_InputField input = selected.GetComponent<TMP_InputField>();
 
             if (input != null)
             {
-                Cursor.SetCursor(tintedTextCursor, textHotspot, CursorMode.Auto);
+                if (!usingTextCursor)
+                {
+                    Cursor.SetCursor(tintedTextCursor, textHotspot, CursorMode.Auto);
+                    usingTextCursor = true;
+                }
                 return;
             }
         }
 
-        Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
+        if (usingTextCursor)
+        {
+            Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
+            usingTextCursor = false;
+        }
     }
 
     Texture2D TintCursor(Texture2D original, Color tint)
