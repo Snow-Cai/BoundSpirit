@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13461709dc07e24da1c1018a915d5d7, type: 3}
+  m_Name: ClosingPage
+  m_EditorClassIdentifier: BoundSpiritRuntime::JournalPage
+  leftPageText: 'What..? You wanted more? Find the rest out for yourself! I wish
+    you luck in your afterlife journeys.
+
+    -G.B
+
+
+    p.s
+
+    You can access
+    this book anytime by pressing ''H''. You may close it by pressing ''H'' again.'
+  rightPageText: ':p
+
+'
+  leftImage: {fileID: 0}
+  rightImage: {fileID: 0}
