@@ -1885,6 +1885,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &45952718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 113608315899778758, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+  m_PrefabInstance: {fileID: 7221849304831083352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &63270242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7562,6 +7573,7 @@ GameObject:
   - component: {fileID: 249432481}
   - component: {fileID: 249432482}
   - component: {fileID: 249432483}
+  - component: {fileID: 249432484}
   m_Layer: 0
   m_Name: FlowerClue
   m_TagString: Untagged
@@ -7706,6 +7718,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &249432484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249432479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1 &262543420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8019,8 +8062,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!61 &270792445
@@ -8183,59 +8226,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
-    - target: {fileID: 8788337921113235161, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
-      propertyPath: m_SortingLayer
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 281624740}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
 --- !u!4 &281624738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5718375164715921363, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
   m_PrefabInstance: {fileID: 281624737}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &281624739 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
-  m_PrefabInstance: {fileID: 281624737}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &281624740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281624739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  objectName: Object
-  interactKey: 101
-  interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: 8447ae68fe1aad444ac395f35a0070e6, type: 2}
-  hasDialogue: 1
-  playPrimaryOnlyOnce: 0
-  primaryDialogue: {fileID: 0}
-  repeatDialogue: {fileID: 0}
-  isPuzzle: 0
-  puzzleID: 
-  puzzleUI: {fileID: 0}
-  isPuzzleOpen: 0
-  loginPuzzle: {fileID: 0}
-  tidbitMessage: 
-  showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
-  promptDistance: 3
-  interactSound: {fileID: 0}
 --- !u!1 &303893208
 GameObject:
   m_ObjectHideFlags: 0
@@ -8349,6 +8357,7 @@ GameObject:
   - component: {fileID: 357102268}
   - component: {fileID: 357102270}
   - component: {fileID: 357102269}
+  - component: {fileID: 357102271}
   m_Layer: 0
   m_Name: Gates
   m_TagString: Untagged
@@ -8467,6 +8476,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &357102271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357102266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Gate
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &399224790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9094,9 +9134,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.080789946
-    width: 1.2818733
-    height: 0.9694794
+    y: -0.0075329565
+    width: 0.99999994
+    height: 1.0169492
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9865,6 +9905,7 @@ GameObject:
   - component: {fileID: 670987754}
   - component: {fileID: 670987753}
   - component: {fileID: 670987752}
+  - component: {fileID: 670987755}
   m_Layer: 0
   m_Name: PaperClue
   m_TagString: Untagged
@@ -10009,6 +10050,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &670987755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670987750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Paper
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &681291092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11487,8 +11559,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!114 &923856396
@@ -19563,8 +19635,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!212 &1272994300
@@ -26152,6 +26224,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1520638324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+  m_PrefabInstance: {fileID: 7221849304831083352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1522348127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27181,6 +27258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364823bb5b450314aae49b1a0b6badb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
+  ActiveNPC: {fileID: 0}
   charactersPerSecond: 40
 --- !u!4 &1671354832
 Transform:
@@ -32829,6 +32907,7 @@ GameObject:
   - component: {fileID: 1748752411}
   - component: {fileID: 1748752410}
   - component: {fileID: 1748752409}
+  - component: {fileID: 1748752412}
   m_Layer: 0
   m_Name: KeyClue
   m_TagString: Untagged
@@ -32973,6 +33052,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1748752412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748752407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: key_grave
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1 &1757292545
 GameObject:
   m_ObjectHideFlags: 0
@@ -33691,8 +33801,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!212 &1868248601
@@ -40850,8 +40960,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!1 &1977143318
@@ -43494,8 +43604,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!1 &2081535313
@@ -44186,8 +44296,8 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  interactPrompt: {fileID: 0}
-  promptText: {fileID: 0}
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
 --- !u!1001 &1293568015738003763
@@ -44582,6 +44692,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 11399264}
     m_Modifications:
+    - target: {fileID: 113608315899778758, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_text
+      value: 'Press E to interact
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.6095304
@@ -44625,6 +44741,10 @@ PrefabInstance:
     - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: introDialogueID
       value: Chapter0_awakening
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: hideUntilIntroDialogueSeen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_Name
