@@ -289,13 +289,7 @@ public class DialogueSystem : MonoBehaviour
         if (finishedDialogue == null || SaveSystem.Instance == null)
             return;
 
-        switch (finishedDialogue.dialogueID)
-        {
-            case "Chapter0_tombstonePrimary":
-                SaveSystem.Instance.SetKnowsNameIsAkila(true);
-                Debug.Log("Story Flag Set: knowsNameIsAkila");
-                break;
-        }
+        StoryFlags.HandleDialogueID(finishedDialogue.dialogueID);
     }
 
     // Ensure input state is reset if object is disabled or destroyed.
