@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4584461710684678553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160668886618958904}
+  - component: {fileID: 3828771985234575689}
+  m_Layer: 0
+  m_Name: JournalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160668886618958904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584461710684678553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3828771985234575689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584461710684678553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0f91dacb2954542b09be09e59e2e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::JournalUI
+  journalPanel: {fileID: 0}
+  leftPageText: {fileID: 0}
+  rightPageText: {fileID: 0}
+  leftImage: {fileID: 0}
+  rightImage: {fileID: 0}
+  pages:
+  - {fileID: 11400000, guid: 5b8b9978dff61c546a2fb291159599d5, type: 2}
+  - {fileID: 11400000, guid: 1448f12dd8b7d944490ef5b4928eae41, type: 2}
+  - {fileID: 11400000, guid: 65dfe6cf09025884793c8ec16c8e8d44, type: 2}
+  - {fileID: 11400000, guid: 06ebccd20d2ec9744920832a09117586, type: 2}

@@ -16,6 +16,12 @@ public class JournalUI : MonoBehaviour
 
     private int currentPage = 0;
 
+    public static JournalUI Instance;
+
+    void Awake()
+    {
+        Instance = this; 
+    }
     void Start()
     {
         journalPanel.SetActive(false);
@@ -26,16 +32,44 @@ public class JournalUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            ToggleJournal();
+            if (
+                (InputLock.Instance.GameplayInputEnabled &&
+                !GameInputState.DialogueActive)
+                || journalPanel.activeSelf
+               )
+            {
+                ToggleJournal();
+            }
         }
     }
 
     void ToggleJournal()
     {
-        journalPanel.SetActive(!journalPanel.activeSelf);
+        bool isOpen = !journalPanel.activeSelf;
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = journalPanel.activeSelf;
+        journalPanel.SetActive(isOpen);
+
+        // lock gameplay input when journal is open
+        InputLock.Instance.GameplayInputEnabled = !isOpen;
+
+    }
+
+    public void OpenJournal()
+    {
+        if (!journalPanel.activeSelf)
+        {
+            journalPanel.SetActive(true);
+            InputLock.Instance.GameplayInputEnabled = false; // stop player from moving
+        }
+    }
+
+    public void CloseJournal()
+    {
+        if (journalPanel.activeSelf)
+        {
+            journalPanel.SetActive(false);
+            InputLock.Instance.GameplayInputEnabled = true; // restore gameplay input
+        }
     }
 
     public void NextPage()

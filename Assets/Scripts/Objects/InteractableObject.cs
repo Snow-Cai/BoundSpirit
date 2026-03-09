@@ -101,7 +101,10 @@ public class InteractableObject : MonoBehaviour
                 ShowPrompt();
             }
 
-            if (distance <= interactionRange && Input.GetKeyDown(interactKey))
+            if (InputLock.Instance != null &&
+                InputLock.Instance.GameplayInputEnabled &&
+                distance <= interactionRange &&
+                Input.GetKeyDown(interactKey))
             {
                 Interact();
             }
@@ -134,6 +137,8 @@ public class InteractableObject : MonoBehaviour
 
     void Interact()
     {
+        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+            return;
         Debug.Log("INTERACT() FIRED on " + gameObject.name);
 
         if (DialogueSystem.Instance != null &&
