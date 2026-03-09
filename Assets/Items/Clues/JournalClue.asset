@@ -22,12 +22,12 @@ MonoBehaviour:
 
     "Today I turned 18. To be honest, I almost forgot
     today was my birthday, until Eden reminded me. She always teases me for being
-    so forgetful that my username for anything is always just my name. I guess she''s
-    a bit right... We used to be really close, but even though we still talk, I feel
-    that we are drifting away. She seems to... resent me lately. But! I plan o-.."
+    so forgetful that my username for anything is always just my nickname. I guess
+    she''s a bit right... We used to be really close, but even though we still talk,
+    I feel that we are drifting away. She seems to... resent me lately. But! I plan
+    o-.."
 
-    ...
-    The diary entry ends there.'
+    ... The diary entry ends there.'
   hintDescription: 
   clueIcon: {fileID: 2594804212466293643, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

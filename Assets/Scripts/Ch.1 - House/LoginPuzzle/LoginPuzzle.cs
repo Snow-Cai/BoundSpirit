@@ -12,7 +12,7 @@ public class LoginPuzzle : MonoBehaviour
     public TMP_Text messageText;
 
     [Header("Credentials")]
-    public string correctUsername = "akila";
+    public string correctUsername = "bunny";
     public string correctPassword = "2001eden";
 
     [Header("Events")]
