@@ -1,88 +1,100 @@
 using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ReassemblyPuzzleManager : MonoBehaviour
 {
-    public FragmentMovement[] fragments;
-    public float snapDistance = 40f;
-    public GameObject fragmentsParent;
-    public Image finalResult;
+    public PuzzlePiece[] pieces;
+    public float snapDistance = 60f;
 
-    public void CheckFragmentPosition(FragmentMovement fragment)
+    [SerializeField] private GameObject puzzleGroupsParent;
+    [SerializeField] private Image finalResultImage;
+
+    public void Awake()
     {
-        foreach(var connection in fragment.connections)
+        if (pieces == null || pieces.Length == 0)
+            pieces = FindObjectsByType<PuzzlePiece>(FindObjectsSortMode.InstanceID);
+        if (puzzleGroupsParent == null)
+            puzzleGroupsParent = GameObject.Find("PuzzleAreaHolder");
+        if (finalResultImage == null)
+            finalResultImage = GameObject.Find("FinalNote")?.GetComponent<Image>();
+    }
+
+    public void CheckConnections(PuzzlePiece piece)
+    {
+        foreach(var connection in piece.connections)
         {
-            FragmentMovement other = connection.otherFragment;
-            Vector2 currentOffset = other.rectTransform.anchoredPosition - fragment.rectTransform.anchoredPosition;
-            if(Vector2.Distance(currentOffset, connection.expectedOffset) < snapDistance)
+            if (connection.connected) continue;
+            PuzzlePiece other = connection.otherPiece;
+            Vector2 offset = (Vector2)other.rect.position - (Vector2)piece.rect.position;
+
+            if (Vector2.Distance(offset, connection.expectedOffset) < snapDistance)
             {
-                SnapAndMerge(fragment, other, connection.expectedOffset);
+                Snap(piece, other, connection);
                 break;
             }
-            
         }
+    }
+
+    private void Snap(PuzzlePiece a, PuzzlePiece b, PuzzlePiece.PieceConnection connection)         // snap pieces together
+    {
+        PuzzleGroup groupA = a.group;
+        PuzzleGroup groupB = b.group;
+        if (groupA == groupB) return;
+        Vector2 target = (Vector2)a.rect.position + connection.expectedOffset;
+        Vector2 delta = target - (Vector2)b.rect.position;
+        groupB.rect.position += (Vector3)delta;
+        List<PuzzlePiece> movingPieces = new List<PuzzlePiece>(groupB.pieces);
+        foreach (PuzzlePiece piece in movingPieces)
+        {
+            groupA.AddPiece(piece);
+            piece.group = groupA;
+        }
+        Destroy(groupB.gameObject);
+        connection.connected = true;
         CheckPuzzleCompletion();
     }
 
-    private void SnapAndMerge(FragmentMovement current, FragmentMovement other, Vector2 expectedOffset)
+    public void CheckPuzzleCompletion()
     {
-        other.rectTransform.anchoredPosition = current.rectTransform.anchoredPosition + expectedOffset;
-        RectTransform rootCurrent = current.groupRoot;
-        RectTransform rootOther = other.groupRoot;
-
-        if (rootCurrent == rootOther) return;
-
-        Transform[] children = new Transform[rootOther.childCount];
-        for(int i = 0; i < rootOther.childCount; i++)
-            children[i] = rootOther.GetChild(i);
-        foreach (Transform child in children)
-            child.SetParent(rootCurrent, true);
-        rootOther.SetParent(rootCurrent, true);
-        foreach(var frag in fragments)
+        if (pieces == null || pieces.Length == 0)
         {
-            if(frag.transform.IsChildOf(rootCurrent))
-                frag.groupRoot = rootCurrent;
+            Debug.LogWarning("PuzzleManager: pieces array is empty!");
+            return;
         }
-    }
 
-    private void CheckPuzzleCompletion()
-    {
-        RectTransform firstGroup = fragments[0].groupRoot;
-        foreach(var frag in fragments)
+        Transform finalGroup = pieces[1].transform.parent;
+        foreach (var piece in pieces)
         {
-            if (frag.groupRoot != firstGroup)
+            if (piece == null) continue;
+            if (piece.transform.parent != finalGroup)
                 return;
         }
-        Debug.Log("Reassembled clue note!");
-        StartCoroutine(ShowSuccessEvent());
+
+        Debug.Log("Reassembly puzzle solved!");
+        StartCoroutine(ShowCompletion());
     }
 
-    private IEnumerator ShowSuccessEvent()
+    IEnumerator ShowCompletion()
     {
-        foreach (var frag in fragments)
-            frag.locked = true;
-        fragmentsParent.SetActive(false);
-        finalResult.gameObject.SetActive(true);
+        puzzleGroupsParent.SetActive(false);
+        Color c = finalResultImage.color;
+        c.a = 1f;
+        finalResultImage.color = c;
         float t = 0f;
         float duration = 0.5f;
-
-        Vector3 startScale = Vector3.one * 2.7f;
+        Vector3 startScale = Vector3.one * 2.5f;
         Vector3 endScale = Vector3.one * 3f;
 
-        finalResult.rectTransform.localScale = startScale;
-
-        while (t < duration)
+        finalResultImage.rectTransform.localScale = startScale;
+        while(t < duration)
         {
             t += Time.deltaTime;
-            float normalized = t / duration;
-
-            finalResult.rectTransform.localScale =
-                Vector3.Lerp(startScale, endScale, normalized);
-
+            float n = t / duration;
+            finalResultImage.rectTransform.localScale = Vector3.Lerp(startScale, endScale, n);
             yield return null;
         }
-        finalResult.rectTransform.localScale = endScale;
+        finalResultImage.rectTransform.localScale = endScale;
     }
 }
