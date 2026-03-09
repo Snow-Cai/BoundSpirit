@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 637be74fe2ea41846ac274b9de9dcfa4
+guid: ab5497470aca9bb46a6273466b646117
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5917033995828504977
-    second: CemeteryWallBRightCorner_0
+      213: 4769029407275711740
+    second: TLampRight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,51 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CemeteryWallBRightCorner_0
+      name: TLampRight_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape:
-      - - {x: 16, y: 16}
-        - {x: 2, y: 16}
-        - {x: 2, y: -7}
-        - {x: -16, y: -7}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: f665bba3ee872eda0800000000000000
-      internalID: -5917033995828504977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CemeteryWallBRightCorner_1
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 32
-        height: 32
+        width: 29
+        height: 82
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: afb179d43727e824b871e7bdce157fe6
-      internalID: 1449492194
+      spriteID: cfc7f008afefe2240800000000000000
+      internalID: 4769029407275711740
       vertices: []
       indices: 
       edges: []
@@ -153,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3fc314ed916fcb1418e11a76db160122
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,12 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      CemeteryWallBRightCorner_0: -5917033995828504977
-      CemeteryWallBRightCorner_1: 1449492194
+      TLampRight_0: 4769029407275711740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
