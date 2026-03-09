@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13461709dc07e24da1c1018a915d5d7, type: 3}
+  m_Name: InventoryPage
+  m_EditorClassIdentifier: BoundSpiritRuntime::JournalPage
+  leftPageText: 'INVENTORY:
+
+    Some of the things you interact with get picked
+    up. These go into your inventory. Access inventory by press ''I''. You may close
+    inventory by again pressing ''I''.'
+  rightPageText: 'CLICKABLE COMPONENTS:
+
+    Some puzzles will require you to use
+    your hands to get dirty. You can use your cursor to click and drag components
+    in some puzzles. You will only ever need to click things that show up in a popup.'
+  leftImage: {fileID: 0}
+  rightImage: {fileID: 0}
