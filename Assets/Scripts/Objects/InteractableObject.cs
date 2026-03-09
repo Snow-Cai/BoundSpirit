@@ -243,6 +243,19 @@ public class InteractableObject : MonoBehaviour
     {
         if (DialogueSystem.Instance == null)
             return;
+        // TEMP DEBUG
+        Debug.Log("HasEnoughForEnding: " + StoryFlags.HasEnoughForEnding());
+        Debug.Log("EndingManager exists: " + (EndingManager.Instance != null));
+
+        // If this is the afterlife gate AND player has reached an ending
+        if (gameObject.CompareTag("AfterlifeGate") && StoryFlags.HasEnoughForEnding())
+        {
+            if (EndingManager.Instance != null)
+            {
+                EndingManager.Instance.TriggerEnding();
+                return;
+            }
+        }
 
         DialogueAsset dialogueToPlay =
             primaryDialogue != null ? primaryDialogue : objectDialogue;
