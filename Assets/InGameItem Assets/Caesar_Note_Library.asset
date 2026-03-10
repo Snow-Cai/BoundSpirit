@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Caesar_Note_Library
   m_EditorClassIdentifier: Assembly-CSharp::CaesarNotePuzzleData
   puzzleKey: Caesar_Note_Library
-  plaintext: Meet me at the library.
+  plaintext: The file will prove itself
   shift: 7
