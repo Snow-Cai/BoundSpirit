@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine; 
 
 public class NPCController : MonoBehaviour
 {
@@ -22,8 +22,8 @@ public class NPCController : MonoBehaviour
     private bool playerNearby = false;
     private GameObject playerRef;
 
-
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -35,6 +35,8 @@ public class NPCController : MonoBehaviour
         rb.gravityScale = 0;
         rb.freezeRotation = true;     // no more spinning like a soccerball
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         ChooseNextTarget();
     }
@@ -74,8 +76,15 @@ public class NPCController : MonoBehaviour
         Vector2 targetPos = targetPoint.position;
         Vector2 direction = (targetPos - currentPos).normalized;
 
-  
         rb.linearVelocity = direction * speed;
+
+        if (spriteRenderer != null)
+        {
+            if (direction.x > 0.05f)
+                spriteRenderer.flipX = false;
+            else if (direction.x < -0.05f)
+                spriteRenderer.flipX = true;
+        }
 
         //animation parameters
         if (animator != null)
@@ -96,7 +105,7 @@ public class NPCController : MonoBehaviour
     void StartIdle()
     {
         isIdle = true;
-        rb.linearVelocity = Vector2.zero; 
+        rb.linearVelocity = Vector2.zero;
 
         idleTimer = Random.Range(profile.minIdleTime, profile.maxIdleTime);
 
@@ -124,6 +133,17 @@ public class NPCController : MonoBehaviour
         isInteracting = true;
         rb.linearVelocity = Vector2.zero;
 
+        if (playerRef == null)
+            playerRef = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerRef != null && spriteRenderer != null)
+        {
+            if (playerRef.transform.position.x > transform.position.x)
+                spriteRenderer.flipX = false;
+            else
+                spriteRenderer.flipX = true;
+        }
+
         if (animator != null)
             animator.SetFloat("Speed", 0);
     }
@@ -137,7 +157,7 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PLAYER ENTERED MOM RANGE");
+            Debug.Log("PLAYER ENTERED NPC RANGE");
             playerNearby = true;
             playerRef = other.gameObject;
         }
@@ -147,7 +167,7 @@ public class NPCController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("PLAYER LEFT MOM RANGE");
+            Debug.Log("PLAYER LEFT NPC RANGE");
             playerNearby = false;
             playerRef = null;
             EndInteraction();
@@ -155,5 +175,3 @@ public class NPCController : MonoBehaviour
     }
 
 }
-
-

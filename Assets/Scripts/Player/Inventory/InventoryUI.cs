@@ -25,7 +25,7 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
+        if(InputLock.Instance.GameplayInputEnabled && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
         {
             ToggleInventory();
         }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MomBehaviorProfile
   minIdleTime: 1.5
   maxIdleTime: 4
-  allowRandomWander: 1
+  allowRandomWander: 0
   useSchedule: 1

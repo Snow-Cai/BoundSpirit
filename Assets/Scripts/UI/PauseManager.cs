@@ -91,16 +91,16 @@ public class PauseManager : MonoBehaviour
 
     public void QuitToMainMenu()
     {
+        //unfreeze time BEFORE saving so physics/grounded state is valid
+        Time.timeScale = 1f;
+        isPaused = false;
+
         //SAVE BEFORE QUITTING (only if not transitioning)
         if (SaveSystem.Instance != null && !SaveSystem.Instance.IsTransitioning())
         {
             SaveSystem.Instance.SaveGame();
             Debug.Log("Game saved before returning to menu");
         }
-
-        //unfreeze time before changing scenes
-        Time.timeScale = 1f;
-        isPaused = false;
         //play UI sound
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {

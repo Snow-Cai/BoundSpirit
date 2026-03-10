@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Ghost1Need
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Ghost1Need
+  lines:
+  - speakerName: Gentle Ghost
+    dialogueText: ...You can see me?
+    voiceClip: {fileID: 0}
+  - speakerName: Gentle Ghost
+    dialogueText: It has been so long since anyone stopped here.
+    voiceClip: {fileID: 0}
+  - speakerName: Gentle Ghost
+    dialogueText: "Every year\u2026 when the weather grew warm\u2026 I used to bring
+      something here."
+    voiceClip: {fileID: 0}
+  - speakerName: Gentle Ghost
+    dialogueText: "It was soft\u2026 delicate\u2026 and carried a sweet scent."
+    voiceClip: {fileID: 0}
+  - speakerName: Gentle Ghost
+    dialogueText: "If you happen to find something like that nearby\u2026 could you
+      bring it to me?"
+    voiceClip: {fileID: 0}
+  choices: []
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1

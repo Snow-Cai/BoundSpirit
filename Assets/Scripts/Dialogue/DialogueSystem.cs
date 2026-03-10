@@ -17,6 +17,7 @@ public class DialogueSystem : MonoBehaviour
     /// Ensures only one active controller exists.
     /// </summary>
     public static DialogueSystem Instance { get; private set; }
+    public NPCController ActiveNPC;
 
     [Header("Typing Settings")]
     [Min(1f)]
@@ -34,6 +35,9 @@ public class DialogueSystem : MonoBehaviour
     public DialogueState State { get; private set; } = DialogueState.Inactive;
 
     public float TypingSpeed => charactersPerSecond;
+
+    // Tracks if the grave dialogue has been completed already
+    public static bool graveDialogueCompleted = false;
 
     private void Awake()
     {
@@ -80,16 +84,12 @@ public class DialogueSystem : MonoBehaviour
     public void QueueDialogue(DialogueAsset asset)
     {
         if (asset == null)
-        {
             return;
-        }
 
         dialogueQueue.Enqueue(asset);
 
         if (!IsDialogueActive())
-        {
             StartNextDialogueFromQueue();
-        }
     }
 
     /// <summary>
@@ -99,12 +99,9 @@ public class DialogueSystem : MonoBehaviour
     public void AdvanceLine()
     {
         if (currentDialogue == null || State != DialogueState.WaitingForAdvance)
-        {
             return;
-        }
 
-        // Show choices after a specific line index (inline node),
-        // but the chosen branch will go to a separate DialogueAsset.
+        // Show choices after a specific line index
         if (currentDialogue.choicesAfterLineIndex >= 0 &&
             currentDialogue.choices != null &&
             currentDialogue.choices.Count > 0 &&
@@ -153,14 +150,11 @@ public class DialogueSystem : MonoBehaviour
     /// <summary>
     /// Called when a choice button is selected.
     /// Saves the choice (if applicable), executes events, and branches via nextDialogue.
-    /// The current DialogueAsset always finishes after a choice.
     /// </summary>
     public void SelectChoice(DialogueChoice choice, int choiceIndex)
     {
         if (State != DialogueState.WaitingForChoice || choice == null)
-        {
             return;
-        }
 
         choice.onChoiceSelected?.Invoke();
 
@@ -172,13 +166,9 @@ public class DialogueSystem : MonoBehaviour
             SaveSystem.Instance.SaveDialogueChoice(currentDialogue.dialogueID, choiceIndex);
         }
 
-        // Branch to a separate DialogueAsset.
         if (choice.nextDialogue != null)
-        {
             QueueDialogue(choice.nextDialogue);
-        }
 
-        // This asset always ends after a choice; no inline continuation.
         FinishCurrentDialogue();
     }
 
@@ -188,9 +178,7 @@ public class DialogueSystem : MonoBehaviour
     public void NotifyLineFinishedTyping()
     {
         if (State == DialogueState.PlayingLine)
-        {
             State = DialogueState.WaitingForAdvance;
-        }
     }
 
     /// <summary>
@@ -244,41 +232,73 @@ public class DialogueSystem : MonoBehaviour
         DialogueAsset finishedDialogue = currentDialogue;
 
         TryNotifyDialogueEnded(finishedDialogue);
+        HandleDialogueCompletionEffects(finishedDialogue);
+
         OnDialogueEnded?.Invoke(finishedDialogue);
+
+        // Open journal automatically after first grave dialogue ---
+        if (!graveDialogueCompleted &&
+            finishedDialogue != null &&
+            finishedDialogue.dialogueID == "Chapter0_tombstonePrimary") // replace with your grave dialogue ID
+        {
+            graveDialogueCompleted = true;
+
+            if (JournalUI.Instance != null)
+            {
+                JournalUI.Instance.OpenJournal();
+            }
+        }
+        
 
         currentDialogue = null;
         State = DialogueState.Inactive;
 
+        if (ActiveNPC != null)
+        {
+            ActiveNPC.EndInteraction();
+            ActiveNPC = null;
+        }
+
         StartNextDialogueFromQueue();
     }
 
-    /// <summary>
-    /// Saves that a dialogue has been viewed.
-    /// </summary>
     private void TryNotifyDialogueStarted(DialogueAsset asset)
     {
         if (asset == null ||
             SaveSystem.Instance == null ||
             string.IsNullOrEmpty(asset.dialogueID))
-        {
             return;
-        }
 
         SaveSystem.Instance.MarkDialogueViewed(asset.dialogueID);
     }
 
-    /// <summary>
-    /// Saves the game if the dialogue asset is marked to auto-save when finished.
-    /// </summary>
     private void TryNotifyDialogueEnded(DialogueAsset asset)
     {
         if (asset == null ||
             SaveSystem.Instance == null ||
             !asset.saveAfterDialogue)
-        {
             return;
-        }
 
         SaveSystem.Instance.SaveGame();
+    }
+
+    private void HandleDialogueCompletionEffects(DialogueAsset finishedDialogue)
+    {
+        if (finishedDialogue == null || SaveSystem.Instance == null)
+            return;
+
+        StoryFlags.HandleDialogueID(finishedDialogue.dialogueID);
+    }
+
+    private void OnDisable()
+    {
+        if (GameInputState.DialogueActive)
+            GameInputState.DialogueActive = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameInputState.DialogueActive)
+            GameInputState.DialogueActive = false;
     }
 }

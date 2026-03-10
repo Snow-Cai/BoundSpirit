@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Chapter1_Home.unity
     guid: ac0a21ea35866a34fa04b64ef6f17f30
   - enabled: 1
+    path: Assets/Scenes/Chapter2_Library.unity
+    guid: fd8728abc8a541a4ca95e9ca8115af40
+  - enabled: 1
+    path: Assets/Scenes/Chapter3_PoliceStation.unity
+    guid: 0176b76c34afb3946b8239eccfe1264a
+  - enabled: 1
+    path: Assets/Scenes/ChapterFinal.unity
+    guid: 19c0f53a7db328b4ebd2fc03f49abac9
+  - enabled: 1
     path: Assets/Scenes/LoginPuzzle.unity
     guid: 3a851ed8151995a4abd591efba214fa7
   m_configObjects:
