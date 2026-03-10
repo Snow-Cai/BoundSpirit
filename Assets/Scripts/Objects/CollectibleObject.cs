@@ -32,6 +32,16 @@ public class CollectibleObject : MonoBehaviour
         if (popup != null && popup.IsPopupOpen())
             return;
         float dist = Vector2.Distance(player.position, transform.position);
+
+        if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+            return;
+
+        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+            return;
+
+        if (HasNearbyPriorityInteractable())
+            return;
+
         if (dist <= collectDistance && Input.GetKeyDown(KeyCode.E))
         {
             PickUp();
@@ -60,5 +70,28 @@ public class CollectibleObject : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private bool HasNearbyPriorityInteractable()
+    {
+        InteractableObject[] interactables = Object.FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || !interactable.isActiveAndEnabled)
+                continue;
+
+            if (interactable.GetComponent<NPCController>() == null)
+                continue;
+
+            float dist = Vector2.Distance(player.position, interactable.transform.position);
+            if (dist <= interactable.interactionRange)
+                return true;
+        }
+
+        return false;
     }
 }
