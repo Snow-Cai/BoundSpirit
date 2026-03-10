@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_lockedWithoutName
   lines:
   - speakerName: ???
-    dialogueText: "Leaving already? I don\\u2019t even remember who I am\u2026"
+    dialogueText: "Leaving already? I don't even remember who I am\u2026"
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

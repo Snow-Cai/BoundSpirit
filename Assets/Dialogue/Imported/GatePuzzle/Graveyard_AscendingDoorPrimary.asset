@@ -15,14 +15,14 @@ MonoBehaviour:
   dialogueID: Graveyard_AscendingDoorPrimary
   lines:
   - speakerName: Akila
-    dialogueText: This door\u2026 I think it is calling for me. Is this where I should
+    dialogueText: This door... I think it is calling for me. Is this where I should
       go?
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: But I can\u2019t get through. There's something stopping me.
+    dialogueText: But I can't get through. There's something stopping me.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I\u2019m missing something.
+    dialogueText: I'm missing something.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
