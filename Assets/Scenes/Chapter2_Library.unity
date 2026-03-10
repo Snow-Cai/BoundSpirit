@@ -19770,7 +19770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  objectName: Object
+  objectName: Cipher Bench
   interactKey: 101
   interactionRange: 2
   objectDialogue: {fileID: 0}
