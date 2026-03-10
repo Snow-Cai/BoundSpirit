@@ -34,13 +34,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     #region Unity Lifecycle
 
-    private void Start()
-    {
-        // ensure panel starts hidden if forgot to disable it.
-        if (gameObject.activeSelf)
-            gameObject.SetActive(false);
-    }
-
     private void OnEnable()
     {
         if (submitButton != null)
