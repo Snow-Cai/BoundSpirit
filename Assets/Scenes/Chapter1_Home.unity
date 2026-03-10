@@ -29603,9 +29603,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.09537037
-    width: 0.8416667
-    height: 0.5
+    y: -0.27309236
+    width: 1.8743719
+    height: 1.0843374
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -38568,6 +38568,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 403161366}
     m_Modifications:
+    - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 726.6311
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 391.9038
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.2961
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.8349
+      objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -38647,6 +38663,18 @@ PrefabInstance:
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.y
+      value: -17.502777
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Name
