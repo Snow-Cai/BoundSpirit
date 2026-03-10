@@ -29603,8 +29603,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.27309236
-    width: 1.8743719
+    y: -0.042168673
+    width: 1
     height: 1.0843374
   near clip plane: 0.3
   far clip plane: 1000
@@ -38669,8 +38669,20 @@ PrefabInstance:
       value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.w
+      value: 41.469116
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.x
+      value: 98.48917
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_margin.y
-      value: -17.502777
+      value: 11.007263
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.z
+      value: 104.96869
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_enableAutoSizing
