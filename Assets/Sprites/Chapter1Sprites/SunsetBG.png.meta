@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 85d413426cfa76c418fa01dbec3295af
+guid: e7e1cdf848ef8d04db6a4d5d6851694c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7176345032665392803
-    second: Table copy copy copy_0
+      213: -2296275053015156418
+    second: SunsetBG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Table copy copy copy_0
+      name: SunsetBG_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 3
-        width: 32
-        height: 53
+        y: 0
+        width: 935
+        height: 681
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d591756f630886c90800000000000000
-      internalID: -7176345032665392803
+      spriteID: e39b076610ef120e0800000000000000
+      internalID: -2296275053015156418
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Table copy copy copy_0: -7176345032665392803
+      SunsetBG_0: -2296275053015156418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
