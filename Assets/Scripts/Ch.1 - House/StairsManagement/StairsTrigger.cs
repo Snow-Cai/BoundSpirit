@@ -31,6 +31,6 @@ public class StairsTrigger : MonoBehaviour
         yield return new WaitForSeconds(0.05f);         //wait to move down a step
         playerRenderer.sortingOrder = -5;              //hide player under floor, but still above stairs
         yield return new WaitForSeconds(stairsManager.floorTransition.fadeDuration - 0.05f);
-        playerRenderer.sortingOrder = 1;                //restore order after fade animation
+        playerRenderer.sortingOrder = 2;                //restore order after fade animation
     }
 }

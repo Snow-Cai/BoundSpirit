@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dc7bb0970681348be11ece947eff15, type: 3}
   m_Name: Rose
   m_EditorClassIdentifier: BoundSpiritRuntime::ItemData
-  itemID: 
+  itemID: FlowerClue
   itemName: Rose
   icon: {fileID: 5614637178320563061, guid: e7c857e359f60904f9ed1a8617f8ca95, type: 3}

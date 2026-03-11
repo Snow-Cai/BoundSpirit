@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84dc7bb0970681348be11ece947eff15, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: BoundSpiritRuntime::ItemData
-  itemID: 
+  itemID: KeyClue
   itemName: Key
   icon: {fileID: 1694913177206695654, guid: 65e9d27ff5725404585e752ab80db6aa, type: 3}
