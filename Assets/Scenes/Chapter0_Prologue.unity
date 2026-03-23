@@ -9185,9 +9185,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.074999996
-    width: 0.90039396
-    height: 1.35
+    y: 0.10284035
+    width: 4.137741
+    height: 2.6444662
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -11618,7 +11618,7 @@ MonoBehaviour:
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
 --- !u!114 &923856396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19726,7 +19726,7 @@ MonoBehaviour:
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
 --- !u!212 &1272994300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33896,7 +33896,7 @@ MonoBehaviour:
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
 --- !u!212 &1868248601
 SpriteRenderer:
   m_ObjectHideFlags: 0
