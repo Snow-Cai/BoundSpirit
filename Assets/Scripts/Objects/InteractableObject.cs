@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -139,41 +140,70 @@ public class InteractableObject : MonoBehaviour
     {
         if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
             return;
+
         Debug.Log("INTERACT() FIRED on " + gameObject.name);
 
+        //ALWAYS PLAY AUDIO FIRST
+        //            if (pickupSound != null)
+        //AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+        //
+        if (interactSound != null)
+        {
+            Debug.Log("PLAYING SOUND on " + gameObject.name);
+            AudioSource.PlayClipAtPoint(interactSound, transform.position);
+
+        }
+        else
+        {
+            Debug.LogWarning("No interactSound or UIAudioManager missing on " + gameObject.name);
+        }
+
+        //Delay other logic by 1 frame so audio isn't swallowed
+        StartCoroutine(DelayedInteractionLogic());
+    }
+
+    private IEnumerator DelayedInteractionLogic()
+    {
+        // Wait 1 frame to guarantee audio plays first
+        yield return null;
+
+        // If dialogue is already active, stop here
         if (DialogueSystem.Instance != null &&
             DialogueSystem.Instance.IsDialogueActive())
         {
-            return;
+            yield break;
         }
 
+        // NPC interaction
         if (npcController != null)
         {
             npcController.StartInteraction();
         }
-        GhostHintNPC ghostHintNpc = GetComponent<GhostHintNPC>();
-        if (ghostHintNpc != null)
+
+        // Ghost interaction
+        GhostHintNPC ghost = GetComponent<GhostHintNPC>();
+        if (ghost != null)
         {
-            ghostHintNpc.Interact();
-            return;
+            // Tiny delay so ghost dialogue doesn't swallow audio
+            yield return new WaitForSecondsRealtime(.1f);
+            ghost.Interact();
+            yield break;
         }
 
-        if (interactSound != null && UIAudioManager.Instance != null)
-        {
-            UIAudioManager.Instance.PlayOneShot(interactSound);
-        }
-
+        // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
             OpenPuzzle();
-            return;
+            yield break;
         }
 
+        // Dialogue interaction
         if (hasDialogue)
         {
             PlayDialogue();
         }
     }
+
 
     void OpenPuzzle()
     {

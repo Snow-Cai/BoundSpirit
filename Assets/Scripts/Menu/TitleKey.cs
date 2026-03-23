@@ -44,6 +44,9 @@ public class TitleKey : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
 
     public void CapturePosition()
     {
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
+
         originalPosition = rectTransform.anchoredPosition;
     }
 

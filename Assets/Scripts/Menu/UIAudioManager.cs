@@ -17,7 +17,8 @@ public class UIAudioManager : MonoBehaviour
             return;
         }
         Instance = this;
-        if(audioSource == null)
+        DontDestroyOnLoad(gameObject);
+        if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();   
             audioSource.playOnAwake = false;
