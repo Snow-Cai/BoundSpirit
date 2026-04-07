@@ -15,14 +15,14 @@ MonoBehaviour:
   dialogueID: Ghost1Need
   lines:
   - speakerName: Gentle Ghost
-    dialogueText: ...You can see me?
+    dialogueText: "\u2026 You can see me?"
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
     dialogueText: It has been so long since anyone stopped here.
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
-    dialogueText: "Every year\u2026 when the weather grew warm\u2026 I used to bring
-      something here."
+    dialogueText: Every year... when the weather grew warm... I used to bring something
+      here.
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
     dialogueText: "It was soft\u2026 delicate\u2026 and carried a sweet scent."

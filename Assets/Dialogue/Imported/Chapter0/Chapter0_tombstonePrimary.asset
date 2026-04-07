@@ -34,7 +34,7 @@ MonoBehaviour:
       me here.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I have to find out what happened. I have to remember.
+    dialogueText: I need to find out more.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
