@@ -53,7 +53,6 @@ public class InteractionHintUI : MonoBehaviour
             return;
         }
 
-        // Hide hint whenever dialogue/puzzle is active.
         if ((hideWhenDialogueActive && GameInputState.DialogueActive) || !IntroDialogueHasPlayed())
         {
             SetTargetVisible(false);
@@ -61,7 +60,6 @@ public class InteractionHintUI : MonoBehaviour
             return;
         }
 
-        // Find closest valid interaction target (InteractableObject or GraveyardGateController).
         bool hasTarget = TryFindNearestTarget(out Vector2 targetPosition, out KeyCode targetKey);
 
         if (hasTarget)
@@ -105,9 +103,12 @@ public class InteractionHintUI : MonoBehaviour
         float nearestDistance = maxDistance;
         bool found = false;
 
-        // 1) Check InteractableObjects
-        InteractableObject[] interactables = FindObjectsOfType<InteractableObject>();
-        foreach (var interactable in interactables)
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
         {
             if (interactable == null || !interactable.enabled)
             {
@@ -119,26 +120,29 @@ public class InteractionHintUI : MonoBehaviour
             {
                 nearestDistance = distance;
                 targetPosition = interactable.transform.position;
-                targetKey = interactable.interactKey;   // assumes this is public or has a getter
+                targetKey = interactable.interactKey;
                 found = true;
             }
         }
 
-        // 2) Check GraveyardGateController (special-case gate interaction)
-        GraveyardGateController[] gates = FindObjectsOfType<GraveyardGateController>();
-        foreach (var gate in gates)
+        GraveyardGateController[] gates = FindObjectsByType<GraveyardGateController>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (GraveyardGateController gate in gates)
         {
             if (gate == null || !gate.enabled)
             {
                 continue;
             }
 
-            float distance = Vector2.Distance(playerPosition, gate.transform.position);
+            float distance = Vector2.Distance(playerPosition, (Vector2)gate.transform.position);
             if (distance <= nearestDistance)
             {
                 nearestDistance = distance;
                 targetPosition = gate.transform.position;
-                targetKey = gate.InteractKey;  // uses the property we just added
+                targetKey = gate.InteractKey;
                 found = true;
             }
         }
@@ -177,8 +181,7 @@ public class InteractionHintUI : MonoBehaviour
             return true;
         }
 
-        bool hasPlayed = SaveSystem.Instance.HasViewedDialogue(introDialogueID);
-        return hasPlayed;
+        return SaveSystem.Instance.HasViewedDialogue(introDialogueID);
     }
 
     private string FormatKeyLabel(KeyCode key)

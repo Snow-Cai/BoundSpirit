@@ -7769,6 +7769,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -8086,6 +8087,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -8532,6 +8534,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -10128,6 +10131,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -11615,6 +11619,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -19731,6 +19736,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -26061,19 +26067,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.53125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.96875
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.140625
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.140625
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26472,7 +26478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1528216648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33179,6 +33185,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -33905,6 +33912,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -41064,6 +41072,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -43708,6 +43717,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -44448,6 +44458,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -45072,6 +45083,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 767388437540046394, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: introDialogueID
       value: Chapter0_awakening
@@ -45083,6 +45098,10 @@ PrefabInstance:
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_Name
       value: InteractionHintUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45165,7 +45184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
