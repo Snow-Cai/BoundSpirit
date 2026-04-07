@@ -15,6 +15,9 @@ public class GraveyardGateController : MonoBehaviour
     [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle
     [SerializeField] private bool openPuzzleAfterHintDialogue;
 
+    [Tooltip("If the player has read this dialogue (e.g. gate gravestone), skip lockedPuzzleDialogue — they already know about the engraving.")]
+    [SerializeField] private string skipGateHintIfClueDialogueViewed = "Chapter0_gateCluePrimary";
+
     [Header("Puzzle UI")]
     [SerializeField] private GameObject puzzleUI;
 
@@ -105,11 +108,13 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         // 2. Player knows name but puzzle not solved.
-        // First meaningful interaction: show a one-time hint, then always open the puzzle afterwards.
+        // First meaningful interaction: optional one-time hint, then open the puzzle (or toggle if already past hint).
         bool hasSeenHintPersisted = HasSeenPuzzleHint();
+        bool alreadyKnowsGateClue = HasViewedGateGravestoneClue();
         bool shouldShowHint =
             !puzzleHintShownThisSession &&
             !hasSeenHintPersisted &&
+            !alreadyKnowsGateClue &&
             lockedPuzzleDialogue != null &&
             DialogueSystem.Instance != null;
 
@@ -225,6 +230,16 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         return SaveSystem.Instance.HasViewedDialogue(lockedPuzzleDialogue.dialogueID);
+    }
+
+    private bool HasViewedGateGravestoneClue()
+    {
+        if (SaveSystem.Instance == null || string.IsNullOrEmpty(skipGateHintIfClueDialogueViewed))
+        {
+            return false;
+        }
+
+        return SaveSystem.Instance.HasViewedDialogue(skipGateHintIfClueDialogueViewed);
     }
 
     private bool IsGatePuzzleSolved()
