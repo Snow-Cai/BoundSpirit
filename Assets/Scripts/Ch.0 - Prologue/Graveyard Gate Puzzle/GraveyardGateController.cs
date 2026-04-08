@@ -23,16 +23,15 @@ public class GraveyardGateController : MonoBehaviour
 
     [Tooltip("Shown when ghosts are not all helped — in addition to lockedGhostsIncompleteDialogue when that plays.")]
     [SerializeField] private string ghostsIncompleteObjectiveMessage =
-        "The spirits in the graveyard still need help.";
+        "Help the spirits in the graveyard to get the gate code.";
 
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
     [SerializeField] private DialogueAsset lockedBeforeGateClueDialogue; // After name known; gate gravestone clue not read yet
-    [Tooltip("Banner after gate dialogue; keep in sync with Chapter0_blockedBeforeGateClue (worn stone by the gate).")]
+    [Tooltip("Banner when the player should read the engraving on the stone beneath the gate first.")]
     [SerializeField] private string gateClueObjectiveMessage =
-        "Look at the worn stone around the gate and read it.";
-    [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle
-    [SerializeField] private bool openPuzzleAfterHintDialogue;
+        "Examine the stone around the gate and read the engraving.";
+    [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle (first time; puzzle shows as teaser, then closes)
 
     [Tooltip("If the player has read this dialogue (e.g. gate gravestone), skip lockedPuzzleDialogue — they already know about the engraving.")]
     [SerializeField] private string skipGateHintIfClueDialogueViewed = "Chapter0_gateCluePrimary";
@@ -52,6 +51,10 @@ public class GraveyardGateController : MonoBehaviour
     private DialogueAsset deferredBannerAfterDialogue;
     private string deferredBannerMessage;
 
+    private bool closePuzzleUiAfterBeforeGateClueDialogue;
+    private bool closePuzzleUiAfterGateHintDialogue;
+    private bool closePuzzleUiAfterGhostsIncompleteDialogue;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -69,6 +72,11 @@ public class GraveyardGateController : MonoBehaviour
 
     private void OnDisable()
     {
+        if (IsPuzzleTeaserActive())
+        {
+            ClosePuzzleUI();
+        }
+
         deferredBannerAfterDialogue = null;
         deferredBannerMessage = null;
         RemoveDialogueEndedSubscription();
@@ -76,6 +84,11 @@ public class GraveyardGateController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (IsPuzzleTeaserActive())
+        {
+            ClosePuzzleUI();
+        }
+
         deferredBannerAfterDialogue = null;
         deferredBannerMessage = null;
         RemoveDialogueEndedSubscription();
@@ -119,6 +132,11 @@ public class GraveyardGateController : MonoBehaviour
             return;
         }
 
+        if (IsPuzzleTeaserActive())
+        {
+            return;
+        }
+
         // 1. Player must know their name first.
         if (!HasPlayerSeenRequiredDialogue())
         {
@@ -149,13 +167,11 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         // 2. Player knows name, read the gate clue, and helped all required ghosts; puzzle not solved.
-        // First meaningful interaction: optional one-time hint, then open the puzzle (or toggle if already past hint).
+        // First time: show gate hint dialogue with puzzle UI as a teaser (closes when dialogue ends, like pre–clue flow).
         bool hasSeenHintPersisted = HasSeenPuzzleHint();
-        bool alreadyKnowsGateClue = HasViewedGateGravestoneClue();
         bool shouldShowHint =
             !puzzleHintShownThisSession &&
             !hasSeenHintPersisted &&
-            !alreadyKnowsGateClue &&
             lockedPuzzleDialogue != null &&
             DialogueSystem.Instance != null;
 
@@ -163,10 +179,9 @@ public class GraveyardGateController : MonoBehaviour
         {
             puzzleHintShownThisSession = true;
 
-            // open the puzzle immediately after this hint dialogue finishes.
-            openPuzzleAfterHintDialogue = true;
-            EnsureDialogueEndedSubscription();
-
+            OpenPuzzleUI();
+            closePuzzleUiAfterGateHintDialogue = true;
+            QueueBannerAfterDialogue(lockedPuzzleDialogue, string.Empty);
             DialogueSystem.Instance.StartDialogue(lockedPuzzleDialogue);
             return;
         }
@@ -188,6 +203,8 @@ public class GraveyardGateController : MonoBehaviour
     {
         if (lockedBeforeGateClueDialogue != null && DialogueSystem.Instance != null)
         {
+            OpenPuzzleUI();
+            closePuzzleUiAfterBeforeGateClueDialogue = true;
             QueueBannerAfterDialogue(lockedBeforeGateClueDialogue, gateClueObjectiveMessage);
             DialogueSystem.Instance.StartDialogue(lockedBeforeGateClueDialogue);
         }
@@ -211,6 +228,8 @@ public class GraveyardGateController : MonoBehaviour
     {
         if (lockedGhostsIncompleteDialogue != null && DialogueSystem.Instance != null)
         {
+            OpenPuzzleUI();
+            closePuzzleUiAfterGhostsIncompleteDialogue = true;
             QueueBannerAfterDialogue(lockedGhostsIncompleteDialogue, ghostsIncompleteObjectiveMessage);
             DialogueSystem.Instance.StartDialogue(lockedGhostsIncompleteDialogue);
         }
@@ -256,8 +275,11 @@ public class GraveyardGateController : MonoBehaviour
 
     private void TryRemoveDialogueEndedSubscriptionIfIdle()
     {
-        if (openPuzzleAfterHintDialogue || deferredBannerAfterDialogue != null)
+        if (deferredBannerAfterDialogue != null ||
+            IsPuzzleTeaserActive())
+        {
             return;
+        }
 
         RemoveDialogueEndedSubscription();
     }
@@ -277,6 +299,21 @@ public class GraveyardGateController : MonoBehaviour
     {
         if (deferredBannerAfterDialogue != null && DialogueMatches(deferredBannerAfterDialogue, finished))
         {
+            bool teaserWasBeforeGateClue =
+                closePuzzleUiAfterBeforeGateClueDialogue &&
+                lockedBeforeGateClueDialogue != null &&
+                DialogueMatches(lockedBeforeGateClueDialogue, finished);
+
+            bool teaserWasGateHint =
+                closePuzzleUiAfterGateHintDialogue &&
+                lockedPuzzleDialogue != null &&
+                DialogueMatches(lockedPuzzleDialogue, finished);
+
+            bool teaserWasGhostsIncomplete =
+                closePuzzleUiAfterGhostsIncompleteDialogue &&
+                lockedGhostsIncompleteDialogue != null &&
+                DialogueMatches(lockedGhostsIncompleteDialogue, finished);
+
             if (!string.IsNullOrWhiteSpace(deferredBannerMessage))
             {
                 ObjectiveBanner.Instance?.ShowMessage(deferredBannerMessage);
@@ -284,37 +321,31 @@ public class GraveyardGateController : MonoBehaviour
 
             deferredBannerAfterDialogue = null;
             deferredBannerMessage = null;
+
+            if (teaserWasBeforeGateClue || teaserWasGateHint || teaserWasGhostsIncomplete)
+            {
+                ClosePuzzleUI();
+            }
+
             TryRemoveDialogueEndedSubscriptionIfIdle();
         }
+    }
 
-        if (!openPuzzleAfterHintDialogue)
-            return;
+    private bool IsPuzzleTeaserActive()
+    {
+        return closePuzzleUiAfterBeforeGateClueDialogue ||
+               closePuzzleUiAfterGateHintDialogue ||
+               closePuzzleUiAfterGhostsIncompleteDialogue;
+    }
 
-        if (finished == null || lockedPuzzleDialogue == null)
-            return;
-
-        if (!DialogueMatches(lockedPuzzleDialogue, finished))
-            return;
-
-        openPuzzleAfterHintDialogue = false;
-        TryRemoveDialogueEndedSubscriptionIfIdle();
-
-        if (player == null)
-            return;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance > interactionRange)
-            return;
-
-        if (IsGatePuzzleSolved())
-            return;
-
+    public bool CanUseGatePuzzleRunesAndSubmit()
+    {
         if (!AllRequiredGhostsHelped())
-            return;
+        {
+            return false;
+        }
 
-        bool puzzleOpen = puzzleUI != null && puzzleUI.activeSelf;
-        if (!puzzleOpen)
-            OpenPuzzleUI();
+        return !IsPuzzleTeaserActive();
     }
 
     private void OpenPuzzleUI()
@@ -329,6 +360,10 @@ public class GraveyardGateController : MonoBehaviour
 
     private void ClosePuzzleUI()
     {
+        closePuzzleUiAfterBeforeGateClueDialogue = false;
+        closePuzzleUiAfterGateHintDialogue = false;
+        closePuzzleUiAfterGhostsIncompleteDialogue = false;
+
         if (puzzleUI != null)
         {
             puzzleUI.SetActive(false);

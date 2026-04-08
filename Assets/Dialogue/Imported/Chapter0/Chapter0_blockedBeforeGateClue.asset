@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
   dialogueID: Chapter0_blockedBeforeGateClue
   lines:
-  - speakerName: 
+  - speakerName: Akila
     dialogueText: There is a worn stone around the gate. I should go look at it to
       help me open this.
     voiceClip: {fileID: 0}

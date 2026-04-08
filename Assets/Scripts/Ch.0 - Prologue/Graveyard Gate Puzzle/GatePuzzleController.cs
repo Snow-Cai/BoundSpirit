@@ -61,6 +61,11 @@ public class GatePuzzleController : MonoBehaviour
 
     public void CycleRune(int index)
     {
+        if (gateController != null && !gateController.CanUseGatePuzzleRunesAndSubmit())
+        {
+            return;
+        }
+
         if (runeTexts == null ||
             symbolOptions == null ||
             symbolOptions.Length == 0 ||
@@ -81,6 +86,11 @@ public class GatePuzzleController : MonoBehaviour
 
     public void Confirm()
     {
+        if (gateController != null && !gateController.CanUseGatePuzzleRunesAndSubmit())
+        {
+            return;
+        }
+
         if (!IsPatternConfigured())
         {
             Debug.LogWarning("GatePuzzleController: Pattern not configured correctly.");
