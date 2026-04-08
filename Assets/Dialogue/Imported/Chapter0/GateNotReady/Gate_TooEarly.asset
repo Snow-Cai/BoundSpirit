@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
   dialogueID: gate_too_early
   lines:
-  - speakerName: Akila
+  - speakerName: ???
     dialogueText: Something pulls me back. I don't even know who I am yet.
     voiceClip: {fileID: 0}
   choices: []

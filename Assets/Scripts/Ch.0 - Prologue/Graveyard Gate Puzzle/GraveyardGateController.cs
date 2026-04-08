@@ -23,14 +23,14 @@ public class GraveyardGateController : MonoBehaviour
 
     [Tooltip("Shown when ghosts are not all helped — in addition to lockedGhostsIncompleteDialogue when that plays.")]
     [SerializeField] private string ghostsIncompleteObjectiveMessage =
-        "Help the spirits in the graveyard to get the gate code.";
+        "The spirits in the graveyard still need help.";
 
     [Header("Dialogue Feedback")]
     [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
     [SerializeField] private DialogueAsset lockedBeforeGateClueDialogue; // After name known; gate gravestone clue not read yet
-    [Tooltip("Banner when the player should read the engraving on the stone beneath the gate first.")]
+    [Tooltip("Banner after gate dialogue; keep in sync with Chapter0_blockedBeforeGateClue (worn stone by the gate).")]
     [SerializeField] private string gateClueObjectiveMessage =
-        "Examine the stone beneath the gate and read the engraving.";
+        "Look at the worn stone around the gate and read it.";
     [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle
     [SerializeField] private bool openPuzzleAfterHintDialogue;
 

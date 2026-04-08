@@ -8434,10 +8434,10 @@ MonoBehaviour:
   - graveyard_ghost_crumpledPaper
   - graveyard_ghost_key
   lockedGhostsIncompleteDialogue: {fileID: 11400000, guid: fc98d028f2b054d4d96becfab0ba3648, type: 2}
-  ghostsIncompleteObjectiveMessage: The spirits in the graveyard still needs help...
+  ghostsIncompleteObjectiveMessage: The spirits in the graveyard still need help.
   lockedWithoutNameDialogue: {fileID: 11400000, guid: 972eee76482b5fb42825397eeda5d71d, type: 2}
   lockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
-  gateClueObjectiveMessage: The stone around the gate have some writings on it...
+  gateClueObjectiveMessage: Look at the worn stone around the gate and read it.
   lockedPuzzleDialogue: {fileID: 11400000, guid: dd19c218aaf0adf458e7f82f12fb4ea5, type: 2}
   openPuzzleAfterHintDialogue: 0
   skipGateHintIfClueDialogueViewed: Chapter0_gateCluePrimary

@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_gateClueRepeat
   lines:
   - speakerName: Akila
-    dialogueText: The carving beneath the gate is still visible.
+    dialogueText: The carving is still visible.
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: "\u201CThree memories\u2026 Return what was lost, and the path

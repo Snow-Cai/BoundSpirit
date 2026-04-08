@@ -15,7 +15,8 @@ MonoBehaviour:
   dialogueID: gate_not_ready
   lines:
   - speakerName: Akila
-    dialogueText: I need the code from the spirits first.
+    dialogueText: I haven't finished helping the spirits yet. Once I've given them what
+      they need, I'll have what I need for the gate.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

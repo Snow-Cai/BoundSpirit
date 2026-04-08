@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Ghost1Need
   lines:
   - speakerName: Gentle Ghost
-    dialogueText: "\u2026 You can see me?"
+    dialogueText: ...You can see me?
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
     dialogueText: It has been so long since anyone stopped here.
@@ -25,7 +25,7 @@ MonoBehaviour:
       here.
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
-    dialogueText: "It was soft\u2026 delicate\u2026 and carried a sweet scent."
+    dialogueText: "It was soft\u2026 delicate\u2026 and carried a floral scent."
     voiceClip: {fileID: 0}
   - speakerName: Gentle Ghost
     dialogueText: "If you happen to find something like that nearby\u2026 could you
