@@ -44,21 +44,6 @@ public class GatePuzzleController : MonoBehaviour
         RefreshRunes();
     }
 
-    private void OnEnable()
-    {
-        if (currentPattern == null || runeTexts == null)
-        {
-            return;
-        }
-
-        for (int i = 0; i < currentPattern.Length; i++)
-        {
-            currentPattern[i] = 0;
-        }
-
-        RefreshRunes();
-    }
-
     public void CycleRune(int index)
     {
         if (gateController != null && !gateController.CanUseGatePuzzleRunesAndSubmit())

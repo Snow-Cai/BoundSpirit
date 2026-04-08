@@ -31,7 +31,7 @@ public class GraveyardGateController : MonoBehaviour
     [Tooltip("Banner when the player should read the engraving on the stone beneath the gate first.")]
     [SerializeField] private string gateClueObjectiveMessage =
         "Examine the stone around the gate and read the engraving.";
-    [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // Hint before the player uses the puzzle (first time; puzzle shows as teaser, then closes)
+    [SerializeField] private DialogueAsset lockedPuzzleDialogue;      // First-time line(s) with puzzle open; UI stays open after dialogue to solve
 
     [Tooltip("If the player has read this dialogue (e.g. gate gravestone), skip lockedPuzzleDialogue — they already know about the engraving.")]
     [SerializeField] private string skipGateHintIfClueDialogueViewed = "Chapter0_gateCluePrimary";
@@ -167,7 +167,7 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         // 2. Player knows name, read the gate clue, and helped all required ghosts; puzzle not solved.
-        // First time: show gate hint dialogue with puzzle UI as a teaser (closes when dialogue ends, like pre–clue flow).
+        // First time: show gate hint dialogue with puzzle UI open; dialogue ends but puzzle stays open to solve.
         bool hasSeenHintPersisted = HasSeenPuzzleHint();
         bool shouldShowHint =
             !puzzleHintShownThisSession &&
@@ -322,9 +322,14 @@ public class GraveyardGateController : MonoBehaviour
             deferredBannerAfterDialogue = null;
             deferredBannerMessage = null;
 
-            if (teaserWasBeforeGateClue || teaserWasGateHint || teaserWasGhostsIncomplete)
+            if (teaserWasBeforeGateClue || teaserWasGhostsIncomplete)
             {
                 ClosePuzzleUI();
+            }
+            else if (teaserWasGateHint)
+            {
+                closePuzzleUiAfterGateHintDialogue = false;
+                GameInputState.DialogueActive = true;
             }
 
             TryRemoveDialogueEndedSubscriptionIfIdle();
