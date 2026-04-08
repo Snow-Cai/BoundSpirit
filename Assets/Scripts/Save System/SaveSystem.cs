@@ -43,6 +43,7 @@ public class SaveData
     public bool knowsNameIsAkila;
     public bool edenRevealed;
     public bool truthRevealed;
+    public bool foundHiddenTombstone;
 
     //Timestamps
     public string lastSaveTime;
@@ -427,6 +428,22 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) currentSave = new SaveData();
         currentSave.knowsNameIsAkila = value;
+        SaveGame();
+    }
+
+    public bool FoundHiddenTombstone()
+    {
+        return currentSave != null && currentSave.foundHiddenTombstone;
+    }
+
+    public void SetFoundHiddenTombstone(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+
+        if (currentSave.foundHiddenTombstone == value)
+            return;
+
+        currentSave.foundHiddenTombstone = value;
         SaveGame();
     }
 

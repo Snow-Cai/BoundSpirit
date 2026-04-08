@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: GraveDecorDialogue 1
+  m_Name: GraveDecorDialogue 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter0_GraveDecor 1
+  dialogueID: Chapter0_GraveDecor 3
   lines:
   - speakerName: Akila
-    dialogueText: This tomb has been here for a long time it seems.
+    dialogueText: This tomb looks so simialr to mine.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

@@ -2294,18 +2294,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
       propertyPath: m_Name
-      value: Grave1
+      value: Grave1 w/ Dialogue 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 126733295}
   m_SourcePrefab: {fileID: 100100000, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
 --- !u!4 &126733293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 383627037599206021, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
   m_PrefabInstance: {fileID: 126733292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &126733294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+  m_PrefabInstance: {fileID: 126733292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &126733295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126733294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &133802446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9196,9 +9236,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.16502462
+    y: 0
     width: 1
-    height: 1.3300493
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -25957,7 +25997,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_Name
-      value: Grave3
+      value: Grave3 w/ Dialogue 3
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26002,13 +26042,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490956534}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1490956532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
   m_PrefabInstance: {fileID: 1490956531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1490956533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+  m_PrefabInstance: {fileID: 1490956531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1490956534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490956533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 11400000, guid: 03def431d34e5094ebc9dc7be2387a24, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &1494143744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44626,15 +44706,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_Name
-      value: Grave3
+      value: Grave3 w/ Hidden Dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.499502
+      value: 21.97
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.011681
+      value: 11.2
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44671,8 +44751,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020699516489247184}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+--- !u!1 &2020699516489247183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+  m_PrefabInstance: {fileID: 2020699516489247182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020699516489247184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020699516489247183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 1
+  objectDialogue: {fileID: 11400000, guid: 114f9d23820de5b4396ec966d78a884f, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 1
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &3765174989177111793
 PrefabInstance:
   m_ObjectHideFlags: 0

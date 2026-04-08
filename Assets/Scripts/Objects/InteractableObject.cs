@@ -19,6 +19,9 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private DialogueAsset primaryDialogue;
     [SerializeField] private DialogueAsset repeatDialogue;
 
+    [Header("Progress Flags")]
+    [SerializeField] private bool setFoundHiddenTombstoneOnInteract = false;
+
     [Header("Puzzle")]
     public bool isPuzzle = false;
     public string puzzleID;
@@ -186,6 +189,11 @@ public class InteractableObject : MonoBehaviour
             DialogueSystem.Instance.IsDialogueActive())
         {
             yield break;
+        }
+
+        if (setFoundHiddenTombstoneOnInteract && SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SetFoundHiddenTombstone(true);
         }
 
         // NPC interaction
