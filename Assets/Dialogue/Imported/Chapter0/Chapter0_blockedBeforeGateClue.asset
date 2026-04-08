@@ -15,7 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter0_blockedBeforeGateClue
   lines:
   - speakerName: Akila
-    dialogueText: There is something by the gate that I need to see first.
+    dialogueText: There is a worn stone around the gate. I should go look at it before
+      I try to open this.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
