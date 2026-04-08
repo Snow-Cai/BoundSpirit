@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   dialogueID: Chapter0_GraveDecor 1
   lines:
-  - speakerName: 
-    dialogueText: This tomb has been here a long time.
+  - speakerName: Akila
+    dialogueText: This tomb has been here for a long time it seems.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

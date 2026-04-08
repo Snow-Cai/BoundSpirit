@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter0_tombstoneRepeat
-  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Chapter0_tombstoneRepeat
+  m_Name: Hidden GraveDecorDialogue 4
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  dialogueID: Chapter0_Hidden GraveDecor 4
   lines:
   - speakerName: Akila
-    dialogueText: Akila... that's my name. I need to get out of this graveyard.
+    dialogueText: "This tomb saids \"For those who hurt others and were hurt themselves.
+      Neither villain nor victim. Simply lost.\" \r\n"
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: ...Who is this for?
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
-  showChoicesAtEnd: 1
+  showChoicesAtEnd: 0

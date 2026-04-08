@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Gate_TooEarly
-  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: gate_too_early
+  m_Name: GraveDecorDialogue 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  dialogueID: Chapter0_GraveDecor 3
   lines:
   - speakerName: Akila
-    dialogueText: Something pulls me back. I don't even know who I am yet.
+    dialogueText: This tomb looks so simialr to mine.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
-  showChoicesAtEnd: 1
+  showChoicesAtEnd: 0

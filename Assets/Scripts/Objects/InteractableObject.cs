@@ -19,6 +19,9 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private DialogueAsset primaryDialogue;
     [SerializeField] private DialogueAsset repeatDialogue;
 
+    [Header("Progress Flags")]
+    [SerializeField] private bool setFoundHiddenTombstoneOnInteract = false;
+
     [Header("Puzzle")]
     public bool isPuzzle = false;
     public string puzzleID;
@@ -34,8 +37,14 @@ public class InteractableObject : MonoBehaviour
     public bool showTidbitOnSolve = false;
 
     [Header("UI Prompt")]
+    [Tooltip("If false, this object never shows/hides interactPrompt — use when InteractionHintUI (or one shared canvas) is the only prompt. Otherwise HidePrompt() can SetActive(false) on a shared UI.")]
+    [SerializeField] private bool useLocalInteractPrompt = true;
+
     public GameObject interactPrompt;
     public TextMeshProUGUI promptText;
+
+    [Tooltip("Legacy field kept for serialized scenes. Prompt show/hide now uses Interaction Range only.")]
+    [HideInInspector]
     public float promptDistance = 3f;
 
     [Header("Audio")]
@@ -56,12 +65,12 @@ public class InteractableObject : MonoBehaviour
             player = playerObj.transform;
         }
 
-        if (interactPrompt != null)
+        if (useLocalInteractPrompt && interactPrompt != null)
         {
             interactPrompt.SetActive(false);
         }
 
-        if (promptText != null)
+        if (useLocalInteractPrompt && promptText != null)
         {
             promptText.text = "Press " + interactKey.ToString() + " to interact";
         }
@@ -77,15 +86,8 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
-
-        // If computer screen is open, only allow closing it (unless typing)
-        if (isPuzzleOpen)
+        if (player == null)
         {
-            if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
-            {
-                ClosePuzzle();
-            }
             return;
         }
 
@@ -94,7 +96,19 @@ public class InteractableObject : MonoBehaviour
             player.position
         );
 
-        if (distance <= promptDistance)
+        bool withinInteractRange = distance <= interactionRange;
+
+        if (isPuzzleOpen)
+        {
+            if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
+            {
+                ClosePuzzle();
+            }
+
+            return;
+        }
+
+        if (withinInteractRange)
         {
             if (!playerInRange)
             {
@@ -104,7 +118,6 @@ public class InteractableObject : MonoBehaviour
 
             if (InputLock.Instance != null &&
                 InputLock.Instance.GameplayInputEnabled &&
-                distance <= interactionRange &&
                 Input.GetKeyDown(interactKey))
             {
                 Interact();
@@ -122,18 +135,22 @@ public class InteractableObject : MonoBehaviour
 
     void ShowPrompt()
     {
-        if (interactPrompt != null)
+        if (!useLocalInteractPrompt || interactPrompt == null)
         {
-            interactPrompt.SetActive(true);
+            return;
         }
+
+        interactPrompt.SetActive(true);
     }
 
     void HidePrompt()
     {
-        if (interactPrompt != null)
+        if (!useLocalInteractPrompt || interactPrompt == null)
         {
-            interactPrompt.SetActive(false);
+            return;
         }
+
+        interactPrompt.SetActive(false);
     }
 
     void Interact()
@@ -172,6 +189,11 @@ public class InteractableObject : MonoBehaviour
             DialogueSystem.Instance.IsDialogueActive())
         {
             yield break;
+        }
+
+        if (setFoundHiddenTombstoneOnInteract && SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.SetFoundHiddenTombstone(true);
         }
 
         // NPC interaction
@@ -218,6 +240,8 @@ public class InteractableObject : MonoBehaviour
         }
 
         isPuzzleOpen = true;
+        playerInRange = false;
+        HidePrompt();
         SetGameplayInputEnabled(false);
         Time.timeScale = 0f;
     }
@@ -333,8 +357,5 @@ public class InteractableObject : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, promptDistance);
     }
 }

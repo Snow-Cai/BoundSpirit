@@ -2294,18 +2294,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
       propertyPath: m_Name
-      value: Grave1
+      value: Grave1 w/ Dialogue 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 126733295}
   m_SourcePrefab: {fileID: 100100000, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
 --- !u!4 &126733293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 383627037599206021, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
   m_PrefabInstance: {fileID: 126733292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &126733294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+  m_PrefabInstance: {fileID: 126733292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &126733295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126733294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &133802446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7769,6 +7809,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -8086,6 +8127,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -8427,9 +8469,17 @@ MonoBehaviour:
   interactionRange: 2
   requiredIntroDialogue: {fileID: 11400000, guid: e8a4def28c96e2c449daeea9e3e8b179, type: 2}
   gatePuzzleID: Chapter0_graveyard_gate
+  requiredGhostPuzzleIds:
+  - graveyard_ghost_rose
+  - graveyard_ghost_crumpledPaper
+  - graveyard_ghost_key
+  lockedGhostsIncompleteDialogue: {fileID: 11400000, guid: fc98d028f2b054d4d96becfab0ba3648, type: 2}
+  ghostsIncompleteObjectiveMessage: The spirits in the graveyard still needs help...
   lockedWithoutNameDialogue: {fileID: 11400000, guid: 972eee76482b5fb42825397eeda5d71d, type: 2}
+  lockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
+  gateClueObjectiveMessage: The stone around the gate have some writings on it...
   lockedPuzzleDialogue: {fileID: 11400000, guid: dd19c218aaf0adf458e7f82f12fb4ea5, type: 2}
-  openPuzzleAfterHintDialogue: 0
+  skipGateHintIfClueDialogueViewed: Chapter0_gateCluePrimary
   puzzleUI: {fileID: 1528216646}
   gateVisuals: {fileID: 357102266}
 --- !u!61 &357102269
@@ -8532,6 +8582,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -9185,9 +9236,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.10284035
-    width: 4.137741
-    height: 2.6444662
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -10128,6 +10179,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -11615,6 +11667,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -11631,6 +11684,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a8cf56d4e66664c8f64744cc908ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
+  requireGateClueFirst: 1
+  requiredDialogueID: Chapter0_gateCluePrimary
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
+  blockedObjectiveMessage: The carvings by the gate might be important...
   requiredItem: {fileID: 11400000, guid: 9fe2ce6e4176195438d347e6304359c1, type: 2}
   needItemDialogue: {fileID: 11400000, guid: a3e9fcb6bfed8e5468f69923f6a98148, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 167065bfb4d50034db247fe7e8e5931c, type: 2}
@@ -19687,6 +19744,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a8cf56d4e66664c8f64744cc908ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
+  requireGateClueFirst: 1
+  requiredDialogueID: Chapter0_gateCluePrimary
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
+  blockedObjectiveMessage: The carvings by the gate might be important...
   requiredItem: {fileID: 11400000, guid: 8e022436d1b32ba4b8e502fd051450e9, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 2a66d5a4137c5b847ba41f9af827b6b4, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 456994716bb852d4380b0e6d78ef48a0, type: 2}
@@ -19723,6 +19784,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -25935,7 +25997,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_Name
-      value: Grave3
+      value: Grave3 w/ Dialogue 3
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25980,13 +26042,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490956534}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1490956532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
   m_PrefabInstance: {fileID: 1490956531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1490956533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+  m_PrefabInstance: {fileID: 1490956531}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1490956534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490956533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  objectDialogue: {fileID: 11400000, guid: 03def431d34e5094ebc9dc7be2387a24, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &1494143744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26053,19 +26155,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 1.53125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.96875
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.140625
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7748696869254488402, guid: 0e7d3aae5eb20634c88c59b11fab50e2, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.140625
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26464,7 +26566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1528216648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26571,7 +26673,6 @@ MonoBehaviour:
   - "\u25A0"
   correctPattern: 000000000100000002000000
   wrongPatternDialogue: {fileID: 11400000, guid: 8c44e4c7e83e06245a5315b68a6440e1, type: 2}
-  showWrongDialogueOncePerOpen: 1
   puzzleCompleteDialogue: {fileID: 11400000, guid: a6555ee405151fc40a7866ab0dd7b248, type: 2}
 --- !u!1 &1530538460
 GameObject:
@@ -33171,6 +33272,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -33857,6 +33959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a8cf56d4e66664c8f64744cc908ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
+  requireGateClueFirst: 1
+  requiredDialogueID: Chapter0_gateCluePrimary
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
+  blockedObjectiveMessage: The carvings by the gate might be important...
   requiredItem: {fileID: 11400000, guid: 4624b44d537fe4346b74753638092491, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 62400082d6996d746898706a493617d2, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 26fff00041d69554aaf6717c8feedf68, type: 2}
@@ -33893,6 +33999,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -41052,6 +41159,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -43696,6 +43804,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -44436,6 +44545,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 1520638324}
   promptText: {fileID: 45952718}
   promptDistance: 3
@@ -44596,15 +44706,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_Name
-      value: Grave3
+      value: Grave3 w/ Hidden Dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.499502
+      value: 21.97
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.011681
+      value: 11.2
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44641,8 +44751,49 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020699516489247184}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+--- !u!1 &2020699516489247183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+  m_PrefabInstance: {fileID: 2020699516489247182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020699516489247184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020699516489247183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 1
+  objectDialogue: {fileID: 11400000, guid: 114f9d23820de5b4396ec966d78a884f, type: 2}
+  hasDialogue: 1
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 1
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 1520638324}
+  promptText: {fileID: 45952718}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1001 &3765174989177111793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44818,20 +44969,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_text
+      value: This is a testing Objective Banner output
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_margin.w
-      value: -11.622192
+      value: 0.87857056
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_margin.x
-      value: -23.457275
+      value: 0.07864382
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_margin.y
-      value: 10.238586
+      value: 9.2892685
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_margin.z
@@ -44843,23 +44998,43 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_fontSizeBase
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3194968533630684422, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
       propertyPath: m_Name
       value: ObjectiveBannerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 317.507
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40.6245
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -158.7535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.31225
+      objectReference: {fileID: 0}
+    - target: {fileID: 6563853269576268352, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45017,8 +45192,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
     - target: {fileID: 113608315899778758, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 113608315899778758, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45063,10 +45242,6 @@ PrefabInstance:
     - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: introDialogueID
       value: Chapter0_awakening
-      objectReference: {fileID: 0}
-    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
-      propertyPath: hideUntilIntroDialogueSeen
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_Name
@@ -45147,9 +45322,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 11399264}
     m_Modifications:
+    - target: {fileID: 674595673010986029, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Name
       value: HelpBookCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -45286,6 +45469,22 @@ PrefabInstance:
     - target: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 5.254
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427785208073807306, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427785208073807306, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.73319995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427785208073807306, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0000026226044
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427785208073807306, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000071525574
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

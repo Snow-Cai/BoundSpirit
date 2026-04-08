@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
   dialogueID: Chapter0_GraveDecor
   lines:
-  - speakerName: 
-    dialogueText: The writing on the tomb has worn away.
+  - speakerName: Akila
+    dialogueText: I can't tell what the writing on the tomb say.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

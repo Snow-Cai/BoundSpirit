@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Gate_NotReady
+  m_Name: Gate_TooEarly
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: gate_not_ready
+  dialogueID: gate_too_early
   lines:
-  - speakerName: Akila
-    dialogueText: There's still something unresolved. I can feel it.
+  - speakerName: ???
+    dialogueText: Something pulls me back. I don't even know who I am yet.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

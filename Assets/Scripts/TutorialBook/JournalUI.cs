@@ -24,51 +24,80 @@ public class JournalUI : MonoBehaviour
     }
     void Start()
     {
-        journalPanel.SetActive(false);
+        if (journalPanel != null)
+        {
+            journalPanel.SetActive(false);
+        }
+
         DisplayPage();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (journalPanel == null || !Input.GetKeyDown(KeyCode.H))
         {
-            if (
-                (InputLock.Instance.GameplayInputEnabled &&
-                !GameInputState.DialogueActive)
-                || journalPanel.activeSelf
-               )
-            {
-                ToggleJournal();
-            }
+            return;
+        }
+
+        bool canToggle =
+            (InputLock.Instance != null && InputLock.Instance.GameplayInputEnabled &&
+             !GameInputState.DialogueActive)
+            || journalPanel.activeSelf;
+
+        if (canToggle)
+        {
+            ToggleJournal();
         }
     }
 
     void ToggleJournal()
     {
+        if (journalPanel == null)
+        {
+            return;
+        }
+
         bool isOpen = !journalPanel.activeSelf;
 
         journalPanel.SetActive(isOpen);
 
-        // lock gameplay input when journal is open
-        InputLock.Instance.GameplayInputEnabled = !isOpen;
-
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = !isOpen;
+        }
     }
 
     public void OpenJournal()
     {
+        if (journalPanel == null)
+        {
+            return;
+        }
+
         if (!journalPanel.activeSelf)
         {
             journalPanel.SetActive(true);
-            InputLock.Instance.GameplayInputEnabled = false; // stop player from moving
+            if (InputLock.Instance != null)
+            {
+                InputLock.Instance.GameplayInputEnabled = false;
+            }
         }
     }
 
     public void CloseJournal()
     {
+        if (journalPanel == null)
+        {
+            return;
+        }
+
         if (journalPanel.activeSelf)
         {
             journalPanel.SetActive(false);
-            InputLock.Instance.GameplayInputEnabled = true; // restore gameplay input
+            if (InputLock.Instance != null)
+            {
+                InputLock.Instance.GameplayInputEnabled = true;
+            }
         }
     }
 
@@ -92,12 +121,40 @@ public class JournalUI : MonoBehaviour
 
     void DisplayPage()
     {
+        if (pages == null || pages.Length == 0)
+        {
+            return;
+        }
+
+        if (currentPage < 0 || currentPage >= pages.Length)
+        {
+            currentPage = Mathf.Clamp(currentPage, 0, pages.Length - 1);
+        }
+
         JournalPage page = pages[currentPage];
+        if (page == null)
+        {
+            return;
+        }
 
-        leftPageText.text = page.leftPageText;
-        rightPageText.text = page.rightPageText;
+        if (leftPageText != null)
+        {
+            leftPageText.text = page.leftPageText;
+        }
 
-        leftImage.sprite = page.leftImage;
-        rightImage.sprite = page.rightImage;
+        if (rightPageText != null)
+        {
+            rightPageText.text = page.rightPageText;
+        }
+
+        if (leftImage != null)
+        {
+            leftImage.sprite = page.leftImage;
+        }
+
+        if (rightImage != null)
+        {
+            rightImage.sprite = page.rightImage;
+        }
     }
 }

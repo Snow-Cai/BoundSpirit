@@ -18,10 +18,8 @@ public class GatePuzzleController : MonoBehaviour
 
     [Header("Feedback")]
     [SerializeField] private DialogueAsset wrongPatternDialogue;
-    [SerializeField] private bool showWrongDialogueOncePerOpen = true;
     [SerializeField] private DialogueAsset puzzleCompleteDialogue;
 
-    private bool wrongDialogueShownThisOpen;
     private int[] currentPattern;
 
     private void Awake()
@@ -46,24 +44,13 @@ public class GatePuzzleController : MonoBehaviour
         RefreshRunes();
     }
 
-    private void OnEnable()
+    public void CycleRune(int index)
     {
-        if (currentPattern == null || runeTexts == null)
+        if (gateController != null && !gateController.CanUseGatePuzzleRunesAndSubmit())
         {
             return;
         }
 
-        for (int i = 0; i < currentPattern.Length; i++)
-        {
-            currentPattern[i] = 0;
-        }
-
-        RefreshRunes();
-        wrongDialogueShownThisOpen = false;
-    }
-
-    public void CycleRune(int index)
-    {
         if (runeTexts == null ||
             symbolOptions == null ||
             symbolOptions.Length == 0 ||
@@ -84,6 +71,11 @@ public class GatePuzzleController : MonoBehaviour
 
     public void Confirm()
     {
+        if (gateController != null && !gateController.CanUseGatePuzzleRunesAndSubmit())
+        {
+            return;
+        }
+
         if (!IsPatternConfigured())
         {
             Debug.LogWarning("GatePuzzleController: Pattern not configured correctly.");
@@ -143,14 +135,9 @@ public class GatePuzzleController : MonoBehaviour
 
     private void HandleIncorrectPattern()
     {
-        if (wrongPatternDialogue != null &&
-            DialogueSystem.Instance != null)
+        if (wrongPatternDialogue != null && DialogueSystem.Instance != null)
         {
-            if (!showWrongDialogueOncePerOpen || !wrongDialogueShownThisOpen)
-            {
-                DialogueSystem.Instance.StartDialogue(wrongPatternDialogue);
-                wrongDialogueShownThisOpen = true;
-            }
+            DialogueSystem.Instance.StartDialogue(wrongPatternDialogue);
         }
     }
 

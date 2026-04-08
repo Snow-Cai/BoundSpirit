@@ -21,7 +21,7 @@ MonoBehaviour:
     dialogueText: A graveyard? Why am I here? Why does everything feel so... strange?
     voiceClip: {fileID: 0}
   - speakerName: ???
-    dialogueText: Wait... this tombstone. Let me read it closer...
+    dialogueText: Wait... this tombstone... Let me read it closer.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
