@@ -358,4 +358,5 @@ public class InteractableObject : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
+
 }
