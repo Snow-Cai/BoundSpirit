@@ -1487,7 +1487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &125088246
 Transform:
   m_ObjectHideFlags: 0
@@ -2122,6 +2122,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -2129,6 +2130,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
@@ -2151,6 +2153,28 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 53786b593c6a4cb488c25c5a5a4edb3c, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 171221835}
+--- !u!114 &171221835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171221823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &177157654
 GameObject:
   m_ObjectHideFlags: 0
@@ -5782,259 +5806,7 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 314221295}
-    m_ColliderPaths:
-    - - X: 0
-        Y: 28437500
-      - X: 0
-        Y: 27812500
-      - X: 8750000
-        Y: 27812500
-      - X: 10000000
-        Y: 28437500
-      - X: 10937500
-        Y: 28437500
-      - X: 11562500
-        Y: 29062500
-      - X: 11562500
-        Y: 30000000
-      - X: 11875000
-        Y: 30000000
-      - X: 20000000
-        Y: 37187500
-      - X: 20000000
-        Y: 37812500
-      - X: 28750000
-        Y: 37812500
-      - X: 30000000
-        Y: 38437500
-      - X: 30000000
-        Y: 37812500
-      - X: 38750000
-        Y: 37812500
-      - X: 40000000
-        Y: 38437500
-      - X: 40000000
-        Y: 37812500
-      - X: 48750000
-        Y: 37812500
-      - X: 50000000
-        Y: 38437500
-      - X: 50000000
-        Y: 37812500
-      - X: 58750000
-        Y: 37812500
-      - X: 60000000
-        Y: 38437500
-      - X: 60000000
-        Y: 37500000
-      - X: 68437504
-        Y: 30000000
-      - X: 68437504
-        Y: 29062500
-      - X: 69062496
-        Y: 28437500
-      - X: 70000000
-        Y: 28437500
-      - X: 70000000
-        Y: 27812500
-      - X: 78750000
-        Y: 27812500
-      - X: 80000000
-        Y: 28437500
-      - X: 80000000
-        Y: 27812500
-      - X: 88750000
-        Y: 27812500
-      - X: 90000000
-        Y: 28437500
-      - X: 90937504
-        Y: 28437500
-      - X: 91562496
-        Y: 29062500
-      - X: 91562496
-        Y: 30000000
-      - X: 91875000
-        Y: 30000000
-      - X: 100000000
-        Y: 37187500
-      - X: 100000000
-        Y: 37812500
-      - X: 108750000
-        Y: 37812500
-      - X: 110000000
-        Y: 38437500
-      - X: 110937504
-        Y: 38437500
-      - X: 111562496
-        Y: 39062500
-      - X: 111562496
-        Y: 140937504
-      - X: 110937504
-        Y: 141562496
-      - X: 90000000
-        Y: 141562496
-      - X: 81562496
-        Y: 150000000
-      - X: 81875000
-        Y: 150000000
-      - X: 90000000
-        Y: 157187504
-      - X: 90000000
-        Y: 157812496
-      - X: 98750000
-        Y: 157812496
-      - X: 100000000
-        Y: 158437504
-      - X: 100000000
-        Y: 157812496
-      - X: 108750000
-        Y: 157812496
-      - X: 110000000
-        Y: 158437504
-      - X: 110937504
-        Y: 158437504
-      - X: 111562496
-        Y: 159062496
-      - X: 111562496
-        Y: 260937504
-      - X: 110937504
-        Y: 261562496
-      - X: -40937500
-        Y: 261562496
-      - X: -41562500
-        Y: 260937504
-      - X: -41562500
-        Y: 159062496
-      - X: -40937500
-        Y: 158437504
-      - X: -40000000
-        Y: 158437504
-      - X: -40000000
-        Y: 157812496
-      - X: -31250000
-        Y: 157812496
-      - X: -30000000
-        Y: 158437504
-      - X: -30000000
-        Y: 157812496
-      - X: -21250000
-        Y: 157812496
-      - X: -20000000
-        Y: 158437504
-      - X: -20000000
-        Y: 157812496
-      - X: -11250000
-        Y: 157812496
-      - X: -10000000
-        Y: 158437504
-      - X: -10000000
-        Y: 157812496
-      - X: -1250000
-        Y: 157812496
-      - X: 0
-        Y: 158437504
-      - X: 0
-        Y: 157812496
-      - X: 8750000
-        Y: 157812496
-      - X: 10000000
-        Y: 158437504
-      - X: 10000000
-        Y: 157812496
-      - X: 18750000
-        Y: 157812496
-      - X: 20000000
-        Y: 158437504
-      - X: 20000000
-        Y: 157812496
-      - X: 28750000
-        Y: 157812496
-      - X: 30000000
-        Y: 158437504
-      - X: 30000000
-        Y: 157812496
-      - X: 38750000
-        Y: 157812496
-      - X: 40000000
-        Y: 158437504
-      - X: 40000000
-        Y: 157500000
-      - X: 48437500
-        Y: 150000000
-      - X: 40000000
-        Y: 141562496
-      - X: -30937500
-        Y: 141562496
-      - X: -31562500
-        Y: 140937504
-      - X: -31562500
-        Y: 39062500
-      - X: -30937500
-        Y: 38437500
-      - X: -30000000
-        Y: 38437500
-      - X: -30000000
-        Y: 37812500
-      - X: -21250000
-        Y: 37812500
-      - X: -20000000
-        Y: 38437500
-      - X: -20000000
-        Y: 37500000
-      - X: -11562500
-        Y: 30000000
-      - X: -11562500
-        Y: 29062500
-      - X: -10937500
-        Y: 28437500
-      - X: -10000000
-        Y: 28437500
-      - X: -10000000
-        Y: 27812500
-      - X: -1250000
-        Y: 27812500
-    - - X: -10000000
-        Y: 30000000
-      - X: -10000000
-        Y: 40000000
-      - X: -30000000
-        Y: 40000000
-      - X: -30000000
-        Y: 110000000
-      - X: 50000000
-        Y: 110000000
-      - X: 50000000
-        Y: 160000000
-      - X: -40000000
-        Y: 160000000
-      - X: -40000000
-        Y: 230000000
-      - X: 110000000
-        Y: 230000000
-      - X: 110000000
-        Y: 160000000
-      - X: 80000000
-        Y: 160000000
-      - X: 80000000
-        Y: 110000000
-      - X: 110000000
-        Y: 110000000
-      - X: 110000000
-        Y: 40000000
-      - X: 90000000
-        Y: 40000000
-      - X: 90000000
-        Y: 30000000
-      - X: 70000000
-        Y: 30000000
-      - X: 70000000
-        Y: 40000000
-      - X: 10000000
-        Y: 40000000
-      - X: 10000000
-        Y: 30000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: -0.1250059, y: 2.78125}
@@ -17590,6 +17362,7 @@ GameObject:
   - component: {fileID: 842411739}
   - component: {fileID: 842411743}
   - component: {fileID: 842411744}
+  - component: {fileID: 842411745}
   m_Layer: 0
   m_Name: SAFE_KEY
   m_TagString: Untagged
@@ -17631,7 +17404,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.059265018, y: -0.2349987}
+  m_Offset: {x: 0.021808833, y: 1.038208}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49239045, y: -0.98882216}
@@ -17641,7 +17414,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.4242685, y: 2.199854}
+  m_Size: {x: 1.1596746, y: 1.2764311}
   m_EdgeRadius: 0
 --- !u!212 &842411740
 SpriteRenderer:
@@ -17734,6 +17507,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 842411745}
 --- !u!114 &842411744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17754,6 +17529,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -17761,10 +17537,31 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &842411745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842411738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &844477193
 GameObject:
   m_ObjectHideFlags: 0
@@ -18390,6 +18187,7 @@ GameObject:
   - component: {fileID: 882899475}
   - component: {fileID: 882899477}
   - component: {fileID: 882899478}
+  - component: {fileID: 882899479}
   m_Layer: 0
   m_Name: PAINTING_CLUE
   m_TagString: Untagged
@@ -18504,7 +18302,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.117785096}
+  m_Offset: {x: 0, y: 0.0035438538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -18514,7 +18312,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.21875, y: 0.48557025}
+  m_Size: {x: 1.0176544, y: 0.9970207}
   m_EdgeRadius: 0
 --- !u!114 &882899477
 MonoBehaviour:
@@ -18536,6 +18334,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -18543,6 +18342,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 2
@@ -18565,6 +18365,28 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 75c243552114bc343bf7815f5e290086, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 882899479}
+--- !u!114 &882899479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882899472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &883013060
 GameObject:
   m_ObjectHideFlags: 0
@@ -27073,6 +26895,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -27080,6 +26903,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
@@ -27539,6 +27363,7 @@ GameObject:
   - component: {fileID: 1266857956}
   - component: {fileID: 1266857957}
   - component: {fileID: 1266857958}
+  - component: {fileID: 1266857959}
   m_Layer: 0
   m_Name: CRUMPLED_NOTE
   m_TagString: Untagged
@@ -27653,7 +27478,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.006709546}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -27663,7 +27488,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 1.1814613}
   m_EdgeRadius: 0
 --- !u!114 &1266857957
 MonoBehaviour:
@@ -27683,6 +27508,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1266857959}
 --- !u!114 &1266857958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27703,6 +27530,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -27710,10 +27538,31 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &1266857959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266857953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1268758790
 GameObject:
   m_ObjectHideFlags: 0
@@ -27727,6 +27576,7 @@ GameObject:
   - component: {fileID: 1268758793}
   - component: {fileID: 1268758795}
   - component: {fileID: 1268758796}
+  - component: {fileID: 1268758797}
   m_Layer: 0
   m_Name: FLOOR_CLUE
   m_TagString: Untagged
@@ -27873,6 +27723,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -27880,6 +27731,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
@@ -27902,6 +27754,28 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 212287ff65dfeb9458d7257afe4ea3f6, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1268758797}
+--- !u!114 &1268758797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268758790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1276532442
 GameObject:
   m_ObjectHideFlags: 0
@@ -30103,9 +29977,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.99913573
-    height: 0.9694794
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -31746,6 +31620,7 @@ GameObject:
   - component: {fileID: 1548588741}
   - component: {fileID: 1548588743}
   - component: {fileID: 1548588744}
+  - component: {fileID: 1548588745}
   m_Layer: 0
   m_Name: CALENDAR_CLUE
   m_TagString: Untagged
@@ -31860,7 +31735,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1380822}
+  m_Offset: {x: 0, y: -0.0010129325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -31870,7 +31745,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.28125, y: 0.47928947}
+  m_Size: {x: 0.28125, y: 0.20515084}
   m_EdgeRadius: 0
 --- !u!114 &1548588743
 MonoBehaviour:
@@ -31892,6 +31767,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -31899,6 +31775,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 2
@@ -31921,6 +31798,28 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: bd507dcbdd4c54c4d91ca5075234d5bf, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1548588745}
+--- !u!114 &1548588745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548588738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1552816605
 GameObject:
   m_ObjectHideFlags: 0
@@ -32447,6 +32346,7 @@ GameObject:
   - component: {fileID: 1613116039}
   - component: {fileID: 1613116040}
   - component: {fileID: 1613116043}
+  - component: {fileID: 1613116046}
   m_Layer: 0
   m_Name: JOURNAL_CLUE
   m_TagString: Untagged
@@ -32503,7 +32403,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.52865005, y: -0.011507034}
+  m_Offset: {x: 0.52865005, y: 0.49800682}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.25, y: 0.1667}
@@ -32513,7 +32413,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.8655705, y: 0.78863907}
+  m_Size: {x: 1.8655705, y: 1.8076668}
   m_EdgeRadius: 0
 --- !u!114 &1613116040
 MonoBehaviour:
@@ -32535,6 +32435,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -32542,6 +32443,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
@@ -32564,6 +32466,8 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 3e5ae371775afde479b10c2e2fbf9bb1, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1613116046}
 --- !u!61 &1613116044
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32668,6 +32572,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1613116046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613116034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1623215455
 GameObject:
   m_ObjectHideFlags: 0
@@ -33088,7 +33012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1652794820
 Transform:
   m_ObjectHideFlags: 0
@@ -33523,6 +33447,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 171221834}
+    - targetCorrespondingSourceObject: {fileID: 1440759254344239435, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 171221835}
   m_SourcePrefab: {fileID: 100100000, guid: 576dafbf11622e44a8b79ab3c1fb224d, type: 3}
 --- !u!1 &1722491104
 GameObject:
@@ -36660,6 +36587,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 1973412644}
@@ -36673,6 +36601,7 @@ MonoBehaviour:
     through openly available informations (OSINT) or through weaseling the information
     out of the target (social engineering). It is important to safeguard your information!'
   showTidbitOnSolve: 1
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 3
@@ -36967,6 +36896,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -36974,6 +36904,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 2
@@ -38316,6 +38247,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: ReassemblyPuzzle
   puzzleUI: {fileID: 493091663}
@@ -38323,6 +38255,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
   promptDistance: 2
