@@ -156,7 +156,9 @@ public class DialogueUI : MonoBehaviour
 
         if (speakerNameText != null)
         {
-            speakerNameText.text = line.speakerName;
+            speakerNameText.text = PlayerIdentityPresentation.GetDisplayedSpeakerName(
+                line.speakerName,
+                dialogueSystem != null ? dialogueSystem.ActiveDialogueId : null);
         }
 
         if (playVoiceClips && line.voiceClip != null && UIAudioManager.Instance != null)

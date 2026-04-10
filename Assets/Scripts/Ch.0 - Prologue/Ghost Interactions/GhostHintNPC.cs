@@ -6,8 +6,8 @@ public class GhostHintNPC : MonoBehaviour
     [Header("Progress Gate")]
     [SerializeField] private bool requireGateClueFirst = true;
     [SerializeField] private string requiredDialogueID = "Chapter0_gateCluePrimary";
+    [Tooltip("Played when requireGateClueFirst is on and the player has not viewed the gate stone clue yet.")]
     [SerializeField] private DialogueAsset blockedBeforeGateClueDialogue;
-    [SerializeField] private string blockedObjectiveMessage = "The carvings by the gate might be important...";
 
     [Header("Required Item")]
     [SerializeField] private ItemData requiredItem;
@@ -234,10 +234,6 @@ public class GhostHintNPC : MonoBehaviour
         if (blockedBeforeGateClueDialogue != null && DialogueSystem.Instance != null)
         {
             DialogueSystem.Instance.StartDialogue(blockedBeforeGateClueDialogue);
-        }
-        else
-        {
-            ObjectiveBanner.Instance?.ShowMessage(blockedObjectiveMessage);
         }
 
         return false;
