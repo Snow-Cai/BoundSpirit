@@ -7738,7 +7738,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  glowWhenInRange: 1
+  glowWhenInRange: 0
   glow: {fileID: 249432485}
 --- !u!61 &249432483
 BoxCollider2D:
@@ -7832,12 +7832,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
   showSparkle: 1
-  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
-  sparkleScale: 0.4
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
   sparkleIntervalRange: {x: 0.5, y: 2}
   sparkleAlphaPulseSpeed: 3.2
   sparkleSizePulseSpeed: 2.2
-  companionScaleMultiplier: 0.46
+  companionScaleMultiplier: 0.5
   companionOffsetRadius: 0.28
 --- !u!1 &262543420
 GameObject:
@@ -10122,7 +10122,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  glowWhenInRange: 1
+  glowWhenInRange: 0
   glow: {fileID: 670987756}
 --- !u!212 &670987754
 SpriteRenderer:
@@ -10228,12 +10228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
   showSparkle: 1
-  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
-  sparkleScale: 0.4
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
   sparkleIntervalRange: {x: 0.5, y: 2}
   sparkleAlphaPulseSpeed: 3.2
   sparkleSizePulseSpeed: 2.2
-  companionScaleMultiplier: 0.46
+  companionScaleMultiplier: 0.5
   companionOffsetRadius: 0.28
 --- !u!1001 &681291092
 PrefabInstance:
@@ -33250,7 +33250,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  glowWhenInRange: 1
+  glowWhenInRange: 0
   glow: {fileID: 1748752413}
 --- !u!212 &1748752411
 SpriteRenderer:
@@ -33356,12 +33356,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
   showSparkle: 1
-  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
-  sparkleScale: 0.4
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
   sparkleIntervalRange: {x: 0.5, y: 2}
   sparkleAlphaPulseSpeed: 3.2
   sparkleSizePulseSpeed: 2.2
-  companionScaleMultiplier: 0.46
+  companionScaleMultiplier: 0.5
   companionOffsetRadius: 0.28
 --- !u!1 &1757292545
 GameObject:

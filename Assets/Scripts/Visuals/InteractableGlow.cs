@@ -12,12 +12,12 @@ public class InteractableGlow : MonoBehaviour
 
     [Header("Sparkle")]
     [SerializeField] private bool showSparkle = true;
-    [SerializeField] private Color sparkleColor = new(1f, 0.98f, 0.9f, 1f);
-    [SerializeField] private float sparkleScale = 0.4f;
+    [SerializeField] private Color sparkleColor = new(234f / 255f, 233f / 255f, 173f / 255f, 1f);
+    [SerializeField] private float sparkleScale = 0.5f;
     [SerializeField] private Vector2 sparkleIntervalRange = new(0.5f, 2f);
     [SerializeField] private float sparkleAlphaPulseSpeed = 3.2f;
     [SerializeField] private float sparkleSizePulseSpeed = 2.2f;
-    [SerializeField] private float companionScaleMultiplier = 0.55f;
+    [SerializeField] private float companionScaleMultiplier = 0.5f;
     [SerializeField] private float companionOffsetRadius = 0.28f;
 
     private SpriteRenderer[] spriteRenderers;
@@ -61,8 +61,9 @@ public class InteractableGlow : MonoBehaviour
         }
 
         showSparkle = true;
-        sparkleColor = new Color(1f, 0.98f, 0.9f, 1f);
-        sparkleScale = 0.4f;
+        sparkleColor = new Color(234f / 255f, 233f / 255f, 173f / 255f, 1f);
+        sparkleScale = 0.5f;
+        companionScaleMultiplier = 0.5f;
         sparkleIntervalRange = new Vector2(0.5f, 2f);
     }
 

@@ -16,7 +16,8 @@ public class CollectibleObject : MonoBehaviour
     public AudioClip pickupSound;
 
     [Header("Visual Highlight")]
-    [SerializeField] private bool glowWhenInRange = true;
+    [Tooltip("If enabled, sparkle only appears when the player is within collect distance. If disabled, sparkle stays visible whenever gameplay allows.")]
+    [SerializeField] private bool glowWhenInRange = false;
     [SerializeField] private InteractableGlow glow;
 
     private Transform player;
@@ -39,7 +40,6 @@ public class CollectibleObject : MonoBehaviour
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         popup = Object.FindFirstObjectByType<UICluePopup>();
         EnsureGlowReference();
-        SetGlow(false);
         if (p != null)
             player = p.transform;
     }
@@ -70,7 +70,8 @@ public class CollectibleObject : MonoBehaviour
         }
 
         bool withinRange = dist <= collectDistance;
-        SetGlow(glowWhenInRange && withinRange);
+        bool shouldShowSparkle = !glowWhenInRange || withinRange;
+        SetGlow(shouldShowSparkle);
 
         if (HasNearbyPriorityInteractable())
         {
@@ -122,7 +123,7 @@ public class CollectibleObject : MonoBehaviour
             glow = GetComponent<InteractableGlow>();
         }
 
-        if (glow == null && glowWhenInRange)
+        if (glow == null)
         {
             glow = gameObject.AddComponent<InteractableGlow>();
         }
