@@ -7639,6 +7639,7 @@ GameObject:
   - component: {fileID: 249432482}
   - component: {fileID: 249432483}
   - component: {fileID: 249432484}
+  - component: {fileID: 249432485}
   m_Layer: 0
   m_Name: FlowerClue
   m_TagString: Untagged
@@ -7738,7 +7739,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   glowWhenInRange: 1
-  glow: {fileID: 0}
+  glow: {fileID: 249432485}
 --- !u!61 &249432483
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7818,6 +7819,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &249432485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249432479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
+  sparkleScale: 0.4
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.46
+  companionOffsetRadius: 0.28
 --- !u!1 &262543420
 GameObject:
   m_ObjectHideFlags: 0
@@ -9242,9 +9263,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.027777778
-    width: 0.33333334
-    height: 0.5
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -10014,6 +10035,7 @@ GameObject:
   - component: {fileID: 670987753}
   - component: {fileID: 670987752}
   - component: {fileID: 670987755}
+  - component: {fileID: 670987756}
   m_Layer: 0
   m_Name: PaperClue
   m_TagString: Untagged
@@ -10101,7 +10123,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   glowWhenInRange: 1
-  glow: {fileID: 0}
+  glow: {fileID: 670987756}
 --- !u!212 &670987754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10193,6 +10215,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &670987756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670987750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
+  sparkleScale: 0.4
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.46
+  companionOffsetRadius: 0.28
 --- !u!1001 &681291092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25850,8 +25892,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2 (2)
+      value: Grave2 (2) w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33113,6 +33163,7 @@ GameObject:
   - component: {fileID: 1748752410}
   - component: {fileID: 1748752409}
   - component: {fileID: 1748752412}
+  - component: {fileID: 1748752413}
   m_Layer: 0
   m_Name: KeyClue
   m_TagString: Untagged
@@ -33200,7 +33251,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   glowWhenInRange: 1
-  glow: {fileID: 0}
+  glow: {fileID: 1748752413}
 --- !u!212 &1748752411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33292,6 +33343,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &1748752413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748752407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 1, g: 0.98, b: 0.9, a: 1}
+  sparkleScale: 0.4
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.46
+  companionOffsetRadius: 0.28
 --- !u!1 &1757292545
 GameObject:
   m_ObjectHideFlags: 0
@@ -44331,8 +44402,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45328,6 +45407,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grave2
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
