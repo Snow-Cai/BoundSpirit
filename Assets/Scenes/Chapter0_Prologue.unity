@@ -45405,7 +45405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: promptText
