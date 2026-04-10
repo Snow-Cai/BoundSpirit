@@ -11693,7 +11693,6 @@ MonoBehaviour:
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
   blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
-  blockedObjectiveMessage: There is something I need to do first...
   requiredItem: {fileID: 11400000, guid: 9fe2ce6e4176195438d347e6304359c1, type: 2}
   needItemDialogue: {fileID: 11400000, guid: a3e9fcb6bfed8e5468f69923f6a98148, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 167065bfb4d50034db247fe7e8e5931c, type: 2}
@@ -19753,7 +19752,6 @@ MonoBehaviour:
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
   blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
-  blockedObjectiveMessage: There is something I need to do first...
   requiredItem: {fileID: 11400000, guid: 8e022436d1b32ba4b8e502fd051450e9, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 2a66d5a4137c5b847ba41f9af827b6b4, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 456994716bb852d4380b0e6d78ef48a0, type: 2}
@@ -33971,7 +33969,6 @@ MonoBehaviour:
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
   blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
-  blockedObjectiveMessage: There is something I need to do first...
   requiredItem: {fileID: 11400000, guid: 4624b44d537fe4346b74753638092491, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 62400082d6996d746898706a493617d2, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 26fff00041d69554aaf6717c8feedf68, type: 2}

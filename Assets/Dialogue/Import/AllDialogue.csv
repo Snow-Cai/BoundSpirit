@@ -4,7 +4,7 @@ Playerawakening.asset,Story / NPC,Chapter0_awakening,1,???,A graveyard? Why am I
 Playerawakening.asset,Story / NPC,Chapter0_awakening,2,???,Wait... this tombstone... Let me read it closer.,,,,
 ,,,,,,,,,
 BlockedBeforeGateClue.asset,Gate Puzzle,Chapter0_blockedBeforeGateClue,0,Akila,"There is a worn stone around the gate. I should go look at it, maybe it'll help me…",,,,
-ghostBlockedBeforeGateClue.asset,Gate Puzzle,Chapter0_ghostBlockedBeforeGateClue,0,Akila,I don't want to talk to them right now. I just want to get out of here.,,,,
+ghostBlockedBeforeGateClue.asset,Gate Puzzle,Chapter0_ghostBlockedBeforeGateClue,0,Akila,I don't want to talk to the ghost right now. I just want to get out of here.,,,,
 GatePasscodeClue.asset,Gate Puzzle,Chapter0_gateCluePrimary,0,,This stone besides the gate is worn smooth by time.,,,,
 GatePasscodeClue.asset,Gate Puzzle,Chapter0_gateCluePrimary,1,,Three faint markings are carved into its surface.,,,,
 GatePasscodeClue.asset,Gate Puzzle,Chapter0_gateCluePrimary,2,,Someone scratched a message below them:,,,,
