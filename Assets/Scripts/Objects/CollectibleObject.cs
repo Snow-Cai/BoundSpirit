@@ -15,6 +15,10 @@ public class CollectibleObject : MonoBehaviour
     [Header("Audio")]
     public AudioClip pickupSound;
 
+    [Header("Pickup Dialogue")]
+    [Tooltip("Optional dialogue queued right after the item is added to inventory (e.g. key pickup reaction).")]
+    public DialogueAsset pickupDialogue;
+
     [Header("Visual Highlight")]
     [Tooltip("If enabled, sparkle only appears when the player is within collect distance. If disabled, sparkle stays visible whenever gameplay allows.")]
     [SerializeField] private bool glowWhenInRange = false;
@@ -93,6 +97,8 @@ public class CollectibleObject : MonoBehaviour
                 SaveSystem.Instance.CollectItem(item.itemID);
             if (pickupSound != null)
                 AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+            if (pickupDialogue != null && DialogueSystem.Instance != null)
+                DialogueSystem.Instance.QueueDialogue(pickupDialogue);
             collected = true;
         }
 

@@ -17759,6 +17759,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 11400000, guid: 8f7e6d5c4b3a291807465534231201ff, type: 2}
   glowWhenInRange: 0
   glow: {fileID: 842411745}
 --- !u!114 &842411744
