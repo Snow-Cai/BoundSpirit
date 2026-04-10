@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 39c27d34c7ce9f243887cfd97db9703c
+guid: 11df146b9db3e7644be919a477db7fbc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4064803739435396900
-    second: LeafTexture_0
+      213: 7103018399618555315
+    second: HillTree_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LeafTexture_0
+      name: HillTree_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 17
-        height: 32
+        x: 38
+        y: 7
+        width: 176
+        height: 221
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42fe9baf675196830800000000000000
-      internalID: 4064803739435396900
+      spriteID: 3bdd35ed99df29260800000000000000
+      internalID: 7103018399618555315
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LeafTexture_0: 4064803739435396900
+      HillTree_0: 7103018399618555315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
