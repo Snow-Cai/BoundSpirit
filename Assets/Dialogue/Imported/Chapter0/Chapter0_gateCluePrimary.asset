@@ -28,8 +28,8 @@ MonoBehaviour:
       lost\u2026 and the path will open.\u201D"
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: Looks like I should talk to these three memories before leaving
-      this graveyard.
+    dialogueText: Looks like I need to talk to these three memories before being
+      able too leave this graveyard.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
