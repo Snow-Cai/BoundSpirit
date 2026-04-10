@@ -2334,6 +2334,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -7638,6 +7639,7 @@ GameObject:
   - component: {fileID: 249432482}
   - component: {fileID: 249432483}
   - component: {fileID: 249432484}
+  - component: {fileID: 249432485}
   m_Layer: 0
   m_Name: FlowerClue
   m_TagString: Untagged
@@ -7736,6 +7738,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 249432485}
 --- !u!61 &249432483
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7770,7 +7774,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.013651371, y: -0.053240538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7780,7 +7784,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.47269726, y: 0.39351892}
   m_EdgeRadius: 0
 --- !u!114 &249432484
 MonoBehaviour:
@@ -7802,6 +7806,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -7814,6 +7819,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &249432485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249432479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &262543420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,6 +8145,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
   repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -8575,6 +8601,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -10008,6 +10035,7 @@ GameObject:
   - component: {fileID: 670987753}
   - component: {fileID: 670987752}
   - component: {fileID: 670987755}
+  - component: {fileID: 670987756}
   m_Layer: 0
   m_Name: PaperClue
   m_TagString: Untagged
@@ -10064,7 +10092,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0014473349, y: 0.002170682}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10074,7 +10102,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.69103765, y: 0.64906645}
   m_EdgeRadius: 0
 --- !u!114 &670987753
 MonoBehaviour:
@@ -10094,6 +10122,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 670987756}
 --- !u!212 &670987754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10172,6 +10202,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -10184,6 +10215,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &670987756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670987750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &681291092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11660,6 +11711,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -19777,6 +19829,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -25839,8 +25892,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2 (2)
+      value: Grave2 (2) w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26077,6 +26138,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -33101,6 +33163,7 @@ GameObject:
   - component: {fileID: 1748752410}
   - component: {fileID: 1748752409}
   - component: {fileID: 1748752412}
+  - component: {fileID: 1748752413}
   m_Layer: 0
   m_Name: KeyClue
   m_TagString: Untagged
@@ -33157,7 +33220,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.0717988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49239045, y: -0.98882216}
@@ -33167,7 +33230,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.5, y: 0.7327328}
   m_EdgeRadius: 0
 --- !u!114 &1748752410
 MonoBehaviour:
@@ -33187,6 +33250,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1748752413}
 --- !u!212 &1748752411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33265,6 +33330,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -33277,6 +33343,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &1748752413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748752407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1757292545
 GameObject:
   m_ObjectHideFlags: 0
@@ -33992,6 +34078,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -41152,6 +41239,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 82ae89f3197dd6f4485d7e2b523f31df, type: 2}
   repeatDialogue: {fileID: 11400000, guid: f82b6d999c6f6a94f94c2a93e6908588, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -43797,6 +43885,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -44313,8 +44402,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44538,6 +44635,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -45307,8 +45405,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
