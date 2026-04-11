@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Ghost3NeedRepeat
   lines:
   - speakerName: Restless Ghost
-    dialogueText: Did you find what once carried that sweet scent?
+    dialogueText: Did you find the small metal that was once in my hands?
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

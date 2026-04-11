@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter0_blockedBeforeGateClue
   lines:
   - speakerName: Akila
-    dialogueText: There is a worn stone around the gate. I should go look at it to
-      help me open this.
+    dialogueText: "There is a worn stone around the gate. I should go look at it,
+      maybe it'll help me\u2026"
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

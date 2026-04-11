@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_GraveDecor 3
   lines:
   - speakerName: Akila
-    dialogueText: This tomb looks so simialr to mine.
+    dialogueText: This tomb looks so similar to mine.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

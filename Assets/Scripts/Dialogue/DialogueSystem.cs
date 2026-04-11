@@ -36,6 +36,12 @@ public class DialogueSystem : MonoBehaviour
 
     public float TypingSpeed => charactersPerSecond;
 
+    /// <summary>Dialogue ID of the line currently playing, or null if none.</summary>
+    public string ActiveDialogueId =>
+        currentDialogue != null && !string.IsNullOrEmpty(currentDialogue.dialogueID)
+            ? currentDialogue.dialogueID
+            : null;
+
     // Tracks if the grave dialogue has been completed already
     public static bool graveDialogueCompleted = false;
 

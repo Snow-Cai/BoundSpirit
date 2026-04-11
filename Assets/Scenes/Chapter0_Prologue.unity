@@ -252,14 +252,6 @@ CompositeCollider2D:
       - X: 225624992
         Y: 110000000
       - X: 225624992
-        Y: -180000000
-      - X: 225937504
-        Y: -180000000
-      - X: 225937504
-        Y: -188124992
-      - X: 220000000
-        Y: -188124992
-      - X: 220000000
         Y: -187187504
       - X: 200000000
         Y: -187187504
@@ -269,16 +261,8 @@ CompositeCollider2D:
         Y: -200000000
     - - X: 180000000
         Y: -187187504
-      - X: 160000000
-        Y: -187187504
-      - X: 160000000
-        Y: -188124992
-      - X: 154062496
-        Y: -188124992
-      - X: 154062496
-        Y: -180000000
       - X: 154375008
-        Y: -180000000
+        Y: -187187504
       - X: 154375008
         Y: -143437504
       - X: 154062496
@@ -295,16 +279,8 @@ CompositeCollider2D:
         Y: -137500000
       - X: 150000000
         Y: -137187504
-      - X: 110000000
-        Y: -137187504
-      - X: 110000000
-        Y: -138124992
-      - X: 104062496
-        Y: -138124992
-      - X: 104062496
-        Y: -130000000
       - X: 104375000
-        Y: -130000000
+        Y: -137187504
       - X: 104375000
         Y: -93437504
       - X: 104062496
@@ -321,16 +297,8 @@ CompositeCollider2D:
         Y: -87500000
       - X: 100000000
         Y: -87187504
-      - X: 60000000
-        Y: -87187504
-      - X: 60000000
-        Y: -88125000
-      - X: 54062500
-        Y: -88125000
-      - X: 54062500
-        Y: -80000000
       - X: 54375000
-        Y: -80000000
+        Y: -87187504
       - X: 54375000
         Y: -43437500
       - X: 54062500
@@ -347,16 +315,8 @@ CompositeCollider2D:
         Y: -37500000
       - X: 50000000
         Y: -37187500
-      - X: -90000000
-        Y: -37187500
-      - X: -90000000
-        Y: -38125000
-      - X: -95937504
-        Y: -38125000
-      - X: -95937504
-        Y: -30000000
       - X: -95625000
-        Y: -30000000
+        Y: -37187500
       - X: -95625000
         Y: 50000000
       - X: -100000000
@@ -382,11 +342,7 @@ CompositeCollider2D:
     - - {x: 22.999971, y: -20}
       - {x: 22.999971, y: 11}
       - {x: 22.5625, y: 10.99997}
-      - {x: 22.562529, y: -18}
-      - {x: 22.59375, y: -18.000029}
-      - {x: 22.593721, y: -18.8125}
-      - {x: 22, y: -18.812471}
-      - {x: 21.999971, y: -18.71875}
+      - {x: 22.562471, y: -18.71875}
       - {x: 20, y: -18.718779}
       - {x: 20.000029, y: -20}
     - - {x: 15.437472, y: 6}
@@ -395,11 +351,7 @@ CompositeCollider2D:
       - {x: 15.000029, y: 6}
     - - {x: 17.999971, y: -20}
       - {x: 17.999971, y: -18.71875}
-      - {x: 16, y: -18.718779}
-      - {x: 15.999971, y: -18.8125}
-      - {x: 15.40625, y: -18.812471}
-      - {x: 15.406279, y: -18}
-      - {x: 15.437501, y: -17.999971}
+      - {x: 15.437501, y: -18.718721}
       - {x: 15.437501, y: -14.343749}
       - {x: 15.406224, y: -14}
       - {x: 15.312499, y: -13.999971}
@@ -408,11 +360,7 @@ CompositeCollider2D:
       - {x: 15.124997, y: -13.718751}
       - {x: 15, y: -13.74996}
       - {x: 14.999971, y: -13.718751}
-      - {x: 11, y: -13.71878}
-      - {x: 10.99997, y: -13.812499}
-      - {x: 10.40625, y: -13.81247}
-      - {x: 10.40628, y: -13}
-      - {x: 10.4375, y: -12.99997}
+      - {x: 10.4375, y: -13.718721}
       - {x: 10.4375, y: -9.34375}
       - {x: 10.406223, y: -9}
       - {x: 10.3125, y: -8.99997}
@@ -421,11 +369,7 @@ CompositeCollider2D:
       - {x: 10.124997, y: -8.718751}
       - {x: 10, y: -8.74996}
       - {x: 9.99997, y: -8.718751}
-      - {x: 6, y: -8.7187805}
-      - {x: 5.9999704, y: -8.8125}
-      - {x: 5.40625, y: -8.81247}
-      - {x: 5.406279, y: -8}
-      - {x: 5.4375, y: -7.9999704}
+      - {x: 5.4375, y: -8.71872}
       - {x: 5.4375, y: -4.343749}
       - {x: 5.406224, y: -4}
       - {x: 5.3125, y: -3.9999704}
@@ -434,11 +378,7 @@ CompositeCollider2D:
       - {x: 5.1249967, y: -3.718751}
       - {x: 5, y: -3.7499604}
       - {x: 4.999971, y: -3.71875}
-      - {x: -9, y: -3.7187793}
-      - {x: -9.00003, y: -3.8125}
-      - {x: -9.593751, y: -3.8124704}
-      - {x: -9.59372, y: -3}
-      - {x: -9.5625, y: -2.999971}
+      - {x: -9.5625, y: -3.718721}
       - {x: -9.56253, y: 5}
       - {x: -10, y: 4.999971}
       - {x: -9.99997, y: -5}
@@ -2334,6 +2274,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -7638,6 +7579,7 @@ GameObject:
   - component: {fileID: 249432482}
   - component: {fileID: 249432483}
   - component: {fileID: 249432484}
+  - component: {fileID: 249432485}
   m_Layer: 0
   m_Name: FlowerClue
   m_TagString: Untagged
@@ -7736,6 +7678,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 249432485}
 --- !u!61 &249432483
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7770,7 +7714,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.013651371, y: -0.053240538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7780,7 +7724,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.47269726, y: 0.39351892}
   m_EdgeRadius: 0
 --- !u!114 &249432484
 MonoBehaviour:
@@ -7802,6 +7746,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -7814,6 +7759,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &249432485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249432479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &262543420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8120,6 +8085,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
   repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -8575,6 +8541,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -10008,6 +9975,7 @@ GameObject:
   - component: {fileID: 670987753}
   - component: {fileID: 670987752}
   - component: {fileID: 670987755}
+  - component: {fileID: 670987756}
   m_Layer: 0
   m_Name: PaperClue
   m_TagString: Untagged
@@ -10064,7 +10032,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0014473349, y: 0.002170682}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10074,7 +10042,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.69103765, y: 0.64906645}
   m_EdgeRadius: 0
 --- !u!114 &670987753
 MonoBehaviour:
@@ -10094,6 +10062,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 670987756}
 --- !u!212 &670987754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10172,6 +10142,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -10184,6 +10155,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &670987756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670987750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &681291092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11660,6 +11651,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -11686,8 +11678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
-  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
-  blockedObjectiveMessage: The carvings by the gate might be important...
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
   requiredItem: {fileID: 11400000, guid: 9fe2ce6e4176195438d347e6304359c1, type: 2}
   needItemDialogue: {fileID: 11400000, guid: a3e9fcb6bfed8e5468f69923f6a98148, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 167065bfb4d50034db247fe7e8e5931c, type: 2}
@@ -19438,10 +19429,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1891752386074932717, guid: 9334c29fceb311945b86f735450ba263, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1999743414680959953, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -19746,8 +19733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
-  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
-  blockedObjectiveMessage: The carvings by the gate might be important...
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
   requiredItem: {fileID: 11400000, guid: 8e022436d1b32ba4b8e502fd051450e9, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 2a66d5a4137c5b847ba41f9af827b6b4, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 456994716bb852d4380b0e6d78ef48a0, type: 2}
@@ -19777,6 +19763,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -25839,8 +25826,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2 (2)
+      value: Grave2 (2) w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26077,6 +26072,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -33101,6 +33097,7 @@ GameObject:
   - component: {fileID: 1748752410}
   - component: {fileID: 1748752409}
   - component: {fileID: 1748752412}
+  - component: {fileID: 1748752413}
   m_Layer: 0
   m_Name: KeyClue
   m_TagString: Untagged
@@ -33157,7 +33154,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.0717988}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49239045, y: -0.98882216}
@@ -33167,7 +33164,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.5, y: 0.7327328}
   m_EdgeRadius: 0
 --- !u!114 &1748752410
 MonoBehaviour:
@@ -33187,6 +33184,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  glowWhenInRange: 0
+  glow: {fileID: 1748752413}
 --- !u!212 &1748752411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -33265,6 +33264,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -33277,6 +33277,26 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+--- !u!114 &1748752413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748752407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1757292545
 GameObject:
   m_ObjectHideFlags: 0
@@ -33961,8 +33981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::GhostHintNPC
   requireGateClueFirst: 1
   requiredDialogueID: Chapter0_gateCluePrimary
-  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 8a414be8d26bfc846be5a98e020b14f0, type: 2}
-  blockedObjectiveMessage: The carvings by the gate might be important...
+  blockedBeforeGateClueDialogue: {fileID: 11400000, guid: 67630e101077f8049bb3103cf77e16f0, type: 2}
   requiredItem: {fileID: 11400000, guid: 4624b44d537fe4346b74753638092491, type: 2}
   needItemDialogue: {fileID: 11400000, guid: 62400082d6996d746898706a493617d2, type: 2}
   repeatNeedDialogue: {fileID: 11400000, guid: 26fff00041d69554aaf6717c8feedf68, type: 2}
@@ -33992,6 +34011,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -34645,8 +34665,8 @@ Tilemap:
   - first: {x: 18, y: -17, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34655,8 +34675,8 @@ Tilemap:
   - first: {x: 19, y: -17, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34725,8 +34745,8 @@ Tilemap:
   - first: {x: 18, y: -16, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34855,8 +34875,8 @@ Tilemap:
   - first: {x: 18, y: -15, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 17
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34985,8 +35005,8 @@ Tilemap:
   - first: {x: 18, y: -14, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35115,8 +35135,8 @@ Tilemap:
   - first: {x: 18, y: -13, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35245,8 +35265,8 @@ Tilemap:
   - first: {x: 18, y: -12, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileIndex: 17
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35335,8 +35355,8 @@ Tilemap:
   - first: {x: 14, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35345,8 +35365,8 @@ Tilemap:
   - first: {x: 15, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35355,8 +35375,8 @@ Tilemap:
   - first: {x: 16, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35365,8 +35385,8 @@ Tilemap:
   - first: {x: 17, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35375,8 +35395,8 @@ Tilemap:
   - first: {x: 18, y: -11, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 15
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35515,8 +35535,8 @@ Tilemap:
   - first: {x: 14, y: -10, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35695,8 +35715,8 @@ Tilemap:
   - first: {x: 14, y: -9, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -35875,8 +35895,8 @@ Tilemap:
   - first: {x: 14, y: -8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36055,8 +36075,8 @@ Tilemap:
   - first: {x: 14, y: -7, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36235,8 +36255,8 @@ Tilemap:
   - first: {x: 14, y: -6, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36505,8 +36525,8 @@ Tilemap:
   - first: {x: 8, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36515,8 +36535,8 @@ Tilemap:
   - first: {x: 9, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36525,8 +36545,8 @@ Tilemap:
   - first: {x: 10, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 9
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36535,8 +36555,8 @@ Tilemap:
   - first: {x: 11, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36545,8 +36565,8 @@ Tilemap:
   - first: {x: 12, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36555,8 +36575,8 @@ Tilemap:
   - first: {x: 13, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36565,8 +36585,8 @@ Tilemap:
   - first: {x: 14, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 15
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -36835,8 +36855,8 @@ Tilemap:
   - first: {x: 8, y: -4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 10
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37165,8 +37185,8 @@ Tilemap:
   - first: {x: 8, y: -3, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37375,8 +37395,8 @@ Tilemap:
   - first: {x: -4, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 14
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37385,8 +37405,8 @@ Tilemap:
   - first: {x: -3, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37395,8 +37415,8 @@ Tilemap:
   - first: {x: -2, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37405,8 +37425,8 @@ Tilemap:
   - first: {x: -1, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37415,8 +37435,8 @@ Tilemap:
   - first: {x: 0, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37425,8 +37445,8 @@ Tilemap:
   - first: {x: 1, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37435,8 +37455,8 @@ Tilemap:
   - first: {x: 2, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37445,8 +37465,8 @@ Tilemap:
   - first: {x: 3, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 7
+      m_TileIndex: 16
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37495,8 +37515,8 @@ Tilemap:
   - first: {x: 8, y: -2, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37775,8 +37795,8 @@ Tilemap:
   - first: {x: 3, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 9
-      m_TileSpriteIndex: 10
+      m_TileIndex: 17
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -37825,8 +37845,8 @@ Tilemap:
   - first: {x: 8, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38105,8 +38125,8 @@ Tilemap:
   - first: {x: 3, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 18
+      m_TileSpriteIndex: 18
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38115,8 +38135,8 @@ Tilemap:
   - first: {x: 4, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38125,8 +38145,8 @@ Tilemap:
   - first: {x: 5, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38135,8 +38155,8 @@ Tilemap:
   - first: {x: 6, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 9
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38145,8 +38165,8 @@ Tilemap:
   - first: {x: 7, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 13
+      m_TileSpriteIndex: 13
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -38155,8 +38175,8 @@ Tilemap:
   - first: {x: 8, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 15
+      m_TileSpriteIndex: 15
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -40104,59 +40124,87 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 12
+  - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 72563d547d0350b4183c67cc908b369c, type: 2}
-  - m_RefCount: 451
+  - m_RefCount: 419
     m_Data: {fileID: 11400000, guid: 3a411b202a27d754ba12c5a865e1d2b8, type: 2}
-  - m_RefCount: 12
+  - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 42c5493a2b5bf9246b4045a34029429d, type: 2}
   - m_RefCount: 13
     m_Data: {fileID: 11400000, guid: 3b32a9b806366e84e8695948eef8b1c1, type: 2}
-  - m_RefCount: 14
+  - m_RefCount: 12
     m_Data: {fileID: 11400000, guid: b2cdc9312cf19ff4ba969bb6d487dd9b, type: 2}
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: eaf1704efdb5cce4581a9e4573863ff3, type: 2}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: a5aa5e9df576ef54f8d9103481fae301, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: 447fb243956765149822641ed0d6428f, type: 2}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 970540c39bb7c3b4189ce5059a385898, type: 2}
-  - m_RefCount: 12
+  - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: fb348facff935074e978b41259ccb85b, type: 2}
   - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: e1227e23e0152ea448e2f29af7f673ff, type: 2}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 12c3eeb1b796ab849a01544baeb03d1c, type: 2}
   - m_RefCount: 20
     m_Data: {fileID: 11400000, guid: ea27acaeb306241448aaa159af964d4f, type: 2}
+  - m_RefCount: 19
+    m_Data: {fileID: 11400000, guid: 07dfeb39a901c314089adb4771fb64e8, type: 2}
+  - m_RefCount: 4
+    m_Data: {fileID: 11400000, guid: 30ec4c0733976a040996a88f5cc215c5, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 01b2412425c1c1c4d931df7386678a57, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: b3b49baa6b6c0654fb23948618f2176c, type: 2}
+  - m_RefCount: 3
+    m_Data: {fileID: 11400000, guid: 8d0c9f71b94cb18458a02907e52b1366, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 553f1741aaa9de94f98792b9f95143fd, type: 2}
+  - m_RefCount: 12
+    m_Data: {fileID: 11400000, guid: 24bf007cecf556e47bc926b7fb76f311, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 12
+  - m_RefCount: 11
     m_Data: {fileID: 1687749353, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 451
+  - m_RefCount: 419
     m_Data: {fileID: 1287917384, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 12
+  - m_RefCount: 11
     m_Data: {fileID: 550283324, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
   - m_RefCount: 13
     m_Data: {fileID: 8212442670082955604, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 14
+  - m_RefCount: 12
     m_Data: {fileID: -1329462840, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: -453959548, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: -245899228, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 7
+  - m_RefCount: 6
     m_Data: {fileID: -815482030, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: 1333843142, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 10
+  - m_RefCount: 8
     m_Data: {fileID: 710624535, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
-  - m_RefCount: 12
+  - m_RefCount: 10
     m_Data: {fileID: -1820119669, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
   - m_RefCount: 11
     m_Data: {fileID: -152828835, guid: f3a72ca1b257b804998ff4ba0362842a, type: 3}
   - m_RefCount: 20
     m_Data: {fileID: 4572772959182684005, guid: 0b199a82e4ebf5a4fbb3894ec9c2d348, type: 3}
+  - m_RefCount: 19
+    m_Data: {fileID: 1909720875, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 4
+    m_Data: {fileID: -1844559454, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: 738174053, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -938531236, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: -2159369754786058843, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 726992965, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
+  - m_RefCount: 12
+    m_Data: {fileID: 2035329282, guid: efce4aa553476cc40b8a20c31c0ec1ce, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 593
     m_Data:
@@ -41057,7 +41105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 1630229868963929385, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41152,6 +41200,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 82ae89f3197dd6f4485d7e2b523f31df, type: 2}
   repeatDialogue: {fileID: 11400000, guid: f82b6d999c6f6a94f94c2a93e6908588, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -43797,6 +43846,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -44313,8 +44363,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44538,6 +44596,7 @@ MonoBehaviour:
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
@@ -45307,8 +45366,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263906375231945219, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
       propertyPath: m_Name
-      value: Grave2
+      value: Grave2 w/ Dialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: promptText
+      value: 
+      objectReference: {fileID: 45952718}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: interactPrompt
+      value: 
+      objectReference: {fileID: 1520638324}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
