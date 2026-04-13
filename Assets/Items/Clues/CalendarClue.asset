@@ -15,6 +15,9 @@ MonoBehaviour:
   itemID: CALENDAR_CLUE
   itemName: Calendar
   icon: {fileID: 0}
+  description: An odd calendar. There are marks on most of the dates. I sure was
+    an eager kid.
+  canInspect: 1
   clueID: calendarClue
   clueName: CalendarClue
   clueLetter: 

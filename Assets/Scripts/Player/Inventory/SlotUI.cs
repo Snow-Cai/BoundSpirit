@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public ItemData item;
     public Image icon;
@@ -87,5 +87,29 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             inventory.inventory[slotIndex] = item;
             inventory.inventory[other.slotIndex] = other.item;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen) return;
+        Debug.Log("Hover triggered");
+        Debug.Log("Tooltip instance: " + TooltipUI.Instance);
+        if (item != null)
+            TooltipUI.Instance.Show(item.itemName);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipUI.Instance.Hide();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen) return;
+        if (dragIcon != null) return;
+        Debug.Log("Slot clicked!");
+        if (item != null && item.canInspect)
+            Debug.Log("Opening inspect for: " + item.itemName);
+            InspectUI.Instance.Show(item);
     }
 }

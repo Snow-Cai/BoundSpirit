@@ -15,3 +15,6 @@ MonoBehaviour:
   itemID: KeyClue
   itemName: Key
   icon: {fileID: 1694913177206695654, guid: 65e9d27ff5725404585e752ab80db6aa, type: 3}
+  description: This item appears to be a key... No idea for what, but someone may
+    be searching for it.
+  canInspect: 1

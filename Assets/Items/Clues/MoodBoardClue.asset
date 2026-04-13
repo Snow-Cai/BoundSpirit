@@ -15,6 +15,8 @@ MonoBehaviour:
   itemID: VINYL_CLUE
   itemName: Vinyl Clue
   icon: {fileID: 0}
+  description: Placeholder Text
+  canInspect: 1
   clueID: 
   clueName: vinylclue
   clueLetter: 

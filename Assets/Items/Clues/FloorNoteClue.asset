@@ -15,6 +15,10 @@ MonoBehaviour:
   itemID: FLOOR_CLUE
   itemName: Floor Note
   icon: {fileID: 0}
+  description: It appears to be a page torn out of a book. The writing says "...a
+    common password tactic is to include a meaningful number like birth year or age
+    and a meaningful word, name, or object to the user..."
+  canInspect: 1
   clueID: floorclue
   clueName: FloorNote
   clueLetter: 

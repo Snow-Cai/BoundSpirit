@@ -15,6 +15,20 @@ MonoBehaviour:
   itemID: JOURNAL_CLUE
   itemName: Journal Clue
   icon: {fileID: 0}
+  description: 'A diary entry that belonged to me.
+
+
+    "March 16th, 2019"
+
+    "Today
+    I turned 18. To be honest, I almost forgot today was my birthday, until Eden
+    reminded me. She always teases me for being so forgetful that my username for
+    anything is always just my nickname. I guess she''s a bit right... We used to
+    be really close, but even though we still talk, I feel that we are drifting away.
+    She seems to... resent me lately. But! I plan o-.."
+
+    ... It ends there.'
+  canInspect: 1
   clueID: journal
   clueName: JournalClue
   clueLetter: 

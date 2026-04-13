@@ -55,4 +55,9 @@ public class InventoryUI : MonoBehaviour
             slots[i].SetItem(inventory.GetInventoryItem(i));
         }
     }
+
+    public void SetVisible(bool visible)
+    { 
+        inventoryPanel.SetActive(visible); 
+    }
 }

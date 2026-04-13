@@ -15,6 +15,10 @@ MonoBehaviour:
   itemID: picture frame
   itemName: 
   icon: {fileID: 0}
+  description: A photo of two kids in soccer uniforms. In small handwritten text
+    reads "Me and Eden." Huh... Eden. I don't seem to remember her. But I was a friendly
+    child, so she must be an old friend.
+  canInspect: 1
   clueID: 
   clueName: pictureFrameClue
   clueLetter: 
@@ -27,4 +31,3 @@ MonoBehaviour:
   isRequiredForPassword: 1
   canBeReviewedInJournal: 1
   canTriggerEvents: 0
-  pickupSound: {fileID: 0}

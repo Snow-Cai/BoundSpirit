@@ -15,3 +15,6 @@ MonoBehaviour:
   itemID: CRUMPLED_NOTE
   itemName: Crumpled Note
   icon: {fileID: 8153699781125942473, guid: 633ee7ddaaf5f3e4da3c2377d840cac2, type: 3}
+  description: A note that has been ripped up. It appears to have writing on it that
+    could be a helpful clue if put back together.
+  canInspect: 1

@@ -15,3 +15,6 @@ MonoBehaviour:
   itemID: FlowerClue
   itemName: Rose
   icon: {fileID: 5614637178320563061, guid: e7c857e359f60904f9ed1a8617f8ca95, type: 3}
+  description: A delicate rose. It appears to have been cherished dearly, and someone
+    may be searching for it.
+  canInspect: 1
