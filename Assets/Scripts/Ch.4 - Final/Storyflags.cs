@@ -116,6 +116,10 @@ public static class StoryFlags
                 Set(Flag.FoundEdenPhoto);
                 break;
 
+            case "Chapter1_safeKeyPickup":
+                Set(Flag.FoundKey);
+                break;
+
             //Chapter 2
             case "Chapter2_libraryClue":
                 Set(Flag.LibraryClueFound);

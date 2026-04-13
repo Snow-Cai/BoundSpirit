@@ -49,8 +49,11 @@ public class DialogueSystem : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple DialogueSystem instances found. Destroying duplicate.");
-            Destroy(gameObject);
+            // Destroy only this component so the rest of the GameObject survives (e.g. SpawnDialogueAfterCutscene
+            // on the same DialogueManager). Destroying the whole object broke scene intro dialogues after loading
+            // from another scene that already created the persistent DialogueSystem singleton.
+            Debug.LogWarning("Multiple DialogueSystem instances found. Removing duplicate component.");
+            Destroy(this);
             return;
         }
 

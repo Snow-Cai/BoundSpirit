@@ -11,6 +11,11 @@ public class StairsTrigger : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
         if(stairsManager.isTransitioning) return;
+        if (goingUp && !stairsManager.CanGoUp())
+        {
+            stairsManager.TryPlayBlockedUpstairsDialogue();
+            return;
+        }
 
         SpriteRenderer playerRenderer = other.GetComponent<SpriteRenderer>();
         if (!playerRenderer) return;
