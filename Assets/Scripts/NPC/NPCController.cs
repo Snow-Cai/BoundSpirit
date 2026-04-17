@@ -1,4 +1,5 @@
-using UnityEngine; 
+using System.Collections.Generic;
+using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
@@ -12,6 +13,18 @@ public class NPCController : MonoBehaviour
     [Header("Movement")]
     public float speed = 2f;
     public Animator animator;
+    public LayerMask obstacleLayers = 1;
+    public float gridSize = 0.5f;
+    public Vector2 collisionProbeSize = new Vector2(0.6f, 0.6f);
+    public float repathInterval = 0.35f;
+    public float pathNodeReachDistance = 0.06f;
+    public float targetReachDistance = 0.12f;
+    public float maxSearchDistance = 24f;
+    public int maxSearchIterations = 1024;
+    public bool allowDiagonalMovement = false;
+    public float movementDeadZone = 0.02f;
+    public float stuckRepathDelay = 0.4f;
+    public float stuckVelocityThreshold = 0.05f;
 
     private Transform targetPoint;
     private bool isIdle = false;
@@ -24,6 +37,13 @@ public class NPCController : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private readonly List<Vector2> currentPath = new List<Vector2>();
+    private float repathTimer;
+    private int currentPathIndex;
+    private Vector2 lastRepathPosition;
+    private bool hasPath;
+    private float stuckTimer;
+    private float failedPathRetryTimer;
 
     void Start()
     {
@@ -65,6 +85,9 @@ public class NPCController : MonoBehaviour
 
         if (!isIdle && targetPoint != null)
         {
+            repathTimer -= Time.fixedDeltaTime;
+            failedPathRetryTimer -= Time.fixedDeltaTime;
+            UpdatePathIfNeeded();
             MoveToTarget();
         }
     }
@@ -72,17 +95,46 @@ public class NPCController : MonoBehaviour
 
     void MoveToTarget()
     {
+        if (!hasPath)
+        {
+            rb.linearVelocity = Vector2.zero;
+
+            if (animator != null)
+                animator.SetFloat("Speed", 0);
+
+            return;
+        }
+
         Vector2 currentPos = rb.position;
-        Vector2 targetPos = targetPoint.position;
-        Vector2 direction = (targetPos - currentPos).normalized;
+        Vector2 targetPos = GetCurrentMoveTarget(currentPos);
+        Vector2 toTarget = targetPos - currentPos;
+
+        if (toTarget.magnitude <= pathNodeReachDistance)
+        {
+            AdvancePathIfNeeded(currentPos);
+            targetPos = GetCurrentMoveTarget(currentPos);
+            toTarget = targetPos - currentPos;
+        }
+
+        if (toTarget.magnitude <= movementDeadZone)
+        {
+            rb.linearVelocity = Vector2.zero;
+
+            if (animator != null)
+                animator.SetFloat("Speed", 0);
+
+            return;
+        }
+
+        Vector2 direction = toTarget.normalized;
 
         rb.linearVelocity = direction * speed;
 
         if (spriteRenderer != null)
         {
-            if (direction.x > 0.05f)
+            if (direction.x > movementDeadZone)
                 spriteRenderer.flipX = false;
-            else if (direction.x < -0.05f)
+            else if (direction.x < -movementDeadZone)
                 spriteRenderer.flipX = true;
         }
 
@@ -95,7 +147,13 @@ public class NPCController : MonoBehaviour
         }
 
         // stop when somewhat near waypoint
-        if (Vector2.Distance(currentPos, targetPos) < 0.1f)
+        AdvancePathIfNeeded(currentPos);
+        UpdateStuckState(direction);
+
+        bool reachedPathGoal = currentPathIndex >= currentPath.Count - 1 &&
+                               Vector2.Distance(currentPos, targetPos) < targetReachDistance;
+
+        if (reachedPathGoal || Vector2.Distance(currentPos, targetPoint.position) < targetReachDistance)
         {
             rb.linearVelocity = Vector2.zero;
             StartIdle();
@@ -106,6 +164,7 @@ public class NPCController : MonoBehaviour
     {
         isIdle = true;
         rb.linearVelocity = Vector2.zero;
+        ClearPath();
 
         idleTimer = Random.Range(profile.minIdleTime, profile.maxIdleTime);
 
@@ -119,6 +178,7 @@ public class NPCController : MonoBehaviour
         {
             targetPoint = scheduledPoints[scheduleIndex];
             scheduleIndex = (scheduleIndex + 1) % scheduledPoints.Length;
+            ClearPath();
             return;
         }
 
@@ -126,6 +186,7 @@ public class NPCController : MonoBehaviour
         {
             int index = Random.Range(0, randomPoints.Length);
             targetPoint = randomPoints[index];
+            ClearPath();
         }
     }
     public void StartInteraction()
@@ -171,6 +232,121 @@ public class NPCController : MonoBehaviour
             playerNearby = false;
             playerRef = null;
             EndInteraction();
+        }
+    }
+
+    private void UpdatePathIfNeeded()
+    {
+        if (targetPoint == null)
+            return;
+
+        if (repathTimer > 0f && currentPath.Count > 0 && currentPathIndex < currentPath.Count)
+        {
+            if (Vector2.Distance(rb.position, lastRepathPosition) > pathNodeReachDistance)
+                return;
+        }
+
+        if (failedPathRetryTimer > 0f)
+            return;
+
+        repathTimer = Mathf.Max(0.05f, repathInterval);
+        lastRepathPosition = rb.position;
+
+        var settings = new GridAStar2D.Settings(
+            gridSize,
+            obstacleLayers,
+            collisionProbeSize,
+            allowDiagonalMovement,
+            maxSearchIterations,
+            maxSearchDistance);
+
+        if (GridAStar2D.TryFindPath(rb.position, targetPoint.position, settings, currentPath))
+        {
+            currentPathIndex = currentPath.Count > 1 ? 1 : 0;
+            hasPath = true;
+            failedPathRetryTimer = 0f;
+            return;
+        }
+
+        currentPath.Clear();
+        currentPathIndex = 0;
+        hasPath = false;
+        failedPathRetryTimer = Mathf.Max(0.1f, repathInterval);
+    }
+
+    private Vector2 GetCurrentMoveTarget(Vector2 currentPos)
+    {
+        if (currentPath.Count == 0 || currentPathIndex >= currentPath.Count)
+            return targetPoint.position;
+
+        Vector2 node = currentPath[currentPathIndex];
+        if (Vector2.Distance(currentPos, node) <= pathNodeReachDistance && currentPathIndex < currentPath.Count - 1)
+        {
+            currentPathIndex++;
+            node = currentPath[currentPathIndex];
+        }
+
+        return node;
+    }
+
+    private void AdvancePathIfNeeded(Vector2 currentPos)
+    {
+        if (currentPath.Count == 0 || currentPathIndex >= currentPath.Count)
+            return;
+
+        while (currentPathIndex < currentPath.Count - 1 &&
+               Vector2.Distance(currentPos, currentPath[currentPathIndex]) <= pathNodeReachDistance)
+        {
+            currentPathIndex++;
+        }
+    }
+
+    private void ClearPath()
+    {
+        currentPath.Clear();
+        currentPathIndex = 0;
+        repathTimer = 0f;
+        hasPath = false;
+        lastRepathPosition = rb.position;
+        stuckTimer = 0f;
+        failedPathRetryTimer = 0f;
+    }
+
+    private void UpdateStuckState(Vector2 desiredDirection)
+    {
+        if (desiredDirection.sqrMagnitude <= 0f)
+        {
+            stuckTimer = 0f;
+            return;
+        }
+
+        if (rb.linearVelocity.magnitude <= stuckVelocityThreshold)
+        {
+            stuckTimer += Time.fixedDeltaTime;
+            if (stuckTimer >= stuckRepathDelay)
+            {
+                repathTimer = 0f;
+                stuckTimer = 0f;
+            }
+
+            return;
+        }
+
+        stuckTimer = 0f;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (currentPath == null || currentPath.Count == 0)
+            return;
+
+        Gizmos.color = Color.cyan;
+        for (int i = 0; i < currentPath.Count; i++)
+        {
+            Gizmos.DrawWireSphere(currentPath[i], 0.08f);
+
+            if (i < currentPath.Count - 1)
+                Gizmos.DrawLine(currentPath[i], currentPath[i + 1]);
         }
     }
 

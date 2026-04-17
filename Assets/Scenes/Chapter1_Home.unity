@@ -16736,11 +16736,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 231855480859935086, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.06
+      value: 0.69
       objectReference: {fileID: 0}
     - target: {fileID: 231855480859935086, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.16
+      value: 10.05
       objectReference: {fileID: 0}
     - target: {fileID: 231855480859935086, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30740,9 +30740,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.99913573
-    height: 0.9694794
+    y: -0.040000003
+    width: 1
+    height: 1.08
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -41534,8 +41534,36 @@ PrefabInstance:
       value: Mom
       objectReference: {fileID: 0}
     - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: movementDeadZone
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: stuckRepathDelay
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: targetReachDistance
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: collisionProbeSize.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: collisionProbeSize.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: obstacleLayers.m_Bits
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: pathNodeReachDistance
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: stuckVelocityThreshold
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 5479875719537329749, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: 'randomPoints.Array.data[0]'
@@ -41608,6 +41636,22 @@ PrefabInstance:
     - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: playPrimaryOnlyOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.99529076
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4298525
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.065359116
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0022864342
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
