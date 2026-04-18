@@ -87,8 +87,6 @@ public class PoliceDatabasePuzzle : MonoBehaviour
 
     private void Update()
     {
-        if (isProcessing)
-            return;
         if (Input.GetKeyDown(KeyCode.Tab))              // Allow player to use tab to go from name input field to year input field
         {
             if(nameInput.isFocused)
