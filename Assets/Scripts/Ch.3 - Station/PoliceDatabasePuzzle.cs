@@ -8,6 +8,7 @@ public class PoliceDatabasePuzzle : MonoBehaviour
     public TMP_InputField nameInput, yearInput;
     public TMP_Dropdown caseDropdown;
     public TextMeshProUGUI resultText;
+    public GameObject databaseUI;
 
     public AlarmEventController alarmEvent;
 
@@ -17,9 +18,19 @@ public class PoliceDatabasePuzzle : MonoBehaviour
 
     bool isProcessing = false;
     bool hasFocused = false;
+    private bool hasPlayedFirstDialogue = false;
+
+    [Header("Dialogue")]
+    [Tooltip("Played on initial interact.")]
+    public DialogueAsset interactDialogue;
+
+    [Tooltip("Played when the player succeeds.")]
+    public DialogueAsset alarmEventTriggeredDialogue;
 
     private void OnEnable()
     {
+        if(!hasPlayedFirstDialogue)
+            DialogueSystem.Instance.QueueDialogue(interactDialogue);
         hasFocused = false;
         StartCoroutine(FocusNameField());
     }
@@ -68,6 +79,8 @@ public class PoliceDatabasePuzzle : MonoBehaviour
             if (alarmEvent != null)
             {
                 alarmEvent.TriggerAlarmEvent();
+                yield return new WaitForSecondsRealtime(1.5f);
+                Close();
             }
         }
         else
@@ -83,6 +96,17 @@ public class PoliceDatabasePuzzle : MonoBehaviour
             yearInput.interactable = true;
             caseDropdown.interactable = true;
         }
+    }
+
+    public void Close()
+    {
+        databaseUI.SetActive(false);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = true;
+        }
+        Time.timeScale = 1f;
+        DialogueSystem.Instance.QueueDialogue(alarmEventTriggeredDialogue);
     }
 
     private void Update()

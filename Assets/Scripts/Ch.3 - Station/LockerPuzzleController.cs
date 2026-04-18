@@ -13,6 +13,10 @@ public class LockerPuzzleController : MonoBehaviour
 
     private int[] currentCode = new int[6];
 
+    [Header("Completion Dialogue")]
+    [Tooltip("Played when the player enters the code successfully.")]
+    public DialogueAsset policeFileObtainedDialogue;
+
     public void Open()
     {
         lockerUI.SetActive(true);
@@ -25,6 +29,12 @@ public class LockerPuzzleController : MonoBehaviour
     public void Close()
     {
         lockerUI.SetActive(false);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = true;
+        }
+        Time.timeScale = 1f;
+        DialogueSystem.Instance.QueueDialogue(policeFileObtainedDialogue);
     }
 
     public void CycleDigit(int index)
