@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
-  m_Name: CalendarClue
+  m_Name: PictureFrameClue
   m_EditorClassIdentifier: Assembly-CSharp::Clue
-  itemID: CALENDAR_CLUE
-  itemName: Calendar
+  itemID: picture frame
+  itemName: 
   icon: {fileID: 0}
-  description: An odd calendar. There are marks on most of the dates. I sure was
-    an eager kid.
+  description: '*A photo of two kids in soccer uniforms. In small handwritten text
+    reads "Me and Eden."*'
   canInspect: 1
-  clueID: calendarClue
-  clueName: CalendarClue
+  clueID: 
+  clueName: pictureFrameClue
   clueLetter: 
-  clueText: What an odd calendar. There are marks on most of the dates. I sure was
-    an eager kid.
+  clueText: '*A photo of two kids in soccer uniforms. In small handwritten text reads
+    "Me and Eden."*'
   hintDescription: 
-  clueIcon: {fileID: -7004341664222242834, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
+  clueIcon: {fileID: 8806765961013256200, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   isRequiredForPassword: 1
   canBeReviewedInJournal: 1

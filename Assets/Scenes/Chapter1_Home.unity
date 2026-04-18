@@ -1661,11 +1661,11 @@ Transform:
   - {fileID: 257713302}
   - {fileID: 336624583}
   - {fileID: 1569501923}
+  - {fileID: 397034226}
   - {fileID: 1878342986}
   - {fileID: 393542512}
   - {fileID: 901123210}
   - {fileID: 1330186957}
-  - {fileID: 397034226}
   - {fileID: 1224715386}
   m_Father: {fileID: 1092261930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2105,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.09106159
       objectReference: {fileID: 0}
+    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
+      propertyPath: unlockWhenDialogueIdViewed
+      value: Chapter1_loginPasswordParentsRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Size.x
       value: 1.2031126
@@ -2120,10 +2124,6 @@ PrefabInstance:
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Offset.y
       value: 0.09227562
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
-      propertyPath: unlockWhenDialogueIdViewed
-      value: Chapter1_loginPasswordParentsRoom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2398,7 +2398,8 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 53786b593c6a4cb488c25c5a5a4edb3c, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  pickupDialogue: {fileID: 0}
+  pickupDialogue: {fileID: 11400000, guid: 7bdc34232094a804d997e8ddf15cf1c6, type: 2}
+  repeatPickupDialogueAfterCollect: 1
   glowWhenInRange: 0
   glow: {fileID: 171221835}
 --- !u!114 &171221835
@@ -10993,7 +10994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 397034226}
   m_Layer: 0
-  m_Name: ComputerRoomDecor
+  m_Name: Computer/Office RoomDecor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17966,6 +17967,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 11400000, guid: 8f7e6d5c4b3a291807465534231201ff, type: 2}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 842411745}
 --- !u!114 &842411744
@@ -18794,7 +18796,7 @@ MonoBehaviour:
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 1
+  isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
@@ -18824,7 +18826,8 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: 75c243552114bc343bf7815f5e290086, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  pickupDialogue: {fileID: 0}
+  pickupDialogue: {fileID: 11400000, guid: e7f3a2945b8146b0a3c2d1e9f8a7b6c5, type: 2}
+  repeatPickupDialogueAfterCollect: 1
   glowWhenInRange: 0
   glow: {fileID: 882899479}
 --- !u!114 &882899479
@@ -27346,7 +27349,7 @@ Transform:
   m_GameObject: {fileID: 1224715385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.02, y: 18.96, z: 0}
+  m_LocalPosition: {x: -2.04, y: 10.41, z: 0}
   m_LocalScale: {x: 7.124, y: 7.124, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28108,6 +28111,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 1266857959}
 --- !u!114 &1266857958
@@ -28355,6 +28359,7 @@ MonoBehaviour:
   clue: {fileID: 11400000, guid: 212287ff65dfeb9458d7257afe4ea3f6, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 1268758797}
 --- !u!114 &1268758797
@@ -30581,9 +30586,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.027777778
-    width: 0.33333334
-    height: 0.5
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -32248,6 +32253,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.50535774
       objectReference: {fileID: 0}
+    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
+      propertyPath: unlockWhenPuzzleIdSolved
+      value: Chapter1_parentRoomSafe
+      objectReference: {fileID: 0}
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Size.x
       value: 2.0494952
@@ -32263,10 +32272,6 @@ PrefabInstance:
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Offset.y
       value: 0.5027628
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
-      propertyPath: unlockWhenPuzzleIdSolved
-      value: Chapter1_parentRoomSafe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32465,7 +32470,7 @@ MonoBehaviour:
   interactKey: 101
   interactionRange: 2
   objectDialogue: {fileID: 0}
-  hasDialogue: 1
+  hasDialogue: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -32500,7 +32505,8 @@ MonoBehaviour:
   showCluePopup: 1
   clue: {fileID: 11400000, guid: bd507dcbdd4c54c4d91ca5075234d5bf, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
-  pickupDialogue: {fileID: 0}
+  pickupDialogue: {fileID: 11400000, guid: d6e2f1934a7048a1f2b3c4d5e6f70809, type: 2}
+  repeatPickupDialogueAfterCollect: 1
   glowWhenInRange: 0
   glow: {fileID: 1548588745}
 --- !u!114 &1548588745
@@ -33170,6 +33176,7 @@ MonoBehaviour:
   clue: {fileID: 11400000, guid: 3e5ae371775afde479b10c2e2fbf9bb1, type: 2}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 1613116046}
 --- !u!61 &1613116044
@@ -36934,7 +36941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1878342986}
   m_Layer: 0
-  m_Name: LeftRoomDecor
+  m_Name: Parent RoomDecor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38317,6 +38324,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.09106159
       objectReference: {fileID: 0}
+    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
+      propertyPath: unlockWhenDialogueIdViewed
+      value: Chapter2_dad
+      objectReference: {fileID: 0}
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Size.x
       value: 1.2068796
@@ -38332,10 +38343,6 @@ PrefabInstance:
     - target: {fileID: 7482915630012847299, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
       propertyPath: m_Offset.y
       value: 0.09227562
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482915630012847298, guid: 9a8b7c6d5e4f3021a0b9c8d7e6f50403, type: 3}
-      propertyPath: unlockWhenDialogueIdViewed
-      value: Chapter2_dad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
