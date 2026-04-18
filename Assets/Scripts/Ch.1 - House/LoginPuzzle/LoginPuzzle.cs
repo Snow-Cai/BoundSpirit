@@ -23,6 +23,10 @@ public class LoginPuzzle : MonoBehaviour
     public UICluePopup cluePopup;
     [TextArea] public string tidbitMessage = "This is a tidbit message shown after solving the login puzzle.";
 
+    [Header("Story")]
+    [Tooltip("Queued after a successful login (e.g. hint to visit parents' room).")]
+    public DialogueAsset dialogueAfterSuccessfulLogin;
+
     private Coroutine usernameShakeCoroutine;
     private Coroutine passwordShakeCoroutine;
 
@@ -126,6 +130,11 @@ public class LoginPuzzle : MonoBehaviour
             {
                 cluePopup.enabled = true;
                 cluePopup.ShowClue(tidbitMessage);
+            }
+
+            if (dialogueAfterSuccessfulLogin != null && DialogueSystem.Instance != null)
+            {
+                DialogueSystem.Instance.QueueDialogue(dialogueAfterSuccessfulLogin);
             }
 
             OnLoginSuccess?.Invoke();

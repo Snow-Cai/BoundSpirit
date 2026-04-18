@@ -30,6 +30,10 @@ public class SafeControllerKeypad : MonoBehaviour
     public UnityEngine.Events.UnityEvent onUnlock;
     public UnityEngine.Events.UnityEvent onFail;
 
+    [Header("Save")]
+    [Tooltip("If set, SaveSystem.UnlockPuzzle is called when the safe opens (for door gates / progression).")]
+    public string savePuzzleIdWhenUnlocked;
+
     private StringBuilder currentInput = new StringBuilder();
 
     public void OnDigitPressed(string digit)
@@ -110,6 +114,12 @@ public class SafeControllerKeypad : MonoBehaviour
         inputText.text = "UNLOCKED";
         if (knob != null)
             StartCoroutine(RotateKnob());
+
+        if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.UnlockPuzzle(savePuzzleIdWhenUnlocked);
+        }
+
         onUnlock?.Invoke();
     }
 

@@ -26,6 +26,13 @@ public class Floor2DoorGate : MonoBehaviour
     [SerializeField] private DialogueAsset lockedDialogue;
     [SerializeField] private float dialogueCooldownSeconds = 1.25f;
 
+    [Header("Unlock progression (optional)")]
+    [Tooltip("Open the gate once this dialogue id has been viewed (SaveSystem). E.g. Chapter2_dad for the office.")]
+    [SerializeField] private string unlockWhenDialogueIdViewed;
+
+    [Tooltip("Open the gate once this puzzle id is solved (SaveSystem). E.g. safe completion id for Akila's room.")]
+    [SerializeField] private string unlockWhenPuzzleIdSolved;
+
     private float _nextDialogueAllowedTime = -1000f;
 
     private void Awake()
@@ -39,6 +46,32 @@ public class Floor2DoorGate : MonoBehaviour
             }
 
             c.isTrigger = true;
+        }
+    }
+
+    private void Update()
+    {
+        RefreshUnlockFromSave();
+    }
+
+    private void RefreshUnlockFromSave()
+    {
+        if (isUnlocked || SaveSystem.Instance == null)
+        {
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(unlockWhenDialogueIdViewed) &&
+            SaveSystem.Instance.HasViewedDialogue(unlockWhenDialogueIdViewed))
+        {
+            UnlockGate();
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(unlockWhenPuzzleIdSolved) &&
+            SaveSystem.Instance.IsPuzzleSolved(unlockWhenPuzzleIdSolved))
+        {
+            UnlockGate();
         }
     }
 

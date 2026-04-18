@@ -145,3 +145,5 @@ MonoBehaviour:
   playOnFirstEnter: 1
   lockedDialogue: {fileID: 11400000, guid: 7f2a9c4e1b8d4650a3f7e2d1c0b9a8e6, type: 2}
   dialogueCooldownSeconds: 1.25
+  unlockWhenDialogueIdViewed: 
+  unlockWhenPuzzleIdSolved: 
