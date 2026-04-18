@@ -102,6 +102,8 @@ public class InteractableObject : MonoBehaviour
         {
             if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
             {
+                if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+                    return;
                 ClosePuzzle();
             }
 
@@ -247,7 +249,7 @@ public class InteractableObject : MonoBehaviour
     }
 
 
-    void ClosePuzzle()
+    public void ClosePuzzle()
     {
         if (loginPuzzle != null)
         {

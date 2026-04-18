@@ -12387,6 +12387,8 @@ MonoBehaviour:
   snapDistance: 40
   puzzleGroupsParent: {fileID: 0}
   finalResultImage: {fileID: 0}
+  solveDialogue: {fileID: 11400000, guid: d8e4f1a2c3b4476598e7f6a5b4c3d201, type: 2}
+  puzzleInteractable: {fileID: 2050588831}
 --- !u!1 &495001200
 GameObject:
   m_ObjectHideFlags: 0
@@ -18424,6 +18426,8 @@ MonoBehaviour:
   snapDistance: 60
   puzzleGroupsParent: {fileID: 1470961373}
   finalResultImage: {fileID: 1463141745}
+  solveDialogue: {fileID: 11400000, guid: d8e4f1a2c3b4476598e7f6a5b4c3d201, type: 2}
+  puzzleInteractable: {fileID: 2050588831}
 --- !u!1 &864227925
 GameObject:
   m_ObjectHideFlags: 0

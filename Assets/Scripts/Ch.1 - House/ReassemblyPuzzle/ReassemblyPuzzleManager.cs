@@ -11,6 +11,18 @@ public class ReassemblyPuzzleManager : MonoBehaviour
     [SerializeField] private GameObject puzzleGroupsParent;
     [SerializeField] private Image finalResultImage;
 
+    [Header("Solve")]
+    [SerializeField] private DialogueAsset solveDialogue;
+    [SerializeField] private InteractableObject puzzleInteractable;
+
+    private bool puzzleSolved;
+
+    private void OnDestroy()
+    {
+        if (DialogueSystem.Instance != null)
+            DialogueSystem.Instance.OnDialogueEnded -= HandleSolveDialogueEnded;
+    }
+
     public void Awake()
     {
         if (pieces == null || pieces.Length == 0)
@@ -58,6 +70,9 @@ public class ReassemblyPuzzleManager : MonoBehaviour
 
     public void CheckPuzzleCompletion()
     {
+        if (puzzleSolved)
+            return;
+
         if (pieces == null || pieces.Length == 0)
         {
             Debug.LogWarning("PuzzleManager: pieces array is empty!");
@@ -72,6 +87,7 @@ public class ReassemblyPuzzleManager : MonoBehaviour
                 return;
         }
 
+        puzzleSolved = true;
         Debug.Log("Reassembly puzzle solved!");
         StartCoroutine(ShowCompletion());
     }
@@ -90,11 +106,38 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         finalResultImage.rectTransform.localScale = startScale;
         while(t < duration)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             float n = t / duration;
             finalResultImage.rectTransform.localScale = Vector3.Lerp(startScale, endScale, n);
             yield return null;
         }
         finalResultImage.rectTransform.localScale = endScale;
+
+        if (puzzleInteractable != null && SaveSystem.Instance != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+            SaveSystem.Instance.UnlockPuzzle(puzzleInteractable.puzzleID);
+
+        if (solveDialogue != null && DialogueSystem.Instance != null)
+        {
+            // Dialogue typing uses scaled time; puzzle leaves Time.timeScale at 0 until now.
+            Time.timeScale = 1f;
+            DialogueSystem.Instance.OnDialogueEnded += HandleSolveDialogueEnded;
+            DialogueSystem.Instance.StartDialogue(solveDialogue);
+        }
+        else if (puzzleInteractable != null)
+        {
+            puzzleInteractable.ClosePuzzle();
+        }
+    }
+
+    private void HandleSolveDialogueEnded(DialogueAsset asset)
+    {
+        if (asset != solveDialogue)
+            return;
+
+        if (DialogueSystem.Instance != null)
+            DialogueSystem.Instance.OnDialogueEnded -= HandleSolveDialogueEnded;
+
+        if (puzzleInteractable != null)
+            puzzleInteractable.ClosePuzzle();
     }
 }
