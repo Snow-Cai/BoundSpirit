@@ -8246,6 +8246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 0
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 0
@@ -9533,6 +9534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIAudioManager
   audioSource: {fileID: 0}
   defaultVolume: 0.7
+  sfxMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
 --- !u!4 &1570670407
 Transform:
   m_ObjectHideFlags: 0
@@ -12122,7 +12124,7 @@ MonoBehaviour:
   winMusic: {fileID: 8300000, guid: 6fee4ad7e025e3b4bb9cf1d8bf74c83e, type: 3}
   musicVolume: 0.5
   fadeSpeed: 1
-  musicGroup: {fileID: 0}
+  musicGroup: {fileID: -2705577154578233204, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
 --- !u!4 &2103677191
 Transform:
   m_ObjectHideFlags: 0

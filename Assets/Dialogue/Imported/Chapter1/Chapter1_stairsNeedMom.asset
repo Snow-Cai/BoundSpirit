@@ -19,5 +19,5 @@ MonoBehaviour:
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
-  saveAfterDialogue: 0
+  saveAfterDialogue: 1
   showChoicesAtEnd: 1

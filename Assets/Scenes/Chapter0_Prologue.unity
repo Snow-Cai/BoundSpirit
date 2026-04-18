@@ -7602,6 +7602,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
   glowWhenInRange: 0
   glow: {fileID: 249432485}
 --- !u!61 &249432483
@@ -8930,6 +8931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 0}
+  pauseSettingsRoot: {fileID: 0}
   pauseSound: {fileID: 0}
   resumeSound: {fileID: 0}
 --- !u!4 &464215708
@@ -9127,9 +9129,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.080789946
-    width: 1.2808989
-    height: 0.9694794
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9986,6 +9988,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
   glowWhenInRange: 0
   glow: {fileID: 670987756}
 --- !u!212 &670987754
@@ -11426,6 +11429,7 @@ GameObject:
   - component: {fileID: 923856395}
   - component: {fileID: 923856396}
   - component: {fileID: 923856397}
+  - component: {fileID: 923856398}
   m_Layer: 0
   m_Name: Gentle GhostNPC
   m_TagString: Untagged
@@ -11442,7 +11446,7 @@ Transform:
   m_GameObject: {fileID: 923856392}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.27999997, y: 1.5500002, z: 0}
+  m_LocalPosition: {x: -1.77, y: 1.5500002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11495,12 +11499,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1172666734525102768, guid: 8a27b7ca859043a44a41eb9f5da727af, type: 3}
-  m_Color: {r: 0.96862745, g: 0.6375686, b: 0.31964704, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3e510c64596680e4a92cb533912b144c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11575,6 +11579,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &923856398
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923856392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f732ab3284739da4eabed7bb4dbff62e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &936733617
 GameObject:
   m_ObjectHideFlags: 0
@@ -17044,6 +17070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -19495,6 +19522,7 @@ GameObject:
   - component: {fileID: 1272994299}
   - component: {fileID: 1272994298}
   - component: {fileID: 1272994301}
+  - component: {fileID: 1272994302}
   m_Layer: 0
   m_Name: Wandering GhostNPC
   m_TagString: Untagged
@@ -19621,12 +19649,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1172666734525102768, guid: 8a27b7ca859043a44a41eb9f5da727af, type: 3}
-  m_Color: {r: 0.18095396, g: 0.83396226, b: 0.74306524, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a2476385ef69f8f4cb685159d9e2743a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -19644,6 +19672,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &1272994302
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272994296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0bafb3022efaad499861fe69463cd34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1273041183
 GameObject:
   m_ObjectHideFlags: 0
@@ -32861,6 +32911,7 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
   glowWhenInRange: 0
   glow: {fileID: 1748752413}
 --- !u!212 &1748752411
@@ -33622,6 +33673,7 @@ GameObject:
   - component: {fileID: 1868248600}
   - component: {fileID: 1868248599}
   - component: {fileID: 1868248602}
+  - component: {fileID: 1868248603}
   m_Layer: 0
   m_Name: Restless GhostNPC
   m_TagString: Untagged
@@ -33748,12 +33800,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1810855317443868110, guid: 099e9ec4fc531374c8e35402e36b0ae7, type: 3}
-  m_Color: {r: 1, g: 0.403, b: 0.403, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8ae2924104d923e4881e0ad687cec442, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -33771,6 +33823,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &1868248603
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868248597}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fa7a98d1a4095048958b6f1061f5269, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1875596273
 GameObject:
   m_ObjectHideFlags: 0
@@ -40339,7 +40413,7 @@ AudioSource:
   m_GameObject: {fileID: 1898709075}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b7618fc0ae77fdf4587d72e9dcde98ee, type: 3}
   m_PlayOnAwake: 1
@@ -41129,6 +41203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -44520,6 +44595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1

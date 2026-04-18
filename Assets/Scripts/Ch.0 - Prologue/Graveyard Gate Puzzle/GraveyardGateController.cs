@@ -466,4 +466,18 @@ public class GraveyardGateController : MonoBehaviour
 
         enabled = false;
     }
+
+    /// <summary>
+    /// Call when save data is updated at runtime (e.g. dev shortcuts) so the gate hides if the puzzle is already solved.
+    /// </summary>
+    public void SyncUnlockedStateWithSave()
+    {
+        if (!IsGatePuzzleSolved())
+        {
+            return;
+        }
+
+        ClosePuzzleUI();
+        ApplyGateUnlockedState();
+    }
 }

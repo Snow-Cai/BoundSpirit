@@ -18,6 +18,8 @@ public class CollectibleObject : MonoBehaviour
     [Header("Pickup Dialogue")]
     [Tooltip("Optional dialogue queued right after the item is added to inventory (e.g. key pickup reaction).")]
     public DialogueAsset pickupDialogue;
+    [Tooltip("If true, pressing interact again after pickup still queues pickupDialogue (e.g. re-read a clue).")]
+    public bool repeatPickupDialogueAfterCollect = false;
 
     [Header("Visual Highlight")]
     [Tooltip("If enabled, sparkle only appears when the player is within collect distance. If disabled, sparkle stays visible whenever gameplay allows.")]
@@ -96,10 +98,18 @@ public class CollectibleObject : MonoBehaviour
             if (SaveSystem.Instance != null)
                 SaveSystem.Instance.CollectItem(item.itemID);
             if (pickupSound != null)
-                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+                SfxPlayback.PlayClipAtPoint(pickupSound, transform.position);
             if (pickupDialogue != null && DialogueSystem.Instance != null)
                 DialogueSystem.Instance.QueueDialogue(pickupDialogue);
             collected = true;
+        }
+        else if (
+            collected &&
+            repeatPickupDialogueAfterCollect &&
+            pickupDialogue != null &&
+            DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(pickupDialogue);
         }
 
         if (showCluePopup)

@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: gatePuzzleComplete
+  m_Name: MoodBoardClueDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter0_gateComplete
+  dialogueID: Chapter1_Office_VinylClue
   lines:
   - speakerName: Akila
-    dialogueText: The gate unlocked!
+    dialogueText: '*cough cough cough* This bin of vinyls sure is dusty. I must not
+      have listened to music much. I wonder how I can cough as a ghost...'
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
-  showChoicesAtEnd: 1
+  showChoicesAtEnd: 0
