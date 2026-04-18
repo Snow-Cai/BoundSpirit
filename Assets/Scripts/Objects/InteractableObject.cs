@@ -167,7 +167,7 @@ public class InteractableObject : MonoBehaviour
         if (interactSound != null)
         {
             Debug.Log("PLAYING SOUND on " + gameObject.name);
-            AudioSource.PlayClipAtPoint(interactSound, transform.position);
+            SfxPlayback.PlayClipAtPoint(interactSound, transform.position);
 
         }
         else

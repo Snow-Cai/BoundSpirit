@@ -9,14 +9,22 @@ public class SettingsManager : MonoBehaviour
     public GameObject audioSettingsPanel;
     public GameObject graphicsSettingsPanel;
 
-    private void Start()
+    void Awake()
+    {
+        // Must run in Awake, not Start: when the settings root is first activated (e.g. pause settings),
+        // Start runs later in the frame *after* PauseManager calls ShowMainSettings(), which would
+        // incorrectly hide all panels again.
+        if (mainSettingsPanel != null)
+            mainSettingsPanel.SetActive(false);
+        if (audioSettingsPanel != null)
+            audioSettingsPanel.SetActive(false);
+        if (graphicsSettingsPanel != null)
+            graphicsSettingsPanel.SetActive(false);
+    }
+
+    void Start()
     {
         settingsData.Load();
-
-        // Hide all panels at start
-        mainSettingsPanel.SetActive(false);
-        audioSettingsPanel.SetActive(false);
-        graphicsSettingsPanel.SetActive(false);
     }
 
 

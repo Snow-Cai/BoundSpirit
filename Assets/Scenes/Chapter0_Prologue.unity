@@ -17073,6 +17073,7 @@ MonoBehaviour:
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
   defaultSpawnPoint: {fileID: 1530538461}
+  defaultSfxMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
 --- !u!4 &1077041285
 Transform:
   m_ObjectHideFlags: 0
@@ -40411,7 +40412,7 @@ AudioSource:
   m_GameObject: {fileID: 1898709075}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b7618fc0ae77fdf4587d72e9dcde98ee, type: 3}
   m_PlayOnAwake: 1

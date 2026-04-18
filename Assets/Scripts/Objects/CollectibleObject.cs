@@ -96,7 +96,7 @@ public class CollectibleObject : MonoBehaviour
             if (SaveSystem.Instance != null)
                 SaveSystem.Instance.CollectItem(item.itemID);
             if (pickupSound != null)
-                AudioSource.PlayClipAtPoint(pickupSound, transform.position);
+                SfxPlayback.PlayClipAtPoint(pickupSound, transform.position);
             if (pickupDialogue != null && DialogueSystem.Instance != null)
                 DialogueSystem.Instance.QueueDialogue(pickupDialogue);
             collected = true;
