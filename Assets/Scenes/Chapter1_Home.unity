@@ -12276,7 +12276,6 @@ GameObject:
   - component: {fileID: 493091667}
   - component: {fileID: 493091666}
   - component: {fileID: 493091665}
-  - component: {fileID: 493091668}
   m_Layer: 5
   m_Name: ReassemblyCanvas
   m_TagString: Untagged
@@ -12371,24 +12370,6 @@ Canvas:
   m_SortingLayerID: 1369810399
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &493091668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493091663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33df1f0afbce26248a1fe0838c38edbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReassemblyPuzzleManager
-  pieces: []
-  snapDistance: 40
-  puzzleGroupsParent: {fileID: 0}
-  finalResultImage: {fileID: 0}
-  solveDialogue: {fileID: 11400000, guid: d8e4f1a2c3b4476598e7f6a5b4c3d201, type: 2}
-  puzzleInteractable: {fileID: 2050588831}
 --- !u!1 &495001200
 GameObject:
   m_ObjectHideFlags: 0
@@ -28992,6 +28973,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   savePuzzleIdWhenUnlocked: Chapter1_parentRoomSafe
+  dialogueOnUnlock: {fileID: 11400000, guid: d771d48436e021649ba4f822185e7478, type: 2}
 --- !u!82 &1291626102
 AudioSource:
   m_ObjectHideFlags: 0

@@ -17,6 +17,20 @@ public class ReassemblyPuzzleManager : MonoBehaviour
 
     private bool puzzleSolved;
 
+    /// <summary>For PuzzlePiece and input guards — there must be exactly one manager per puzzle UI.</summary>
+    public bool IsPuzzleSolved => puzzleSolved;
+
+    private void Start()
+    {
+        if (puzzleInteractable != null &&
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(puzzleInteractable.puzzleID) &&
+            SaveSystem.Instance.IsPuzzleSolved(puzzleInteractable.puzzleID))
+        {
+            ApplyPersistedSolvedVisuals();
+        }
+    }
+
     private void OnDestroy()
     {
         if (DialogueSystem.Instance != null)
@@ -35,6 +49,9 @@ public class ReassemblyPuzzleManager : MonoBehaviour
 
     public void CheckConnections(PuzzlePiece piece)
     {
+        if (puzzleSolved)
+            return;
+
         foreach(var connection in piece.connections)
         {
             if (connection.connected) continue;
@@ -90,6 +107,21 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         puzzleSolved = true;
         Debug.Log("Reassembly puzzle solved!");
         StartCoroutine(ShowCompletion());
+    }
+
+    /// <summary>Match save state without re-running dialogue or unlock (used when loading or syncing).</summary>
+    public void ApplyPersistedSolvedVisuals()
+    {
+        puzzleSolved = true;
+        if (puzzleGroupsParent != null)
+            puzzleGroupsParent.SetActive(false);
+        if (finalResultImage != null)
+        {
+            Color c = finalResultImage.color;
+            c.a = 1f;
+            finalResultImage.color = c;
+            finalResultImage.rectTransform.localScale = Vector3.one * 3f;
+        }
     }
 
     IEnumerator ShowCompletion()

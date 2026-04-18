@@ -217,6 +217,13 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
+            if (SaveSystem.Instance != null &&
+                !string.IsNullOrEmpty(puzzleID) &&
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID))
+            {
+                yield break;
+            }
+
             OpenPuzzle();
             yield break;
         }
