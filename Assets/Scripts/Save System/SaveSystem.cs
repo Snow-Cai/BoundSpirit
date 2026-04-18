@@ -229,7 +229,14 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) return;
         //Deactivate items already collected from the world
-        Transform map = GameObject.Find("Map").transform;
+        GameObject mapGo = GameObject.Find("Map");
+        if (mapGo == null)
+        {
+            Debug.LogWarning("SAVE: Map GameObject not found — skipped hiding world collectibles.");
+        }
+        else
+        {
+            Transform map = mapGo.transform;
         foreach (Transform floor in map)
         {
             Transform itemsParent = floor.Find("CollectibleItemsParent");
@@ -241,12 +248,17 @@ public class SaveSystem : MonoBehaviour
                 string id = co != null ? co.item.itemID : item.name;
                 if (currentSave.collectedItems.Contains(id))
                 {
-                    if(co.disappearOnPickup == true)
+                    if (co != null && co.disappearOnPickup)
+                    {
                         item.gameObject.SetActive(false);
+                    }
+
                     Debug.Log("Restored collected item: " + id);
                 }
             }
         }
+        }
+
         //Restore player's inventory
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -260,6 +272,29 @@ public class SaveSystem : MonoBehaviour
             else
             {
                 Debug.LogWarning("RESTORE: Player object not found!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Syncs graveyard gate visuals with save after runtime save edits (e.g. dev progress shortcuts).
+    /// Does not hide world collectibles or puzzle objects — use a scene reload for full restore.
+    /// </summary>
+    public void ApplySaveToLoadedScene()
+    {
+        if (currentSave == null)
+        {
+            return;
+        }
+
+        GraveyardGateController[] gates = UnityEngine.Object.FindObjectsByType<GraveyardGateController>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        for (int i = 0; i < gates.Length; i++)
+        {
+            if (gates[i] != null)
+            {
+                gates[i].SyncUnlockedStateWithSave();
             }
         }
     }

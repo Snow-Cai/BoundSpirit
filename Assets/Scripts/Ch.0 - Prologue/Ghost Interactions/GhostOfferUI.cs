@@ -28,6 +28,10 @@ public class GhostOfferUI : MonoBehaviour
             return;
         }
 
+        // DialogueSystem clears GameInputState.DialogueActive when the dialogue queue empties,
+        // which runs after OnDialogueEnded opens this UI — keep the modal flag until we close.
+        GameInputState.DialogueActive = true;
+
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             OfferByIndex(0);
@@ -71,6 +75,7 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = true;
+        SetGameplayInputEnabled(false);
     }
 
     public void Close()
@@ -86,6 +91,15 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = false;
+        SetGameplayInputEnabled(true);
+    }
+
+    private static void SetGameplayInputEnabled(bool enabled)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = enabled;
+        }
     }
 
     public void OfferItem(ItemData item)

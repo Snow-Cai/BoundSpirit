@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_gateComplete
   lines:
   - speakerName: Akila
-    dialogueText: The gate unlocked!
+    dialogueText: The gate is unlocked!
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
