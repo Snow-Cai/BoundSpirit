@@ -11,6 +11,32 @@ public class ReassemblyPuzzleManager : MonoBehaviour
     [SerializeField] private GameObject puzzleGroupsParent;
     [SerializeField] private Image finalResultImage;
 
+    [Header("Solve")]
+    [SerializeField] private DialogueAsset solveDialogue;
+    [SerializeField] private InteractableObject puzzleInteractable;
+
+    private bool puzzleSolved;
+
+    /// <summary>For PuzzlePiece and input guards — there must be exactly one manager per puzzle UI.</summary>
+    public bool IsPuzzleSolved => puzzleSolved;
+
+    private void Start()
+    {
+        if (puzzleInteractable != null &&
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(puzzleInteractable.puzzleID) &&
+            SaveSystem.Instance.IsPuzzleSolved(puzzleInteractable.puzzleID))
+        {
+            ApplyPersistedSolvedVisuals();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (DialogueSystem.Instance != null)
+            DialogueSystem.Instance.OnDialogueEnded -= HandleSolveDialogueEnded;
+    }
+
     public void Awake()
     {
         if (pieces == null || pieces.Length == 0)
@@ -23,6 +49,9 @@ public class ReassemblyPuzzleManager : MonoBehaviour
 
     public void CheckConnections(PuzzlePiece piece)
     {
+        if (puzzleSolved)
+            return;
+
         foreach(var connection in piece.connections)
         {
             if (connection.connected) continue;
@@ -58,6 +87,9 @@ public class ReassemblyPuzzleManager : MonoBehaviour
 
     public void CheckPuzzleCompletion()
     {
+        if (puzzleSolved)
+            return;
+
         if (pieces == null || pieces.Length == 0)
         {
             Debug.LogWarning("PuzzleManager: pieces array is empty!");
@@ -72,8 +104,24 @@ public class ReassemblyPuzzleManager : MonoBehaviour
                 return;
         }
 
+        puzzleSolved = true;
         Debug.Log("Reassembly puzzle solved!");
         StartCoroutine(ShowCompletion());
+    }
+
+    /// <summary>Match save state without re-running dialogue or unlock (used when loading or syncing).</summary>
+    public void ApplyPersistedSolvedVisuals()
+    {
+        puzzleSolved = true;
+        if (puzzleGroupsParent != null)
+            puzzleGroupsParent.SetActive(false);
+        if (finalResultImage != null)
+        {
+            Color c = finalResultImage.color;
+            c.a = 1f;
+            finalResultImage.color = c;
+            finalResultImage.rectTransform.localScale = Vector3.one * 3f;
+        }
     }
 
     IEnumerator ShowCompletion()
@@ -90,11 +138,38 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         finalResultImage.rectTransform.localScale = startScale;
         while(t < duration)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             float n = t / duration;
             finalResultImage.rectTransform.localScale = Vector3.Lerp(startScale, endScale, n);
             yield return null;
         }
         finalResultImage.rectTransform.localScale = endScale;
+
+        if (puzzleInteractable != null && SaveSystem.Instance != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+            SaveSystem.Instance.UnlockPuzzle(puzzleInteractable.puzzleID);
+
+        if (solveDialogue != null && DialogueSystem.Instance != null)
+        {
+            // Dialogue typing uses scaled time; puzzle leaves Time.timeScale at 0 until now.
+            Time.timeScale = 1f;
+            DialogueSystem.Instance.OnDialogueEnded += HandleSolveDialogueEnded;
+            DialogueSystem.Instance.StartDialogue(solveDialogue);
+        }
+        else if (puzzleInteractable != null)
+        {
+            puzzleInteractable.ClosePuzzle();
+        }
+    }
+
+    private void HandleSolveDialogueEnded(DialogueAsset asset)
+    {
+        if (asset != solveDialogue)
+            return;
+
+        if (DialogueSystem.Instance != null)
+            DialogueSystem.Instance.OnDialogueEnded -= HandleSolveDialogueEnded;
+
+        if (puzzleInteractable != null)
+            puzzleInteractable.ClosePuzzle();
     }
 }

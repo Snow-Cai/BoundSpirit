@@ -30,7 +30,16 @@ public class SafeControllerKeypad : MonoBehaviour
     public UnityEngine.Events.UnityEvent onUnlock;
     public UnityEngine.Events.UnityEvent onFail;
 
+    [Header("Save")]
+    [Tooltip("If set, SaveSystem.UnlockPuzzle is called when the safe opens (for door gates / progression).")]
+    public string savePuzzleIdWhenUnlocked;
+
+    [Header("Dialogue")]
+    [Tooltip("Played once when the correct code succeeds (after knob turn), not when opening the safe.")]
+    public DialogueAsset dialogueOnUnlock;
+
     private StringBuilder currentInput = new StringBuilder();
+    private bool hasUnlockedSuccessfully;
 
     public void OnDigitPressed(string digit)
     {
@@ -105,12 +114,38 @@ public class SafeControllerKeypad : MonoBehaviour
 
     void HandleUnlock()         //unlock on success
     {
+        if (hasUnlockedSuccessfully)
+            return;
+        hasUnlockedSuccessfully = true;
+
         if (successLight != null)
             successLight.color = UnityEngine.Color.green;
         inputText.text = "UNLOCKED";
-        if (knob != null)
-            StartCoroutine(RotateKnob());
+
+        if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.UnlockPuzzle(savePuzzleIdWhenUnlocked);
+        }
+
         onUnlock?.Invoke();
+
+        if (knob != null)
+            StartCoroutine(UnlockAfterKnobRoutine());
+        else
+            PlaySolveDialogueIfConfigured();
+    }
+
+    IEnumerator UnlockAfterKnobRoutine()
+    {
+        yield return StartCoroutine(RotateKnob());
+        PlaySolveDialogueIfConfigured();
+    }
+
+    void PlaySolveDialogueIfConfigured()
+    {
+        if (dialogueOnUnlock == null || DialogueSystem.Instance == null)
+            return;
+        DialogueSystem.Instance.StartDialogue(dialogueOnUnlock);
     }
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe

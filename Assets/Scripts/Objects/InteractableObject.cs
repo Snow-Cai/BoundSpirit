@@ -102,6 +102,8 @@ public class InteractableObject : MonoBehaviour
         {
             if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
             {
+                if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+                    return;
                 ClosePuzzle();
             }
 
@@ -215,6 +217,13 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
+            if (SaveSystem.Instance != null &&
+                !string.IsNullOrEmpty(puzzleID) &&
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID))
+            {
+                yield break;
+            }
+
             OpenPuzzle();
             yield break;
         }
@@ -247,7 +256,7 @@ public class InteractableObject : MonoBehaviour
     }
 
 
-    void ClosePuzzle()
+    public void ClosePuzzle()
     {
         if (loginPuzzle != null)
         {

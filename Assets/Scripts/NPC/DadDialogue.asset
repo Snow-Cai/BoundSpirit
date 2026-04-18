@@ -33,6 +33,10 @@ MonoBehaviour:
   - speakerName: Akila
     dialogueText: I miss you too, Dad.
     voiceClip: {fileID: 0}
+  - speakerName: Dad
+    dialogueText: I need to find her password. I can't have her name be tainted.
+      She needs to rest in peace.
+    voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
