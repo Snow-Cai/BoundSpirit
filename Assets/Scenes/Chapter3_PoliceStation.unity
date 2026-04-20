@@ -2466,6 +2466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanToggleInventory: 1
+  AllowInspect: 1
 --- !u!4 &437058704
 Transform:
   m_ObjectHideFlags: 0
@@ -8175,7 +8177,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 74
   m_TargetDisplay: 0
 --- !u!224 &879472567
 RectTransform:
@@ -9258,9 +9260,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.99913573
-    height: 0.9694794
+    y: 0.01438849
+    width: 1
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -12325,6 +12327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1

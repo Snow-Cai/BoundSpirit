@@ -44,6 +44,7 @@ public class CutsceneController : MonoBehaviour
                 camFollow.enabled = true;
             if (charMovement != null)
                 charMovement.enabled = true;
+            InputLock.Instance.CanToggleInventory = true;
 
             IsCutsceneActive = false;
         }
@@ -57,6 +58,7 @@ public class CutsceneController : MonoBehaviour
             charMovement.enabled = false;
         if (camFollow != null)       //disable CameraFollow during cutscene
             camFollow.enabled = false;
+        InputLock.Instance.CanToggleInventory = false;
 
         //Play the Timeline if it exists
         if (cutsceneTimeline != null)
@@ -78,7 +80,7 @@ public class CutsceneController : MonoBehaviour
             camFollow.enabled = true;   //re-enable camera follow
         if (charMovement != null)
             charMovement.enabled = true;   //Re-enable player movement
-
+        InputLock.Instance.CanToggleInventory = true;
         IsCutsceneActive = false;
     }
 

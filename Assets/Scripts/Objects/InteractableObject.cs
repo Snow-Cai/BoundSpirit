@@ -252,6 +252,7 @@ public class InteractableObject : MonoBehaviour
         playerInRange = false;
         HidePrompt();
         SetGameplayInputEnabled(false);
+        InputLock.Instance.CanToggleInventory = false;
         Time.timeScale = 0f;
     }
 
@@ -270,6 +271,7 @@ public class InteractableObject : MonoBehaviour
 
         isPuzzleOpen = false;
         SetGameplayInputEnabled(true);
+        InputLock.Instance.CanToggleInventory = true;
         Time.timeScale = 1f;
   
     }

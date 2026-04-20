@@ -106,6 +106,7 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnPointerClick(PointerEventData eventData)
     {
         if (InspectUI.Instance != null && InspectUI.Instance.IsOpen) return;
+        if (!InputLock.Instance.AllowInspect) return;
         if (dragIcon != null) return;
         Debug.Log("Slot clicked!");
         if (item != null && item.canInspect)

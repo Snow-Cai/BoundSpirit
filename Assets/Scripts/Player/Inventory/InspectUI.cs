@@ -36,6 +36,7 @@ public class InspectUI : MonoBehaviour
         dimBG.SetActive(true);
 
         TooltipUI.Instance.Hide();          // Hide tooltip after opening the inspect screen
+        InputLock.Instance.CanToggleInventory = false;
     }
 
     public void Close()
@@ -45,5 +46,6 @@ public class InspectUI : MonoBehaviour
         dimBG.SetActive(false);
         if (inventoryUI != null)
             inventoryUI.SetVisible(true);
+        InputLock.Instance.CanToggleInventory = true;
     }
 }

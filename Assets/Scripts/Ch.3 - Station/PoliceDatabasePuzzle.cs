@@ -29,9 +29,24 @@ public class PoliceDatabasePuzzle : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!hasPlayedFirstDialogue)
-            DialogueSystem.Instance.QueueDialogue(interactDialogue);
         hasFocused = false;
+        StartCoroutine(BeginPuzzleFlow());
+    }
+
+    private IEnumerator BeginPuzzleFlow()
+    {
+        if (!hasPlayedFirstDialogue)
+        {
+            DialogueSystem.Instance.QueueDialogue(interactDialogue);
+
+            while (GameInputState.DialogueActive)
+            {
+                yield return null;
+            }
+
+            hasPlayedFirstDialogue = true;
+        }
+        InputLock.Instance.CanToggleInventory = false;
         StartCoroutine(FocusNameField());
     }
 
@@ -104,6 +119,7 @@ public class PoliceDatabasePuzzle : MonoBehaviour
         if (InputLock.Instance != null)
         {
             InputLock.Instance.GameplayInputEnabled = true;
+            InputLock.Instance.CanToggleInventory = true;
         }
         Time.timeScale = 1f;
         DialogueSystem.Instance.QueueDialogue(alarmEventTriggeredDialogue);

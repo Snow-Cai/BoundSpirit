@@ -76,6 +76,10 @@ public class GhostOfferUI : MonoBehaviour
 
         GameInputState.DialogueActive = true;
         SetGameplayInputEnabled(false);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = false;
+        }
     }
 
     public void Close()
@@ -92,6 +96,10 @@ public class GhostOfferUI : MonoBehaviour
 
         GameInputState.DialogueActive = false;
         SetGameplayInputEnabled(true);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = true;
+        }
     }
 
     private static void SetGameplayInputEnabled(bool enabled)
@@ -115,6 +123,9 @@ public class GhostOfferUI : MonoBehaviour
             Debug.LogWarning("GhostOfferUI: Tried to offer a null item.");
             return;
         }
+
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
 
         GhostHintNPC targetGhost = currentGhost;
 

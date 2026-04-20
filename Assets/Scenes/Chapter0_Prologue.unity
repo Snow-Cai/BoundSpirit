@@ -7603,6 +7603,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 249432485}
 --- !u!61 &249432483
@@ -9989,6 +9990,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 670987756}
 --- !u!212 &670987754
@@ -26078,6 +26080,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanOpenInventory: 1
+  AllowInspect: 1
 --- !u!4 &1507892794
 Transform:
   m_ObjectHideFlags: 0
@@ -32912,6 +32916,7 @@ MonoBehaviour:
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
   pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 1748752413}
 --- !u!212 &1748752411

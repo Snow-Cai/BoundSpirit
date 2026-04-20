@@ -200,6 +200,7 @@ public class DialogueSystem : MonoBehaviour
             currentDialogue = null;
             State = DialogueState.Inactive;
             GameInputState.DialogueActive = false;
+            InputLock.Instance.CanToggleInventory = true;
             return;
         }
 
@@ -208,6 +209,7 @@ public class DialogueSystem : MonoBehaviour
 
         State = DialogueState.PlayingLine;
         GameInputState.DialogueActive = true;
+        InputLock.Instance.CanToggleInventory = false;
 
         TryNotifyDialogueStarted(currentDialogue);
         OnDialogueStarted?.Invoke(currentDialogue);
