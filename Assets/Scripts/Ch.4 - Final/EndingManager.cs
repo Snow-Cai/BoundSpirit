@@ -98,11 +98,6 @@ public class EndingManager : MonoBehaviour
         if (InputLock.Instance != null)
             InputLock.Instance.GameplayInputEnabled = false;
 
-        string choiceDialogueId = finalChoiceDialogue != null ? finalChoiceDialogue.dialogueID : string.Empty;
-        int previousChoice = -1;
-        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(choiceDialogueId))
-            previousChoice = SaveSystem.Instance.GetDialogueChoice(choiceDialogueId);
-
         DialogueAsset choiceDialogue = finalChoiceDialogue != null
             ? finalChoiceDialogue
             : forgiveEndingDialogue;
@@ -112,7 +107,7 @@ public class EndingManager : MonoBehaviour
 
         yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
 
-        EndingType ending = ResolveSelectedEnding(choiceDialogueId, previousChoice);
+        EndingType ending = ResolveSelectedEnding();
         Debug.Log("EndingManager: Selected ending -> " + ending);
 
         DialogueAsset endingDialogue = GetDialogueForEnding(ending);
@@ -135,13 +130,13 @@ public class EndingManager : MonoBehaviour
         gateSequenceActive = false;
     }
 
-    private EndingType ResolveSelectedEnding(string choiceDialogueId, int previousChoice)
+    private EndingType ResolveSelectedEnding()
     {
-        if (SaveSystem.Instance == null || string.IsNullOrEmpty(choiceDialogueId))
+        if (DialogueSystem.Instance == null)
             return EndingType.Forgive;
 
-        int selectedChoice = SaveSystem.Instance.GetDialogueChoice(choiceDialogueId);
-        if (selectedChoice < 0 || selectedChoice == previousChoice)
+        int selectedChoice = DialogueSystem.Instance.LastSelectedChoiceIndex;
+        if (selectedChoice < 0)
             return EndingType.Forgive;
 
         switch (selectedChoice)

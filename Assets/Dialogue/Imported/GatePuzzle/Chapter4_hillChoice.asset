@@ -10,15 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Graveyard_AscendingDoorRepeat
+  m_Name: Chapter4_hillChoice
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Chapter4_hillChoiceRepeat
+  dialogueID: Chapter4_hillChoice
   lines:
   - speakerName: Akila
-    dialogueText: I still have something to say.
+    dialogueText: This is where I ended.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: This hill remembers what happened here. I do too.
+    dialogueText: 'I''ve been blaming Eden this whole time. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: Since I woke up, I kept thinking - something was done to me. I
+      was a victim.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: 'But I walked up this hill with a knife. She was defending herself. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: And all I could think about was how much I loved her. I thought
+      love made it okay.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: Eden. I don't know if you can hear me. But I need to say something.
     voiceClip: {fileID: 0}
   choices:
   - choiceText: I'm sorry. For all of it.

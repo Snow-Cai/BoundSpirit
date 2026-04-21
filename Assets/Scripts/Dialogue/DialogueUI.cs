@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
-    private const float ChoiceButtonHeight = 48f;
+    private const float ChoiceButtonHeight = 50f;
     private const float ChoiceButtonSpacing = 10f;
-    private const float ChoiceContainerHorizontalPadding = 24f;
-    private const float ChoiceContainerTopPadding = 16f;
+    private const float ChoiceContainerHorizontalPadding = 8f;
+    private const float ChoiceContainerTopPadding = 12f;
 
     [Header("UI References")]
     [SerializeField] private GameObject dialogueBox;
@@ -210,6 +210,10 @@ public class DialogueUI : MonoBehaviour
             if (tmpText != null)
             {
                 tmpText.text = choice.choiceText;
+                tmpText.enableAutoSizing = true;
+                tmpText.fontSizeMin = 20f;
+                tmpText.fontSizeMax = 28f;
+                tmpText.alignment = TextAlignmentOptions.Center;
             }
 
             ConfigureChoiceButtonLayout(button, availableChoiceCount);
@@ -285,13 +289,16 @@ public class DialogueUI : MonoBehaviour
 
     private bool ResolveFlag(string flagName)
     {
-        if (string.IsNullOrWhiteSpace(flagName) || SaveSystem.Instance == null)
+        if (string.IsNullOrWhiteSpace(flagName))
             return false;
 
         if (string.Equals(flagName, "foundHiddenTombstone", System.StringComparison.OrdinalIgnoreCase))
         {
             if (EndingManager.Instance != null)
                 return EndingManager.Instance.HasHiddenTombstoneForEnding();
+
+            if (SaveSystem.Instance == null)
+                return false;
 
             return SaveSystem.Instance.FoundHiddenTombstone();
         }
@@ -301,8 +308,14 @@ public class DialogueUI : MonoBehaviour
             if (EndingManager.Instance != null)
                 return EndingManager.Instance.HasMenuSecretForEnding();
 
+            if (SaveSystem.Instance == null)
+                return false;
+
             return SaveSystem.Instance.FoundMenuSecret();
         }
+
+        if (SaveSystem.Instance == null)
+            return false;
 
         if (System.Enum.TryParse(flagName, true, out StoryFlags.Flag storyFlag))
             return StoryFlags.IsSet(storyFlag);
