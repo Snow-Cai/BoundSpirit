@@ -56,6 +56,7 @@ public class SaveSystem : MonoBehaviour
 
     private SaveData currentSave;
     private const string SAVE_KEY = "GameSave";
+    private const string MENU_SECRET_KEY = "FoundMenuSecret";
     private bool isTransitioning = false;
 
     void Awake()
@@ -186,12 +187,14 @@ public class SaveSystem : MonoBehaviour
         {
             string json = PlayerPrefs.GetString(SAVE_KEY);
             currentSave = JsonUtility.FromJson<SaveData>(json);
+            currentSave.foundMenuSecret = currentSave.foundMenuSecret || PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("Game Loaded!");
         }
         else
         {
             //Create new save if none exists
             currentSave = new SaveData();
+            currentSave.foundMenuSecret = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("No save found. Creating new save.");
         }
     }
@@ -317,9 +320,11 @@ public class SaveSystem : MonoBehaviour
 
     public void DeleteSave()
     {
+        bool preserveMenuSecret = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
         PlayerPrefs.DeleteKey(SAVE_KEY);
         PlayerPrefs.Save();
         currentSave = new SaveData();
+        currentSave.foundMenuSecret = preserveMenuSecret;
         Debug.Log("Save deleted!");
     }
 
@@ -474,17 +479,21 @@ public class SaveSystem : MonoBehaviour
 
     public bool FoundMenuSecret()
     {
-        return currentSave != null && currentSave.foundMenuSecret;
+        return (currentSave != null && currentSave.foundMenuSecret) ||
+               PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
     }
 
     public void SetFoundMenuSecret(bool value = true)
     {
         if (currentSave == null) currentSave = new SaveData();
 
-        if (currentSave.foundMenuSecret == value)
+        bool persistedValue = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
+        if (currentSave.foundMenuSecret == value && persistedValue == value)
             return;
 
         currentSave.foundMenuSecret = value;
+        PlayerPrefs.SetInt(MENU_SECRET_KEY, value ? 1 : 0);
+        PlayerPrefs.Save();
         SaveGame();
     }
 

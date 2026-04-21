@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter0_ghostBlockedBeforeGateClue
+  m_Name: Graveyard_AscendingDoorRepeat
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Chapter0_ghostBlockedBeforeGateClue
+  dialogueID: Graveyard_AscendingDoorRepeat
   lines:
   - speakerName: Akila
-    dialogueText: I don't want to talk to the ghost right now. I just want to get
-      out of here.
+    dialogueText: It's still not allowing me to pass.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

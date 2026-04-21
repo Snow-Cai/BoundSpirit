@@ -210,7 +210,7 @@ public class EndingManager : MonoBehaviour
 
             default:
                 title = "FOUND SPIRIT";
-                subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit a grave with oranges and apples, because those were her favorites.\n\nAkila *last name*. 2001-2019. Loving daughter.";
+                subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit a grave with oranges and apples, because those were her favorites.\n\nAkila. 2001-2019. Loving daughter.";
                 break;
         }
     }

@@ -35,21 +35,21 @@ MonoBehaviour:
     dialogueText: Eden. I don't know if you can hear me. But I need to say something.
     voiceClip: {fileID: 0}
   choices:
-  - choiceText: I'm sorry. For all of it.
+  - choiceText: I'm sorry
     nextDialogue: {fileID: 0}
     requiredFlags: []
     forbiddenFlags: []
     onChoiceSelected:
       m_PersistentCalls:
         m_Calls: []
-  - choiceText: You took everything from me.
+  - choiceText: You took everything
     nextDialogue: {fileID: 0}
     requiredFlags: []
     forbiddenFlags: []
     onChoiceSelected:
       m_PersistentCalls:
         m_Calls: []
-  - choiceText: There's somewhere else I need to go.
+  - choiceText: I need to go
     nextDialogue: {fileID: 0}
     requiredFlags:
     - foundMenuSecret
