@@ -15,8 +15,15 @@ MonoBehaviour:
   dialogueID: ending_forgive
   lines:
   - speakerName: Akila
-    dialogueText: I understand now. I was so consumed by her that I forgot who I
-      was. It's time to let go.
+    dialogueText: I'm sorry. For all of it.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I thought what I felt was love. But love doesn't chase someone.
+      Love doesn't follow. Love doesn't show up with a knife.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: You deserved to feel safe. You deserved to say no without being
+      afraid. I'm sorry I made you afraid.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

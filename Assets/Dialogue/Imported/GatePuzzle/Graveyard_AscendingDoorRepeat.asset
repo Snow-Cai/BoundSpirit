@@ -12,12 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
   m_Name: Graveyard_AscendingDoorRepeat
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Graveyard_AscendingDoorRepeat
+  dialogueID: Chapter4_hillChoiceRepeat
   lines:
   - speakerName: Akila
-    dialogueText: It's still not allowing me to pass.
+    dialogueText: I still have something to say.
     voiceClip: {fileID: 0}
-  choices: []
+  - speakerName: Akila
+    dialogueText: This hill remembers what happened here. I do too.
+    voiceClip: {fileID: 0}
+  choices:
+  - choiceText: I'm sorry. For all of it.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - choiceText: You took everything from me.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - choiceText: There's somewhere else I need to go.
+    nextDialogue: {fileID: 0}
+    requiredFlags:
+    - foundMenuSecret
+    - foundHiddenTombstone
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1

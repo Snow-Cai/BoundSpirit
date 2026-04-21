@@ -1,46 +1,43 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
-//Determines and triggers one of three endings based on story flags in SaveSystem
-///Attach to a persistent GameObject or the ending scene
-//ENDINGS:
-//Revenge  - edenRevealed = true, truthRevealed = false  -> cannot ascend, stays as ghost
-//Forgive  - truthRevealed = true, knowsPlayerIsDead = true -> ascends peacefully
-//Secret   - all three flags true + solvedPuzzles contains "secret_ending_unlocked"
-//call TriggerEnding() from AfterlifeGateEnding.cs when player interacts with gate
+// Runs the Chapter 4 hill choice flow and its end card sequence.
 public class EndingManager : MonoBehaviour
 {
     public static EndingManager Instance { get; private set; }
 
+    [Header("Choice Entry")]
+    [Tooltip("Dialogue played when the player interacts with the hill gate.")]
+    public DialogueAsset finalChoiceDialogue;
+
     [Header("Ending Dialogue Assets")]
-    [Tooltip("Akila refuses to forgive Eden. Cannot pass through the gate.")]
     public DialogueAsset revengeEndingDialogue;
-
-    [Tooltip("Akila forgives Eden and herself. Ascends peacefully.")]
     public DialogueAsset forgiveEndingDialogue;
-
-    [Tooltip("Secret ending - Akila realises she was the cause of everything.")]
     public DialogueAsset secretEndingDialogue;
 
     [Header("End Screen")]
-    [Tooltip("Canvas Group covering the whole screen for the end card.")]
     public CanvasGroup endScreenCanvas;
-
-    [Tooltip("How long to fade into the end screen after dialogue finishes.")]
     public float fadeInDuration = 2f;
-
-    [Tooltip("How long the end screen stays visible before returning to menu.")]
     public float endScreenHoldDuration = 5f;
-
-    [Tooltip("Scene name to load after end screen. Usually your main menu.")]
     public string returnToScene = "MenuScene";
 
-    [Header("End Screen Text (optional)")]
-    public TMPro.TextMeshProUGUI endingTitleText;
-    public TMPro.TextMeshProUGUI endingSubtitleText;
+    [Header("End Screen Text")]
+    public TextMeshProUGUI endingTitleText;
+    public TextMeshProUGUI endingSubtitleText;
 
-    private bool endingTriggered = false;
+    [Header("Secret Ending Debug")]
+    [Tooltip("Use the inspector flags below instead of save data when testing Chapter 4 in the editor.")]
+    public bool overrideSecretFlagsInInspector = false;
+
+    [Tooltip("Debug-only stand in for SaveSystem.foundMenuSecret.")]
+    public bool inspectorFoundMenuSecret = false;
+
+    [Tooltip("Debug-only stand in for SaveSystem.foundHiddenTombstone.")]
+    public bool inspectorFoundHiddenTombstone = false;
+
+    private bool gateSequenceActive;
 
     private void Awake()
     {
@@ -49,9 +46,9 @@ public class EndingManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
 
-        //Hide end screen at start
         if (endScreenCanvas != null)
         {
             endScreenCanvas.alpha = 0f;
@@ -59,114 +56,196 @@ public class EndingManager : MonoBehaviour
         }
     }
 
-    //Call when the player interacts with the afterlife gate at the end
-    //reads story flags from SaveSystem and picks the correct ending
     public void TriggerEnding()
     {
-        if (endingTriggered) return;
-        endingTriggered = true;
+        if (gateSequenceActive)
+            return;
 
-        EndingType ending = DetermineEnding();
-        Debug.Log("ENDING: Triggering ending -> " + ending);
+        if (DialogueSystem.Instance == null)
+        {
+            Debug.LogWarning("EndingManager: DialogueSystem missing.");
+            return;
+        }
 
-        StartCoroutine(PlayEnding(ending));
+        StartCoroutine(RunEndingSequence());
     }
 
-    private EndingType DetermineEnding()
+    public bool HasMenuSecretForEnding()
     {
-        if (SaveSystem.Instance == null) return EndingType.Forgive;
+        if (overrideSecretFlagsInInspector)
+            return inspectorFoundMenuSecret;
 
-        SaveData data = SaveSystem.Instance.GetSaveData();
-
-        //Secret ending: knows everything AND explicitly unlocked
-        bool secretUnlocked = SaveSystem.Instance.IsPuzzleSolved("secret_ending_unlocked");
-        if (data.truthRevealed && data.edenRevealed && data.knowsPlayerIsDead && secretUnlocked)
-            return EndingType.Secret;
-
-        //Forgive ending: Akila has accepted the full truth
-        if (data.truthRevealed && data.knowsPlayerIsDead)
-            return EndingType.Forgive;
-
-        //Revenge ending: knows Eden killed her but hasn't accepted truth
-        if (data.edenRevealed && !data.truthRevealed)
-            return EndingType.Revenge;
-
-        //forgive if flags are incomplete (failsafe)
-        return EndingType.Forgive;
+        return SaveSystem.Instance != null && SaveSystem.Instance.FoundMenuSecret();
     }
 
-    private IEnumerator PlayEnding(EndingType ending)
+    public bool HasHiddenTombstoneForEnding()
     {
-        //block player input during ending
+        if (overrideSecretFlagsInInspector)
+            return inspectorFoundHiddenTombstone;
+
+        return SaveSystem.Instance != null && SaveSystem.Instance.FoundHiddenTombstone();
+    }
+
+    public bool HasSecretEndingRequirements()
+    {
+        return HasMenuSecretForEnding() && HasHiddenTombstoneForEnding();
+    }
+
+    private IEnumerator RunEndingSequence()
+    {
+        gateSequenceActive = true;
+
         if (InputLock.Instance != null)
             InputLock.Instance.GameplayInputEnabled = false;
 
-        //pick the right dialogue asset
-        DialogueAsset chosenDialogue = null;
-        string titleText = "";
-        string subtitleText = "";
+        string choiceDialogueId = finalChoiceDialogue != null ? finalChoiceDialogue.dialogueID : string.Empty;
+        int previousChoice = -1;
+        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(choiceDialogueId))
+            previousChoice = SaveSystem.Instance.GetDialogueChoice(choiceDialogueId);
 
-        switch (ending)
+        DialogueAsset choiceDialogue = finalChoiceDialogue != null
+            ? finalChoiceDialogue
+            : forgiveEndingDialogue;
+
+        Debug.Log("EndingManager: Starting final choice dialogue.");
+        DialogueSystem.Instance.StartDialogue(choiceDialogue);
+
+        yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+
+        EndingType ending = ResolveSelectedEnding(choiceDialogueId, previousChoice);
+        Debug.Log("EndingManager: Selected ending -> " + ending);
+
+        DialogueAsset endingDialogue = GetDialogueForEnding(ending);
+        if (endingDialogue != null)
         {
-            case EndingType.Revenge:
-                chosenDialogue = revengeEndingDialogue;
-                titleText = "BOUND";
-                subtitleText = "Some souls are too heavy to let go.";
-                break;
-
-            case EndingType.Forgive:
-                chosenDialogue = forgiveEndingDialogue;
-                titleText = "AT PEACE";
-                subtitleText = "She finally let herself rest.";
-                break;
-
-            case EndingType.Secret:
-                chosenDialogue = secretEndingDialogue;
-                titleText = "THE TRUTH";
-                subtitleText = "The only person who could have saved her... was herself.";
-                break;
-        }
-
-        //play ending dialogue then wait for it to finish
-        if (DialogueSystem.Instance != null && chosenDialogue != null)
-        {
-            DialogueSystem.Instance.StartDialogue(chosenDialogue);
-
-            //wait until dialogue is done
+            DialogueSystem.Instance.StartDialogue(endingDialogue);
             yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
         }
 
-        //small beat before the end screen
-        yield return new WaitForSeconds(1f);
+        ApplyEndingPersistence(ending);
 
-        //show end screen
+        string titleText;
+        string subtitleText;
+        GetEndingCardText(ending, out titleText, out subtitleText);
         yield return StartCoroutine(ShowEndScreen(titleText, subtitleText));
+
+        if (InputLock.Instance != null)
+            InputLock.Instance.GameplayInputEnabled = true;
+
+        gateSequenceActive = false;
+    }
+
+    private EndingType ResolveSelectedEnding(string choiceDialogueId, int previousChoice)
+    {
+        if (SaveSystem.Instance == null || string.IsNullOrEmpty(choiceDialogueId))
+            return EndingType.Forgive;
+
+        int selectedChoice = SaveSystem.Instance.GetDialogueChoice(choiceDialogueId);
+        if (selectedChoice < 0 || selectedChoice == previousChoice)
+            return EndingType.Forgive;
+
+        switch (selectedChoice)
+        {
+            case 1:
+                return EndingType.Revenge;
+            case 2:
+                return EndingType.Secret;
+            default:
+                return EndingType.Forgive;
+        }
+    }
+
+    private DialogueAsset GetDialogueForEnding(EndingType ending)
+    {
+        switch (ending)
+        {
+            case EndingType.Revenge:
+                return revengeEndingDialogue;
+            case EndingType.Secret:
+                return secretEndingDialogue;
+            default:
+                return forgiveEndingDialogue;
+        }
+    }
+
+    private void ApplyEndingPersistence(EndingType ending)
+    {
+        if (SaveSystem.Instance == null)
+            return;
+
+        SaveData data = SaveSystem.Instance.GetSaveData();
+        if (data == null)
+            return;
+
+        data.currentChapter = Mathf.Max(data.currentChapter, 4);
+        data.currentScene = SceneManager.GetActiveScene().name;
+
+        if (ending == EndingType.Forgive)
+        {
+            data.truthRevealed = true;
+            data.knowsPlayerIsDead = true;
+        }
+        else if (ending == EndingType.Revenge)
+        {
+            data.edenRevealed = true;
+        }
+        else if (ending == EndingType.Secret)
+        {
+            data.truthRevealed = true;
+            data.edenRevealed = true;
+            data.knowsPlayerIsDead = true;
+        }
+
+        SaveSystem.Instance.SaveGame();
+    }
+
+    private void GetEndingCardText(EndingType ending, out string title, out string subtitle)
+    {
+        switch (ending)
+        {
+            case EndingType.Revenge:
+                title = "BOUND SPIRIT";
+                subtitle = "Akila never moved on.\n\nSome nights, people in Hillside say they see something near the old cemetery - a faint light, moving between the headstones. It's always alone.";
+                break;
+
+            case EndingType.Secret:
+                title = "FOUND";
+                subtitle = "Some things can only be forgiven between the people involved.\n\nNeither of them was just a villain. Neither of them was just a victim. They were two people who didn't know how to say the hard things. They learned, eventually. Some things take longer than a lifetime.";
+                break;
+
+            default:
+                title = "FOUND SPIRIT";
+                subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit a grave with oranges and apples, because those were her favorites.\n\nAkila *last name*. 2001-2019. Loving daughter.";
+                break;
+        }
     }
 
     private IEnumerator ShowEndScreen(string title, string subtitle)
     {
-        if (endScreenCanvas == null) yield break;
+        if (endScreenCanvas == null)
+        {
+            SceneManager.LoadScene(returnToScene);
+            yield break;
+        }
 
-        //set text before fading in
-        if (endingTitleText != null) endingTitleText.text = title;
-        if (endingSubtitleText != null) endingSubtitleText.text = subtitle;
+        if (endingTitleText != null)
+            endingTitleText.text = title;
+        if (endingSubtitleText != null)
+            endingSubtitleText.text = subtitle;
 
         endScreenCanvas.gameObject.SetActive(true);
 
-        //Fade in
-        float t = 0f;
-        while (t < fadeInDuration)
+        float elapsed = 0f;
+        while (elapsed < fadeInDuration)
         {
-            t += Time.deltaTime;
-            endScreenCanvas.alpha = Mathf.Clamp01(t / fadeInDuration);
+            elapsed += Time.unscaledDeltaTime;
+            endScreenCanvas.alpha = Mathf.Clamp01(elapsed / fadeInDuration);
             yield return null;
         }
+
         endScreenCanvas.alpha = 1f;
+        yield return new WaitForSecondsRealtime(endScreenHoldDuration);
 
-        //Hold
-        yield return new WaitForSeconds(endScreenHoldDuration);
-
-        //Return to menu
         Time.timeScale = 1f;
         SceneManager.LoadScene(returnToScene);
     }

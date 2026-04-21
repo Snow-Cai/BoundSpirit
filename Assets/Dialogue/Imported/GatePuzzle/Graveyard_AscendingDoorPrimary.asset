@@ -12,19 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
   m_Name: Graveyard_AscendingDoorPrimary
   m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Graveyard_AscendingDoorPrimary
+  dialogueID: Chapter4_hillChoice
   lines:
   - speakerName: Akila
-    dialogueText: This door... I think it is calling for me. Is this where I should
-      go?
+    dialogueText: This is where I ended.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: But I can't get through. There's something stopping me.
+    dialogueText: I've been blaming Eden this whole time. Since I woke up, I kept
+      thinking - something was done to me. I was a victim.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I'm missing something.
+    dialogueText: But I walked up this hill with a knife. She was defending herself.
+      And all I could think about was how much I loved her. I thought love made it
+      okay.
     voiceClip: {fileID: 0}
-  choices: []
+  - speakerName: Akila
+    dialogueText: Eden. I don't know if you can hear me. But I need to say something.
+    voiceClip: {fileID: 0}
+  choices:
+  - choiceText: I'm sorry. For all of it.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - choiceText: You took everything from me.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - choiceText: There's somewhere else I need to go.
+    nextDialogue: {fileID: 0}
+    requiredFlags:
+    - foundMenuSecret
+    - foundHiddenTombstone
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1

@@ -43,6 +43,7 @@ public class SaveData
     public bool knowsNameIsAkila;
     public bool edenRevealed;
     public bool truthRevealed;
+    public bool foundMenuSecret;
     public bool foundHiddenTombstone;
 
     //Timestamps
@@ -469,6 +470,22 @@ public class SaveSystem : MonoBehaviour
     public bool FoundHiddenTombstone()
     {
         return currentSave != null && currentSave.foundHiddenTombstone;
+    }
+
+    public bool FoundMenuSecret()
+    {
+        return currentSave != null && currentSave.foundMenuSecret;
+    }
+
+    public void SetFoundMenuSecret(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+
+        if (currentSave.foundMenuSecret == value)
+            return;
+
+        currentSave.foundMenuSecret = value;
+        SaveGame();
     }
 
     public void SetFoundHiddenTombstone(bool value = true)

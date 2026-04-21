@@ -78,14 +78,23 @@ public class TitleKey : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         //B key easter egg swap sprite to F key
         if (isBKey && !easterEggTriggered)
         {
-            easterEggTriggered = true;
-
-            if (fKeySprite != null && keyImage != null)
-                keyImage.sprite = fKeySprite;
-
-            if (keyImage != null)
-                keyImage.color = easterEggColor;
+            ApplyFoundState();
+            SaveSystem.Instance?.SetFoundMenuSecret(true);
         }
+    }
+
+    public void ApplyFoundState()
+    {
+        if (easterEggTriggered)
+            return;
+
+        easterEggTriggered = true;
+
+        if (fKeySprite != null && keyImage != null)
+            keyImage.sprite = fKeySprite;
+
+        if (keyImage != null)
+            keyImage.color = easterEggColor;
     }
 
     private IEnumerator PressAnimation()

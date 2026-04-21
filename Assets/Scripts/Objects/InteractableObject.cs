@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour
     [Header("Dialogue")]
     public DialogueAsset objectDialogue;
     public bool hasDialogue = true;
+    [SerializeField] private bool triggerEndingSequence = false;
 
     [SerializeField] private bool playPrimaryOnlyOnce = false;
     [SerializeField] private DialogueAsset primaryDialogue;
@@ -316,8 +317,7 @@ public class InteractableObject : MonoBehaviour
         Debug.Log("HasEnoughForEnding: " + StoryFlags.HasEnoughForEnding());
         Debug.Log("EndingManager exists: " + (EndingManager.Instance != null));
 
-        // If this is the afterlife gate AND player has reached an ending
-        if (gameObject.CompareTag("AfterlifeGate") && StoryFlags.HasEnoughForEnding())
+        if (triggerEndingSequence)
         {
             if (EndingManager.Instance != null)
             {
