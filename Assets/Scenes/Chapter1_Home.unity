@@ -1124,17 +1124,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106522315}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1758146827}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00033950806, y: 0.0006855726}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -172, y: -5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106522320
 MonoBehaviour:
@@ -1149,33 +1149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 106522319}
-  group: {fileID: 1758146828}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -2.1629639, y: -2.6845703}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: -1.2802124, y: 1.2937012}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: -1.5940552, y: 2.3232727}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 0.4086914, y: 2.341339}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: -0.67510986, y: -2.8674316}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -2.0524292, y: -1.1537476}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: -0.21679688, y: -2.047882}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -1.9801636, y: 0.17608643}
-    connected: 0
+  correctPos: {x: 26, y: 5.7}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &109434992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,6 +2342,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -2861,17 +2838,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220996230}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2042065687}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0012969971, y: 0.000061035156}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 224.9, y: -88.4}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &220996235
 MonoBehaviour:
@@ -2886,33 +2863,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 220996234}
-  group: {fileID: 2042065688}
-  connections:
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 2.1629639, y: 2.6845703}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: 0.88275146, y: 3.9782715}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: 0.5689087, y: 5.007843}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 2.5716553, y: 5.0259094}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: 1.487854, y: -0.18286133}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: 0.11053467, y: 1.5308228}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 1.946167, y: 0.63668823}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: 0.1828003, y: 2.8606567}
-    connected: 0
+  correctPos: {x: -37.6, y: -72.7}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &225297257
 GameObject:
   m_ObjectHideFlags: 0
@@ -6291,57 +6244,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329238113}
   m_CullTransparentMesh: 1
---- !u!1 &329389517
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 329389518}
-  - component: {fileID: 329389519}
-  m_Layer: 5
-  m_Name: Group6
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &329389518
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329389517}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1372480252}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.5, y: -129.4}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &329389519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329389517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 329389518}
-  pieces: []
 --- !u!1001 &330322921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6805,57 +6707,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346225567}
   m_CullTransparentMesh: 1
---- !u!1 &347482547
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 347482548}
-  - component: {fileID: 347482549}
-  m_Layer: 5
-  m_Name: Group4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &347482548
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347482547}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1951109365}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34.8, y: -93.1}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &347482549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347482547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 347482548}
-  pieces: []
 --- !u!1 &355213360
 GameObject:
   m_ObjectHideFlags: 0
@@ -10685,17 +10536,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384130206}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2065836965}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00141716, y: 0.00019073486}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 133.3, y: 89.6}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &384130209
 MonoBehaviour:
@@ -10748,33 +10599,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 384130207}
-  group: {fileID: 2065836966}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -2.5716553, y: -5.0259094}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: -0.4086914, y: -2.341339}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: -1.6889038, y: -1.0476379}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: -2.0027466, y: -0.018066406}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: -1.0838013, y: -5.2087708}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -2.4611206, y: -3.4950867}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: -0.6254883, y: -4.389221}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -2.388855, y: -2.1652527}
-    connected: 0
+  correctPos: {x: 38.1, y: 74.6}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1001 &391476308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11150,11 +10977,11 @@ Transform:
   - {fileID: 1276532446}
   - {fileID: 883013064}
   - {fileID: 1412077240}
+  - {fileID: 493091664}
   - {fileID: 957601744}
   - {fileID: 1992049358}
   - {fileID: 431192193}
   - {fileID: 1465522969}
-  - {fileID: 493091664}
   - {fileID: 1793796481}
   - {fileID: 1252074711}
   m_Father: {fileID: 0}
@@ -11239,57 +11066,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
   m_PrefabInstance: {fileID: 622910806}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &433892260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 433892261}
-  - component: {fileID: 433892262}
-  m_Layer: 5
-  m_Name: Group7
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &433892261
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433892260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 775795437}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.2, y: 100.5}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &433892262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433892260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 433892261}
-  pieces: []
 --- !u!1 &434042748
 GameObject:
   m_ObjectHideFlags: 0
@@ -16628,57 +16404,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686075110}
   m_CullTransparentMesh: 1
---- !u!1 &690600990
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 690600991}
-  - component: {fileID: 690600992}
-  m_Layer: 5
-  m_Name: Group1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &690600991
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690600990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1787646226}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.5, y: -53.5}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &690600992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690600990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 690600991}
-  pieces: []
 --- !u!114 &690865393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -17534,17 +17259,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775795433}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 433892261}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0015716553, y: -0.00022888184}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 138.4, y: -114.6}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775795438
 MonoBehaviour:
@@ -17559,33 +17284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 775795437}
-  group: {fileID: 433892262}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -0.5689087, y: -5.007843}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 1.5940552, y: -2.3232727}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: 0.31384277, y: -1.0295715}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 2.0027466, y: 0.018066406}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: 0.9189453, y: -5.1907043}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -0.45837402, y: -3.4770203}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 1.3772583, y: -4.371155}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -0.3861084, y: -2.1471863}
-    connected: 0
+  correctPos: {x: -20.7, y: 73.4}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1001 &786700702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18203,6 +17904,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -18637,8 +18339,6 @@ MonoBehaviour:
   - {fileID: 775795438}
   - {fileID: 1462253596}
   - {fileID: 384130211}
-  snapDistance: 60
-  puzzleGroupsParent: {fileID: 1470961373}
   finalResultImage: {fileID: 1463141745}
   solveDialogue: {fileID: 11400000, guid: d8e4f1a2c3b4476598e7f6a5b4c3d201, type: 2}
   puzzleInteractable: {fileID: 2050588831}
@@ -19010,6 +18710,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -27610,17 +27311,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224090442}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1799638436}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0015602112, y: -0.000054359436}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -109.8, y: -128.3}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1224090447
 MonoBehaviour:
@@ -27635,33 +27336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 1224090446}
-  group: {fileID: 1799638437}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -0.1828003, y: -2.8606567}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 1.9801636, y: -0.17608643}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: 0.6999512, y: 1.1176147}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: 0.3861084, y: 2.1471863}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 2.388855, y: 2.1652527}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: 1.3050537, y: -3.043518}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -0.072265625, y: -1.329834}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 1.7633667, y: -2.2239685}
-    connected: 0
+  correctPos: {x: -32.1, y: 10.8}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &1224303651
 GameObject:
   m_ObjectHideFlags: 0
@@ -27911,6 +27588,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -28369,6 +28047,81 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
   m_PrefabInstance: {fileID: 1252074710}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1258110098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258110099}
+  - component: {fileID: 1258110101}
+  - component: {fileID: 1258110100}
+  m_Layer: 5
+  m_Name: Outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1258110099
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258110098}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470961374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1258110100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258110098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1433090270381742720, guid: 25a3813b47cfab844809d1f45a017a2d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1258110101
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258110098}
+  m_CullTransparentMesh: 1
 --- !u!1 &1266857953
 GameObject:
   m_ObjectHideFlags: 0
@@ -28548,6 +28301,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -28741,6 +28495,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -30441,17 +30196,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1372480248}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 329389518}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00047588348, y: 0.00011444092}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 236.4, y: 79.3}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372480253
 MonoBehaviour:
@@ -30466,33 +30221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 1372480252}
-  group: {fileID: 329389519}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -1.487854, y: 0.18286133}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 0.67510986, y: 2.8674316}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: -0.60510254, y: 4.161133}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: -0.9189453, y: 5.1907043}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 1.0838013, y: 5.2087708}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -1.3773193, y: 1.7136841}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 0.458313, y: 0.81954956}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -1.3050537, y: 3.043518}
-    connected: 0
+  correctPos: {x: 5.8, y: -77.3}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1001 &1380443521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31004,9 +30735,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.055755395
-    width: 0.27854672
-    height: 0.97122306
+    y: 0.005484461
+    width: 0.99912816
+    height: 0.98720294
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -31395,17 +31126,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462253591}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1654782395}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0005092621, y: -0.0002746582}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -279.2, y: -95.1}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462253596
 MonoBehaviour:
@@ -31420,33 +31151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 1462253595}
-  group: {fileID: 1654782396}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -0.88275146, y: -3.9782715}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 1.2802124, y: -1.2937012}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: -0.31384277, y: 1.0295715}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 1.6889038, y: 1.0476379}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: 0.60510254, y: -4.161133}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -0.7722168, y: -2.4474487}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 1.0634155, y: -3.3415833}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -0.6999512, y: -1.1176147}
-    connected: 0
+  correctPos: {x: -11.7, y: 43.4}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &1463141743
 GameObject:
   m_ObjectHideFlags: 0
@@ -31859,15 +31566,16 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 690600991}
-  - {fileID: 1799638436}
-  - {fileID: 1758146827}
-  - {fileID: 347482548}
-  - {fileID: 2042065687}
-  - {fileID: 329389518}
-  - {fileID: 433892261}
-  - {fileID: 1654782395}
-  - {fileID: 2065836965}
+  - {fileID: 1258110099}
+  - {fileID: 1787646226}
+  - {fileID: 1224090446}
+  - {fileID: 106522319}
+  - {fileID: 1951109365}
+  - {fileID: 220996234}
+  - {fileID: 1372480252}
+  - {fileID: 775795437}
+  - {fileID: 1462253595}
+  - {fileID: 384130207}
   m_Father: {fileID: 493091664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -32889,6 +32597,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -33559,6 +33268,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -34165,57 +33875,6 @@ Transform:
   - {fileID: 1217409815}
   m_Father: {fileID: 1092261930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1654782394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1654782395}
-  - component: {fileID: 1654782396}
-  m_Layer: 5
-  m_Name: Group8
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1654782395
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654782394}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1462253595}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.3, y: 54.9}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1654782396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654782394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1654782395}
-  pieces: []
 --- !u!1 &1672896526
 GameObject:
   m_ObjectHideFlags: 0
@@ -35498,57 +35157,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758119932}
   m_CullTransparentMesh: 1
---- !u!1 &1758146826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1758146827}
-  - component: {fileID: 1758146828}
-  m_Layer: 5
-  m_Name: Group3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1758146827
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758146826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 106522319}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 44.4, y: -2.4}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1758146828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1758146826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1758146827}
-  pieces: []
 --- !u!1 &1787646222
 GameObject:
   m_ObjectHideFlags: 0
@@ -35613,17 +35221,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1787646222}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 690600991}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0015449524, y: 0.00015258789}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 161.9, y: -29.7}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1787646227
 MonoBehaviour:
@@ -35638,33 +35246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 1787646226}
-  group: {fileID: 690600992}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -0.11053467, y: -1.5308228}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 2.0524292, y: 1.1537476}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: 0.7722168, y: 2.4474487}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: 0.45837402, y: 3.4770203}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 2.4611206, y: 3.4950867}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: 1.3773193, y: -1.7136841}
-    connected: 0
-  - otherPiece: {fileID: 1951109366}
-    expectedOffset: {x: 1.8356323, y: -0.8941345}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: 0.072265625, y: 1.329834}
-    connected: 0
+  correctPos: {x: -34.2, y: -27.8}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &1788713138
 GameObject:
   m_ObjectHideFlags: 0
@@ -36296,57 +35880,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799466600}
   m_CullTransparentMesh: 1
---- !u!1 &1799638435
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1799638436}
-  - component: {fileID: 1799638437}
-  m_Layer: 5
-  m_Name: Group2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1799638436
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799638435}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1224090446}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -43.3, y: 5.4}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1799638437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799638435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1799638436}
-  pieces: []
 --- !u!1 &1811977019
 GameObject:
   m_ObjectHideFlags: 0
@@ -38556,6 +38089,7 @@ MonoBehaviour:
   interactionRange: 1
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -38642,17 +38176,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951109361}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 347482548}
+  m_Father: {fileID: 1470961374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0011615753, y: -0.00077819824}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -149.5, y: 104.6}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951109366
 MonoBehaviour:
@@ -38667,33 +38201,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzlePiece
   rect: {fileID: 1951109365}
-  group: {fileID: 347482549}
-  connections:
-  - otherPiece: {fileID: 220996235}
-    expectedOffset: {x: -1.946167, y: -0.63668823}
-    connected: 0
-  - otherPiece: {fileID: 106522320}
-    expectedOffset: {x: 0.21679688, y: 2.047882}
-    connected: 0
-  - otherPiece: {fileID: 1462253596}
-    expectedOffset: {x: -1.0634155, y: 3.3415833}
-    connected: 0
-  - otherPiece: {fileID: 775795438}
-    expectedOffset: {x: -1.3772583, y: 4.371155}
-    connected: 0
-  - otherPiece: {fileID: 384130211}
-    expectedOffset: {x: 0.6254883, y: 4.389221}
-    connected: 0
-  - otherPiece: {fileID: 1372480253}
-    expectedOffset: {x: -0.458313, y: -0.81954956}
-    connected: 0
-  - otherPiece: {fileID: 1787646227}
-    expectedOffset: {x: -1.8356323, y: 0.8941345}
-    connected: 0
-  - otherPiece: {fileID: 1224090447}
-    expectedOffset: {x: -1.7633667, y: 2.2239685}
-    connected: 0
+  correctPos: {x: 19.7, y: -53.3}
   movementBounds: {fileID: 500995225}
+  snapDistance: 40
 --- !u!1 &1956579846
 GameObject:
   m_ObjectHideFlags: 0
@@ -38865,6 +38375,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -40001,57 +39512,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2042065686
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2042065687}
-  - component: {fileID: 2042065688}
-  m_Layer: 5
-  m_Name: Group5
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2042065687
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042065686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 220996234}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51.4, y: -121.3}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2042065688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042065686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2042065687}
-  pieces: []
 --- !u!1 &2044536760
 GameObject:
   m_ObjectHideFlags: 0
@@ -40307,6 +39767,7 @@ MonoBehaviour:
   interactionRange: 1
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -40752,57 +40213,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064072423}
   m_CullTransparentMesh: 1
---- !u!1 &2065836964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065836965}
-  - component: {fileID: 2065836966}
-  m_Layer: 5
-  m_Name: Group9
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2065836965
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065836964}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 384130207}
-  m_Father: {fileID: 1470961374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 62.5, y: 101.3}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2065836966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065836964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2065836965}
-  pieces: []
 --- !u!1 &2069829186
 GameObject:
   m_ObjectHideFlags: 0
