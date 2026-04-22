@@ -381,6 +381,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanToggleInventory: 1
+  AllowInspect: 1
+  InteractEnabled: 1
 --- !u!4 &32848249
 Transform:
   m_ObjectHideFlags: 0
@@ -1407,6 +1410,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 140562882}
 --- !u!61 &140562880
@@ -1443,7 +1448,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0062137917, y: 0.1864218}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47717208, y: -0.70991516}
@@ -1453,7 +1458,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.21081413, y: 0.2041367}
   m_EdgeRadius: 0
 --- !u!212 &140562881
 SpriteRenderer:
@@ -1648,6 +1653,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 165744762}
 --- !u!61 &165744760
@@ -1684,7 +1691,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.004290737, y: 0.22992037}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4809774, y: -0.6146161}
@@ -1694,7 +1701,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.23182438, y: 0.23520765}
   m_EdgeRadius: 0
 --- !u!212 &165744761
 SpriteRenderer:
@@ -4188,9 +4195,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReassemblyPuzzleManager
   pieces: []
-  snapDistance: 40
-  puzzleGroupsParent: {fileID: 0}
   finalResultImage: {fileID: 0}
+  solveDialogue: {fileID: 0}
+  puzzleInteractable: {fileID: 0}
+  itemToConsume: {fileID: 0}
 --- !u!114 &557868510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12146,9 +12154,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.10555556
+    width: 0.81458336
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -14961,6 +14969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -15055,6 +15064,8 @@ MonoBehaviour:
   onFail:
     m_PersistentCalls:
       m_Calls: []
+  savePuzzleIdWhenUnlocked: 
+  dialogueOnUnlock: {fileID: 0}
 --- !u!82 &1992543333
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21061,17 +21072,22 @@ MonoBehaviour:
   objectName: Cipher Bench
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: CaesarCipher Puzzle
   puzzleUI: {fileID: 1831021014}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
