@@ -105,7 +105,7 @@ public class InteractableObject : MonoBehaviour
 
         if (isPuzzleOpen)
         {
-            if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
+            if (InputLock.Instance != null && InputLock.Instance.InteractEnabled && !IsTypingInUI() && Input.GetKeyDown(interactKey))
             {
                 if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
                     return;
@@ -125,6 +125,7 @@ public class InteractableObject : MonoBehaviour
 
             if (InputLock.Instance != null &&
                 InputLock.Instance.GameplayInputEnabled &&
+                InputLock.Instance.InteractEnabled &&
                 Input.GetKeyDown(interactKey))
             {
                 Interact();
