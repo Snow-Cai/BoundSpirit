@@ -94,7 +94,7 @@ public class UICluePopup : MonoBehaviour
 
         popupCanvas.alpha = 0f;
         popupCanvas.blocksRaycasts = false;
-        popupCanvas.gameObject.SetActive(false);
+        popupCanvas.gameObject.SetActive(true);
 
         if (movementScript != null)
             movementScript.enabled = true;

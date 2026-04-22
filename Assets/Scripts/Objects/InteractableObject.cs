@@ -149,6 +149,11 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (promptText != null)
+        {
+            promptText.text = "Press " + interactKey.ToString() + " to interact";
+        }
+
         interactPrompt.SetActive(true);
     }
 
@@ -159,7 +164,60 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (ShouldKeepSharedPromptVisible())
+        {
+            return;
+        }
+
         interactPrompt.SetActive(false);
+    }
+
+    private bool ShouldKeepSharedPromptVisible()
+    {
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || interactable == this || !interactable.enabled)
+            {
+                continue;
+            }
+
+            if (!interactable.useLocalInteractPrompt || interactable.interactPrompt != interactPrompt)
+            {
+                continue;
+            }
+
+            if (!interactable.IsPlayerWithinInteractionRange())
+            {
+                continue;
+            }
+
+            if (promptText != null)
+            {
+                promptText.text = "Press " + interactable.interactKey.ToString() + " to interact";
+            }
+
+            interactPrompt.SetActive(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsPlayerWithinInteractionRange()
+    {
+        if (player == null)
+        {
+            return false;
+        }
+
+        Vector3 promptOrigin = objectCollider != null ? objectCollider.bounds.center : transform.position;
+        float distance = Vector3.Distance(promptOrigin, player.position);
+        return distance <= interactionRange;
     }
 
     void Interact()
