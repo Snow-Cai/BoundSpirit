@@ -38,6 +38,7 @@ public class EndingManager : MonoBehaviour
     public bool inspectorFoundHiddenTombstone = false;
 
     private bool gateSequenceActive;
+    public bool IsEndingPresentationActive => gateSequenceActive;
 
     private void Awake()
     {

@@ -2195,6 +2195,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -7669,6 +7670,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -8006,11 +8008,12 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  objectDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
-  primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
-  repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  primaryDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: dc0b362ce1806aa469bcc9fc2f6b7e2c, type: 2}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
@@ -8464,6 +8467,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -9130,9 +9134,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.074999996
+    width: 0.8083334
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -10068,6 +10072,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -11529,6 +11534,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -19588,6 +19594,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -25919,6 +25926,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 11400000, guid: 03def431d34e5094ebc9dc7be2387a24, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -26080,7 +26088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
-  CanOpenInventory: 1
+  CanToggleInventory: 1
   AllowInspect: 1
 --- !u!4 &1507892794
 Transform:
@@ -32994,6 +33002,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -33742,6 +33751,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -40953,6 +40963,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 82ae89f3197dd6f4485d7e2b523f31df, type: 2}
   repeatDialogue: {fileID: 11400000, guid: f82b6d999c6f6a94f94c2a93e6908588, type: 2}
@@ -43600,6 +43611,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
@@ -44747,6 +44759,7 @@ MonoBehaviour:
   interactionRange: 2
   objectDialogue: {fileID: 11400000, guid: 16376d17adb693a4f9b2a36639407000, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
@@ -45065,6 +45078,7 @@ MonoBehaviour:
   interactionRange: 1
   objectDialogue: {fileID: 11400000, guid: 114f9d23820de5b4396ec966d78a884f, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}

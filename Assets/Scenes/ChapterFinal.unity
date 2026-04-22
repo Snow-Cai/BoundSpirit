@@ -9609,6 +9609,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2020834672}
+  - {fileID: 1847896116}
   - {fileID: 567333696}
   - {fileID: 634751959}
   - {fileID: 351630799}
@@ -15741,9 +15743,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.074999996
-    width: 0.8083334
-    height: 0.5
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -16395,12 +16397,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847896114}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 295.21213, y: 338.6159, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 286.38287, y: 314.30417, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 859122053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863598869
 GameObject:
@@ -16666,7 +16668,7 @@ MonoBehaviour:
   loginPuzzle: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
-  useLocalInteractPrompt: 1
+  useLocalInteractPrompt: 0
   interactPrompt: {fileID: 2140001022}
   promptText: {fileID: 2140001023}
   promptDistance: 3
@@ -16703,7 +16705,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 870131231}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 859122053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17707,6 +17709,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: hideUntilIntroDialogueSeen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
       propertyPath: m_Name
       value: InteractionHintUI
@@ -17755,8 +17765,6 @@ SceneRoots:
   - {fileID: 859122053}
   - {fileID: 1761742702}
   - {fileID: 775327747}
-  - {fileID: 2020834672}
-  - {fileID: 1847896116}
   - {fileID: 978392150}
   - {fileID: 575668449}
   - {fileID: 238506170}
