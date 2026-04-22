@@ -54,6 +54,7 @@ public class GraveyardGateController : MonoBehaviour
     private bool closePuzzleUiAfterBeforeGateClueDialogue;
     private bool closePuzzleUiAfterGateHintDialogue;
     private bool closePuzzleUiAfterGhostsIncompleteDialogue;
+    private bool movementLockedUntilPuzzleInput;
 
     private void Start()
     {
@@ -79,6 +80,7 @@ public class GraveyardGateController : MonoBehaviour
 
         deferredBannerAfterDialogue = null;
         deferredBannerMessage = null;
+        UnlockPlayerMovementForGatePuzzle();
         RemoveDialogueEndedSubscription();
     }
 
@@ -91,6 +93,7 @@ public class GraveyardGateController : MonoBehaviour
 
         deferredBannerAfterDialogue = null;
         deferredBannerMessage = null;
+        UnlockPlayerMovementForGatePuzzle();
         RemoveDialogueEndedSubscription();
     }
 
@@ -179,7 +182,7 @@ public class GraveyardGateController : MonoBehaviour
         {
             puzzleHintShownThisSession = true;
 
-            OpenPuzzleUI();
+            OpenPuzzleUI(lockMovementUntilInput: true);
             closePuzzleUiAfterGateHintDialogue = true;
             QueueBannerAfterDialogue(lockedPuzzleDialogue, string.Empty);
             DialogueSystem.Instance.StartDialogue(lockedPuzzleDialogue);
@@ -195,7 +198,7 @@ public class GraveyardGateController : MonoBehaviour
         }
         else
         {
-            OpenPuzzleUI();
+            OpenPuzzleUI(lockMovementUntilInput: true);
         }
     }
 
@@ -353,13 +356,21 @@ public class GraveyardGateController : MonoBehaviour
         return !IsPuzzleTeaserActive();
     }
 
-    private void OpenPuzzleUI()
+    public void OnGatePuzzleInputStarted()
+    {
+        UnlockPlayerMovementForGatePuzzle();
+        GameInputState.DialogueActive = false;
+    }
+
+    private void OpenPuzzleUI(bool lockMovementUntilInput = false)
     {
         if (puzzleUI != null)
         {
             puzzleUI.SetActive(true);
         }
 
+        movementLockedUntilPuzzleInput = lockMovementUntilInput;
+        GameInputState.MovementLocked = movementLockedUntilPuzzleInput;
         GameInputState.DialogueActive = true;
     }
 
@@ -374,7 +385,19 @@ public class GraveyardGateController : MonoBehaviour
             puzzleUI.SetActive(false);
         }
 
+        UnlockPlayerMovementForGatePuzzle();
         GameInputState.DialogueActive = false;
+    }
+
+    private void UnlockPlayerMovementForGatePuzzle()
+    {
+        if (!movementLockedUntilPuzzleInput)
+        {
+            return;
+        }
+
+        movementLockedUntilPuzzleInput = false;
+        GameInputState.MovementLocked = false;
     }
 
     private bool HasPlayerSeenRequiredDialogue()
