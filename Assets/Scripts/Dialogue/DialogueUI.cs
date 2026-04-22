@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
+    private const float ChoiceButtonHeight = 50f;
+    private const float ChoiceButtonSpacing = 10f;
+    private const float ChoiceContainerHorizontalPadding = 8f;
+    private const float ChoiceContainerTopPadding = 12f;
+
     [Header("UI References")]
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TextMeshProUGUI speakerNameText;
@@ -191,10 +196,12 @@ public class DialogueUI : MonoBehaviour
         ClearChoices();
         choiceButtonContainer.SetActive(true);
 
+        int availableChoiceCount = 0;
         for (int i = 0; i < choices.Count; i++)
         {
             DialogueChoice choice = choices[i];
-            int index = i;
+            if (!IsChoiceAvailable(choice))
+                continue;
 
             Button button = Instantiate(choiceButtonPrefab, choiceButtonContainer.transform);
             activeChoiceButtons.Add(button);
@@ -203,13 +210,118 @@ public class DialogueUI : MonoBehaviour
             if (tmpText != null)
             {
                 tmpText.text = choice.choiceText;
+                tmpText.enableAutoSizing = true;
+                tmpText.fontSizeMin = 20f;
+                tmpText.fontSizeMax = 28f;
+                tmpText.alignment = TextAlignmentOptions.Center;
             }
 
+            ConfigureChoiceButtonLayout(button, availableChoiceCount);
+
+            int index = i;
             button.onClick.AddListener(() =>
             {
                 dialogueSystem.SelectChoice(choice, index);
             });
+
+            availableChoiceCount++;
         }
+
+        if (availableChoiceCount == 0)
+        {
+            choiceButtonContainer.SetActive(false);
+        }
+    }
+
+    private void ConfigureChoiceButtonLayout(Button button, int visibleChoiceIndex)
+    {
+        if (button == null || choiceButtonContainer == null)
+            return;
+
+        RectTransform buttonRect = button.GetComponent<RectTransform>();
+        RectTransform containerRect = choiceButtonContainer.GetComponent<RectTransform>();
+        if (buttonRect == null || containerRect == null)
+            return;
+
+        float width = containerRect.rect.width - (ChoiceContainerHorizontalPadding * 2f);
+        if (width <= 0f)
+            width = 320f;
+
+        buttonRect.anchorMin = new Vector2(0.5f, 1f);
+        buttonRect.anchorMax = new Vector2(0.5f, 1f);
+        buttonRect.pivot = new Vector2(0.5f, 1f);
+        buttonRect.sizeDelta = new Vector2(width, ChoiceButtonHeight);
+        buttonRect.anchoredPosition = new Vector2(
+            0f,
+            -ChoiceContainerTopPadding - visibleChoiceIndex * (ChoiceButtonHeight + ChoiceButtonSpacing));
+    }
+
+    private bool IsChoiceAvailable(DialogueChoice choice)
+    {
+        if (choice == null)
+            return false;
+
+        if (!AreFlagsSatisfied(choice.requiredFlags, requirePresence: true))
+            return false;
+
+        if (!AreFlagsSatisfied(choice.forbiddenFlags, requirePresence: false))
+            return false;
+
+        return true;
+    }
+
+    private bool AreFlagsSatisfied(List<string> flags, bool requirePresence)
+    {
+        if (flags == null || flags.Count == 0)
+            return true;
+
+        for (int i = 0; i < flags.Count; i++)
+        {
+            bool isSet = ResolveFlag(flags[i]);
+            if (requirePresence && !isSet)
+                return false;
+            if (!requirePresence && isSet)
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool ResolveFlag(string flagName)
+    {
+        if (string.IsNullOrWhiteSpace(flagName))
+            return false;
+
+        if (string.Equals(flagName, "foundHiddenTombstone", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (EndingManager.Instance != null)
+                return EndingManager.Instance.HasHiddenTombstoneForEnding();
+
+            if (SaveSystem.Instance == null)
+                return false;
+
+            return SaveSystem.Instance.FoundHiddenTombstone();
+        }
+
+        if (string.Equals(flagName, "foundMenuSecret", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (EndingManager.Instance != null)
+                return EndingManager.Instance.HasMenuSecretForEnding();
+
+            if (SaveSystem.Instance == null)
+                return false;
+
+            return SaveSystem.Instance.FoundMenuSecret();
+        }
+
+        if (SaveSystem.Instance == null)
+            return false;
+
+        if (System.Enum.TryParse(flagName, true, out StoryFlags.Flag storyFlag))
+            return StoryFlags.IsSet(storyFlag);
+
+        return SaveSystem.Instance.IsPuzzleSolved(flagName) ||
+               SaveSystem.Instance.HasViewedDialogue(flagName);
     }
 
     private void HandleDialogueEnded(DialogueAsset asset)

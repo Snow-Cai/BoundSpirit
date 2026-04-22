@@ -8195,8 +8195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: 0, y: 240}
+  m_SizeDelta: {x: 751.3692, y: 240.4332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &205089108
 CanvasRenderer:
@@ -8226,7 +8226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: This is Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8253,10 +8253,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 72
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -8291,7 +8291,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -3.036377, y: 0, z: 1.0206299, w: 0.16986084}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8928,6 +8928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 0}
+  pauseSettingsRoot: {fileID: 0}
   pauseSound: {fileID: 0}
   resumeSound: {fileID: 0}
 --- !u!4 &567333696
@@ -9289,7 +9290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Testing, this is Ending Subtitle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9316,12 +9317,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 50
+  m_fontSizeBase: 35
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -9354,7 +9355,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -76.57489, y: 0, z: -74.489746, w: 110.28827}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9384,8 +9385,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -205}
+  m_SizeDelta: {x: 998.9723, y: 499.9628}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &736116889 stripped
 GameObject:
@@ -9608,10 +9609,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2020834672}
+  - {fileID: 1847896116}
   - {fileID: 567333696}
   - {fileID: 634751959}
   - {fileID: 351630799}
   - {fileID: 812820015}
+  - {fileID: 2140001021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &860895289
@@ -15500,7 +15504,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345092248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
@@ -15508,11 +15512,12 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  objectDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
-  primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
-  repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  primaryDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: dc0b362ce1806aa469bcc9fc2f6b7e2c, type: 2}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
@@ -15738,9 +15743,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.014362657
-    width: 0.99913573
-    height: 0.9694794
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -16034,6 +16039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 0
@@ -16324,6 +16330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanToggleInventory: 1
+  AllowInspect: 1
 --- !u!4 &1761742702
 Transform:
   m_ObjectHideFlags: 0
@@ -16368,6 +16376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0662c2a571553b42af12f520f9598b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::EndingManager
+  finalChoiceDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
   revengeEndingDialogue: {fileID: 11400000, guid: 62c127e868d5bb445bf170cfa83fd0ca, type: 2}
   forgiveEndingDialogue: {fileID: 11400000, guid: f9b7a963dcd976f4691eee29e69d5607, type: 2}
   secretEndingDialogue: {fileID: 11400000, guid: e3cbc488efb0f4743970030780340aa4, type: 2}
@@ -16377,6 +16386,9 @@ MonoBehaviour:
   returnToScene: MenuScene
   endingTitleText: {fileID: 205089109}
   endingSubtitleText: {fileID: 694151554}
+  overrideSecretFlagsInInspector: 0
+  inspectorFoundMenuSecret: 0
+  inspectorFoundHiddenTombstone: 0
 --- !u!4 &1847896116
 Transform:
   m_ObjectHideFlags: 0
@@ -16385,12 +16397,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847896114}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 295.21213, y: 338.6159, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 286.38287, y: 314.30417, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 859122053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863598869
 GameObject:
@@ -16454,6 +16466,7 @@ GameObject:
   - component: {fileID: 2015985949}
   - component: {fileID: 2015985951}
   - component: {fileID: 2015985952}
+  - component: {fileID: 2015985953}
   m_Layer: 0
   m_Name: HillTree_0
   m_TagString: Untagged
@@ -16626,6 +16639,40 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2062273, y: 3.0022979}
   m_EdgeRadius: 0
+--- !u!114 &2015985953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015985948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  objectName: HillTree
+  interactKey: 101
+  interactionRange: 2.5
+  objectDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  hasDialogue: 1
+  triggerEndingSequence: 1
+  playPrimaryOnlyOnce: 1
+  primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  setFoundHiddenTombstoneOnInteract: 0
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  loginPuzzle: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 0
+  interactPrompt: {fileID: 2140001022}
+  promptText: {fileID: 2140001023}
+  promptDistance: 3
+  interactSound: {fileID: 0}
 --- !u!1 &2020834671
 GameObject:
   m_ObjectHideFlags: 0
@@ -16658,7 +16705,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 870131231}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 859122053}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -17614,6 +17661,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1001 &2140001020
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 859122053}
+    m_Modifications:
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: maxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010294673167309378, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: hideUntilIntroDialogueSeen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+      propertyPath: m_Name
+      value: InteractionHintUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+--- !u!4 &2140001021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 149100482765087744, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+  m_PrefabInstance: {fileID: 2140001020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2140001022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8402174851146092039, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+  m_PrefabInstance: {fileID: 2140001020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140001023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 113608315899778758, guid: 9af635da92b0ab44281616c041d5fc97, type: 3}
+  m_PrefabInstance: {fileID: 2140001020}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -17632,8 +17765,6 @@ SceneRoots:
   - {fileID: 859122053}
   - {fileID: 1761742702}
   - {fileID: 775327747}
-  - {fileID: 2020834672}
-  - {fileID: 1847896116}
   - {fileID: 978392150}
   - {fileID: 575668449}
   - {fileID: 238506170}

@@ -53,7 +53,12 @@ public class InteractionHintUI : MonoBehaviour
             return;
         }
 
-        if ((hideWhenDialogueActive && GameInputState.DialogueActive) || !IntroDialogueHasPlayed())
+        bool endingPresentationActive =
+            EndingManager.Instance != null &&
+            EndingManager.Instance.IsEndingPresentationActive;
+
+        if ((hideWhenDialogueActive && (GameInputState.DialogueActive || endingPresentationActive)) ||
+            !IntroDialogueHasPlayed())
         {
             SetTargetVisible(false);
             ApplyFade();
@@ -115,11 +120,13 @@ public class InteractionHintUI : MonoBehaviour
                 continue;
             }
 
-            float distance = Vector2.Distance(playerPosition, interactable.transform.position);
-            if (distance <= nearestDistance)
+            Vector2 interactablePosition = GetInteractablePosition(interactable);
+            float allowedDistance = Mathf.Max(maxDistance, interactable.interactionRange);
+            float distance = Vector2.Distance(playerPosition, interactablePosition);
+            if (distance <= allowedDistance && distance <= nearestDistance)
             {
                 nearestDistance = distance;
-                targetPosition = interactable.transform.position;
+                targetPosition = interactablePosition;
                 targetKey = interactable.interactKey;
                 found = true;
             }
@@ -148,6 +155,17 @@ public class InteractionHintUI : MonoBehaviour
         }
 
         return found;
+    }
+
+    private static Vector2 GetInteractablePosition(InteractableObject interactable)
+    {
+        Collider2D collider = interactable.GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            return collider.bounds.center;
+        }
+
+        return interactable.transform.position;
     }
 
     private void UpdateHintText(KeyCode key)

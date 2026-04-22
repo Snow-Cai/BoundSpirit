@@ -31,10 +31,12 @@ public class DialogueSystem : MonoBehaviour
     private readonly Queue<DialogueAsset> dialogueQueue = new Queue<DialogueAsset>();
     private DialogueAsset currentDialogue;
     private int currentLineIndex = -1;
+    private int lastSelectedChoiceIndex = -1;
 
     public DialogueState State { get; private set; } = DialogueState.Inactive;
 
     public float TypingSpeed => charactersPerSecond;
+    public int LastSelectedChoiceIndex => lastSelectedChoiceIndex;
 
     /// <summary>Dialogue ID of the line currently playing, or null if none.</summary>
     public string ActiveDialogueId =>
@@ -81,6 +83,7 @@ public class DialogueSystem : MonoBehaviour
             return;
         }
 
+        lastSelectedChoiceIndex = -1;
         dialogueQueue.Clear();
         dialogueQueue.Enqueue(asset);
         StartNextDialogueFromQueue();
@@ -165,6 +168,7 @@ public class DialogueSystem : MonoBehaviour
         if (State != DialogueState.WaitingForChoice || choice == null)
             return;
 
+        lastSelectedChoiceIndex = choiceIndex;
         choice.onChoiceSelected?.Invoke();
 
         if (SaveSystem.Instance != null &&

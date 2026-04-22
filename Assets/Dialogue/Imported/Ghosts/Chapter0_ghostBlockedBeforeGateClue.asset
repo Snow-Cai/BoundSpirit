@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter0_ghostBlockedBeforeGateClue
   lines:
   - speakerName: Akila
-    dialogueText: I don't want to talk the ghost right now. I just want to get out
-      of here.
+    dialogueText: I don't want to talk to the ghost right now. I just want to get
+      out of here.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

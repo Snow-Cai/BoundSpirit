@@ -15,8 +15,14 @@ MonoBehaviour:
   dialogueID: ending_revenge
   lines:
   - speakerName: Akila
-    dialogueText: I can't forgive her. Not yet. Not ever. I'll stay until she answers
-      for what she did.
+    dialogueText: You took everything from me.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: You took my life. I know what the files say. But you're the one
+      still alive. You get to go home, grow up.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: And I'm stuck here. That's not fair. That will never be right.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
