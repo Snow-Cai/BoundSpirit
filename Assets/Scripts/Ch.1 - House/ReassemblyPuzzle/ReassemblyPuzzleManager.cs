@@ -12,6 +12,7 @@ public class ReassemblyPuzzleManager : MonoBehaviour
     [Header("Solve")]
     [SerializeField] private DialogueAsset solveDialogue;
     [SerializeField] private InteractableObject puzzleInteractable;
+    [SerializeField] private ItemData itemToConsume;
 
     public void CheckPuzzleCompletion()
     {
@@ -21,6 +22,12 @@ public class ReassemblyPuzzleManager : MonoBehaviour
                 return;
         }
         Debug.Log("Reassembly puzzle solved!");
+        if(itemToConsume != null)
+        {
+            PlayerInventory inv = FindFirstObjectByType<PlayerInventory>();
+            if(inv != null)
+                inv.RemoveItem(itemToConsume);
+        }
         StartCoroutine(ShowCompletion());
     }
 
