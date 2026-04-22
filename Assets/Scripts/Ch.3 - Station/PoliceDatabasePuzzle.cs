@@ -71,6 +71,7 @@ public class PoliceDatabasePuzzle : MonoBehaviour
 
     IEnumerator ProcessQuery()
     {
+        InputLock.Instance.InteractEnabled = false;
         isProcessing = true;
         nameInput.interactable = false;
         yearInput.interactable = false;
@@ -111,6 +112,7 @@ public class PoliceDatabasePuzzle : MonoBehaviour
             yearInput.interactable = true;
             caseDropdown.interactable = true;
         }
+        InputLock.Instance.InteractEnabled = true;
     }
 
     public void Close()

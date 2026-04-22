@@ -23,6 +23,9 @@ public class InspectUI : MonoBehaviour
 
     public void Show(ItemData item)
     {
+        if (item == null)
+            return;
+        
         IsOpen = true;
 
         panel.SetActive(true);
