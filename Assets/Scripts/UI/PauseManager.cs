@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
@@ -17,6 +19,25 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
     private bool pauseSettingsOpen = false;
+    readonly List<GraphicRaycaster> disabledRaycasters = new List<GraphicRaycaster>();
+
+    bool CanOpenPauseMenu()
+    {
+        if (SaveSystem.Instance != null && SaveSystem.Instance.IsTransitioning())
+        {
+            Debug.Log("Cannot pause during scene transition");
+            return false;
+        }
+
+        // Do not stack the pause menu on top of puzzle / inventory / journal UIs that already own input.
+        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+        {
+            Debug.Log("Cannot pause while another UI is using gameplay input");
+            return false;
+        }
+
+        return true;
+    }
 
     /// <summary>
     /// True when this component is the PauseCanvas instance (has menu + settings). Scenes may still contain an
@@ -61,13 +82,6 @@ public class PauseManager : MonoBehaviour
         //toggle pause with escape key
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //DON'T ALLOW PAUSING DURING TRANSITIONS
-            if (SaveSystem.Instance != null && SaveSystem.Instance.IsTransitioning())
-            {
-                Debug.Log("Cannot pause during scene transition");
-                return;
-            }
-
             if (isPaused && pauseSettingsOpen)
             {
                 ClosePauseSettings();
@@ -80,6 +94,9 @@ public class PauseManager : MonoBehaviour
             }
             else
             {
+                if (!CanOpenPauseMenu())
+                    return;
+
                 Pause();
             }
         }
@@ -88,6 +105,7 @@ public class PauseManager : MonoBehaviour
     public void Pause()
     {
         pauseSettingsOpen = false;
+        DisableNonPauseRaycasters();
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(true);
@@ -136,6 +154,7 @@ public class PauseManager : MonoBehaviour
         {
             pauseMenuUI.SetActive(false);
         }
+        RestoreDisabledRaycasters();
         Time.timeScale = 1f; //unfreeze game
         isPaused = false;
         //play resume sound
@@ -237,6 +256,7 @@ public class PauseManager : MonoBehaviour
         //unfreeze time BEFORE saving so physics/grounded state is valid
         Time.timeScale = 1f;
         isPaused = false;
+        RestoreDisabledRaycasters();
 
         //SAVE BEFORE QUITTING (only if not transitioning)
         if (SaveSystem.Instance != null && !SaveSystem.Instance.IsTransitioning())
@@ -269,6 +289,7 @@ public class PauseManager : MonoBehaviour
             ClosePauseSettings();
 
         //play UI sound
+        RestoreDisabledRaycasters();
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {
             UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
@@ -282,5 +303,39 @@ public class PauseManager : MonoBehaviour
 #else
             Application.Quit();
 #endif
+    }
+
+    void DisableNonPauseRaycasters()
+    {
+        disabledRaycasters.Clear();
+
+        foreach (GraphicRaycaster raycaster in FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None))
+        {
+            if (raycaster == null || !raycaster.enabled)
+                continue;
+
+            Transform raycasterTransform = raycaster.transform;
+            bool belongsToPauseUI =
+                transform.IsChildOf(raycasterTransform) ||
+                (pauseMenuUI != null && raycasterTransform.IsChildOf(pauseMenuUI.transform)) ||
+                (pauseSettingsRoot != null && raycasterTransform.IsChildOf(pauseSettingsRoot.transform));
+
+            if (belongsToPauseUI)
+                continue;
+
+            raycaster.enabled = false;
+            disabledRaycasters.Add(raycaster);
+        }
+    }
+
+    void RestoreDisabledRaycasters()
+    {
+        foreach (GraphicRaycaster raycaster in disabledRaycasters)
+        {
+            if (raycaster != null)
+                raycaster.enabled = true;
+        }
+
+        disabledRaycasters.Clear();
     }
 }
