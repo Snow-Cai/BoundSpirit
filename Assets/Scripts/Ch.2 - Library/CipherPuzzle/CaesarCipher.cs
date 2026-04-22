@@ -89,7 +89,11 @@ public static class CaesarCipher
         for (int i = 0; i < 26; i++)
             shifted[i] = (char)('A' + ((i + shift + 26) % 26));
 
-        return $"{abc}\n \n{new string(shifted)}";
+        string topRow = AddSpacingBetweenLetters(abc);
+        string bottomRow = AddSpacingBetweenLetters(new string(shifted));
+
+        // Use TMP monospace spacing so both rows line up even with a proportional font asset.
+        return $"<mspace=0.75em>{topRow}\n\n{bottomRow}</mspace>";
     }
 
     private static char ShiftChar(char c, char baseChar, int shift)
@@ -97,5 +101,23 @@ public static class CaesarCipher
         int offset = c - baseChar;
         int shifted = (offset + shift + 26) % 26;
         return (char)(baseChar + shifted);
+    }
+
+    private static string AddSpacingBetweenLetters(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return string.Empty;
+
+        var sb = new StringBuilder(input.Length * 2);
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (i > 0)
+                sb.Append(' ');
+
+            sb.Append(input[i]);
+        }
+
+        return sb.ToString();
     }
 }

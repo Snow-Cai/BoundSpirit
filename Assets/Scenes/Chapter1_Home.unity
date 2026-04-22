@@ -6298,8 +6298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 329389518}
-  pieces: []
 --- !u!1001 &330322921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6812,8 +6810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 347482548}
-  pieces: []
 --- !u!1 &355213360
 GameObject:
   m_ObjectHideFlags: 0
@@ -7248,7 +7244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179655415570088721, guid: 874935f2e05fe1548bcd1f8063d2cfc6, type: 3}
       propertyPath: m_Size.y
-      value: 0.41756248
+      value: 0.66991234
       objectReference: {fileID: 0}
     - target: {fileID: 4179655415570088721, guid: 874935f2e05fe1548bcd1f8063d2cfc6, type: 3}
       propertyPath: m_Offset.x
@@ -7256,7 +7252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179655415570088721, guid: 874935f2e05fe1548bcd1f8063d2cfc6, type: 3}
       propertyPath: m_Offset.y
-      value: -0.20804119
+      value: -0.33421612
       objectReference: {fileID: 0}
     - target: {fileID: 4179655415570088721, guid: 874935f2e05fe1548bcd1f8063d2cfc6, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -11222,8 +11218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 433892261}
-  pieces: []
 --- !u!1 &434042748
 GameObject:
   m_ObjectHideFlags: 0
@@ -16611,8 +16605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 690600991}
-  pieces: []
 --- !u!114 &690865393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -30890,9 +30882,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.027923211
-    width: 0.9989095
-    height: 0.9424084
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -34086,8 +34078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1654782395}
-  pieces: []
 --- !u!1 &1672896526
 GameObject:
   m_ObjectHideFlags: 0
@@ -35419,8 +35409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1758146827}
-  pieces: []
 --- !u!1 &1787646222
 GameObject:
   m_ObjectHideFlags: 0
@@ -36193,8 +36181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1799638436}
-  pieces: []
 --- !u!1 &1811977019
 GameObject:
   m_ObjectHideFlags: 0
@@ -38375,7 +38361,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.010633528, y: -0.46638736}
+  m_Offset: {x: -0.039071754, y: -0.46638736}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -38385,7 +38371,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6289016, y: 0.12508541}
+  m_Size: {x: 0.685778, y: 0.12508541}
   m_EdgeRadius: 0
 --- !u!114 &1948428926
 MonoBehaviour:
@@ -39885,8 +39871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2042065687}
-  pieces: []
 --- !u!1 &2044536760
 GameObject:
   m_ObjectHideFlags: 0
@@ -40641,8 +40625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2065836965}
-  pieces: []
 --- !u!1 &2069829186
 GameObject:
   m_ObjectHideFlags: 0
@@ -40658,7 +40640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2069829187
 Transform:
   m_ObjectHideFlags: 0
@@ -41908,6 +41890,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 403161366}
     m_Modifications:
+    - target: {fileID: 135080295501582446, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 534
+      objectReference: {fileID: 0}
+    - target: {fileID: 135080295501582446, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -321
+      objectReference: {fileID: 0}
+    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_text
+      value: '[E to close]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.w
+      value: 0.30085754
+      objectReference: {fileID: 0}
+    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_margin.y
+      value: 2.3477478
+      objectReference: {fileID: 0}
+    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_SizeDelta.x
       value: 726.6311

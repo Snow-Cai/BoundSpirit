@@ -13,16 +13,31 @@ public class GraphicsSettings : MonoBehaviour
     public Toggle fullscreenToggle;
 
     private readonly List<Resolution> uniqueResolutions = new List<Resolution>();
+    private bool listenersRegistered;
 
     private void Start()
     {
-        if (settingsData != null)
-        {
-            settingsData.Load();
-        }
+        RegisterListeners();
+        RefreshUIFromSettings();
+    }
 
-        LoadResolutions();
-        LoadFullscreenState();
+    private void OnEnable()
+    {
+        RegisterListeners();
+        RefreshUIFromSettings();
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterListeners();
+    }
+
+    private void RegisterListeners()
+    {
+        if (listenersRegistered)
+        {
+            return;
+        }
 
         if (resolutionDropdown != null)
         {
@@ -33,10 +48,17 @@ public class GraphicsSettings : MonoBehaviour
         {
             fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
         }
+
+        listenersRegistered = true;
     }
 
-    private void OnDestroy()
+    private void UnregisterListeners()
     {
+        if (!listenersRegistered)
+        {
+            return;
+        }
+
         if (resolutionDropdown != null)
         {
             resolutionDropdown.onValueChanged.RemoveListener(SetResolution);
@@ -45,6 +67,40 @@ public class GraphicsSettings : MonoBehaviour
         if (fullscreenToggle != null)
         {
             fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
+        }
+
+        listenersRegistered = false;
+    }
+
+    private void RefreshUIFromSettings()
+    {
+        ResolveSettingsData();
+
+        if (settingsData != null)
+        {
+            settingsData.Load();
+        }
+
+        LoadResolutions();
+        LoadFullscreenState();
+    }
+
+    private void ResolveSettingsData()
+    {
+        if (settingsData != null)
+        {
+            return;
+        }
+
+        SettingsManager manager = GetComponentInParent<SettingsManager>(true);
+        if (manager == null)
+        {
+            manager = FindFirstObjectByType<SettingsManager>(FindObjectsInactive.Include);
+        }
+
+        if (manager != null)
+        {
+            settingsData = manager.settingsData;
         }
     }
 
