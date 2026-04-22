@@ -6298,8 +6298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 329389518}
-  pieces: []
 --- !u!1001 &330322921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6812,8 +6810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 347482548}
-  pieces: []
 --- !u!1 &355213360
 GameObject:
   m_ObjectHideFlags: 0
@@ -11222,8 +11218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 433892261}
-  pieces: []
 --- !u!1 &434042748
 GameObject:
   m_ObjectHideFlags: 0
@@ -16611,8 +16605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 690600991}
-  pieces: []
 --- !u!114 &690865393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -34086,8 +34078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1654782395}
-  pieces: []
 --- !u!1 &1672896526
 GameObject:
   m_ObjectHideFlags: 0
@@ -35419,8 +35409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1758146827}
-  pieces: []
 --- !u!1 &1787646222
 GameObject:
   m_ObjectHideFlags: 0
@@ -36193,8 +36181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 1799638436}
-  pieces: []
 --- !u!1 &1811977019
 GameObject:
   m_ObjectHideFlags: 0
@@ -39885,8 +39871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2042065687}
-  pieces: []
 --- !u!1 &2044536760
 GameObject:
   m_ObjectHideFlags: 0
@@ -40641,8 +40625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a638cde8390d04aab7ed7262a94e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PuzzleGroup
-  rect: {fileID: 2065836965}
-  pieces: []
 --- !u!1 &2069829186
 GameObject:
   m_ObjectHideFlags: 0
@@ -40658,7 +40640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2069829187
 Transform:
   m_ObjectHideFlags: 0
