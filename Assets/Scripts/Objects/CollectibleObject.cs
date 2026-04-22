@@ -115,7 +115,7 @@ public class CollectibleObject : MonoBehaviour
         if (showCluePopup)
         {
             if (popup != null)
-                popup.ShowClue(clue.clueText);
+                popup.ShowMessage(clue.clueText);
         }
 
         if (disappearOnPickup)

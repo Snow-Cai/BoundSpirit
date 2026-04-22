@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class SettingsManager : MonoBehaviour
     public GameObject mainSettingsPanel;
     public GameObject audioSettingsPanel;
     public GameObject graphicsSettingsPanel;
+
+    [Header("Gameplay Settings")]
+    [SerializeField] private Toggle informationalTidbitsToggle;
 
     void Awake()
     {
@@ -20,11 +24,31 @@ public class SettingsManager : MonoBehaviour
             audioSettingsPanel.SetActive(false);
         if (graphicsSettingsPanel != null)
             graphicsSettingsPanel.SetActive(false);
+
+        EnsureInformationalTidbitsToggleReference();
     }
 
     void Start()
     {
-        settingsData.Load();
+        if (settingsData != null)
+        {
+            settingsData.Load();
+        }
+
+        BindInformationalTidbitsToggle();
+    }
+
+    void OnEnable()
+    {
+        SyncInformationalTidbitsToggle();
+    }
+
+    void OnDestroy()
+    {
+        if (informationalTidbitsToggle != null)
+        {
+            informationalTidbitsToggle.onValueChanged.RemoveListener(SetInformationalTidbitsEnabled);
+        }
     }
 
 
@@ -60,5 +84,56 @@ public class SettingsManager : MonoBehaviour
         // Hide the entire settings UI
         gameObject.SetActive(false);
         Time.timeScale = 1f; 
+    }
+
+    private void EnsureInformationalTidbitsToggleReference()
+    {
+        if (informationalTidbitsToggle != null)
+            return;
+
+        Toggle[] toggles = GetComponentsInChildren<Toggle>(true);
+        foreach (Toggle toggle in toggles)
+        {
+            if (toggle != null && toggle.name == "InformationalTidbitsToggle")
+            {
+                informationalTidbitsToggle = toggle;
+                break;
+            }
+        }
+    }
+
+    private void BindInformationalTidbitsToggle()
+    {
+        EnsureInformationalTidbitsToggleReference();
+
+        if (informationalTidbitsToggle == null)
+            return;
+
+        informationalTidbitsToggle.onValueChanged.RemoveListener(SetInformationalTidbitsEnabled);
+        informationalTidbitsToggle.onValueChanged.AddListener(SetInformationalTidbitsEnabled);
+        SyncInformationalTidbitsToggle();
+    }
+
+    private void SyncInformationalTidbitsToggle()
+    {
+        EnsureInformationalTidbitsToggleReference();
+
+        if (informationalTidbitsToggle == null)
+            return;
+
+        bool defaultValue = settingsData == null || settingsData.informationalTidbitsEnabled;
+        bool isEnabled = SettingsData.GetInformationalTidbitsEnabled(defaultValue);
+        informationalTidbitsToggle.SetIsOnWithoutNotify(isEnabled);
+    }
+
+    public void SetInformationalTidbitsEnabled(bool isEnabled)
+    {
+        SettingsData.SetInformationalTidbitsEnabled(isEnabled);
+
+        if (settingsData != null)
+        {
+            settingsData.informationalTidbitsEnabled = isEnabled;
+            settingsData.Save();
+        }
     }
 }

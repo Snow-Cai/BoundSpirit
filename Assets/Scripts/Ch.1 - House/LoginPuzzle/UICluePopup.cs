@@ -27,12 +27,36 @@ public class UICluePopup : MonoBehaviour
             movementScript = player.GetComponent<CharMovement>();
     }
 
-    public void ShowClue(string message)
+    public void ShowMessage(string message)
     {
+        if (string.IsNullOrWhiteSpace(message) || popupCanvas == null || clueText == null)
+            return;
+
         if (popupRoutine != null)
             StopCoroutine(popupRoutine);
 
         popupRoutine = StartCoroutine(PopupRoutine(message));
+    }
+
+    public void ShowTidbit(InformationalTidbitData tidbit)
+    {
+        if (tidbit == null || !tidbit.HasContent())
+            return;
+
+        ShowTidbitMessage(tidbit.FormatForPopup());
+    }
+
+    public void ShowTidbitMessage(string message)
+    {
+        if (!AreInformationalTidbitsEnabled())
+            return;
+
+        ShowMessage(message);
+    }
+
+    public void ShowClue(string message)
+    {
+        ShowMessage(message);
     }
 
     private IEnumerator PopupRoutine(string msg)
@@ -82,5 +106,10 @@ public class UICluePopup : MonoBehaviour
     public bool IsPopupOpen()
     {
         return popupOpen;
+    }
+
+    private bool AreInformationalTidbitsEnabled()
+    {
+        return SettingsData.GetInformationalTidbitsEnabled();
     }
 }

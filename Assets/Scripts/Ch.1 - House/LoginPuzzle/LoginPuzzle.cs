@@ -21,6 +21,7 @@ public class LoginPuzzle : MonoBehaviour
 
     [Header("Tidbit Popup")]
     public UICluePopup cluePopup;
+    public InformationalTidbitData informationalTidbit;
     [TextArea] public string tidbitMessage = "This is a tidbit message shown after solving the login puzzle.";
 
     [Header("Story")]
@@ -129,7 +130,10 @@ public class LoginPuzzle : MonoBehaviour
             if (cluePopup != null)
             {
                 cluePopup.enabled = true;
-                cluePopup.ShowClue(tidbitMessage);
+                if (informationalTidbit != null)
+                    cluePopup.ShowTidbit(informationalTidbit);
+                else
+                    cluePopup.ShowTidbitMessage(tidbitMessage);
             }
 
             if (dialogueAfterSuccessfulLogin != null && DialogueSystem.Instance != null)

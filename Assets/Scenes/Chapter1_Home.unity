@@ -2008,6 +2008,7 @@ MonoBehaviour:
   GameplayInputEnabled: 1
   CanToggleInventory: 1
   AllowInspect: 1
+  InteractEnabled: 1
 --- !u!4 &157014377
 Transform:
   m_ObjectHideFlags: 0
@@ -2355,6 +2356,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -17920,6 +17922,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -18730,6 +18733,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -27611,6 +27615,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -27953,6 +27958,10 @@ PrefabInstance:
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Name
       value: HelpBookCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -28327,6 +28336,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -28524,6 +28534,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -30754,9 +30765,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.01438849
+    y: 0
     width: 1
-    height: 0.97122306
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -32629,6 +32640,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -33303,6 +33315,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -38127,13 +38140,8 @@ MonoBehaviour:
   puzzleUI: {fileID: 1973412644}
   isPuzzleOpen: 1
   loginPuzzle: {fileID: 2039610850}
-  tidbitMessage: 'INFO TIDBIT:
-
-    As you''ve seen, you can often find out someone''s
-    password with personal information if their password contains information relating
-    to them that can be found out. This information can be found out through digging
-    through openly available informations (OSINT) or through weaseling the information
-    out of the target (social engineering). It is important to safeguard your information!'
+  informationalTidbit: {fileID: 11400000, guid: 9a7c0f672bb38de4f879bc3fcb862d30, type: 2}
+  tidbitMessage: 
   showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
@@ -38416,6 +38424,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -39520,13 +39529,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   cluePopup: {fileID: 460683952}
-  tidbitMessage: 'INFO TIDBIT:
+  informationalTidbit: {fileID: 11400000, guid: 9a7c0f672bb38de4f879bc3fcb862d30, type: 2}
+  tidbitMessage: '
 
-    As you''ve seen, you can often find out someone''s
-    password with personal information if their password contains information relating
-    to them that can be found out. This information can be found out through digging
-    through openly available informations (OSINT) or through weaseling the information
-    out of the target (social engineering). It is important to safeguard your information!'
+'
   dialogueAfterSuccessfulLogin: {fileID: 11400000, guid: e4d3c2b1a0f9e8d7c6b5a4938271605f, type: 2}
 --- !u!4 &2039610851
 Transform:
@@ -39811,6 +39817,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -41512,6 +41519,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 403161366}
     m_Modifications:
+    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_text
+      value: (Press 'E' to close)
+      objectReference: {fileID: 0}
     - target: {fileID: 2070066482373601709, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_SizeDelta.x
       value: 726.6311
@@ -41626,19 +41637,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1462.051
+      value: 779
       objectReference: {fileID: 0}
     - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 818.9691
+      value: 487
       objectReference: {fileID: 0}
     - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.00099945
       objectReference: {fileID: 0}
     - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.00049591
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_fontSize
@@ -41646,31 +41657,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_margin.w
-      value: -98.20517
+      value: 32.274063
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_margin.x
-      value: -249.55212
+      value: -3.0331726
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_margin.y
-      value: -119.50824
+      value: -31.631714
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_margin.z
-      value: -265.96967
+      value: 0.09362793
       objectReference: {fileID: 0}
     - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
+    - target: {fileID: 7449530799535934226, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+      propertyPath: m_Name
+      value: E to Close
       objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Name

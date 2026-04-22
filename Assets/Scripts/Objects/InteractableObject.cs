@@ -37,6 +37,7 @@ public class InteractableObject : MonoBehaviour
     public LoginPuzzle loginPuzzle;
 
     [Header("Informational Tidbit")]
+    public InformationalTidbitData informationalTidbit;
     [TextArea]
     public string tidbitMessage;
     public bool showTidbitOnSolve = false;
@@ -315,12 +316,15 @@ public class InteractableObject : MonoBehaviour
             PlayDialogue();
         }
 
-        if (showTidbitOnSolve && !string.IsNullOrEmpty(tidbitMessage))
+        if (showTidbitOnSolve)
         {
             UICluePopup popup = Object.FindFirstObjectByType<UICluePopup>();
             if (popup != null)
             {
-                popup.ShowClue(tidbitMessage);
+                if (informationalTidbit != null)
+                    popup.ShowTidbit(informationalTidbit);
+                else if (!string.IsNullOrWhiteSpace(tidbitMessage))
+                    popup.ShowTidbitMessage(tidbitMessage);
             }
         }
     }
