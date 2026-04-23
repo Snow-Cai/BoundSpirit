@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static SaveData;
 
 [System.Serializable]
@@ -98,6 +99,13 @@ public class SaveSystem : MonoBehaviour
             currentSave = new SaveData();
         }
 
+        string activeSceneName = SceneManager.GetActiveScene().name;
+        if (string.Equals(activeSceneName, "MenuScene", StringComparison.Ordinal))
+        {
+            Debug.Log("SAVE: Skipping save in MenuScene.");
+            return;
+        }
+
         //Save player position if player exists
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -167,7 +175,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         //Save current scene
-        currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        currentSave.currentScene = activeSceneName;
         Debug.Log("SAVE: Scene saved: " + currentSave.currentScene);
 
         //Save timestamp
@@ -201,7 +209,7 @@ public class SaveSystem : MonoBehaviour
 
     public void LoadSavedScene()
     {
-        if (currentSave != null && !string.IsNullOrEmpty(currentSave.currentScene))
+        if (HasPlayableSaveData())
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(currentSave.currentScene);
             //after scene loads, restore game state
@@ -209,8 +217,8 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            //default to first gameplay scene (skip cutscene)
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            Debug.LogWarning("SAVE: No playable save scene found. Starting a new game instead.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Chapter0_Prologue");
         }
     }
 
@@ -320,17 +328,33 @@ public class SaveSystem : MonoBehaviour
 
     public void DeleteSave()
     {
-        bool preserveMenuSecret = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
         PlayerPrefs.DeleteKey(SAVE_KEY);
+        PlayerPrefs.DeleteKey(MENU_SECRET_KEY);
         PlayerPrefs.Save();
         currentSave = new SaveData();
-        currentSave.foundMenuSecret = preserveMenuSecret;
         Debug.Log("Save deleted!");
     }
 
     public bool HasSaveData()
     {
         return PlayerPrefs.HasKey(SAVE_KEY);
+    }
+
+    public bool HasPlayableSaveData()
+    {
+        if (!HasSaveData())
+            return false;
+
+        if (currentSave == null)
+            LoadGame();
+
+        if (currentSave == null || string.IsNullOrWhiteSpace(currentSave.currentScene))
+            return false;
+
+        if (string.Equals(currentSave.currentScene, "MenuScene", StringComparison.Ordinal))
+            return false;
+
+        return Application.CanStreamedLevelBeLoaded(currentSave.currentScene);
     }
 
     //Getters and Setters for easy access
@@ -456,8 +480,24 @@ public class SaveSystem : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        SaveGame();
-        Debug.Log("SAVE: Game saved on application quit!");
+        if (CanSaveCurrentSceneOnQuit())
+        {
+            SaveGame();
+            Debug.Log("SAVE: Game saved on application quit!");
+        }
+        else
+        {
+            Debug.Log("SAVE: Skipped save on application quit.");
+        }
+    }
+
+    private bool CanSaveCurrentSceneOnQuit()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (!activeScene.IsValid())
+            return false;
+
+        return !string.Equals(activeScene.name, "MenuScene", StringComparison.Ordinal);
     }
 
     public bool KnowsNameIsAkila()

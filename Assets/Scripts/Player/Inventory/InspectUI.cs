@@ -18,17 +18,30 @@ public class InspectUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        panel.SetActive(false);
+        if (panel != null)
+            panel.SetActive(false);
+        if (dimBG != null)
+            dimBG.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (inventoryUI == null)
+            inventoryUI = FindFirstObjectByType<InventoryUI>();
     }
 
     public void Show(ItemData item)
     {
         if (item == null)
             return;
-        
+
+        if (inventoryUI == null)
+            inventoryUI = FindFirstObjectByType<InventoryUI>();
+
         IsOpen = true;
 
-        panel.SetActive(true);
+        if (panel != null)
+            panel.SetActive(true);
 
         if (inventoryUI != null)
             inventoryUI.SetVisible(false);
@@ -36,19 +49,35 @@ public class InspectUI : MonoBehaviour
         nameText.text = item.itemName;
         descriptionText.text = item.description;
         icon.sprite = item.icon;
-        dimBG.SetActive(true);
+        if (dimBG != null)
+            dimBG.SetActive(true);
 
-        TooltipUI.Instance.Hide();          // Hide tooltip after opening the inspect screen
-        InputLock.Instance.CanToggleInventory = false;
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();          // Hide tooltip after opening the inspect screen
+        if (InputLock.Instance != null)
+            InputLock.Instance.CanToggleInventory = false;
     }
 
     public void Close()
     {
         IsOpen = false;
-        panel.SetActive(false);
-        dimBG.SetActive(false);
+        if (panel != null)
+            panel.SetActive(false);
+        if (dimBG != null)
+            dimBG.SetActive(false);
         if (inventoryUI != null)
             inventoryUI.SetVisible(true);
-        InputLock.Instance.CanToggleInventory = true;
+        if (InputLock.Instance != null)
+            InputLock.Instance.CanToggleInventory = true;
+    }
+
+    private void OnDisable()
+    {
+        IsOpen = false;
+
+        if (panel != null)
+            panel.SetActive(false);
+        if (dimBG != null)
+            dimBG.SetActive(false);
     }
 }

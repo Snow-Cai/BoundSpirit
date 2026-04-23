@@ -75,6 +75,8 @@ public class TitleScreenController : MonoBehaviour
 
     private void ApplySavedTitleState()
     {
+        ResetTitleState();
+
         if (SaveSystem.Instance == null)
             return;
 
@@ -92,6 +94,24 @@ public class TitleScreenController : MonoBehaviour
                 boundKeys[i].ApplyFoundState();
                 break;
             }
+        }
+    }
+
+    private void ResetTitleState()
+    {
+        ResetKeys(boundKeys);
+        ResetKeys(spiritKeys);
+    }
+
+    private void ResetKeys(TitleKey[] keys)
+    {
+        if (keys == null)
+            return;
+
+        foreach (TitleKey key in keys)
+        {
+            if (key != null)
+                key.ResetToDefaultState();
         }
     }
 }

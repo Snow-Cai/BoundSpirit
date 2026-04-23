@@ -22,7 +22,7 @@ public class mainMenu : MonoBehaviour
         //Update continue button if it exists
         if (continueButton != null && SaveSystem.Instance != null)
         {
-            bool hasSave = SaveSystem.Instance.HasSaveData();
+            bool hasSave = SaveSystem.Instance.HasPlayableSaveData();
             continueButton.interactable = hasSave;
 
             //Make button look disabled if no save
@@ -150,7 +150,7 @@ public class mainMenu : MonoBehaviour
     public void PlayGame()
     {
         //Check if save exists and show warning
-        if (SaveSystem.Instance != null && SaveSystem.Instance.HasSaveData())
+        if (SaveSystem.Instance != null && SaveSystem.Instance.HasPlayableSaveData())
         {
             if (newGameWarningPopup != null)
             {
@@ -166,7 +166,7 @@ public class mainMenu : MonoBehaviour
     //For Continue button 
     public void ContinueGame()
     {
-        if (SaveSystem.Instance != null && SaveSystem.Instance.HasSaveData())
+        if (SaveSystem.Instance != null && SaveSystem.Instance.HasPlayableSaveData())
         {
             SaveSystem.Instance.LoadGame();
             SaveSystem.Instance.LoadSavedScene();
@@ -204,6 +204,11 @@ public class mainMenu : MonoBehaviour
 
     void StartNewGame()
     {
+        if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.DeleteSave();
+        }
+
         //Load the next scene (first chapter)
         SceneManager.LoadScene("Chapter0_Prologue");
     }

@@ -62,6 +62,10 @@ public class InventoryUI : MonoBehaviour
 
     public void SetVisible(bool visible)
     { 
-        inventoryPanel.SetActive(visible); 
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(visible);
+
+        if (!visible && TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
     }
 }
