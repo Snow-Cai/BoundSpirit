@@ -560,7 +560,7 @@ Transform:
   m_GameObject: {fileID: 3578712482678298531}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.05, y: 3.54, z: 0}
+  m_LocalPosition: {x: -0.63, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -600,7 +600,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.014224052, y: -0.3413601}
+  m_Offset: {x: -0.014224052, y: -1.1845865}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -610,7 +610,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.014597, y: 0.48796082}
+  m_Size: {x: 2.014597, y: 2.1744137}
   m_EdgeRadius: 0
 --- !u!114 &8487444986708376914
 MonoBehaviour:
@@ -629,15 +629,15 @@ MonoBehaviour:
     button: {fileID: 4262414012001868531}
     hideWhenLocked: 0
     sceneName: Chapter0_Prologue
-    spawnPointId: 
+    spawnPointId: Graveyard
     unlockType: 0
     requiredChapter: 0
     requiredPuzzleId: 
     requiredItemId: 
-  - displayName: House
+  - displayName: Home
     button: {fileID: 247200858087219179}
     hideWhenLocked: 0
-    sceneName: Chapter1_House
+    sceneName: Chapter1_Home
     spawnPointId: 
     unlockType: 0
     requiredChapter: 0
@@ -816,7 +816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &676423684423883026
 Transform:
   m_ObjectHideFlags: 0
@@ -826,7 +826,7 @@ Transform:
   m_GameObject: {fileID: 4785756514816476052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.68, y: 3.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::SceneSpawnPoint
   spawnPointId: Graveyard
-  isDefaultSpawn: 1
+  isDefaultSpawn: 0
 --- !u!1 &5433860790492071023
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +907,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!114 &8308549031664990950
 MonoBehaviour:
