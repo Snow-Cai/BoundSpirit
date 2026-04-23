@@ -70,6 +70,9 @@ public class SceneTravelTrigger : MonoBehaviour
 
     public bool IsUnlocked(Destination destination)
     {
+        if (IsCurrentScene(destination))
+            return false;
+
         switch (destination.unlockType)
         {
             case UnlockType.Always:
@@ -97,9 +100,17 @@ public class SceneTravelTrigger : MonoBehaviour
         return false;
     }
 
+    private bool IsCurrentScene(Destination destination)
+    {
+        return destination != null &&
+               string.Equals(destination.sceneName, SceneManager.GetActiveScene().name, StringComparison.Ordinal);
+    }
+
     public void TravelTo(Destination destination)
     {
         if (isTransitioning) return;
+        if (IsCurrentScene(destination)) return;
+
         StartCoroutine(HandleTransition(destination));
     }
 

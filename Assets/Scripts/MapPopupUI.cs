@@ -10,6 +10,8 @@ public class MapPopupUI : MonoBehaviour
     [SerializeField] private Button closeButton;
 
     private SceneTravelTrigger currentTrigger;
+    private bool previousMovementLocked;
+    private bool isMovementLockedByMap;
 
     private void Awake()
     {
@@ -28,11 +30,20 @@ public class MapPopupUI : MonoBehaviour
             closeButton.onClick.AddListener(Close);
     }
 
+    private void OnDestroy()
+    {
+        UnlockPlayerMovement();
+
+        if (Instance == this)
+            Instance = null;
+    }
+
     public void Open(SceneTravelTrigger trigger)
     {
         if (trigger == null) return;
 
         currentTrigger = trigger;
+        LockPlayerMovement();
 
         if (rootPanel != null)
             rootPanel.SetActive(true);
@@ -51,6 +62,7 @@ public class MapPopupUI : MonoBehaviour
                 destination.button.onClick.AddListener(() =>
                 {
                     CloseWithoutRestoringControl();
+                    UnlockPlayerMovement();
                     currentTrigger.TravelTo(capturedDestination);
                 });
             }
@@ -65,6 +77,7 @@ public class MapPopupUI : MonoBehaviour
         if (currentTrigger != null)
             currentTrigger.RestorePlayerControl();
 
+        UnlockPlayerMovement();
         currentTrigger = null;
     }
 
@@ -72,5 +85,22 @@ public class MapPopupUI : MonoBehaviour
     {
         if (rootPanel != null)
             rootPanel.SetActive(false);
+    }
+
+    private void LockPlayerMovement()
+    {
+        if (isMovementLockedByMap) return;
+
+        previousMovementLocked = GameInputState.MovementLocked;
+        GameInputState.MovementLocked = true;
+        isMovementLockedByMap = true;
+    }
+
+    private void UnlockPlayerMovement()
+    {
+        if (!isMovementLockedByMap) return;
+
+        GameInputState.MovementLocked = previousMovementLocked;
+        isMovementLockedByMap = false;
     }
 }
