@@ -35,6 +35,8 @@ public class InventoryUI : MonoBehaviour
     {
         isOpen = !isOpen;
         inventoryPanel.SetActive(isOpen);
+        if (TooltipUI.Instance != null) TooltipUI.Instance.Hide();
+
         if (isOpen)             //disable movement and stop player in position when opening inventory, as well as disable gameplay input
         {
             movement.enabled = false;

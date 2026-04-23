@@ -8228,7 +8228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303893209}
   m_Layer: 0
-  m_Name: CollectableItemsParent
+  m_Name: CollectibleItemsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9151,9 +9151,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.049074072
-    width: 0.81458336
-    height: 0.5
+    y: 0.01438849
+    width: 1
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
