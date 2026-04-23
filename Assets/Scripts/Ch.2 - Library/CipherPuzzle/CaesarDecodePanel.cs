@@ -14,6 +14,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private CaesarNotePuzzleData puzzleData;
     [SerializeField] private ItemData requiredNoteItem;
     [SerializeField] private ItemData requiredWheelItem;
+    [SerializeField] private string legacyPuzzleID = "CaesarCipher Puzzle";
 
     [Header("Runtime Dependencies (Auto-Resolved)")]
     [SerializeField] private SaveSystem saveSystem;
@@ -179,7 +180,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         feedbackText.text = "Decoded!";
 
         if (saveSystem != null)
+        {
             saveSystem.UnlockPuzzle(puzzleData.PuzzleKey);
+
+            if (!string.IsNullOrWhiteSpace(legacyPuzzleID))
+                saveSystem.UnlockPuzzle(legacyPuzzleID);
+        }
 
         answerInput.interactable = false;
 

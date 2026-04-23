@@ -639,36 +639,36 @@ MonoBehaviour:
     hideWhenLocked: 0
     sceneName: Chapter1_Home
     spawnPointId:
-    unlockType: 0
+    unlockType: 2
     requiredChapter: 0
-    requiredPuzzleId:
+    requiredPuzzleId: Chapter0_graveyard_gate
     requiredItemId:
   - displayName: Library
     button: {fileID: 3248361821697471172}
     hideWhenLocked: 0
     sceneName: Chapter2_Library
     spawnPointId: 
-    unlockType: 0
+    unlockType: 2
     requiredChapter: 0
-    requiredPuzzleId: 
+    requiredPuzzleId: Chapter1_polaroid_timeline
     requiredItemId: 
   - displayName: Police Station
     button: {fileID: 4978883030510786785}
     hideWhenLocked: 0
     sceneName: Chapter3_PoliceStation
     spawnPointId: 
-    unlockType: 0
+    unlockType: 2
     requiredChapter: 0
-    requiredPuzzleId: 
+    requiredPuzzleId: Caesar_Note_Library
     requiredItemId: 
   - displayName: Final
     button: {fileID: 7710000000000000005}
     hideWhenLocked: 0
     sceneName: ChapterFinal
     spawnPointId:
-    unlockType: 0
+    unlockType: 2
     requiredChapter: 0
-    requiredPuzzleId:
+    requiredPuzzleId: StationLocker
     requiredItemId:
   charMovement: {fileID: 0}
   fadeScreen: {fileID: 0}
