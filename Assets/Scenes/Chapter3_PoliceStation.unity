@@ -127,6 +127,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -170,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 6447431409742568644, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_Name
       value: Cubicle1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -452,6 +464,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -500,6 +520,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 51993e5ce75042049bede8befd7ccb35, type: 2}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1983,6 +2007,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -2031,6 +2063,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 23f4795a03acb7d40ad703a836caab43, type: 2}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5875,6 +5911,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -5923,6 +5967,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 99ca5569ff216ae49b21ecb058c6acce, type: 2}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8310,6 +8358,7 @@ MonoBehaviour:
   - {fileID: 1527784486}
   correctCode: 020000000900000005000000030000000700000004000000
   policeFileObtainedDialogue: {fileID: 11400000, guid: 0bd92613026a4b541873feac57dc4f10, type: 2}
+  puzzleID: StationLocker
 --- !u!1 &892714089
 GameObject:
   m_ObjectHideFlags: 0
@@ -9349,9 +9398,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.049074072
-    width: 0.81458336
-    height: 0.5
+    y: -0.053956836
+    width: 0.5536332
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -9702,6 +9751,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5
@@ -9750,6 +9807,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7e7fdb0cd4e831c4a85c37d8ba4f4e45, type: 2}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17220,6 +17281,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681788603}
     m_Modifications:
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244753730641495762, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2624542601638388907, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
       propertyPath: screenAnimator
       value: 
@@ -17272,6 +17341,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9f811b7bd46922243b4a877cf3c421c4, type: 2}
+    - target: {fileID: 7972382999589470173, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
