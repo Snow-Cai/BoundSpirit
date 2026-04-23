@@ -782,17 +782,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: StationComputerPuzzle
   puzzleUI: {fileID: 907081996}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -2036,6 +2041,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4842234750750065942, guid: f5e4c26927fcaa043b8ad05bad8cba45, type: 3}
   m_PrefabInstance: {fileID: 382902294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &384066272
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1499355195}
+    m_Modifications:
+    - target: {fileID: 676423684423883026, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 676423684423883026, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293556919204343522, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_Name
+      value: MapTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -551.32385
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -262.968
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898468397453704826, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898468397453704826, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.24
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+--- !u!4 &384066273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+  m_PrefabInstance: {fileID: 384066272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &397796577
 GameObject:
   m_ObjectHideFlags: 0
@@ -2468,6 +2551,7 @@ MonoBehaviour:
   GameplayInputEnabled: 1
   CanToggleInventory: 1
   AllowInspect: 1
+  InteractEnabled: 1
 --- !u!4 &437058704
 Transform:
   m_ObjectHideFlags: 0
@@ -6003,17 +6087,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
   puzzleID: StationLocker
   puzzleUI: {fileID: 2118891725}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -9260,9 +9349,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.01438849
-    width: 1
-    height: 0.97122306
+    y: -0.049074072
+    width: 0.81458336
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -9864,7 +9953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1163222892
 Transform:
   m_ObjectHideFlags: 0
@@ -11167,6 +11256,7 @@ Transform:
   - {fileID: 1715420762}
   - {fileID: 690354648}
   - {fileID: 453985146}
+  - {fileID: 384066273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1523440892 stripped

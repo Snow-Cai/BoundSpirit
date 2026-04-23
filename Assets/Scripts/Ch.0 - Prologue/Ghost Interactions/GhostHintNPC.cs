@@ -26,6 +26,8 @@ public class GhostHintNPC : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
+    public ItemData RequiredItem => requiredItem;
+
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -138,9 +140,20 @@ public class GhostHintNPC : MonoBehaviour
 
     private bool PlayerHasAnyItems()
     {
-        return playerInventory != null &&
-               playerInventory.GetItems() != null &&
-               playerInventory.GetItems().Count > 0;
+        if (playerInventory == null || playerInventory.GetItems() == null)
+        {
+            return false;
+        }
+
+        foreach (ItemData item in playerInventory.GetItems())
+        {
+            if (item != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void OfferItem(ItemData offeredItem)
@@ -162,7 +175,7 @@ public class GhostHintNPC : MonoBehaviour
             return;
         }
 
-        if (offeredItem != requiredItem)
+        if (!IsRequiredItem(offeredItem))
         {
             PlayDialogue(wrongItemDialogue);
             return;
@@ -182,6 +195,22 @@ public class GhostHintNPC : MonoBehaviour
         }
 
         PlayDialogue(successDialogue);
+    }
+
+    private bool IsRequiredItem(ItemData offeredItem)
+    {
+        if (offeredItem == null || requiredItem == null)
+        {
+            return false;
+        }
+
+        if (offeredItem == requiredItem)
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(offeredItem.itemID) &&
+               offeredItem.itemID == requiredItem.itemID;
     }
 
     private bool IsSolved()

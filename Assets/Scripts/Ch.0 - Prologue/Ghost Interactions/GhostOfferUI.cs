@@ -65,7 +65,7 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         currentGhost = ghost;
-        currentItems = playerInventory.GetItems() ?? new List<ItemData>();
+        currentItems = BuildOfferItems(ghost);
 
         RefreshUI();
 
@@ -145,6 +145,67 @@ public class GhostOfferUI : MonoBehaviour
         {
             OfferItem(item);
         }
+    }
+
+    private List<ItemData> BuildOfferItems(GhostHintNPC ghost)
+    {
+        List<ItemData> inventoryItems = playerInventory.GetItems() ?? new List<ItemData>();
+        List<ItemData> offerItems = new List<ItemData>();
+        ItemData requiredItem = ghost.RequiredItem;
+
+        if (requiredItem != null)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                if (IsSameItem(inventoryItems[i], requiredItem))
+                {
+                    offerItems.Add(inventoryItems[i]);
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            ItemData item = inventoryItems[i];
+            if (item == null || IsSameItemAlreadyAdded(offerItems, item))
+            {
+                continue;
+            }
+
+            offerItems.Add(item);
+        }
+
+        return offerItems;
+    }
+
+    private static bool IsSameItemAlreadyAdded(List<ItemData> items, ItemData item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (IsSameItem(items[i], item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool IsSameItem(ItemData left, ItemData right)
+    {
+        if (left == null || right == null)
+        {
+            return false;
+        }
+
+        if (left == right)
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(left.itemID) &&
+               left.itemID == right.itemID;
     }
 
     private void RefreshUI()
