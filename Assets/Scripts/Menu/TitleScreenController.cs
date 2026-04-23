@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class TitleScreenController : MonoBehaviour
 {
@@ -7,18 +8,37 @@ public class TitleScreenController : MonoBehaviour
     public TitleKey[] spiritKeys;       //6 keys: S P I R I T
 
     [Header("Layout")]
-    public float keySize = 32f;         //width of each key
-    public float keySpacing = 4f;       //gap between keys
+    public float keySize = 40f;         //width of each key
+    public float keySpacing = 0f;       //gap between keys
     public float upOffset = 10f;        //how far up even keys go
     public float downOffset = 10f;      //how far down odd keys go
     public float rowGap = 16f;          //vertical gap between BOUND and SPIRIT rows
 
     private void Start()
     {
+        StartCoroutine(LayoutAfterFrame());
+    }
+
+    private IEnumerator LayoutAfterFrame()
+    {
+        yield return null;
+        yield return new WaitForEndOfFrame();
+        LayoutRows();
+        ApplySavedTitleState();
+    }
+
+    private void LayoutRows()
+    {
         LayoutRow(boundKeys, 0f);
         LayoutRow(spiritKeys, 0f);
         AssignController(boundKeys);
         AssignController(spiritKeys);
+    }
+
+    private void OnValidate()
+    {
+        if (boundKeys == null || spiritKeys == null) return;
+        LayoutRows();
     }
 
     private void LayoutRow(TitleKey[] keys, float rowY)
@@ -41,7 +61,6 @@ public class TitleScreenController : MonoBehaviour
             rt.anchoredPosition = new Vector2(x, y);
             rt.sizeDelta = new Vector2(keySize, keySize);
 
-            //capture position after setting it
             keys[i].CapturePosition();
         }
     }
@@ -52,5 +71,47 @@ public class TitleScreenController : MonoBehaviour
         foreach (var key in keys)
             if (key != null)
                 key.titleController = this;
+    }
+
+    private void ApplySavedTitleState()
+    {
+        ResetTitleState();
+
+        if (SaveSystem.Instance == null)
+            return;
+
+        bool showFoundTitle =
+            SaveSystem.Instance.FoundMenuSecret() ||
+            SaveSystem.Instance.HasViewedDialogue("ending_forgive");
+
+        if (!showFoundTitle || boundKeys == null)
+            return;
+
+        for (int i = 0; i < boundKeys.Length; i++)
+        {
+            if (boundKeys[i] != null && boundKeys[i].isBKey)
+            {
+                boundKeys[i].ApplyFoundState();
+                break;
+            }
+        }
+    }
+
+    private void ResetTitleState()
+    {
+        ResetKeys(boundKeys);
+        ResetKeys(spiritKeys);
+    }
+
+    private void ResetKeys(TitleKey[] keys)
+    {
+        if (keys == null)
+            return;
+
+        foreach (TitleKey key in keys)
+        {
+            if (key != null)
+                key.ResetToDefaultState();
+        }
     }
 }

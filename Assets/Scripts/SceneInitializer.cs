@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -7,6 +8,10 @@ public class SceneInitializer : MonoBehaviour
     [Header("Scene Type")]
     [Tooltip("What type of scene is this?")]
     public SceneType sceneType = SceneType.Gameplay;
+
+    [Header("Audio (optional)")]
+    [Tooltip("Assign the mixer's SFX group so ambient/world audio respects the SFX slider when the main menu (UIAudioManager) was never loaded.")]
+    public AudioMixerGroup defaultSfxMixerGroup;
 
     [Header("Custom Music (Optional)")]
     [Tooltip("Leave empty to use default music for scene type")]
@@ -26,6 +31,12 @@ public class SceneInitializer : MonoBehaviour
         Gameplay,
         Safe,
         Custom
+    }
+
+    void Awake()
+    {
+        if (defaultSfxMixerGroup != null && UIAudioManager.SharedSfxGroup == null)
+            UIAudioManager.RegisterSharedSfxGroup(defaultSfxMixerGroup);
     }
 
     void Start()

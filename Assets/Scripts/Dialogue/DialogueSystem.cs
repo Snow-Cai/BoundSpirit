@@ -31,10 +31,18 @@ public class DialogueSystem : MonoBehaviour
     private readonly Queue<DialogueAsset> dialogueQueue = new Queue<DialogueAsset>();
     private DialogueAsset currentDialogue;
     private int currentLineIndex = -1;
+    private int lastSelectedChoiceIndex = -1;
 
     public DialogueState State { get; private set; } = DialogueState.Inactive;
 
     public float TypingSpeed => charactersPerSecond;
+    public int LastSelectedChoiceIndex => lastSelectedChoiceIndex;
+
+    /// <summary>Dialogue ID of the line currently playing, or null if none.</summary>
+    public string ActiveDialogueId =>
+        currentDialogue != null && !string.IsNullOrEmpty(currentDialogue.dialogueID)
+            ? currentDialogue.dialogueID
+            : null;
 
     // Tracks if the grave dialogue has been completed already
     public static bool graveDialogueCompleted = false;
@@ -43,8 +51,11 @@ public class DialogueSystem : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Debug.LogWarning("Multiple DialogueSystem instances found. Destroying duplicate.");
-            Destroy(gameObject);
+            // Destroy only this component so the rest of the GameObject survives (e.g. SpawnDialogueAfterCutscene
+            // on the same DialogueManager). Destroying the whole object broke scene intro dialogues after loading
+            // from another scene that already created the persistent DialogueSystem singleton.
+            Debug.LogWarning("Multiple DialogueSystem instances found. Removing duplicate component.");
+            Destroy(this);
             return;
         }
 
@@ -72,6 +83,7 @@ public class DialogueSystem : MonoBehaviour
             return;
         }
 
+        lastSelectedChoiceIndex = -1;
         dialogueQueue.Clear();
         dialogueQueue.Enqueue(asset);
         StartNextDialogueFromQueue();
@@ -156,6 +168,7 @@ public class DialogueSystem : MonoBehaviour
         if (State != DialogueState.WaitingForChoice || choice == null)
             return;
 
+        lastSelectedChoiceIndex = choiceIndex;
         choice.onChoiceSelected?.Invoke();
 
         if (SaveSystem.Instance != null &&
@@ -191,6 +204,7 @@ public class DialogueSystem : MonoBehaviour
             currentDialogue = null;
             State = DialogueState.Inactive;
             GameInputState.DialogueActive = false;
+            InputLock.Instance.CanToggleInventory = true;
             return;
         }
 
@@ -199,6 +213,7 @@ public class DialogueSystem : MonoBehaviour
 
         State = DialogueState.PlayingLine;
         GameInputState.DialogueActive = true;
+        InputLock.Instance.CanToggleInventory = false;
 
         TryNotifyDialogueStarted(currentDialogue);
         OnDialogueStarted?.Invoke(currentDialogue);

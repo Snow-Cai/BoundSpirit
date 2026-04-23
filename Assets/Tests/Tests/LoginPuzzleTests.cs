@@ -29,6 +29,8 @@ public class LoginPuzzleTests
         puzzle.usernameInput = usernameInput;
         puzzle.passwordInput = passwordInput;
         puzzle.messageText = messageText;
+        puzzle.correctUsername = "akila";
+        puzzle.correctPassword = "2001eden";
 
         // Enable object ("Awake")
         puzzleObj.SetActive(true);
@@ -42,5 +44,46 @@ public class LoginPuzzleTests
 
         // Verify the result and report test result back
         Assert.AreEqual("Login Successful!", messageText.text);
+    }
+
+    [Test]
+    public void ResetFields_AfterSuccessfulLogin_PrefillsCorrectCredentials()
+    {
+        GameObject puzzleObj = new GameObject();
+        puzzleObj.SetActive(false);
+
+        LoginPuzzle puzzle = puzzleObj.AddComponent<LoginPuzzle>();
+
+        GameObject usernameObj = new GameObject();
+        usernameObj.AddComponent<RectTransform>();
+        TMP_InputField usernameInput = usernameObj.AddComponent<TMP_InputField>();
+
+        GameObject passwordObj = new GameObject();
+        passwordObj.AddComponent<RectTransform>();
+        TMP_InputField passwordInput = passwordObj.AddComponent<TMP_InputField>();
+
+        GameObject messageObj = new GameObject();
+        messageObj.AddComponent<RectTransform>();
+        TMP_Text messageText = messageObj.AddComponent<TextMeshProUGUI>();
+
+        puzzle.usernameInput = usernameInput;
+        puzzle.passwordInput = passwordInput;
+        puzzle.messageText = messageText;
+        puzzle.correctUsername = "bunny";
+        puzzle.correctPassword = "2001eden";
+
+        puzzleObj.SetActive(true);
+
+        usernameInput.text = "bunny";
+        passwordInput.text = "2001eden";
+        puzzle.TryLogin();
+
+        usernameInput.text = "changed";
+        passwordInput.text = "wrong";
+        puzzle.ResetFields();
+
+        Assert.AreEqual("bunny", usernameInput.text);
+        Assert.AreEqual("2001eden", passwordInput.text);
+        Assert.AreEqual("", messageText.text);
     }
 }

@@ -53,15 +53,18 @@ public class InteractionHintUI : MonoBehaviour
             return;
         }
 
-        // Hide hint whenever dialogue/puzzle is active.
-        if ((hideWhenDialogueActive && GameInputState.DialogueActive) || !IntroDialogueHasPlayed())
+        bool endingPresentationActive =
+            EndingManager.Instance != null &&
+            EndingManager.Instance.IsEndingPresentationActive;
+
+        if ((hideWhenDialogueActive && (GameInputState.DialogueActive || endingPresentationActive)) ||
+            !IntroDialogueHasPlayed())
         {
             SetTargetVisible(false);
             ApplyFade();
             return;
         }
 
-        // Find closest valid interaction target (InteractableObject or GraveyardGateController).
         bool hasTarget = TryFindNearestTarget(out Vector2 targetPosition, out KeyCode targetKey);
 
         if (hasTarget)
@@ -105,45 +108,64 @@ public class InteractionHintUI : MonoBehaviour
         float nearestDistance = maxDistance;
         bool found = false;
 
-        // 1) Check InteractableObjects
-        InteractableObject[] interactables = FindObjectsOfType<InteractableObject>();
-        foreach (var interactable in interactables)
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
         {
             if (interactable == null || !interactable.enabled)
             {
                 continue;
             }
 
-            float distance = Vector2.Distance(playerPosition, interactable.transform.position);
-            if (distance <= nearestDistance)
+            Vector2 interactablePosition = GetInteractablePosition(interactable);
+            float allowedDistance = Mathf.Max(maxDistance, interactable.interactionRange);
+            float distance = Vector2.Distance(playerPosition, interactablePosition);
+            if (distance <= allowedDistance && distance <= nearestDistance)
             {
                 nearestDistance = distance;
-                targetPosition = interactable.transform.position;
-                targetKey = interactable.interactKey;   // assumes this is public or has a getter
+                targetPosition = interactablePosition;
+                targetKey = interactable.interactKey;
                 found = true;
             }
         }
 
-        // 2) Check GraveyardGateController (special-case gate interaction)
-        GraveyardGateController[] gates = FindObjectsOfType<GraveyardGateController>();
-        foreach (var gate in gates)
+        GraveyardGateController[] gates = FindObjectsByType<GraveyardGateController>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (GraveyardGateController gate in gates)
         {
             if (gate == null || !gate.enabled)
             {
                 continue;
             }
 
-            float distance = Vector2.Distance(playerPosition, gate.transform.position);
+            float distance = Vector2.Distance(playerPosition, (Vector2)gate.transform.position);
             if (distance <= nearestDistance)
             {
                 nearestDistance = distance;
                 targetPosition = gate.transform.position;
-                targetKey = gate.InteractKey;  // uses the property we just added
+                targetKey = gate.InteractKey;
                 found = true;
             }
         }
 
         return found;
+    }
+
+    private static Vector2 GetInteractablePosition(InteractableObject interactable)
+    {
+        Collider2D collider = interactable.GetComponent<Collider2D>();
+        if (collider != null)
+        {
+            return collider.bounds.center;
+        }
+
+        return interactable.transform.position;
     }
 
     private void UpdateHintText(KeyCode key)
@@ -177,8 +199,7 @@ public class InteractionHintUI : MonoBehaviour
             return true;
         }
 
-        bool hasPlayed = SaveSystem.Instance.HasViewedDialogue(introDialogueID);
-        return hasPlayed;
+        return SaveSystem.Instance.HasViewedDialogue(introDialogueID);
     }
 
     private string FormatKeyLabel(KeyCode key)

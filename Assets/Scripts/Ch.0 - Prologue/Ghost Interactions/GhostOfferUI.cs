@@ -28,6 +28,10 @@ public class GhostOfferUI : MonoBehaviour
             return;
         }
 
+        // DialogueSystem clears GameInputState.DialogueActive when the dialogue queue empties,
+        // which runs after OnDialogueEnded opens this UI — keep the modal flag until we close.
+        GameInputState.DialogueActive = true;
+
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             OfferByIndex(0);
@@ -71,6 +75,11 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = true;
+        SetGameplayInputEnabled(false);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = false;
+        }
     }
 
     public void Close()
@@ -86,6 +95,19 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = false;
+        SetGameplayInputEnabled(true);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = true;
+        }
+    }
+
+    private static void SetGameplayInputEnabled(bool enabled)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = enabled;
+        }
     }
 
     public void OfferItem(ItemData item)
@@ -101,6 +123,9 @@ public class GhostOfferUI : MonoBehaviour
             Debug.LogWarning("GhostOfferUI: Tried to offer a null item.");
             return;
         }
+
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
 
         GhostHintNPC targetGhost = currentGhost;
 

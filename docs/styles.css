@@ -1,0 +1,278 @@
+/* =========================
+   Custom Fonts
+   ========================= */
+
+/* Paaxel — headings / nav */
+@font-face {
+  font-family: "Paaxel";
+  src: url("fonts/paaxel.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pixeloid Sans — Regular */
+@font-face {
+  font-family: "Pixeloid Sans";
+  src: url("fonts/PixeloidSans.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Pixeloid Sans — Bold */
+@font-face {
+  font-family: "Pixeloid Sans";
+  src: url("fonts/PixeloidSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Disable motion per preferred settings (ada stuff) */
+@media (prefers-reduced-motion: reduce) {
+  section {
+    transition: none;
+  }
+
+  section:hover,
+  section:focus-within {
+    transform: none;
+  }
+}
+
+ 
+/* =========================
+   Reset
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   Theme Variables
+   ========================= */
+:root {
+  --bg-color: #12081f;       
+  --card-bg: #1b102a;        
+  --text-main: #f3e8ff;   
+  --text-muted: #c4b5fd;     
+  --accent: #f97316;         
+  --accent-soft: #a78bfa;   
+}
+
+
+/* =========================
+   Global Body Text
+   ========================= */
+body {
+  margin: 0;
+  font-family: "Pixeloid Sans", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-main);
+
+  background-color: #12081f;
+
+  background-image:
+    url("images/svg/moon.svg"),
+    url("images/svg/clouds.svg"),
+    url("images/svg/fog_back_1.svg"),
+    url("images/svg/land-1.svg");
+
+  background-repeat:
+    no-repeat,
+    repeat-x,
+    repeat-x,
+    repeat-x;
+
+  background-position:
+    right 5% top 4rem,   /* moon */
+    center top,          /* clouds */
+    center bottom 6rem,  /* fog */
+    center bottom;       /* land */
+
+  background-size:
+    200px,    /* moon */
+    1200px,   /* clouds */
+    1400px,   /* fog */
+    cover;    /* land */
+
+  background-attachment:
+    fixed,
+    fixed,
+    fixed,
+    fixed;
+  
+}
+
+
+
+/* =========================
+   Strong
+   ========================= */
+
+/* Strong text INSIDE paragraphs */
+p strong {
+  color: var(--accent);
+}
+
+/* =========================
+   Layout
+   ========================= */
+header,
+main,
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+header {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+/* Center subtitle text correctly */
+header p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   Navigation
+   ========================= */
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  font-family: "Paaxel", system-ui, sans-serif;
+  font-size: 1.1rem;
+  margin: 0 0.75rem;
+  text-decoration: none;
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(249, 115, 22, 0.4);
+}
+
+nav a:hover,
+nav a:focus {
+  text-decoration: underline;
+}
+
+/* =========================
+   Headings
+   ========================= */
+h1,
+h2 {
+  font-family: "Paaxel", system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  color: #ffa771;
+  text-shadow: 0 0 6px rgba(249, 115, 22, 0.35);
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+}
+
+/* =========================
+   Sections
+   ========================= */
+section {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(0, 0, 0, 0.15)
+  ),
+  var(--card-bg);
+
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+section:hover {
+  transform: scale(1.05);
+}
+section:focus-within {
+  transform: scale(1.03);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+
+
+
+/* =========================
+   Lists
+   ========================= */
+ul {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* =========================
+   Links
+   ========================= */
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-soft);
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  opacity: 0.85;
+  margin-top: 3rem;
+}
+
+/* =========================
+   Skip Link (ADA stuff)
+   ========================= */
+.skip-link {
+  position: absolute;
+  top: -50px;
+  left: 1rem;
+  background: #111827;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-family: "Pixeloid Sans", system-ui, sans-serif;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+

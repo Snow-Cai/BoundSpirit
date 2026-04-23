@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogueText: "No\u2026 that is not what I lost."
     voiceClip: {fileID: 0}
   - speakerName: Restless Ghost
-    dialogueText: "What I remember was small\u2026 heavy\u2026 and cold."
+    dialogueText: What I remember was small... and cold.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

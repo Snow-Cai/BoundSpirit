@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Ghost1NeedRepeat
   lines:
   - speakerName: Gentle Ghost
-    dialogueText: Did you find what once carried that sweet scent?
+    dialogueText: Did you find what once carried that floral scent?
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

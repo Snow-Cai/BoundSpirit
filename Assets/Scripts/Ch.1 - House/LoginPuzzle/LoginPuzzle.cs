@@ -21,8 +21,15 @@ public class LoginPuzzle : MonoBehaviour
 
     [Header("Tidbit Popup")]
     public UICluePopup cluePopup;
+    public InformationalTidbitData informationalTidbit;
     [TextArea] public string tidbitMessage = "This is a tidbit message shown after solving the login puzzle.";
 
+    [Header("Story")]
+    [Tooltip("Queued after a successful login (e.g. hint to visit parents' room).")]
+    public DialogueAsset dialogueAfterSuccessfulLogin;
+
+    private bool hasLoggedInBefore;
+    private bool hasQueuedDialogueThisSession;
     private Coroutine usernameShakeCoroutine;
     private Coroutine passwordShakeCoroutine;
 
@@ -39,8 +46,16 @@ public class LoginPuzzle : MonoBehaviour
     {
         if (usernameInput == null || passwordInput == null) return;
 
-        usernameInput.text = "";
-        passwordInput.text = "";
+        if (hasLoggedInBefore)
+        {
+            usernameInput.text = correctUsername;
+            passwordInput.text = correctPassword;
+        }
+        else
+        {
+            usernameInput.text = "";
+            passwordInput.text = "";
+        }
 
         if (messageText != null)
             messageText.text = "";
@@ -54,6 +69,8 @@ public class LoginPuzzle : MonoBehaviour
 
     private void OnDisable()
     {
+        hasQueuedDialogueThisSession = false;
+
         if (usernameInput != null && passwordInput != null)
             ResetFields();
     }
@@ -119,13 +136,25 @@ public class LoginPuzzle : MonoBehaviour
         // both right
         if (usernameCorrect && passwordCorrect)
         {
+            hasLoggedInBefore = true;
             messageText.text = "Login Successful!";
             messageText.color = new Color(0.2f, 0.8f, 0.3f);
 
             if (cluePopup != null)
             {
                 cluePopup.enabled = true;
-                cluePopup.ShowClue(tidbitMessage);
+                if (informationalTidbit != null)
+                    cluePopup.ShowTidbit(informationalTidbit);
+                else
+                    cluePopup.ShowTidbitMessage(tidbitMessage);
+            }
+
+            if (!hasQueuedDialogueThisSession &&
+                dialogueAfterSuccessfulLogin != null &&
+                DialogueSystem.Instance != null)
+            {
+                DialogueSystem.Instance.QueueDialogue(dialogueAfterSuccessfulLogin);
+                hasQueuedDialogueThisSession = true;
             }
 
             OnLoginSuccess?.Invoke();

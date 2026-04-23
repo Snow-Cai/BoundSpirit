@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Chapter3_stationFirstEnter
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  dialogueID: Chapter3_stationFirstEnter
+  lines:
+  - speakerName: Akila
+    dialogueText: 'The local police station, where Dad worked. I used to sit at his
+      desk and pretend to be a detective. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: He'd say, 'Bunny, you'd be a better one than me.' He was always
+      so proud.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: "In the back is the office area... I think Dad\u2019s cubicle was
+      the one on\u2026 the middle left?"
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I might find something useful there to finally figure out the truth.
+    voiceClip: {fileID: 0}
+  choices: []
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1

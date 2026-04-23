@@ -25,6 +25,7 @@ public class SafeInteraction : MonoBehaviour
             float dist = Vector2.Distance(playerTransform.position, transform.position);
             if(!isOpen && dist <= interactionRadius && Input.GetKeyDown(KeyCode.E))
             {
+                isOpen = true;
                 StartCoroutine(OpenSafe());
             }
             else if(isOpen && Input.GetKeyDown(KeyCode.E))
@@ -34,11 +35,9 @@ public class SafeInteraction : MonoBehaviour
     }
     private IEnumerator OpenSafe()
     {
-        isOpen = true;
         safeUIPanel.SetActive(true);
-        //disable player movement
-        CharMovement movement = playerTransform.GetComponent<CharMovement>();
-        if(movement != null) movement.enabled = false;
+        InputLock.Instance.CanToggleInventory = false;
+        InputLock.Instance.GameplayInputEnabled = false;
         //panel appears and is interactable
         cg.alpha = 1;
         cg.interactable = true;
@@ -55,9 +54,8 @@ public class SafeInteraction : MonoBehaviour
         cg.blocksRaycasts = false;
         cg.alpha = 0;
         safeUIPanel.SetActive(false);
-        //enable player movement again
-        CharMovement movement = FindFirstObjectByType<CharMovement>();
-        if (movement != null) movement.enabled = true;
+        InputLock.Instance.CanToggleInventory = true;
+        InputLock.Instance.GameplayInputEnabled = true;
         isOpen = false;
         yield return null;
     }

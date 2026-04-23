@@ -255,7 +255,7 @@ MonoBehaviour:
   speakerNameText: {fileID: 1999743414680959953}
   dialogueText: {fileID: 5239401067651490055}
   choiceButtonContainer: {fileID: 2690922749261025691}
-  choiceButtonPrefab: {fileID: 0}
+  choiceButtonPrefab: {fileID: 3244307467006621920, guid: d4324b40c50bfd341a5a8e4d7edd2e43, type: 3}
   playVoiceClips: 1
   continueHintText: {fileID: 6999337976627734301}
   continueHintAppearDelay: 0.6
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &145237430890942549
 RectTransform:
   m_ObjectHideFlags: 0

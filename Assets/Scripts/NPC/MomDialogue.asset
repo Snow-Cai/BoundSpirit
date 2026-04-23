@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
   m_Name: MomDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: 'Chapter2_mom '
+  dialogueID: Chapter2_mom
   lines:
   - speakerName: Akila
     dialogueText: 'MOM??? MOM! '
@@ -21,7 +21,12 @@ MonoBehaviour:
     dialogueText: '*Brrr* Oh dear it sure is cold all of a sudden...'
     voiceClip: {fileID: 0}
   - speakerName: Mom
-    dialogueText: I keep telling Bill to keep the windows closed! *tsk tsk*
+    dialogueText: 'Bill needs to keep the windows closed! People may come and ask
+      too many questions. '
+    voiceClip: {fileID: 0}
+  - speakerName: Mom
+    dialogueText: I should go upstairs and clean her room. I can't bring myself to
+      go in there.
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: Mom... why can't you see me.
