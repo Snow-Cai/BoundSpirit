@@ -17,13 +17,14 @@ public class PlayerInventory : MonoBehaviour
 
     public bool HasItem(ItemData itemID)
     {
-        return inventory.Contains(itemID);
+        return FindItemIndex(itemID) >= 0;
     }
 
     public void RemoveItem(ItemData itemID)
     {
-        if(inventory.Contains(itemID))
-            inventory.Remove(itemID);
+        int itemIndex = FindItemIndex(itemID);
+        if(itemIndex >= 0)
+            inventory.RemoveAt(itemIndex);
     }
 
     public ItemData GetInventoryItem(int index)
@@ -64,5 +65,35 @@ public class PlayerInventory : MonoBehaviour
     public List<ItemData> GetItems()
     {
         return new List<ItemData>(inventory);
+    }
+
+    private int FindItemIndex(ItemData item)
+    {
+        if (item == null)
+        {
+            return -1;
+        }
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            ItemData inventoryItem = inventory[i];
+            if (inventoryItem == null)
+            {
+                continue;
+            }
+
+            if (inventoryItem == item)
+            {
+                return i;
+            }
+
+            if (!string.IsNullOrWhiteSpace(inventoryItem.itemID) &&
+                inventoryItem.itemID == item.itemID)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
