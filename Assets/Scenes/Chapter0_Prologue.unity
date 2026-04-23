@@ -2193,18 +2193,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -7668,18 +7672,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -7743,9 +7751,9 @@ RectTransform:
   - {fileID: 155563129}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -226}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262543422
@@ -8008,18 +8016,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
   repeatDialogue: {fileID: 11400000, guid: dc0b362ce1806aa469bcc9fc2f6b7e2c, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -8465,18 +8477,22 @@ MonoBehaviour:
   objectName: Gate
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -9134,9 +9150,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.074999996
-    width: 0.8083334
-    height: 0.5
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9366,7 +9382,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9564,7 +9580,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10070,18 +10086,22 @@ MonoBehaviour:
   objectName: Paper
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 0
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -11532,18 +11552,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -16773,9 +16797,9 @@ RectTransform:
   - {fileID: 1238239354}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -138}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008950118
@@ -16954,7 +16978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1036898949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16971,9 +16995,9 @@ RectTransform:
   - {fileID: 1221681924}
   m_Father: {fileID: 1730973968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -188}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 352.8}
   m_SizeDelta: {x: 600, y: 80}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1036898950
@@ -17171,7 +17195,7 @@ MonoBehaviour:
   m_text: '[0] to cancel'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17544,9 +17568,9 @@ RectTransform:
   - {fileID: 726688458}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128128417
@@ -17910,7 +17934,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 358, y: 58}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221681925
 MonoBehaviour:
@@ -19592,18 +19616,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -24757,7 +24785,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25357,7 +25385,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25924,18 +25952,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 03def431d34e5094ebc9dc7be2387a24, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -26090,6 +26122,7 @@ MonoBehaviour:
   GameplayInputEnabled: 1
   CanToggleInventory: 1
   AllowInspect: 1
+  InteractEnabled: 1
 --- !u!4 &1507892794
 Transform:
   m_ObjectHideFlags: 0
@@ -32439,7 +32472,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -33000,18 +33033,22 @@ MonoBehaviour:
   objectName: key_grave
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 0
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -33749,18 +33786,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -40777,7 +40818,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40961,18 +41002,22 @@ MonoBehaviour:
   objectName: Your Tombstone
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 82ae89f3197dd6f4485d7e2b523f31df, type: 2}
   repeatDialogue: {fileID: 11400000, guid: f82b6d999c6f6a94f94c2a93e6908588, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -41043,7 +41088,7 @@ MonoBehaviour:
     Press 1, 2, or 3 to offer an item. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -43609,18 +43654,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -44757,18 +44806,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 16376d17adb693a4f9b2a36639407000, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -45076,18 +45129,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 1
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 114f9d23820de5b4396ec966d78a884f, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 1
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
