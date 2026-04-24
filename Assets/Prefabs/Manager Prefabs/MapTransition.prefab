@@ -661,7 +661,7 @@ MonoBehaviour:
     requiredChapter: 0
     requiredPuzzleId: Caesar_Note_Library
     requiredItemId: 
-  - displayName: Final
+  - displayName: Hill
     button: {fileID: 7710000000000000005}
     hideWhenLocked: 0
     sceneName: ChapterFinal
@@ -1853,7 +1853,7 @@ GameObject:
   - component: {fileID: 7710000000000000004}
   - component: {fileID: 7710000000000000005}
   m_Layer: 5
-  m_Name: Final Button
+  m_Name: Hill Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2026,7 +2026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Final
+  m_text: Hill
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
