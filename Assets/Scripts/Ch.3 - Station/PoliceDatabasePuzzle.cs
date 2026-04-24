@@ -94,6 +94,7 @@ public class PoliceDatabasePuzzle : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
             if (alarmEvent != null)
             {
+                Time.timeScale = 1f;            // Re-enable time for alarm animation to appear properly
                 alarmEvent.TriggerAlarmEvent();
                 yield return new WaitForSecondsRealtime(1.5f);
                 Close();
