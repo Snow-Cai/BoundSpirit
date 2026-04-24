@@ -22,16 +22,24 @@ public class SafeInteraction : MonoBehaviour
     private void Update()
     {
         if (playerTransform == null) return;
-            float dist = Vector2.Distance(playerTransform.position, transform.position);
-            if(!isOpen && dist <= interactionRadius && Input.GetKeyDown(KeyCode.E))
-            {
-                isOpen = true;
-                StartCoroutine(OpenSafe());
-            }
-            else if(isOpen && Input.GetKeyDown(KeyCode.E))
-            {
-                StartCoroutine(CloseRoutine());
-            }
+
+        if (!isOpen &&
+            InputLock.Instance != null &&
+            (!InputLock.Instance.GameplayInputEnabled || !InputLock.Instance.InteractEnabled))
+        {
+            return;
+        }
+
+        float dist = Vector2.Distance(playerTransform.position, transform.position);
+        if(!isOpen && dist <= interactionRadius && Input.GetKeyDown(KeyCode.E))
+        {
+            isOpen = true;
+            StartCoroutine(OpenSafe());
+        }
+        else if(isOpen && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(CloseRoutine());
+        }
     }
     private IEnumerator OpenSafe()
     {

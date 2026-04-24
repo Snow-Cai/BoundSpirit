@@ -91,6 +91,9 @@ public class InteractableObject : MonoBehaviour
         {
             puzzleUI.SetActive(false);
         }
+
+        // Ensure stale serialized scene state does not make a puzzle act as already open.
+        isPuzzleOpen = false;
     }
 
     void Update()

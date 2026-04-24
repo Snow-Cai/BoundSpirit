@@ -123,6 +123,14 @@ public class PauseManager : MonoBehaviour
                 }
             }
         }
+
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = false;
+            InputLock.Instance.InteractEnabled = false;
+            InputLock.Instance.CanToggleInventory = false;
+        }
+
         Time.timeScale = 0f; //freeze game
         isPaused = true;
 
@@ -155,6 +163,14 @@ public class PauseManager : MonoBehaviour
             pauseMenuUI.SetActive(false);
         }
         RestoreDisabledRaycasters();
+
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = true;
+            InputLock.Instance.InteractEnabled = true;
+            InputLock.Instance.CanToggleInventory = true;
+        }
+
         Time.timeScale = 1f; //unfreeze game
         isPaused = false;
         //play resume sound
@@ -258,6 +274,13 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         RestoreDisabledRaycasters();
 
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = true;
+            InputLock.Instance.InteractEnabled = true;
+            InputLock.Instance.CanToggleInventory = true;
+        }
+
         //SAVE BEFORE QUITTING (only if not transitioning)
         if (SaveSystem.Instance != null && !SaveSystem.Instance.IsTransitioning())
         {
@@ -290,6 +313,14 @@ public class PauseManager : MonoBehaviour
 
         //play UI sound
         RestoreDisabledRaycasters();
+
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = true;
+            InputLock.Instance.InteractEnabled = true;
+            InputLock.Instance.CanToggleInventory = true;
+        }
+
         if (UIAudioManager.Instance != null && UIAudioManager.Instance.audioSource != null)
         {
             UIButtonSound buttonSound = FindFirstObjectByType<UIButtonSound>();
