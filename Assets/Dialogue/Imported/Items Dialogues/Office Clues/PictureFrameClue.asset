@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
   m_Name: PictureFrameClue
   m_EditorClassIdentifier: Assembly-CSharp::Clue
-  itemID: picture frame
-  itemName: 
-  icon: {fileID: 0}
+  itemID: PAINTING_CLUE
+  itemName: Picture Frame
+  icon: {fileID: -2240625631717156798, guid: c33567484f6e61049bed4d779fafd1f2, type: 3}
   description: '*A photo of two kids in soccer uniforms. In small handwritten text
     reads "Me and Eden."*'
   canInspect: 1

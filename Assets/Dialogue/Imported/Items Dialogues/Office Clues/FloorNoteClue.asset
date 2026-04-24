@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Clue
   itemID: FLOOR_CLUE
   itemName: Floor Note
-  icon: {fileID: 0}
+  icon: {fileID: 5303690284097778548, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
   description: It appears to be a page torn out of a book. The writing says "...a
     common password tactic is to include a meaningful number like birth year or age
     and a meaningful word, name, or object to the user..."
