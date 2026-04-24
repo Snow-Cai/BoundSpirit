@@ -13,6 +13,35 @@ public class MapPopupUI : MonoBehaviour
     private bool previousMovementLocked;
     private bool isMovementLockedByMap;
 
+    public static MapPopupUI GetOrCreateInstance()
+    {
+        if (Instance != null)
+            return Instance;
+
+        MapPopupUI[] popups = Resources.FindObjectsOfTypeAll<MapPopupUI>();
+        for (int i = 0; i < popups.Length; i++)
+        {
+            MapPopupUI popup = popups[i];
+            if (popup == null)
+                continue;
+
+            GameObject candidate = popup.gameObject;
+            if (candidate.hideFlags != HideFlags.None)
+                continue;
+
+            if (!candidate.scene.IsValid())
+                continue;
+
+            if (!candidate.activeSelf)
+                candidate.SetActive(true);
+
+            Instance = popup;
+            return popup;
+        }
+
+        return null;
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -41,6 +70,9 @@ public class MapPopupUI : MonoBehaviour
     public void Open(SceneTravelTrigger trigger)
     {
         if (trigger == null) return;
+
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
 
         currentTrigger = trigger;
         LockPlayerMovement();

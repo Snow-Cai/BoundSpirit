@@ -6579,6 +6579,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5433860790492071023, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5898468397453704826, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.25
@@ -28098,6 +28102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelpBookCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1764021672645596107, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -30419,7 +30427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3580437284575235713, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3695126917361069912, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -30984,9 +30992,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.027777778
-    width: 0.33333334
-    height: 0.5
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
