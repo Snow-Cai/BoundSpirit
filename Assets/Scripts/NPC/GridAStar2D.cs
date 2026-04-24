@@ -9,26 +9,32 @@ public static class GridAStar2D
             float cellSize,
             LayerMask obstacleLayers,
             Vector2 probeSize,
+            Vector2 probeOffset,
             bool allowDiagonal,
             int maxIterations,
-            float maxSearchDistance)
+            float maxSearchDistance,
+            Transform ignoredRoot = null)
         {
             this.cellSize = Mathf.Max(0.05f, cellSize);
             this.obstacleLayers = obstacleLayers;
             this.probeSize = new Vector2(
                 Mathf.Max(0.05f, probeSize.x),
                 Mathf.Max(0.05f, probeSize.y));
+            this.probeOffset = probeOffset;
             this.allowDiagonal = allowDiagonal;
             this.maxIterations = Mathf.Max(64, maxIterations);
             this.maxSearchDistance = Mathf.Max(this.cellSize * 2f, maxSearchDistance);
+            this.ignoredRoot = ignoredRoot;
         }
 
         public readonly float cellSize;
         public readonly LayerMask obstacleLayers;
         public readonly Vector2 probeSize;
+        public readonly Vector2 probeOffset;
         public readonly bool allowDiagonal;
         public readonly int maxIterations;
         public readonly float maxSearchDistance;
+        public readonly Transform ignoredRoot;
     }
 
     private sealed class NodeRecord
@@ -271,9 +277,22 @@ public static class GridAStar2D
 
     private static bool IsWalkable(Vector2Int cell, Settings settings)
     {
-        Vector2 worldCenter = CellToWorld(cell, settings.cellSize);
-        Collider2D hit = Physics2D.OverlapBox(worldCenter, settings.probeSize, 0f, settings.obstacleLayers);
-        return hit == null;
+        Vector2 worldCenter = CellToWorld(cell, settings.cellSize) + settings.probeOffset;
+        Collider2D[] hits = Physics2D.OverlapBoxAll(worldCenter, settings.probeSize, 0f, settings.obstacleLayers);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Collider2D hit = hits[i];
+            if (hit == null || !hit.enabled || hit.isTrigger)
+                continue;
+
+            if (settings.ignoredRoot != null && hit.transform.IsChildOf(settings.ignoredRoot))
+                continue;
+
+            return false;
+        }
+
+        return true;
     }
 
     private static Vector2Int WorldToCell(Vector2 worldPosition, float cellSize)

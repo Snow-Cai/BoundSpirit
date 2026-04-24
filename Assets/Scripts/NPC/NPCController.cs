@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class NPCController : MonoBehaviour
 {
     [Header("Profile (ScriptableObject)")] //will take out later, note to remember
@@ -14,8 +15,9 @@ public class NPCController : MonoBehaviour
     public float speed = 2f;
     public Animator animator;
     public LayerMask obstacleLayers = 1;
-    public float gridSize = 0.5f;
-    public Vector2 collisionProbeSize = new Vector2(0.6f, 0.6f);
+    public float gridSize = 0.35f;
+    public Vector2 collisionProbeSize = new Vector2(0.42f, 0.28f);
+    public Vector2 collisionProbeOffset = new Vector2(0f, -0.42f);
     public float repathInterval = 0.35f;
     public float pathNodeReachDistance = 0.06f;
     public float targetReachDistance = 0.12f;
@@ -25,6 +27,11 @@ public class NPCController : MonoBehaviour
     public float movementDeadZone = 0.02f;
     public float stuckRepathDelay = 0.4f;
     public float stuckVelocityThreshold = 0.05f;
+
+    [Header("Collider Tuning")]
+    public bool autoConfigureBodyCollider = true;
+    public Vector2 bodyColliderSize = new Vector2(0.42f, 0.3f);
+    public Vector2 bodyColliderOffset = new Vector2(0f, -0.42f);
 
     private Transform targetPoint;
     private bool isIdle = false;
@@ -36,6 +43,7 @@ public class NPCController : MonoBehaviour
     private GameObject playerRef;
 
     private Rigidbody2D rb;
+    private BoxCollider2D bodyCollider;
     private SpriteRenderer spriteRenderer;
     private readonly List<Vector2> currentPath = new List<Vector2>();
     private float repathTimer;
@@ -45,18 +53,23 @@ public class NPCController : MonoBehaviour
     private float stuckTimer;
     private float failedPathRetryTimer;
 
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        bodyCollider = GetComponent<BoxCollider2D>();
+        animator ??= GetComponent<Animator>();
+        spriteRenderer ??= GetComponent<SpriteRenderer>();
+        ConfigureBodyCollider();
+    }
 
-        if (rb == null)
-            Debug.LogError("NPCController requires a Rigidbody2D on NPC");
-
-        rb.gravityScale = 0;
-        rb.freezeRotation = true;     // no more spinning like a soccerball
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-
-        spriteRenderer = GetComponent<SpriteRenderer>();
+    void Start()
+    {
+        if (rb != null)
+        {
+            rb.gravityScale = 0;
+            rb.freezeRotation = true;     // no more spinning like a soccerball
+            rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        }
 
         ChooseNextTarget();
     }
@@ -166,7 +179,14 @@ public class NPCController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         ClearPath();
 
-        idleTimer = Random.Range(profile.minIdleTime, profile.maxIdleTime);
+        if (profile == null)
+        {
+            idleTimer = 0f;
+        }
+        else
+        {
+            idleTimer = Random.Range(profile.minIdleTime, profile.maxIdleTime);
+        }
 
         if (animator != null)
             animator.SetFloat("Speed", 0);
@@ -174,20 +194,31 @@ public class NPCController : MonoBehaviour
 
     void ChooseNextTarget()
     {
-        if (profile.useSchedule && scheduledPoints.Length > 0)
+        if (profile == null)
         {
-            targetPoint = scheduledPoints[scheduleIndex];
-            scheduleIndex = (scheduleIndex + 1) % scheduledPoints.Length;
+            targetPoint = null;
             ClearPath();
             return;
         }
 
-        if (profile.allowRandomWander && randomPoints.Length > 0)
+        Transform nextScheduledPoint = GetNextValidScheduledPoint();
+        if (profile.useSchedule && nextScheduledPoint != null)
         {
-            int index = Random.Range(0, randomPoints.Length);
-            targetPoint = randomPoints[index];
+            targetPoint = nextScheduledPoint;
             ClearPath();
+            return;
         }
+
+        Transform nextRandomPoint = GetRandomValidPoint(randomPoints);
+        if (profile.allowRandomWander && nextRandomPoint != null)
+        {
+            targetPoint = nextRandomPoint;
+            ClearPath();
+            return;
+        }
+
+        targetPoint = null;
+        ClearPath();
     }
     public void StartInteraction()
     {
@@ -256,9 +287,11 @@ public class NPCController : MonoBehaviour
             gridSize,
             obstacleLayers,
             collisionProbeSize,
+            collisionProbeOffset,
             allowDiagonalMovement,
             maxSearchIterations,
-            maxSearchDistance);
+            maxSearchDistance,
+            transform);
 
         if (GridAStar2D.TryFindPath(rb.position, targetPoint.position, settings, currentPath))
         {
@@ -335,8 +368,61 @@ public class NPCController : MonoBehaviour
         stuckTimer = 0f;
     }
 
+    private void ConfigureBodyCollider()
+    {
+        if (!autoConfigureBodyCollider || bodyCollider == null)
+            return;
+
+        bodyCollider.size = bodyColliderSize;
+        bodyCollider.offset = bodyColliderOffset;
+    }
+
+    private Transform GetNextValidScheduledPoint()
+    {
+        if (scheduledPoints == null || scheduledPoints.Length == 0)
+            return null;
+
+        for (int i = 0; i < scheduledPoints.Length; i++)
+        {
+            int index = (scheduleIndex + i) % scheduledPoints.Length;
+            Transform point = scheduledPoints[index];
+            if (point == null)
+                continue;
+
+            scheduleIndex = (index + 1) % scheduledPoints.Length;
+            return point;
+        }
+
+        return null;
+    }
+
+    private static Transform GetRandomValidPoint(Transform[] points)
+    {
+        if (points == null || points.Length == 0)
+            return null;
+
+        List<Transform> validPoints = new List<Transform>();
+        for (int i = 0; i < points.Length; i++)
+        {
+            if (points[i] != null)
+                validPoints.Add(points[i]);
+        }
+
+        if (validPoints.Count == 0)
+            return null;
+
+        int index = Random.Range(0, validPoints.Count);
+        return validPoints[index];
+    }
+
     private void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.yellow;
+        Vector3 probeCenter = Application.isPlaying && rb != null
+            ? (Vector3)(rb.position + collisionProbeOffset)
+            : transform.position + (Vector3)collisionProbeOffset;
+        Gizmos.DrawWireCube(probeCenter, collisionProbeSize);
+
         if (currentPath == null || currentPath.Count == 0)
             return;
 
