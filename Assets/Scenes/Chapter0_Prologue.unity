@@ -160,6 +160,7 @@ Transform:
   - {fileID: 3828611165910388461}
   - {fileID: 1730973968}
   - {fileID: 94457335}
+  - {fileID: 560444131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &40174589
@@ -2193,17 +2194,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -7602,6 +7608,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 249432485}
 --- !u!61 &249432483
@@ -7665,17 +7673,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -7739,9 +7752,9 @@ RectTransform:
   - {fileID: 155563129}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -226}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262543422
@@ -8004,17 +8017,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
-  objectDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  itemRequired: 0
+  requiredItem: {fileID: 0}
+  objectDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
-  primaryDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
-  repeatDialogue: {fileID: 11400000, guid: 63c9e836fe46fd942b539cc1bea343a9, type: 2}
+  primaryDialogue: {fileID: 11400000, guid: 0d79d7f8233f67e4080bd9a17a4ed765, type: 2}
+  repeatDialogue: {fileID: 11400000, guid: dc0b362ce1806aa469bcc9fc2f6b7e2c, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -8210,7 +8228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303893209}
   m_Layer: 0
-  m_Name: CollectableItemsParent
+  m_Name: CollectibleItemsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8460,17 +8478,22 @@ MonoBehaviour:
   objectName: Gate
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -8930,6 +8953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 0}
+  pauseSettingsRoot: {fileID: 0}
   pauseSound: {fileID: 0}
   resumeSound: {fileID: 0}
 --- !u!4 &464215708
@@ -9127,9 +9151,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.080789946
-    width: 1.2808989
-    height: 0.9694794
+    y: -0.091981135
+    width: 2.4365783
+    height: 1.273585
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9359,7 +9383,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9435,6 +9459,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539039706}
   m_CullTransparentMesh: 1
+--- !u!1001 &560444130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 11399264}
+    m_Modifications:
+    - target: {fileID: 676423684423883026, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 676423684423883026, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293556919204343522, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_Name
+      value: MapTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.86785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -45.21972
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785756514816476052, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898468397453704826, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898468397453704826, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886526048086631781, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_Size.y
+      value: 2.1744137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886526048086631781, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.1845865
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487444986708376914, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: destinations.Array.data[1].sceneName
+      value: Chapter1_Home
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487444986708376914, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: destinations.Array.data[1].displayName
+      value: Home
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602480441514349469, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+--- !u!4 &560444131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2242974440751901306, guid: 392f0d631740e3f4ab09d87ad1561f43, type: 3}
+  m_PrefabInstance: {fileID: 560444130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &598879600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9557,7 +9683,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9986,6 +10112,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 670987756}
 --- !u!212 &670987754
@@ -10061,17 +10189,22 @@ MonoBehaviour:
   objectName: Paper
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -10981,7 +11114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &886374550
 Transform:
   m_ObjectHideFlags: 0
@@ -11426,6 +11559,7 @@ GameObject:
   - component: {fileID: 923856395}
   - component: {fileID: 923856396}
   - component: {fileID: 923856397}
+  - component: {fileID: 923856398}
   m_Layer: 0
   m_Name: Gentle GhostNPC
   m_TagString: Untagged
@@ -11442,7 +11576,7 @@ Transform:
   m_GameObject: {fileID: 923856392}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.27999997, y: 1.5500002, z: 0}
+  m_LocalPosition: {x: -1.77, y: 1.5500002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11495,12 +11629,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1172666734525102768, guid: 8a27b7ca859043a44a41eb9f5da727af, type: 3}
-  m_Color: {r: 0.96862745, g: 0.6375686, b: 0.31964704, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3e510c64596680e4a92cb533912b144c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -11521,17 +11655,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -11575,6 +11714,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &923856398
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923856392}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f732ab3284739da4eabed7bb4dbff62e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &936733617
 GameObject:
   m_ObjectHideFlags: 0
@@ -16739,9 +16900,9 @@ RectTransform:
   - {fileID: 1238239354}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -138}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008950118
@@ -16920,7 +17081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1036898949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16937,9 +17098,9 @@ RectTransform:
   - {fileID: 1221681924}
   m_Father: {fileID: 1730973968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -188}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 352.8}
   m_SizeDelta: {x: 600, y: 80}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1036898950
@@ -17044,6 +17205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -17136,7 +17298,7 @@ MonoBehaviour:
   m_text: '[0] to cancel'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17509,9 +17671,9 @@ RectTransform:
   - {fileID: 726688458}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128128417
@@ -17875,7 +18037,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 358, y: 58}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221681925
 MonoBehaviour:
@@ -19495,6 +19657,7 @@ GameObject:
   - component: {fileID: 1272994299}
   - component: {fileID: 1272994298}
   - component: {fileID: 1272994301}
+  - component: {fileID: 1272994302}
   m_Layer: 0
   m_Name: Wandering GhostNPC
   m_TagString: Untagged
@@ -19556,17 +19719,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -19621,12 +19789,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1172666734525102768, guid: 8a27b7ca859043a44a41eb9f5da727af, type: 3}
-  m_Color: {r: 0.18095396, g: 0.83396226, b: 0.74306524, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a2476385ef69f8f4cb685159d9e2743a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -19644,6 +19812,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &1272994302
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272994296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0bafb3022efaad499861fe69463cd34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1273041183
 GameObject:
   m_ObjectHideFlags: 0
@@ -24698,7 +24888,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25298,7 +25488,7 @@ MonoBehaviour:
   m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25865,17 +26055,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 03def431d34e5094ebc9dc7be2387a24, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -26028,6 +26223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanToggleInventory: 1
+  AllowInspect: 1
+  InteractEnabled: 1
 --- !u!4 &1507892794
 Transform:
   m_ObjectHideFlags: 0
@@ -32377,7 +32575,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -32861,6 +33059,8 @@ MonoBehaviour:
   showCluePopup: 0
   clue: {fileID: 0}
   pickupSound: {fileID: 8300000, guid: ee299c43452524e43a893827071c791f, type: 3}
+  pickupDialogue: {fileID: 0}
+  repeatPickupDialogueAfterCollect: 0
   glowWhenInRange: 0
   glow: {fileID: 1748752413}
 --- !u!212 &1748752411
@@ -32936,17 +33136,22 @@ MonoBehaviour:
   objectName: key_grave
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 0
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -33622,6 +33827,7 @@ GameObject:
   - component: {fileID: 1868248600}
   - component: {fileID: 1868248599}
   - component: {fileID: 1868248602}
+  - component: {fileID: 1868248603}
   m_Layer: 0
   m_Name: Restless GhostNPC
   m_TagString: Untagged
@@ -33683,17 +33889,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -33748,12 +33959,12 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1810855317443868110, guid: 099e9ec4fc531374c8e35402e36b0ae7, type: 3}
-  m_Color: {r: 1, g: 0.403, b: 0.403, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8ae2924104d923e4881e0ad687cec442, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.21875, y: 0.21875}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -33771,6 +33982,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c3ae1ba931c1f41b02fa84ade460db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::Interactable
+--- !u!95 &1868248603
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868248597}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fa7a98d1a4095048958b6f1061f5269, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1875596273
 GameObject:
   m_ObjectHideFlags: 0
@@ -40339,7 +40572,7 @@ AudioSource:
   m_GameObject: {fileID: 1898709075}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b7618fc0ae77fdf4587d72e9dcde98ee, type: 3}
   m_PlayOnAwake: 1
@@ -40688,7 +40921,7 @@ MonoBehaviour:
   m_text: Names
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40872,17 +41105,22 @@ MonoBehaviour:
   objectName: Your Tombstone
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 0}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: 82ae89f3197dd6f4485d7e2b523f31df, type: 2}
   repeatDialogue: {fileID: 11400000, guid: f82b6d999c6f6a94f94c2a93e6908588, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -40953,7 +41191,7 @@ MonoBehaviour:
     Press 1, 2, or 3 to offer an item. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -41129,6 +41367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -43518,17 +43757,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 1
   primaryDialogue: {fileID: 11400000, guid: fd527d2af03d5684eb364f5378b81ce9, type: 2}
   repeatDialogue: {fileID: 11400000, guid: af2adb5ebc0b878448433c94ed9a7fc1, type: 2}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -44520,6 +44764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneInitializer
   sceneType: 2
+  defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
@@ -44664,17 +44909,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 16376d17adb693a4f9b2a36639407000, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -44982,17 +45232,22 @@ MonoBehaviour:
   objectName: Object
   interactKey: 101
   interactionRange: 1
+  itemRequired: 0
+  requiredItem: {fileID: 0}
   objectDialogue: {fileID: 11400000, guid: 114f9d23820de5b4396ec966d78a884f, type: 2}
   hasDialogue: 1
+  triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
   primaryDialogue: {fileID: 0}
   repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 1
   isPuzzle: 0
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   loginPuzzle: {fileID: 0}
+  informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
@@ -45709,132 +45964,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5994042516445897268}
   m_CullTransparentMesh: 1
---- !u!1001 &5912670363434800517
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 11399264}
-    m_Modifications:
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 387.85263
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 237.93707
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_text
-      value: This is a testing Objective Banner output
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_fontSize
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_margin.w
-      value: 0.87857056
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_margin.x
-      value: 0.07864382
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_margin.y
-      value: 9.2892685
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_margin.z
-      value: 11.104797
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 1202496980965867214, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3194968533630684422, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_Name
-      value: ObjectiveBannerUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 317.507
-      objectReference: {fileID: 0}
-    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 40.6245
-      objectReference: {fileID: 0}
-    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -158.7535
-      objectReference: {fileID: 0}
-    - target: {fileID: 4148972675780541988, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -20.31225
-      objectReference: {fileID: 0}
-    - target: {fileID: 6563853269576268352, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
---- !u!4 &5912670363434800518 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 73539589571313797, guid: 019a33fcf41dcf44ca7ff5a38aaf64a9, type: 3}
-  m_PrefabInstance: {fileID: 5912670363434800517}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &5964776398707958480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -46469,10 +46598,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelpBookCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -46485,10 +46610,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 5850570467455704679, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -46501,10 +46622,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 6079202392425596933, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6291915645753430345, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -46513,10 +46630,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 6291915645753430345, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -46525,10 +46638,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -46833,3 +46942,4 @@ SceneRoots:
   - {fileID: 1530538461}
   - {fileID: 2115767381}
   - {fileID: 1507892794}
+

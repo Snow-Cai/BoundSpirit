@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -9,14 +10,45 @@ public class SettingsManager : MonoBehaviour
     public GameObject audioSettingsPanel;
     public GameObject graphicsSettingsPanel;
 
-    private void Start()
-    {
-        settingsData.Load();
+    [Header("Gameplay Settings")]
+    [SerializeField] private Toggle informationalTidbitsToggle;
 
-        // Hide all panels at start
-        mainSettingsPanel.SetActive(false);
-        audioSettingsPanel.SetActive(false);
-        graphicsSettingsPanel.SetActive(false);
+    void Awake()
+    {
+        // Must run in Awake, not Start: when the settings root is first activated (e.g. pause settings),
+        // Start runs later in the frame *after* PauseManager calls ShowMainSettings(), which would
+        // incorrectly hide all panels again.
+        if (mainSettingsPanel != null)
+            mainSettingsPanel.SetActive(false);
+        if (audioSettingsPanel != null)
+            audioSettingsPanel.SetActive(false);
+        if (graphicsSettingsPanel != null)
+            graphicsSettingsPanel.SetActive(false);
+
+        EnsureInformationalTidbitsToggleReference();
+    }
+
+    void Start()
+    {
+        if (settingsData != null)
+        {
+            settingsData.Load();
+        }
+
+        BindInformationalTidbitsToggle();
+    }
+
+    void OnEnable()
+    {
+        SyncInformationalTidbitsToggle();
+    }
+
+    void OnDestroy()
+    {
+        if (informationalTidbitsToggle != null)
+        {
+            informationalTidbitsToggle.onValueChanged.RemoveListener(SetInformationalTidbitsEnabled);
+        }
     }
 
 
@@ -52,5 +84,56 @@ public class SettingsManager : MonoBehaviour
         // Hide the entire settings UI
         gameObject.SetActive(false);
         Time.timeScale = 1f; 
+    }
+
+    private void EnsureInformationalTidbitsToggleReference()
+    {
+        if (informationalTidbitsToggle != null)
+            return;
+
+        Toggle[] toggles = GetComponentsInChildren<Toggle>(true);
+        foreach (Toggle toggle in toggles)
+        {
+            if (toggle != null && toggle.name == "InformationalTidbitsToggle")
+            {
+                informationalTidbitsToggle = toggle;
+                break;
+            }
+        }
+    }
+
+    private void BindInformationalTidbitsToggle()
+    {
+        EnsureInformationalTidbitsToggleReference();
+
+        if (informationalTidbitsToggle == null)
+            return;
+
+        informationalTidbitsToggle.onValueChanged.RemoveListener(SetInformationalTidbitsEnabled);
+        informationalTidbitsToggle.onValueChanged.AddListener(SetInformationalTidbitsEnabled);
+        SyncInformationalTidbitsToggle();
+    }
+
+    private void SyncInformationalTidbitsToggle()
+    {
+        EnsureInformationalTidbitsToggleReference();
+
+        if (informationalTidbitsToggle == null)
+            return;
+
+        bool defaultValue = settingsData == null || settingsData.informationalTidbitsEnabled;
+        bool isEnabled = SettingsData.GetInformationalTidbitsEnabled(defaultValue);
+        informationalTidbitsToggle.SetIsOnWithoutNotify(isEnabled);
+    }
+
+    public void SetInformationalTidbitsEnabled(bool isEnabled)
+    {
+        SettingsData.SetInformationalTidbitsEnabled(isEnabled);
+
+        if (settingsData != null)
+        {
+            settingsData.informationalTidbitsEnabled = isEnabled;
+            settingsData.Save();
+        }
     }
 }

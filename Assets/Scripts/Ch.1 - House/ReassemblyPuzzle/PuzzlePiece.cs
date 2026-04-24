@@ -4,21 +4,14 @@ using UnityEngine.EventSystems;
 public class PuzzlePiece : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public RectTransform rect;
-    public PuzzleGroup group;
-    public PieceConnection[] connections;
+    public Vector2 correctPos;
     public RectTransform movementBounds;
+    public float snapDistance = 40f;
 
-    Vector2 dragOffset;
-    Canvas canvas;
-    ReassemblyPuzzleManager manager;
-
-    [System.Serializable]
-    public class PieceConnection
-    {
-        public PuzzlePiece otherPiece;
-        public Vector2 expectedOffset;
-        public bool connected;
-    }
+    private Vector2 dragOffset;
+    private Canvas canvas;
+    private bool isPlaced = false;
+    private ReassemblyPuzzleManager manager;
 
     private void Awake()
     {
@@ -29,22 +22,34 @@ public class PuzzlePiece : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (isPlaced) return;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, canvas.worldCamera, out Vector2 localPoint);
-        dragOffset = group.rect.anchoredPosition - localPoint;
-        group.transform.SetAsLastSibling();
+        dragOffset = rect.anchoredPosition - localPoint;
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isPlaced) return;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, eventData.position, canvas.worldCamera, out Vector2 localPoint);
         Vector2 newPos = localPoint + dragOffset;
-        group.rect.anchoredPosition = ClampToBounds(newPos);
+        rect.anchoredPosition = ClampToBounds(newPos);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        manager.CheckConnections(this);
+        if (isPlaced) return;
+        float dist = Vector2.Distance(rect.anchoredPosition, correctPos);
+        if(dist < snapDistance)
+        {
+            rect.anchoredPosition = correctPos;
+            isPlaced = true;
+
+            manager.CheckPuzzleCompletion();
+        }
     }
+
+    public bool IsPlaced() => isPlaced;
 
     private Vector2 ClampToBounds(Vector2 targetPosition)
     {
@@ -52,8 +57,8 @@ public class PuzzlePiece : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
         Rect bounds = movementBounds.rect;
         Vector3 boundsScale = movementBounds.localScale;
 
-        Rect groupRect = group.rect.rect;
-        Vector3 groupScale = group.rect.localScale;
+        Rect groupRect = rect.rect;
+        Vector3 groupScale = rect.localScale;
 
         float halfW = groupRect.width * groupScale.x / 2f;
         float halfH = groupRect.height * groupScale.y / 2f;

@@ -18,7 +18,7 @@ MonoBehaviour:
     dialogueText: A key. Old, the kind for a safe.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I rememebr Dad kept a safe upstairs... but I was never allowed
+    dialogueText: I rememeber Dad kept a safe upstairs... but I was never allowed
       near it.
     voiceClip: {fileID: 0}
   choices: []

@@ -28,6 +28,10 @@ public class GhostOfferUI : MonoBehaviour
             return;
         }
 
+        // DialogueSystem clears GameInputState.DialogueActive when the dialogue queue empties,
+        // which runs after OnDialogueEnded opens this UI — keep the modal flag until we close.
+        GameInputState.DialogueActive = true;
+
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
         {
             OfferByIndex(0);
@@ -61,7 +65,7 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         currentGhost = ghost;
-        currentItems = playerInventory.GetItems() ?? new List<ItemData>();
+        currentItems = BuildOfferItems(ghost);
 
         RefreshUI();
 
@@ -71,6 +75,11 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = true;
+        SetGameplayInputEnabled(false);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = false;
+        }
     }
 
     public void Close()
@@ -86,6 +95,19 @@ public class GhostOfferUI : MonoBehaviour
         }
 
         GameInputState.DialogueActive = false;
+        SetGameplayInputEnabled(true);
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.AllowInspect = true;
+        }
+    }
+
+    private static void SetGameplayInputEnabled(bool enabled)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.GameplayInputEnabled = enabled;
+        }
     }
 
     public void OfferItem(ItemData item)
@@ -101,6 +123,9 @@ public class GhostOfferUI : MonoBehaviour
             Debug.LogWarning("GhostOfferUI: Tried to offer a null item.");
             return;
         }
+
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
 
         GhostHintNPC targetGhost = currentGhost;
 
@@ -120,6 +145,67 @@ public class GhostOfferUI : MonoBehaviour
         {
             OfferItem(item);
         }
+    }
+
+    private List<ItemData> BuildOfferItems(GhostHintNPC ghost)
+    {
+        List<ItemData> inventoryItems = playerInventory.GetItems() ?? new List<ItemData>();
+        List<ItemData> offerItems = new List<ItemData>();
+        ItemData requiredItem = ghost.RequiredItem;
+
+        if (requiredItem != null)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                if (IsSameItem(inventoryItems[i], requiredItem))
+                {
+                    offerItems.Add(inventoryItems[i]);
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            ItemData item = inventoryItems[i];
+            if (item == null || IsSameItemAlreadyAdded(offerItems, item))
+            {
+                continue;
+            }
+
+            offerItems.Add(item);
+        }
+
+        return offerItems;
+    }
+
+    private static bool IsSameItemAlreadyAdded(List<ItemData> items, ItemData item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (IsSameItem(items[i], item))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool IsSameItem(ItemData left, ItemData right)
+    {
+        if (left == null || right == null)
+        {
+            return false;
+        }
+
+        if (left == right)
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(left.itemID) &&
+               left.itemID == right.itemID;
     }
 
     private void RefreshUI()

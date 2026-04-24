@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: LoginPuzzleTidbit
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: As you've seen, you can often find out someone's password with personal information
+    if their password contains information relating to them that can be found out.
+    This information can be found out through digging through openly available information(OSINT)
+    or by getting the information out of the target directly through conversation
+    or other interaction (social engineering). It is important to safeguard your
+    information!

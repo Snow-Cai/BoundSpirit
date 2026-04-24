@@ -24,6 +24,7 @@ public class TitleScreenController : MonoBehaviour
         yield return null;
         yield return new WaitForEndOfFrame();
         LayoutRows();
+        ApplySavedTitleState();
     }
 
     private void LayoutRows()
@@ -70,5 +71,47 @@ public class TitleScreenController : MonoBehaviour
         foreach (var key in keys)
             if (key != null)
                 key.titleController = this;
+    }
+
+    private void ApplySavedTitleState()
+    {
+        ResetTitleState();
+
+        if (SaveSystem.Instance == null)
+            return;
+
+        bool showFoundTitle =
+            SaveSystem.Instance.FoundMenuSecret() ||
+            SaveSystem.Instance.HasViewedDialogue("ending_forgive");
+
+        if (!showFoundTitle || boundKeys == null)
+            return;
+
+        for (int i = 0; i < boundKeys.Length; i++)
+        {
+            if (boundKeys[i] != null && boundKeys[i].isBKey)
+            {
+                boundKeys[i].ApplyFoundState();
+                break;
+            }
+        }
+    }
+
+    private void ResetTitleState()
+    {
+        ResetKeys(boundKeys);
+        ResetKeys(spiritKeys);
+    }
+
+    private void ResetKeys(TitleKey[] keys)
+    {
+        if (keys == null)
+            return;
+
+        foreach (TitleKey key in keys)
+        {
+            if (key != null)
+                key.ResetToDefaultState();
+        }
     }
 }

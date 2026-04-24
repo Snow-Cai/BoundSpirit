@@ -30,6 +30,7 @@ public class TitleKey : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     private Image keyImage;
     private RectTransform rectTransform;
     private Vector2 originalPosition;
+    private Sprite originalSprite;
     private Coroutine pressRoutine;
     private bool easterEggTriggered = false;
 
@@ -39,7 +40,10 @@ public class TitleKey : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         rectTransform = GetComponent<RectTransform>();
 
         if (keyImage != null)
+        {
+            originalSprite = keyImage.sprite;
             keyImage.color = normalColor;
+        }
     }
 
     public void CapturePosition()
@@ -78,14 +82,43 @@ public class TitleKey : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         //B key easter egg swap sprite to F key
         if (isBKey && !easterEggTriggered)
         {
-            easterEggTriggered = true;
-
-            if (fKeySprite != null && keyImage != null)
-                keyImage.sprite = fKeySprite;
-
-            if (keyImage != null)
-                keyImage.color = easterEggColor;
+            ApplyFoundState();
+            SaveSystem.Instance?.SetFoundMenuSecret(true);
         }
+    }
+
+    public void ApplyFoundState()
+    {
+        if (easterEggTriggered)
+            return;
+
+        easterEggTriggered = true;
+
+        if (fKeySprite != null && keyImage != null)
+            keyImage.sprite = fKeySprite;
+
+        if (keyImage != null)
+            keyImage.color = easterEggColor;
+    }
+
+    public void ResetToDefaultState()
+    {
+        easterEggTriggered = false;
+
+        if (keyImage == null)
+            keyImage = GetComponent<Image>();
+
+        if (keyImage != null)
+        {
+            keyImage.sprite = originalSprite;
+            keyImage.color = normalColor;
+        }
+
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
+
+        if (rectTransform != null)
+            rectTransform.anchoredPosition = originalPosition;
     }
 
     private IEnumerator PressAnimation()

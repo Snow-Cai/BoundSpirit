@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Ending_Forgive
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: ending_forgive
+  lines:
+  - speakerName: Akila
+    dialogueText: I'm sorry. For all of it.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: 'I thought what I felt was love. But love doesn''t chase someone. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: Love doesn't follow. Love doesn't show up with a knife.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: You deserved to feel safe. You deserved to say no without being
+      afraid. I'm sorry I made you afraid.
+    voiceClip: {fileID: 0}
+  choices: []
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1

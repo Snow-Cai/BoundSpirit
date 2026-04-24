@@ -15,10 +15,12 @@ MonoBehaviour:
   dialogueID: Chapter1_homeFirstEnter
   lines:
   - speakerName: Akila
-    dialogueText: Home. It still looks the same... but it doesn't feel like home anymore.
+    dialogueText: Home. It still looks the same... but it doesn't feel like home
+      anymore.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I should find Mom first. I can't just wander off like nothing's wrong.
+    dialogueText: I should find Mom first. I can't just wander off like nothing's
+      wrong.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

@@ -10,14 +10,19 @@ public class InteractableObject : MonoBehaviour
     public string objectName = "Object";
     public KeyCode interactKey = KeyCode.E;
     public float interactionRange = 2f;
+    public bool itemRequired = false;
+    public ItemData requiredItem;
 
     [Header("Dialogue")]
     public DialogueAsset objectDialogue;
     public bool hasDialogue = true;
+    [SerializeField] private bool triggerEndingSequence = false;
 
     [SerializeField] private bool playPrimaryOnlyOnce = false;
     [SerializeField] private DialogueAsset primaryDialogue;
     [SerializeField] private DialogueAsset repeatDialogue;
+
+    [SerializeField] private DialogueAsset missingItemDialogue;
 
     [Header("Progress Flags")]
     [SerializeField] private bool setFoundHiddenTombstoneOnInteract = false;
@@ -27,11 +32,15 @@ public class InteractableObject : MonoBehaviour
     public string puzzleID;
     public GameObject puzzleUI;
     public bool isPuzzleOpen = false;
+    [Tooltip("If enabled, the player can still open this puzzle after it has already been solved.")]
+    public bool allowSolvedPuzzleReopen = false;
 
     [Header("Puzzle Components")]
     public LoginPuzzle loginPuzzle;
 
     [Header("Informational Tidbit")]
+    public GameObject tidbitPopupCanvas;
+    public InformationalTidbitData informationalTidbit;
     [TextArea]
     public string tidbitMessage;
     public bool showTidbitOnSolve = false;
@@ -100,8 +109,10 @@ public class InteractableObject : MonoBehaviour
 
         if (isPuzzleOpen)
         {
-            if (!IsTypingInUI() && Input.GetKeyDown(interactKey))
+            if (InputLock.Instance != null && InputLock.Instance.InteractEnabled && !IsTypingInUI() && Input.GetKeyDown(interactKey))
             {
+                if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+                    return;
                 ClosePuzzle();
             }
 
@@ -118,6 +129,7 @@ public class InteractableObject : MonoBehaviour
 
             if (InputLock.Instance != null &&
                 InputLock.Instance.GameplayInputEnabled &&
+                InputLock.Instance.InteractEnabled &&
                 Input.GetKeyDown(interactKey))
             {
                 Interact();
@@ -140,6 +152,11 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (promptText != null)
+        {
+            promptText.text = "Press " + interactKey.ToString() + " to interact";
+        }
+
         interactPrompt.SetActive(true);
     }
 
@@ -150,7 +167,60 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (ShouldKeepSharedPromptVisible())
+        {
+            return;
+        }
+
         interactPrompt.SetActive(false);
+    }
+
+    private bool ShouldKeepSharedPromptVisible()
+    {
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || interactable == this || !interactable.enabled)
+            {
+                continue;
+            }
+
+            if (!interactable.useLocalInteractPrompt || interactable.interactPrompt != interactPrompt)
+            {
+                continue;
+            }
+
+            if (!interactable.IsPlayerWithinInteractionRange())
+            {
+                continue;
+            }
+
+            if (promptText != null)
+            {
+                promptText.text = "Press " + interactable.interactKey.ToString() + " to interact";
+            }
+
+            interactPrompt.SetActive(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsPlayerWithinInteractionRange()
+    {
+        if (player == null)
+        {
+            return false;
+        }
+
+        Vector3 promptOrigin = objectCollider != null ? objectCollider.bounds.center : transform.position;
+        float distance = Vector3.Distance(promptOrigin, player.position);
+        return distance <= interactionRange;
     }
 
     void Interact()
@@ -167,7 +237,7 @@ public class InteractableObject : MonoBehaviour
         if (interactSound != null)
         {
             Debug.Log("PLAYING SOUND on " + gameObject.name);
-            AudioSource.PlayClipAtPoint(interactSound, transform.position);
+            SfxPlayback.PlayClipAtPoint(interactSound, transform.position);
 
         }
         else
@@ -189,6 +259,17 @@ public class InteractableObject : MonoBehaviour
             DialogueSystem.Instance.IsDialogueActive())
         {
             yield break;
+        }
+
+        if (itemRequired)
+        {
+            PlayerInventory inv = FindFirstObjectByType<PlayerInventory>();
+            if(inv == null || requiredItem == null || !inv.HasItem(requiredItem))
+            {
+                if(missingItemDialogue != null && DialogueSystem.Instance != null)
+                    DialogueSystem.Instance.StartDialogue(missingItemDialogue);
+                yield break;
+            }
         }
 
         if (setFoundHiddenTombstoneOnInteract && SaveSystem.Instance != null)
@@ -215,6 +296,14 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
+            if (SaveSystem.Instance != null &&
+                !string.IsNullOrEmpty(puzzleID) &&
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID) &&
+                !allowSolvedPuzzleReopen)
+            {
+                yield break;
+            }
+
             OpenPuzzle();
             yield break;
         }
@@ -229,6 +318,8 @@ public class InteractableObject : MonoBehaviour
 
     void OpenPuzzle()
     {
+        PuzzleBridge.currentPuzzleSource = this;
+
         if (loginPuzzle != null)
         {
             loginPuzzle.ResetFields();
@@ -243,11 +334,12 @@ public class InteractableObject : MonoBehaviour
         playerInRange = false;
         HidePrompt();
         SetGameplayInputEnabled(false);
+        InputLock.Instance.CanToggleInventory = false;
         Time.timeScale = 0f;
     }
 
 
-    void ClosePuzzle()
+    public void ClosePuzzle()
     {
         if (loginPuzzle != null)
         {
@@ -260,7 +352,12 @@ public class InteractableObject : MonoBehaviour
         }
 
         isPuzzleOpen = false;
+        if (PuzzleBridge.currentPuzzleSource == this)
+        {
+            PuzzleBridge.currentPuzzleSource = null;
+        }
         SetGameplayInputEnabled(true);
+        InputLock.Instance.CanToggleInventory = true;
         Time.timeScale = 1f;
   
     }
@@ -275,6 +372,10 @@ public class InteractableObject : MonoBehaviour
 
     public void OnPuzzleSolved()
     {
+        bool wasAlreadySolved = SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(puzzleID) &&
+            SaveSystem.Instance.IsPuzzleSolved(puzzleID);
+
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.UnlockPuzzle(puzzleID);
@@ -287,12 +388,31 @@ public class InteractableObject : MonoBehaviour
             PlayDialogue();
         }
 
-        if (showTidbitOnSolve && !string.IsNullOrEmpty(tidbitMessage))
+        if (!wasAlreadySolved && showTidbitOnSolve)
         {
-            UICluePopup popup = Object.FindFirstObjectByType<UICluePopup>();
+            UICluePopup popup = null;
+
+            if (tidbitPopupCanvas != null)
+            {
+                popup = tidbitPopupCanvas.GetComponent<UICluePopup>();
+
+                if (popup == null)
+                {
+                    popup = tidbitPopupCanvas.GetComponentInChildren<UICluePopup>(true);
+                }
+            }
+
+            if (popup == null)
+            {
+                popup = Object.FindFirstObjectByType<UICluePopup>();
+            }
+
             if (popup != null)
             {
-                popup.ShowClue(tidbitMessage);
+                if (informationalTidbit != null)
+                    popup.ShowTidbit(informationalTidbit);
+                else if (!string.IsNullOrWhiteSpace(tidbitMessage))
+                    popup.ShowTidbitMessage(tidbitMessage);
             }
         }
     }
@@ -305,8 +425,7 @@ public class InteractableObject : MonoBehaviour
         Debug.Log("HasEnoughForEnding: " + StoryFlags.HasEnoughForEnding());
         Debug.Log("EndingManager exists: " + (EndingManager.Instance != null));
 
-        // If this is the afterlife gate AND player has reached an ending
-        if (gameObject.CompareTag("AfterlifeGate") && StoryFlags.HasEnoughForEnding())
+        if (triggerEndingSequence)
         {
             if (EndingManager.Instance != null)
             {

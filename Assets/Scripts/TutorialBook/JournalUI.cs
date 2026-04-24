@@ -14,6 +14,12 @@ public class JournalUI : MonoBehaviour
 
     public JournalPage[] pages;
 
+    [Header("Navigation (optional)")]
+    [Tooltip("If unset, a child named Prev under the journal panel is used (HelpBookCanvas).")]
+    [SerializeField] private GameObject prevPageButton;
+    [Tooltip("If unset, a child named Next under the journal panel is used (HelpBookCanvas).")]
+    [SerializeField] private GameObject nextPageButton;
+
     private int currentPage = 0;
 
     public static JournalUI Instance;
@@ -123,6 +129,7 @@ public class JournalUI : MonoBehaviour
     {
         if (pages == null || pages.Length == 0)
         {
+            UpdateNavButtonVisibility();
             return;
         }
 
@@ -134,6 +141,7 @@ public class JournalUI : MonoBehaviour
         JournalPage page = pages[currentPage];
         if (page == null)
         {
+            UpdateNavButtonVisibility();
             return;
         }
 
@@ -155,6 +163,68 @@ public class JournalUI : MonoBehaviour
         if (rightImage != null)
         {
             rightImage.sprite = page.rightImage;
+        }
+
+        UpdateNavButtonVisibility();
+    }
+
+    private void UpdateNavButtonVisibility()
+    {
+        ResolveNavButtons(out GameObject prev, out GameObject next);
+
+        if (pages == null || pages.Length == 0)
+        {
+            if (prev != null)
+            {
+                prev.SetActive(false);
+            }
+
+            if (next != null)
+            {
+                next.SetActive(false);
+            }
+
+            return;
+        }
+
+        int lastIndex = pages.Length - 1;
+        if (prev != null)
+        {
+            prev.SetActive(currentPage > 0);
+        }
+
+        if (next != null)
+        {
+            next.SetActive(currentPage < lastIndex);
+        }
+    }
+
+    private void ResolveNavButtons(out GameObject prev, out GameObject next)
+    {
+        prev = prevPageButton;
+        next = nextPageButton;
+
+        if (journalPanel == null)
+        {
+            return;
+        }
+
+        if (prev == null)
+        {
+            Transform t = journalPanel.transform.Find("Prev");
+            if (t != null)
+            {
+                prev = t.gameObject;
+            }
+        }
+
+        if (next == null)
+        {
+            Transform t = journalPanel.transform.Find("Next");
+            if (t != null)
+            {
+                next = t.gameObject;
+            }
         }
     }
 }

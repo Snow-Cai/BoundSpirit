@@ -25,7 +25,7 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-        if(InputLock.Instance.GameplayInputEnabled && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
+        if(InputLock.Instance.CanToggleInventory && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
         {
             ToggleInventory();
         }
@@ -35,15 +35,21 @@ public class InventoryUI : MonoBehaviour
     {
         isOpen = !isOpen;
         inventoryPanel.SetActive(isOpen);
-        if (isOpen)             //disable movement and stop player in position when opening inventory
+        if (TooltipUI.Instance != null) TooltipUI.Instance.Hide();
+
+        if (isOpen)             //disable movement and stop player in position when opening inventory, as well as disable gameplay input
         {
             movement.enabled = false;
+            InputLock.Instance.GameplayInputEnabled = false;
             Rigidbody2D rb = movement.GetComponent<Rigidbody2D>();
             if (rb != null)
                 rb.linearVelocity = Vector2.zero;
         }
-        else                    //re-enable movement when closing inventory
+        else
+        {                    //re-enable movement and gameplay input when closing inventory 
             movement.enabled = true;
+            InputLock.Instance.GameplayInputEnabled = true;
+        }
         if(isOpen)
             RefreshUI();
     }
@@ -58,6 +64,10 @@ public class InventoryUI : MonoBehaviour
 
     public void SetVisible(bool visible)
     { 
-        inventoryPanel.SetActive(visible); 
+        if (inventoryPanel != null)
+            inventoryPanel.SetActive(visible);
+
+        if (!visible && TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
     }
 }
