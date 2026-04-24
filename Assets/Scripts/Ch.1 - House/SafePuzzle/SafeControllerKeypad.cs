@@ -17,6 +17,7 @@ public class SafeControllerKeypad : MonoBehaviour
 
     [Header("Keyhole")]
     public bool keyInserted = false;        //checks if the physical key was inserted
+    [SerializeField] private ItemData itemToConsume;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -168,6 +169,12 @@ public class SafeControllerKeypad : MonoBehaviour
     public void InsertKey()     //call when inserting key in safe interaction
     {
         keyInserted = true;
+        if (itemToConsume != null)
+        {
+            PlayerInventory inv = FindFirstObjectByType<PlayerInventory>();
+            if (inv != null)
+                inv.RemoveItem(itemToConsume);
+        }
     }
 
     void PlayButtonSound()          //plays for all keypad buttons

@@ -16,6 +16,7 @@ public class SceneInitializer : MonoBehaviour
     [Header("Custom Music (Optional)")]
     [Tooltip("Leave empty to use default music for scene type")]
     public AudioClip customMusic;
+    public float customVolume;
 
     [Header("Fade Settings")]
     public bool fadeInMusic = true;
@@ -87,6 +88,7 @@ public class SceneInitializer : MonoBehaviour
         {
             //Use custom music if assigned
             musicToPlay = customMusic;
+            MusicManager.Instance.SetSliderVolume(customVolume);
         }
         else
         {

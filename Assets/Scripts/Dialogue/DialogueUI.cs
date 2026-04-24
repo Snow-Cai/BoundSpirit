@@ -108,7 +108,7 @@ public class DialogueUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !DialogueSystem.Instance.AutoAdvance)
         {
             HandleAdvanceInput();
         }
@@ -433,6 +433,10 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator DelayedShowContinueHint()
     {
         yield return new WaitForSecondsRealtime(continueHintAppearDelay);
+
+        // Don't show if dialogue is advancing automatically
+        if (DialogueSystem.Instance.AutoAdvance == true)
+            yield break;
 
         // Player might have advanced / dialogue ended / choices appeared
         if (dialogueSystem == null || !dialogueSystem.IsDialogueActive())

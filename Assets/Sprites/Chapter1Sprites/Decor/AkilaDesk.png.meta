@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ddd60168353232e428fba2d5d74870fb
+guid: 34f0389d0caebda4486f8d4ddd7d9031
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8347973457277162764
-    second: DeskPlaceholder_0
+      213: 6248319066331831063
+    second: AkilaDesk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeskPlaceholder_0
+      name: AkilaDesk_0
       rect:
         serializedVersion: 2
         x: 6
-        y: 7
+        y: 0
         width: 76
-        height: 54
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c05156341a5f9d370800000000000000
-      internalID: 8347973457277162764
+      spriteID: 71b5208f51d76b650800000000000000
+      internalID: 6248319066331831063
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeskPlaceholder_0: 8347973457277162764
+      AkilaDesk_0: 6248319066331831063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

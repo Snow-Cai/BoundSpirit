@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 // Runs the Chapter 4 hill choice flow and its end card sequence.
@@ -16,6 +17,7 @@ public class EndingManager : MonoBehaviour
     public DialogueAsset revengeEndingDialogue;
     public DialogueAsset forgiveEndingDialogue;
     public DialogueAsset secretEndingDialogue;
+    public DialogueAsset walkingDialogue;
 
     [Header("End Screen")]
     public CanvasGroup endScreenCanvas;
@@ -27,6 +29,19 @@ public class EndingManager : MonoBehaviour
     public TextMeshProUGUI endingTitleText;
     public TextMeshProUGUI endingSubtitleText;
 
+    [Header("Cutscene References")]
+    public Transform player, hillStartPoint, treePoint;
+    public float walkSpeed = 0.5f;
+    public CanvasGroup fadeCanvas;
+    public float zoomOutScale = 10f;
+    public float zoomDuration = 4f;
+    public Camera mainCamera;
+    public CameraFollow camFollow;
+    public PixelPerfectCamera ppc;
+    public SpriteRenderer gateSR;
+
+    public AudioSource musicAudio;
+
     [Header("Secret Ending Debug")]
     [Tooltip("Use the inspector flags below instead of save data when testing Chapter 4 in the editor.")]
     public bool overrideSecretFlagsInInspector = false;
@@ -37,8 +52,16 @@ public class EndingManager : MonoBehaviour
     [Tooltip("Debug-only stand in for SaveSystem.foundHiddenTombstone.")]
     public bool inspectorFoundHiddenTombstone = false;
 
+    [Tooltip("To test without automatic cutscene playing.")]
+    public bool autoStartOnSceneLoad = true;
+
     private bool gateSequenceActive;
     public bool IsEndingPresentationActive => gateSequenceActive;
+
+    private void Start()
+    {
+        if(autoStartOnSceneLoad) StartCoroutine(AutoStartEnding());
+    }
 
     private void Awake()
     {
@@ -55,6 +78,12 @@ public class EndingManager : MonoBehaviour
             endScreenCanvas.alpha = 0f;
             endScreenCanvas.gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator AutoStartEnding()
+    {
+        yield return new WaitForSeconds(0.5f);
+        TriggerEnding();
     }
 
     public void TriggerEnding()
@@ -99,30 +128,21 @@ public class EndingManager : MonoBehaviour
         if (InputLock.Instance != null)
             InputLock.Instance.GameplayInputEnabled = false;
 
-        DialogueAsset choiceDialogue = finalChoiceDialogue != null
-            ? finalChoiceDialogue
-            : forgiveEndingDialogue;
-
-        Debug.Log("EndingManager: Starting final choice dialogue.");
-        DialogueSystem.Instance.StartDialogue(choiceDialogue);
-
-        yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
-
         EndingType ending = ResolveSelectedEnding();
-        Debug.Log("EndingManager: Selected ending -> " + ending);
+        Debug.Log("EndingManager: Playing the ending for: -> " + ending);
 
-        DialogueAsset endingDialogue = GetDialogueForEnding(ending);
-        if (endingDialogue != null)
-        {
-            DialogueSystem.Instance.StartDialogue(endingDialogue);
-            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
-        }
+        yield return StartCoroutine(PlayEndingCutscene(ending));
 
         ApplyEndingPersistence(ending);
 
         string titleText;
         string subtitleText;
         GetEndingCardText(ending, out titleText, out subtitleText);
+        if (ending == EndingType.Forgive || ending == EndingType.Secret)
+        {
+            yield return StartCoroutine(FadeInGate());
+            yield return new WaitForSecondsRealtime(2f);
+        }
         yield return StartCoroutine(ShowEndScreen(titleText, subtitleText));
 
         if (InputLock.Instance != null)
@@ -131,37 +151,23 @@ public class EndingManager : MonoBehaviour
         gateSequenceActive = false;
     }
 
-    private EndingType ResolveSelectedEnding()
+    private EndingType ResolveSelectedEnding()                  // TEMPORARY: UPDATE WHEN SAVE SYSTEM IMPLEMENTS THE CHOICE FLAGS i.e. read from SaveSystem flags instead of dialogue system
     {
-        if (DialogueSystem.Instance == null)
-            return EndingType.Forgive;
+        return EndingType.Forgive;
 
-        int selectedChoice = DialogueSystem.Instance.LastSelectedChoiceIndex;
-        if (selectedChoice < 0)
-            return EndingType.Forgive;
+        //int resulting = 
+        //if (resultingChoice < 0)
+        //    return EndingType.Forgive;
 
-        switch (selectedChoice)
-        {
-            case 1:
-                return EndingType.Revenge;
-            case 2:
-                return EndingType.Secret;
-            default:
-                return EndingType.Forgive;
-        }
-    }
-
-    private DialogueAsset GetDialogueForEnding(EndingType ending)
-    {
-        switch (ending)
-        {
-            case EndingType.Revenge:
-                return revengeEndingDialogue;
-            case EndingType.Secret:
-                return secretEndingDialogue;
-            default:
-                return forgiveEndingDialogue;
-        }
+        //switch (resultingChoice)
+        //{
+        //    case 1:
+        //        return EndingType.Revenge;
+        //    case 2:
+        //        return EndingType.Secret;
+        //    default:
+        //        return EndingType.Forgive;
+        //}
     }
 
     private void ApplyEndingPersistence(EndingType ending)
@@ -243,7 +249,123 @@ public class EndingManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(endScreenHoldDuration);
 
         Time.timeScale = 1f;
+        if (camFollow != null) camFollow.followEnabled = true;
+        if (ppc != null) ppc.enabled = true;
         SceneManager.LoadScene(returnToScene);
+    }
+
+    private IEnumerator PlayEndingCutscene(EndingType ending)
+    {
+        switch (ending)
+        {
+            case EndingType.Forgive:
+                yield return StartCoroutine(ForgiveCutscene());
+                break;
+            case EndingType.Revenge:
+                //yield return StartCoroutine(RevengeCutscene());
+                break;
+            case EndingType.Secret:
+                //yield return StartCoroutine(SecretCutscene());
+                break;
+        }
+    }
+
+    private IEnumerator ForgiveCutscene()
+    {
+        yield return StartCoroutine(FadeFromBlack());
+        if (walkingDialogue != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(walkingDialogue);
+        }
+        DialogueSystem.Instance.AutoAdvance = true;
+        yield return new WaitForSeconds(2f);
+
+        yield return StartCoroutine(WalkToPoint(treePoint));
+
+        yield return new WaitForSeconds(1.5f);
+        yield return StartCoroutine(ZoomOutCamera());
+
+        if(musicAudio != null) musicAudio.Play();
+        if(forgiveEndingDialogue != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(forgiveEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
+    }
+
+    private IEnumerator WalkToPoint(Transform target)
+    {
+        while (Vector3.Distance(player.position, target.position) > 7f)
+        {
+            player.position = Vector3.MoveTowards(player.position, target.position, walkSpeed * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSecondsRealtime(6f);
+        while (Vector3.Distance(player.position, target.position) > 0.1f)
+        {
+            player.position = Vector3.MoveTowards(player.position, target.position, walkSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    private IEnumerator FadeFromBlack()
+    {
+        fadeCanvas.gameObject.SetActive(true);
+        fadeCanvas.alpha = 1f;
+        float t = 0f;
+        while(t < fadeInDuration)
+        {
+            t += Time.deltaTime;
+            fadeCanvas.alpha = 1f - (t / fadeInDuration);
+            yield return null;
+        }
+        fadeCanvas.alpha = 0f;
+    }
+
+    private IEnumerator FadeInGate()
+    {
+        if (gateSR == null) yield break;
+        float t = 0f;
+
+        Color startColor = gateSR.color;
+        startColor.a = 0f;
+        Color targetColor = gateSR.color;
+        targetColor.a = 1f;
+
+        gateSR.color = startColor;
+
+        while(t < fadeInDuration)
+        {
+            t += Time.deltaTime;
+            gateSR.color = Color.Lerp(startColor, targetColor, t / fadeInDuration);
+            yield return null;
+        }
+        gateSR.color = targetColor;
+    }
+
+    private IEnumerator ZoomOutCamera()
+    {
+        if (camFollow != null) camFollow.followEnabled = false;         // Allow zoom out
+        if (ppc != null) ppc.enabled = false;
+
+        yield return null;
+
+        float startSize = mainCamera.orthographicSize;
+        float targetSize = zoomOutScale;
+
+        float t = 0f;
+
+        while (t < zoomDuration)
+        {
+            t += Time.deltaTime;
+            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t / zoomDuration);
+            yield return null;
+        }
+
+        mainCamera.orthographicSize = targetSize;
     }
 
     private enum EndingType

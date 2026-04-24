@@ -5718,6 +5718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
   ActiveNPC: {fileID: 0}
   charactersPerSecond: 40
+  AutoAdvance: 0
 --- !u!4 &881650048
 Transform:
   m_ObjectHideFlags: 0
@@ -12183,9 +12184,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.049074072
-    width: 0.81458336
-    height: 0.5
+    y: -0.080935255
+    width: 1.2802769
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -12245,6 +12246,7 @@ MonoBehaviour:
   player: {fileID: 28343402}
   smoothSpeed: 0.2
   pixelsPerUnit: 32
+  followEnabled: 1
 --- !u!114 &1477201367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13830,7 +13832,6 @@ Transform:
   - {fileID: 335589416}
   - {fileID: 932206677}
   - {fileID: 203034309}
-  - {fileID: 1013417938}
   - {fileID: 1013020150}
   - {fileID: 729177075}
   - {fileID: 557868508}
@@ -21116,7 +21117,9 @@ MonoBehaviour:
   puzzleID: CaesarCipher Puzzle
   puzzleUI: {fileID: 1831021014}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -21393,4 +21396,3 @@ SceneRoots:
   - {fileID: 32848249}
   - {fileID: 961987494}
   - {fileID: 167453863}
-

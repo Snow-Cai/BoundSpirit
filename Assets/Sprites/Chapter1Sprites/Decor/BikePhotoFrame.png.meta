@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ddd60168353232e428fba2d5d74870fb
+guid: 1a0a0946a6ff0554ba8c74ba51ce652a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8347973457277162764
-    second: DeskPlaceholder_0
+      213: 5857386191129168075
+    second: BikePhotoFrame_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeskPlaceholder_0
+      name: BikePhotoFrame_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 7
-        width: 76
-        height: 54
+        x: 3
+        y: 12
+        width: 26
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c05156341a5f9d370800000000000000
-      internalID: 8347973457277162764
+      spriteID: bc8488205bd994150800000000000000
+      internalID: 5857386191129168075
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeskPlaceholder_0: 8347973457277162764
+      BikePhotoFrame_0: 5857386191129168075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

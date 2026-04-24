@@ -128,6 +128,9 @@ public class SceneTravelTrigger : MonoBehaviour
             SaveSystem.Instance.SetTransitioning(true);
         }
 
+        if (destination.sceneName == "ChapterFinal")
+            MusicManager.Instance.StopMusic(true);
+
         if (fadeScreen != null)
         {
             float elapsed = 0f;

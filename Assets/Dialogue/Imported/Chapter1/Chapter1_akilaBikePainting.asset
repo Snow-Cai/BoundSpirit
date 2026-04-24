@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter0_blockedBeforeGateClue
-  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
-  dialogueID: Chapter0_blockedBeforeGateClue
+  m_Name: Chapter1_akilaBikePainting
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
+  dialogueID: 
   lines:
   - speakerName: Akila
-    dialogueText: "There is a worn stone near the gate. I should go look at it, maybe
-      it'll help me\u2026"
+    dialogueText: This... looks like me on a bike. The year on the bottom left says
+      the photo was taken in 2011.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
