@@ -5696,6 +5696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881650048}
   - component: {fileID: 881650047}
+  - component: {fileID: 881650049}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -5732,6 +5733,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1677839486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881650049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881650046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9481f45f610043c41ade528173f38161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnDialogueAfterCutscene
+  cutsceneController: {fileID: 0}
+  introDialogue: {fileID: 11400000, guid: 7f2338122ce744d0b3185258cb51b360, type: 2}
+  delayAfterCutscene: 0.25
+  alsoPlayIfNoCutscene: 1
 --- !u!1 &932206676
 GameObject:
   m_ObjectHideFlags: 0
