@@ -39901,7 +39901,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.09660435}
+  m_Offset: {x: 0, y: 0.03637314}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -39911,7 +39911,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.375, y: 1.4942913}
+  m_Size: {x: 2.375, y: 1.6147537}
   m_EdgeRadius: 0
 --- !u!114 &2050588831
 MonoBehaviour:
@@ -39927,7 +39927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
   objectName: Desk
   interactKey: 101
-  interactionRange: 1
+  interactionRange: 2
   itemRequired: 1
   requiredItem: {fileID: 11400000, guid: 8d4d2b1aee9700244aa257bf882561e5, type: 2}
   objectDialogue: {fileID: 0}

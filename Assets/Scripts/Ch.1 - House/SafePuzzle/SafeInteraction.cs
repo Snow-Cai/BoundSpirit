@@ -23,7 +23,8 @@ public class SafeInteraction : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        if (InputLock.Instance != null &&
+        if (!isOpen &&
+            InputLock.Instance != null &&
             (!InputLock.Instance.GameplayInputEnabled || !InputLock.Instance.InteractEnabled))
         {
             return;

@@ -204,7 +204,10 @@ public class DialogueSystem : MonoBehaviour
             currentDialogue = null;
             State = DialogueState.Inactive;
             GameInputState.DialogueActive = false;
-            InputLock.Instance.CanToggleInventory = true;
+
+            if (InputLock.Instance != null && InputLock.Instance.GameplayInputEnabled)
+                InputLock.Instance.CanToggleInventory = true;
+
             return;
         }
 
