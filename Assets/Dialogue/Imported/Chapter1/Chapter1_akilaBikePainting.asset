@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter1_reassemblyPuzzleSolve
+  m_Name: Chapter1_akilaBikePainting
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter1_reassemblyPuzzleSolve
+  dialogueID: 
   lines:
   - speakerName: Akila
-    dialogueText: This looks like a hint for a passcode... maybe this can help me
-      open the safe! But my dad never had a bike... So I think these hints must be
-      about me.
+    dialogueText: This... looks like me on a bike. The year on the bottom left says
+      the photo was taken in 2011.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
-  showChoicesAtEnd: 0
+  showChoicesAtEnd: 1
