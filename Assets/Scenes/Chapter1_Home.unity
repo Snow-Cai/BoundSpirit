@@ -32084,7 +32084,7 @@ MonoBehaviour:
   confirmButton: {fileID: 1492477348}
   feedbackText: {fileID: 1799466602}
   feedbackDisplayTime: 2
-  onSolveDialogue: {fileID: 0}
+  onSolveDialogue: {fileID: 11400000, guid: 6d6e9809a90e4f4b9cfd36af7a65a841, type: 2}
   onWrongDialogue: {fileID: 0}
   solveObjectiveMessage: You remember the library... Eden.
 --- !u!114 &1493422115

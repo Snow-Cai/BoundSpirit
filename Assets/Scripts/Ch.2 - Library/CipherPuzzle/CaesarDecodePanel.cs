@@ -29,6 +29,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private Button submitButton;
 
     [Header("Events")]
+    [SerializeField] private DialogueAsset onSolveDialogue;
     [SerializeField] private UnityEvent onSolved;
 
     private bool solved;
@@ -191,6 +192,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = false;
+
+        if (onSolveDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.StartDialogue(onSolveDialogue);
 
         onSolved?.Invoke();
     }

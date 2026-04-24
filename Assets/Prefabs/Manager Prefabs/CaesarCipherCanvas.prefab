@@ -1368,6 +1368,7 @@ MonoBehaviour:
   answerInput: {fileID: 8769114948322928587}
   feedbackText: {fileID: 3811249230232761254}
   submitButton: {fileID: 3244334995030799997}
+  onSolveDialogue: {fileID: 11400000, guid: b1b9c1bb22f1473d8af0dc2b9c61d99d, type: 2}
   onSolved:
     m_PersistentCalls:
       m_Calls:
