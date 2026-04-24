@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ public class DialogueSystem : MonoBehaviour
     private DialogueAsset currentDialogue;
     private int currentLineIndex = -1;
     private int lastSelectedChoiceIndex = -1;
+    
+    // For dialogue automatic advance in the final chapter.
+    public bool AutoAdvance = false;
 
     public DialogueState State { get; private set; } = DialogueState.Inactive;
 
@@ -191,7 +195,27 @@ public class DialogueSystem : MonoBehaviour
     public void NotifyLineFinishedTyping()
     {
         if (State == DialogueState.PlayingLine)
+        {
             State = DialogueState.WaitingForAdvance;
+            if (AutoAdvance)
+            {
+                StartCoroutine(AutoAdvanceRoutine());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Plays dialogue automatically if needed.
+    /// </summary>
+    private IEnumerator AutoAdvanceRoutine()
+    {
+        if (currentDialogue == null || currentLineIndex < 0 || currentLineIndex >= currentDialogue.lines.Count) yield break;
+        DialogueLine line = currentDialogue.lines[currentLineIndex];
+        // Change delay appropriately based on dialogue length.
+        float scaledDelay = Mathf.Clamp(line.dialogueText.Length * 0.04f, 1.5f, 5f);
+        yield return new WaitForSeconds(scaledDelay);
+
+        if (State == DialogueState.WaitingForAdvance && AutoAdvance) AdvanceLine();
     }
 
     /// <summary>

@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_gateCluePrimary
   lines:
   - speakerName: 
-    dialogueText: This stone besides the gate is worn smooth by time.
+    dialogueText: This stone beside the gate has been worn smooth by time.
     voiceClip: {fileID: 0}
   - speakerName: 
     dialogueText: Three faint markings are carved into its surface.
@@ -29,7 +29,7 @@ MonoBehaviour:
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: Looks like I need to talk to these three memories before being
-      able too leave this graveyard.
+      able to leave this graveyard.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

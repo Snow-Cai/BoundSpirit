@@ -5,9 +5,11 @@ public class CameraFollow : MonoBehaviour
     public Transform player;
     public float smoothSpeed = 0.2f;    //camera smoothing
     public float pixelsPerUnit = 32f; //PPU for camera position snapping
+    public bool followEnabled = true;
 
     private void FixedUpdate()
     {
+        if (!followEnabled) return;
         if (player == null) return;     //avoid error if missing player
         Vector3 targetPosition = new Vector3(player.position.x, player.position.y, transform.position.z);   //target camera position
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);   //smooth camera movement

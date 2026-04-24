@@ -820,7 +820,9 @@ MonoBehaviour:
   puzzleID: StationComputerPuzzle
   puzzleUI: {fileID: 907081996}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -6149,7 +6151,9 @@ MonoBehaviour:
   puzzleID: StationLocker
   puzzleUI: {fileID: 2118891725}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -9398,8 +9402,8 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.01438849
-    width: 1
+    y: -0.053956836
+    width: 0.5536332
     height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
@@ -9460,6 +9464,7 @@ MonoBehaviour:
   player: {fileID: 1220481300}
   smoothSpeed: 0.2
   pixelsPerUnit: 32
+  followEnabled: 1
 --- !u!114 &1074248175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11249,7 +11254,6 @@ Transform:
   - {fileID: 1939730738}
   - {fileID: 326710450}
   - {fileID: 1911618109}
-  - {fileID: 1106726027}
   - {fileID: 1577007742}
   - {fileID: 791926198}
   - {fileID: 1715420762}
@@ -13242,6 +13246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
   ActiveNPC: {fileID: 0}
   charactersPerSecond: 40
+  AutoAdvance: 0
 --- !u!4 &1862203806
 Transform:
   m_ObjectHideFlags: 0
@@ -17375,4 +17380,3 @@ SceneRoots:
   - {fileID: 1499355195}
   - {fileID: 1350610684}
   - {fileID: 879472567}
-
