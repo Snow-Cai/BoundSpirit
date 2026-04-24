@@ -149,10 +149,6 @@ public class GraveyardGateController : MonoBehaviour
                 QueueBannerAfterDialogue(lockedWithoutNameDialogue, earlyBanner);
                 DialogueSystem.Instance.StartDialogue(lockedWithoutNameDialogue);
             }
-            else
-            {
-                ObjectiveBanner.Instance?.ShowMessage(earlyBanner);
-            }
 
             return;
         }
@@ -211,19 +207,11 @@ public class GraveyardGateController : MonoBehaviour
             QueueBannerAfterDialogue(lockedBeforeGateClueDialogue, gateClueObjectiveMessage);
             DialogueSystem.Instance.StartDialogue(lockedBeforeGateClueDialogue);
         }
-        else
+        else if (lockedBeforeGateClueDialogue != null && DialogueSystem.Instance == null)
         {
-            if (lockedBeforeGateClueDialogue != null && DialogueSystem.Instance == null)
-            {
-                Debug.LogWarning(
-                    $"{nameof(GraveyardGateController)} on {name}: {nameof(lockedBeforeGateClueDialogue)} is assigned but {nameof(DialogueSystem)}.{nameof(DialogueSystem.Instance)} is null.",
-                    this);
-            }
-
-            if (!string.IsNullOrWhiteSpace(gateClueObjectiveMessage))
-            {
-                ObjectiveBanner.Instance?.ShowMessage(gateClueObjectiveMessage);
-            }
+            Debug.LogWarning(
+                $"{nameof(GraveyardGateController)} on {name}: {nameof(lockedBeforeGateClueDialogue)} is assigned but {nameof(DialogueSystem)}.{nameof(DialogueSystem.Instance)} is null.",
+                this);
         }
     }
 
@@ -236,19 +224,11 @@ public class GraveyardGateController : MonoBehaviour
             QueueBannerAfterDialogue(lockedGhostsIncompleteDialogue, ghostsIncompleteObjectiveMessage);
             DialogueSystem.Instance.StartDialogue(lockedGhostsIncompleteDialogue);
         }
-        else
+        else if (lockedGhostsIncompleteDialogue != null && DialogueSystem.Instance == null)
         {
-            if (lockedGhostsIncompleteDialogue != null && DialogueSystem.Instance == null)
-            {
-                Debug.LogWarning(
-                    $"{nameof(GraveyardGateController)} on {name}: {nameof(lockedGhostsIncompleteDialogue)} is assigned but {nameof(DialogueSystem)}.{nameof(DialogueSystem.Instance)} is null.",
-                    this);
-            }
-
-            if (!string.IsNullOrWhiteSpace(ghostsIncompleteObjectiveMessage))
-            {
-                ObjectiveBanner.Instance?.ShowMessage(ghostsIncompleteObjectiveMessage);
-            }
+            Debug.LogWarning(
+                $"{nameof(GraveyardGateController)} on {name}: {nameof(lockedGhostsIncompleteDialogue)} is assigned but {nameof(DialogueSystem)}.{nameof(DialogueSystem.Instance)} is null.",
+                this);
         }
     }
 
@@ -316,11 +296,6 @@ public class GraveyardGateController : MonoBehaviour
                 closePuzzleUiAfterGhostsIncompleteDialogue &&
                 lockedGhostsIncompleteDialogue != null &&
                 DialogueMatches(lockedGhostsIncompleteDialogue, finished);
-
-            if (!string.IsNullOrWhiteSpace(deferredBannerMessage))
-            {
-                ObjectiveBanner.Instance?.ShowMessage(deferredBannerMessage);
-            }
 
             deferredBannerAfterDialogue = null;
             deferredBannerMessage = null;
@@ -474,9 +449,6 @@ public class GraveyardGateController : MonoBehaviour
 
         ClosePuzzleUI();
         ApplyGateUnlockedState();
-
-        ObjectiveBanner.Instance?.ShowMessage("Objective complete: The graveyard gate is open.");
-
         Debug.Log("Gate puzzle solved. Gate unlocked.");
     }
 

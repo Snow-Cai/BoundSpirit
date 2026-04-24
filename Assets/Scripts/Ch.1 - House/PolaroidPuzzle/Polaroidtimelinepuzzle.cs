@@ -238,9 +238,6 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
         //close puzzle UI
         ClosePuzzle();
 
-        //show objective banner
-        ObjectiveBanner.Instance?.ShowMessage(solveObjectiveMessage);
-
         //play solve dialogue
         if (onSolveDialogue != null && DialogueSystem.Instance != null)
             DialogueSystem.Instance.StartDialogue(onSolveDialogue);
