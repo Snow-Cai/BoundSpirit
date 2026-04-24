@@ -39946,7 +39946,7 @@ MonoBehaviour:
   puzzleID: ReassemblyPuzzle
   puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
-  allowSolvedPuzzleReopen: 0
+  allowSolvedPuzzleReopen: 1
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
