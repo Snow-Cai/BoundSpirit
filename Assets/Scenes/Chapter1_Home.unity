@@ -394,10 +394,10 @@ RectTransform:
   - {fileID: 1347040672}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1636.8861, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19156990
 MonoBehaviour:
@@ -1187,10 +1187,10 @@ RectTransform:
   - {fileID: 1873323073}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -35}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109434994
 MonoBehaviour:
@@ -1914,10 +1914,10 @@ RectTransform:
   - {fileID: 936592817}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1039.8365, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &144569323
 MonoBehaviour:
@@ -2355,7 +2355,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -3399,10 +3401,10 @@ RectTransform:
   - {fileID: 1092532352}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -75}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275723634
 MonoBehaviour:
@@ -10739,10 +10741,10 @@ RectTransform:
   - {fileID: 1946110332}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1636.8861, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378296457
 MonoBehaviour:
@@ -11278,7 +11280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &403161366
 Transform:
   m_ObjectHideFlags: 0
@@ -11292,6 +11294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1695237278}
   - {fileID: 1276532446}
   - {fileID: 883013064}
   - {fileID: 1412077240}
@@ -11833,10 +11836,10 @@ RectTransform:
   - {fileID: 331441354}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 144.26237, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455996117
 MonoBehaviour:
@@ -12127,17 +12130,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458354367}
   m_CullTransparentMesh: 1
---- !u!114 &460683952 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2436553530603342782, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-  m_PrefabInstance: {fileID: 4180671459003321643}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e3f36dbb2167514b8b87db2555c0970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UICluePopup
 --- !u!1 &462786297
 GameObject:
   m_ObjectHideFlags: 0
@@ -12173,10 +12165,10 @@ RectTransform:
   - {fileID: 1628216632}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -59.999992, y: 45}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462786299
 MonoBehaviour:
@@ -12503,10 +12495,10 @@ RectTransform:
   - {fileID: 1338930376}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.000008, y: -75}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495001202
 MonoBehaviour:
@@ -16937,10 +16929,10 @@ RectTransform:
   - {fileID: 2128141614}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.000008, y: -35}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &744200557
 MonoBehaviour:
@@ -17089,10 +17081,10 @@ RectTransform:
   - {fileID: 1282529522}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1338.3613, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &746355947
 MonoBehaviour:
@@ -17455,10 +17447,10 @@ RectTransform:
   - {fileID: 117154309}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -59.999992, y: -35}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &773172469
 MonoBehaviour:
@@ -18290,7 +18282,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -19101,7 +19095,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -19702,10 +19698,10 @@ RectTransform:
   - {fileID: 942546580}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.7871, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &914984630
 MonoBehaviour:
@@ -24412,10 +24408,10 @@ RectTransform:
   - {fileID: 1444950511}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.000008, y: 45}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1004150997
 MonoBehaviour:
@@ -25221,10 +25217,10 @@ RectTransform:
   - {fileID: 1028397978}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50.000008, y: 5}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1052596985
 MonoBehaviour:
@@ -26041,10 +26037,10 @@ RectTransform:
   - {fileID: 1004688608}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 741.3119, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1119202823
 MonoBehaviour:
@@ -26353,10 +26349,10 @@ RectTransform:
   - {fileID: 301859238}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 442.7871, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136178454
 MonoBehaviour:
@@ -26714,10 +26710,10 @@ RectTransform:
   - {fileID: 293174954}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: 45}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1162339477
 MonoBehaviour:
@@ -27984,7 +27980,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -28626,7 +28624,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -28824,7 +28824,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -29241,10 +29243,10 @@ RectTransform:
   - {fileID: 1228626413}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -59.999992, y: 5}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1286874231
 MonoBehaviour:
@@ -29795,142 +29797,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.357328, y: 1.1704636}
   m_EdgeRadius: 0
---- !u!1 &1301729511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1301729512}
-  - component: {fileID: 1301729514}
-  - component: {fileID: 1301729513}
-  m_Layer: 5
-  m_Name: Info Tidbit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1301729512
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301729511}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1991126262}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011920929, y: 105}
-  m_SizeDelta: {x: 726.6311, y: 391.9038}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1301729513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301729511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Info Tidbit!
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4282718548
-  m_fontColor: {r: 0.3301887, g: 0.09812211, b: 0.27217203, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 71.85
-  m_fontSizeBase: 30
-  m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: -40.068817, y: -79.83765, z: 241.96405, w: 371.88364}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1301729514
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301729511}
-  m_CullTransparentMesh: 1
 --- !u!1 &1313478733
 GameObject:
   m_ObjectHideFlags: 0
@@ -31347,9 +31213,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.11647727
+    y: 0.076682314
     width: 1
-    height: 0.7670455
+    height: 0.8450704
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -32712,10 +32578,10 @@ RectTransform:
   - {fileID: 1840054096}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1039.8365, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526421543
 MonoBehaviour:
@@ -32809,10 +32675,10 @@ RectTransform:
   - {fileID: 2128664766}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -59.999992, y: -75}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1530999321
 MonoBehaviour:
@@ -33221,7 +33087,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -33495,10 +33363,10 @@ RectTransform:
   - {fileID: 139483472}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1338.3613, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1579257401
 MonoBehaviour:
@@ -33896,7 +33764,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -34089,10 +33959,10 @@ RectTransform:
   - {fileID: 1881835472}
   m_Father: {fileID: 850439807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 741.3119, y: -75}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1623215457
 MonoBehaviour:
@@ -34664,7 +34534,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 88.32, y: 27.8}
+  m_SizeDelta: {x: 88.32, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1694778367
 MonoBehaviour:
@@ -34779,6 +34649,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694778365}
   m_CullTransparentMesh: 1
+--- !u!224 &1695237278 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+  m_PrefabInstance: {fileID: 4180671459003321643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1700747217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35269,10 +35144,10 @@ RectTransform:
   - {fileID: 370945450}
   m_Father: {fileID: 1282241317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: 5}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1727823554
 MonoBehaviour:
@@ -38010,7 +37885,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4.3199997, y: -62.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914876064
 MonoBehaviour:
@@ -38713,18 +38588,18 @@ MonoBehaviour:
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
-  puzzleID: 
+  puzzleID: LoginPuzzle
   puzzleUI: {fileID: 1973412644}
   isPuzzleOpen: 1
+  allowSolvedPuzzleReopen: 1
   loginPuzzle: {fileID: 2039610850}
-  informationalTidbit: {fileID: 0}
-  tidbitMessage: 'INFO TIDBIT:
-
-    As you''ve seen, you can often find out someone''s
-    password with personal information if their password contains information relating
-    to them that can be found out. This information can be found out through digging
-    through openly available informations (OSINT) or through weaseling the information
-    out of the target (social engineering). It is important to safeguard your information!'
+  tidbitPopupCanvas: {fileID: 1978106980}
+  informationalTidbit: {fileID: 11400000, guid: 9a7c0f672bb38de4f879bc3fcb862d30, type: 2}
+  tidbitMessage: As you've seen, you can often find out someone's password with personal
+    information if their password contains information relating to them that can
+    be found out. This information can be found out through digging through openly
+    available informations (OSINT) or through weaseling the information out of the
+    target (social engineering). It is important to safeguard your information!
   showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
@@ -39006,7 +38881,9 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -39343,9 +39220,9 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974382651}
   m_CullTransparentMesh: 1
---- !u!224 &1991126262 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+--- !u!1 &1978106980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
   m_PrefabInstance: {fileID: 4180671459003321643}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1992049358 stripped
@@ -40108,6 +39985,7 @@ MonoBehaviour:
   usernameInput: {fileID: 1751930858}
   passwordInput: {fileID: 1789492907}
   messageText: {fileID: 867081856}
+  loginButton: {fileID: 760559080}
   correctUsername: bunny
   correctPassword: 2001eden
   OnLoginSuccess:
@@ -40116,13 +39994,6 @@ MonoBehaviour:
   OnLoginFail:
     m_PersistentCalls:
       m_Calls: []
-  cluePopup: {fileID: 460683952}
-  informationalTidbit: {fileID: 0}
-  tidbitMessage: As you've seen, you can often find out someone's password with personal
-    information if their password contains information relating to them that can
-    be found out. This information can be found out through digging through openly
-    available informations (OSINT) or through weaseling the information out of the
-    target (social engineering). It is important to safeguard your information!
   dialogueAfterSuccessfulLogin: {fileID: 11400000, guid: e4d3c2b1a0f9e8d7c6b5a4938271605f, type: 2}
 --- !u!4 &2039610851
 Transform:
@@ -40177,10 +40048,10 @@ RectTransform:
   - {fileID: 1872680136}
   m_Father: {fileID: 36853071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 144.26237, y: -100}
-  m_SizeDelta: {x: 288.52475, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044536762
 MonoBehaviour:
@@ -40406,7 +40277,9 @@ MonoBehaviour:
   puzzleID: ReassemblyPuzzle
   puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
   tidbitMessage: 
   showTidbitOnSolve: 0
@@ -42107,68 +41980,8 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 403161366}
     m_Modifications:
-    - target: {fileID: 135080295501582446, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 323.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 135080295501582446, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -294
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_text
-      value: '[E to close]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.w
-      value: -24.07991
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.y
-      value: 2.3477478
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.44840252
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.18689926
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.5283019
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4285673607
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 844072386744556517, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -42249,116 +42062,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 997.532
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 818.9691
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5319254
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5319254
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5319254
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.w
-      value: -65.53656
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.x
-      value: -40.068817
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.y
-      value: -79.83765
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_margin.z
-      value: -63.212708
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.45882356
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.1764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.5529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4285869453
-      objectReference: {fileID: 0}
-    - target: {fileID: 5107693787611884096, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6399606154110211790, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: acf1446ce342f9f4e8cacda0f44baf9e, type: 3}
-    - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7249046974990402313, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7449530799535934226, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      propertyPath: m_Name
-      value: E To Close
-      objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Name
       value: PopupCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3776504906152638428, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1301729512}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
 --- !u!1001 &4471363224062636403
@@ -42590,6 +42300,14 @@ PrefabInstance:
       propertyPath: playPrimaryOnlyOnce
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.40625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -42616,5 +42334,4 @@ SceneRoots:
   - {fileID: 786700702}
   - {fileID: 157014377}
   - {fileID: 680411366}
-  - {fileID: 4180671459003321643}
   - {fileID: 403161366}

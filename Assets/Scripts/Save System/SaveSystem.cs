@@ -320,6 +320,11 @@ public class SaveSystem : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(obj.puzzleID) && IsPuzzleSolved(obj.puzzleID))
             {
+                if (obj.allowSolvedPuzzleReopen)
+                {
+                    continue;
+                }
+
                 obj.gameObject.SetActive(false);
                 Debug.Log("Restored solved puzzle: " + obj.puzzleID);
             }
