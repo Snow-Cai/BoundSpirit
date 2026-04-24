@@ -286,6 +286,9 @@ public static class GridAStar2D
             if (hit == null || !hit.enabled || hit.isTrigger)
                 continue;
 
+            if (IsPlayerCollider(hit))
+                continue;
+
             if (settings.ignoredRoot != null && hit.transform.IsChildOf(settings.ignoredRoot))
                 continue;
 
@@ -293,6 +296,29 @@ public static class GridAStar2D
         }
 
         return true;
+    }
+
+    private static bool IsPlayerCollider(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+            return true;
+
+        Transform transform = collider.transform;
+        if (transform.CompareTag("Player"))
+            return true;
+
+        Rigidbody2D attachedBody = collider.attachedRigidbody;
+        if (attachedBody != null)
+        {
+            if (attachedBody.CompareTag("Player"))
+                return true;
+
+            if (attachedBody.transform.CompareTag("Player"))
+                return true;
+        }
+
+        Transform root = transform.root;
+        return root != null && root.CompareTag("Player");
     }
 
     private static Vector2Int WorldToCell(Vector2 worldPosition, float cellSize)

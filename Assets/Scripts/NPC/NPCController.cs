@@ -16,8 +16,6 @@ public class NPCController : MonoBehaviour
     public Animator animator;
     public LayerMask obstacleLayers = 1;
     public float gridSize = 0.35f;
-    public Vector2 collisionProbeSize = new Vector2(0.42f, 0.28f);
-    public Vector2 collisionProbeOffset = new Vector2(0f, -0.42f);
     public float repathInterval = 0.35f;
     public float pathNodeReachDistance = 0.06f;
     public float targetReachDistance = 0.12f;
@@ -27,11 +25,6 @@ public class NPCController : MonoBehaviour
     public float movementDeadZone = 0.02f;
     public float stuckRepathDelay = 0.4f;
     public float stuckVelocityThreshold = 0.05f;
-
-    [Header("Collider Tuning")]
-    public bool autoConfigureBodyCollider = true;
-    public Vector2 bodyColliderSize = new Vector2(0.42f, 0.3f);
-    public Vector2 bodyColliderOffset = new Vector2(0f, -0.42f);
 
     private Transform targetPoint;
     private bool isIdle = false;
@@ -59,7 +52,6 @@ public class NPCController : MonoBehaviour
         bodyCollider = GetComponent<BoxCollider2D>();
         animator ??= GetComponent<Animator>();
         spriteRenderer ??= GetComponent<SpriteRenderer>();
-        ConfigureBodyCollider();
     }
 
     void Start()
@@ -286,8 +278,8 @@ public class NPCController : MonoBehaviour
         var settings = new GridAStar2D.Settings(
             gridSize,
             obstacleLayers,
-            collisionProbeSize,
-            collisionProbeOffset,
+            GetPathProbeSize(),
+            GetPathProbeOffset(),
             allowDiagonalMovement,
             maxSearchIterations,
             maxSearchDistance,
@@ -368,13 +360,20 @@ public class NPCController : MonoBehaviour
         stuckTimer = 0f;
     }
 
-    private void ConfigureBodyCollider()
+    private Vector2 GetPathProbeSize()
     {
-        if (!autoConfigureBodyCollider || bodyCollider == null)
-            return;
+        if (bodyCollider != null)
+            return bodyCollider.size;
 
-        bodyCollider.size = bodyColliderSize;
-        bodyCollider.offset = bodyColliderOffset;
+        return Vector2.one * gridSize;
+    }
+
+    private Vector2 GetPathProbeOffset()
+    {
+        if (bodyCollider != null)
+            return bodyCollider.offset;
+
+        return Vector2.zero;
     }
 
     private Transform GetNextValidScheduledPoint()
@@ -418,10 +417,12 @@ public class NPCController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
+        Vector2 probeOffset = GetPathProbeOffset();
+        Vector2 probeSize = GetPathProbeSize();
         Vector3 probeCenter = Application.isPlaying && rb != null
-            ? (Vector3)(rb.position + collisionProbeOffset)
-            : transform.position + (Vector3)collisionProbeOffset;
-        Gizmos.DrawWireCube(probeCenter, collisionProbeSize);
+            ? (Vector3)(rb.position + probeOffset)
+            : transform.position + (Vector3)probeOffset;
+        Gizmos.DrawWireCube(probeCenter, probeSize);
 
         if (currentPath == null || currentPath.Count == 0)
             return;
