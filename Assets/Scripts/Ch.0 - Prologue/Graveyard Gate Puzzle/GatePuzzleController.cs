@@ -51,6 +51,8 @@ public class GatePuzzleController : MonoBehaviour
             return;
         }
 
+        gateController?.OnGatePuzzleInputStarted();
+
         if (runeTexts == null ||
             symbolOptions == null ||
             symbolOptions.Length == 0 ||
@@ -75,6 +77,8 @@ public class GatePuzzleController : MonoBehaviour
         {
             return;
         }
+
+        gateController?.OnGatePuzzleInputStarted();
 
         if (!IsPatternConfigured())
         {

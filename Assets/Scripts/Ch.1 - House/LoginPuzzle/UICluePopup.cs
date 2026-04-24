@@ -9,7 +9,8 @@ public class UICluePopup : MonoBehaviour
     public float fadeDuration = 0.4f;
 
     private Coroutine popupRoutine;
-    private CharMovement movementScript; 
+    private CharMovement movementScript;
+    private Rigidbody2D playerRigidbody;
     private bool popupOpen = false;
 
     private void Awake()
@@ -24,7 +25,10 @@ public class UICluePopup : MonoBehaviour
         // Find player & movement script
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
+        {
             movementScript = player.GetComponent<CharMovement>();
+            playerRigidbody = player.GetComponent<Rigidbody2D>();
+        }
     }
 
     public void ShowMessage(string message)
@@ -62,6 +66,8 @@ public class UICluePopup : MonoBehaviour
     private IEnumerator PopupRoutine(string msg)
     {
         popupOpen = true;
+        GameInputState.MovementLocked = true;
+        StopPlayerImmediately();
 
         // Freeze player
         if (movementScript != null)
@@ -99,6 +105,7 @@ public class UICluePopup : MonoBehaviour
         if (movementScript != null)
             movementScript.enabled = true;
 
+        GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
     }
@@ -111,5 +118,25 @@ public class UICluePopup : MonoBehaviour
     private bool AreInformationalTidbitsEnabled()
     {
         return SettingsData.GetInformationalTidbitsEnabled();
+    }
+
+    private void StopPlayerImmediately()
+    {
+        if (playerRigidbody != null)
+        {
+            playerRigidbody.linearVelocity = Vector2.zero;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (movementScript != null)
+        {
+            movementScript.enabled = true;
+        }
+
+        GameInputState.MovementLocked = false;
+        popupOpen = false;
+        popupRoutine = null;
     }
 }

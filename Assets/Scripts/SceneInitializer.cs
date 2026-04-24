@@ -133,6 +133,15 @@ public class SceneInitializer : MonoBehaviour
             return;
         }
 
+        if (SceneSpawnPoint.HasPlacedPlayerThisScene)
+        {
+            Debug.Log("Player already placed by scene spawn point.");
+            return;
+        }
+
+        if (SceneSpawnPoint.TryPlacePlayerAtPendingSpawn(player))
+            return;
+
         //Check if we have saved position data
         if (SaveSystem.Instance != null && SaveSystem.Instance.HasSaveData())
         {

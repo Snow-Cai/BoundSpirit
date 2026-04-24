@@ -16,6 +16,9 @@ public class LockerPuzzleController : MonoBehaviour
     [Tooltip("Played when the player enters the code successfully.")]
     public DialogueAsset policeFileObtainedDialogue;
 
+    [Header("Save Progress")]
+    [SerializeField] private string puzzleID = "StationLocker";
+
     public void Open()
     {
         lockerUI.SetActive(true);
@@ -57,6 +60,11 @@ public class LockerPuzzleController : MonoBehaviour
 
     void Unlock()
     {
+        if (SaveSystem.Instance != null && !string.IsNullOrWhiteSpace(puzzleID))
+        {
+            SaveSystem.Instance.UnlockPuzzle(puzzleID);
+        }
+
         Debug.Log("LOCKER UNLOCKED: Police file obtained!");
         Close();
     }
