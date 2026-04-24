@@ -53,13 +53,15 @@ public class SceneTravelTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
-        if (MapPopupUI.Instance == null) return;
         if (isTransitioning) return;
+
+        MapPopupUI mapPopup = MapPopupUI.GetOrCreateInstance();
+        if (mapPopup == null) return;
 
         if (charMovement != null)
             charMovement.enabled = false;
 
-        MapPopupUI.Instance.Open(this);
+        mapPopup.Open(this);
     }
 
     public void RestorePlayerControl()

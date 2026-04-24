@@ -34,8 +34,8 @@ MonoBehaviour:
     dialogueText: I miss you too, Dad.
     voiceClip: {fileID: 0}
   - speakerName: Dad
-    dialogueText: I need to find her password. I can't have her name be tainted.
-      She needs to rest in peace.
+    dialogueText: I know her username but I need to find her password still. I can't
+      have her name be tainted. She needs to rest in peace.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
