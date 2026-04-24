@@ -61,9 +61,9 @@ public class ReassemblyPuzzleManager : MonoBehaviour
             DialogueSystem.Instance.OnDialogueEnded += HandleSolveDialogueEnded;
             DialogueSystem.Instance.StartDialogue(solveDialogue);
         }
-        else if (puzzleInteractable != null)
+        else if (puzzleInteractable != null)                // Remain usable after solving and consuming inventory item
         {
-            puzzleInteractable.ClosePuzzle();
+            puzzleInteractable.itemRequired = false;
         }
     }
 
@@ -75,7 +75,7 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         if (DialogueSystem.Instance != null)
             DialogueSystem.Instance.OnDialogueEnded -= HandleSolveDialogueEnded;
 
-        if (puzzleInteractable != null)
-            puzzleInteractable.ClosePuzzle();
+        if (puzzleInteractable != null)                 // Remain usable after solving and consuming inventory item
+            puzzleInteractable.itemRequired = false;
     }
 }
