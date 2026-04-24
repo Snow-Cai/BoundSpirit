@@ -9151,9 +9151,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.080935255
-    width: 1.2802769
-    height: 0.97122306
+    y: -0.091981135
+    width: 2.4365783
+    height: 1.273585
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -46724,10 +46724,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HelpBookCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -46740,10 +46736,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 5850570467455704679, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -46756,10 +46748,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 6079202392425596933, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6291915645753430345, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -46768,10 +46756,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 6291915645753430345, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -46780,10 +46764,6 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
-    - target: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
