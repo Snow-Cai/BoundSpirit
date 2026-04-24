@@ -3547,6 +3547,7 @@ MonoBehaviour:
   sceneType: 2
   defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
+  customVolume: 0
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
   defaultSpawnPoint: {fileID: 939070113}
@@ -29249,6 +29250,7 @@ MonoBehaviour:
   maxDigits: 6
   targetCode: 030111
   keyInserted: 0
+  itemToConsume: {fileID: 11400000, guid: dcf0c19817b9cc441be516a822f3a373, type: 2}
   audioSource: {fileID: 1291626102}
   buttonPressSound: {fileID: 8300000, guid: df284122aab18b14b88bbd09f53c1500, type: 3}
   knobTurnSound: {fileID: 8300000, guid: 379cead86b495074c889814163679d48, type: 3}
@@ -30992,9 +30994,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.01438849
     width: 1
-    height: 1
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -31089,6 +31091,7 @@ MonoBehaviour:
   player: {fileID: 2000622937}
   smoothSpeed: 0.2
   pixelsPerUnit: 32
+  followEnabled: 1
 --- !u!114 &1441967357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35709,6 +35712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueSystem
   ActiveNPC: {fileID: 0}
   charactersPerSecond: 40
+  AutoAdvance: 0
 --- !u!4 &1790277582
 Transform:
   m_ObjectHideFlags: 0
