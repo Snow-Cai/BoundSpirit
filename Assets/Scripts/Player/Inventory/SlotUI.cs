@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public ItemData item;
     public Image icon;
     public int slotIndex;
     private GameObject dragIcon;
+    private bool isDragging;
+    private bool suppressNextClick;
 
     public void SetItem(ItemData newItem)
     {
@@ -34,6 +36,8 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (item == null) return;
+        isDragging = true;
+        suppressNextClick = true;
         icon.enabled = false;                       //hide original icon
         dragIcon = new GameObject("DragIcon");      //create a temporary icon for dragging visual
         dragIcon.transform.SetParent(transform.root);
@@ -59,8 +63,8 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(dragIcon != null)
-            Destroy(dragIcon);
+        CleanupDragVisual();
+        isDragging = false;
         UpdateSlot();
     }
 
@@ -73,6 +77,8 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         ItemData temp = item;
         item = other.item;
         other.item = temp;
+        suppressNextClick = true;
+        other.suppressNextClick = true;
 
         UpdateSlot();
         other.UpdateSlot();
@@ -86,6 +92,60 @@ public class SlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 inventory.inventory.Add(null);
             inventory.inventory[slotIndex] = item;
             inventory.inventory[other.slotIndex] = other.item;
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen) return;
+        if (TooltipUI.Instance == null) return;
+        Debug.Log("Hover triggered");
+        Debug.Log("Tooltip instance: " + TooltipUI.Instance);
+        if (item != null)
+            TooltipUI.Instance.Show(item.itemName);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (TooltipUI.Instance != null)
+            TooltipUI.Instance.Hide();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen) return;
+        if (!InputLock.Instance.AllowInspect) return;
+        if (dragIcon != null || isDragging) return;
+        if (suppressNextClick)
+        {
+            suppressNextClick = false;
+            return;
+        }
+        Debug.Log("Slot clicked!");
+        if (item != null && item.canInspect)
+        {
+            Debug.Log("Opening inspect for: " + item.itemName);
+            if (InspectUI.Instance != null)
+                InspectUI.Instance.Show(item);
+        }
+    }
+
+    private void OnDisable()
+    {
+        CleanupDragVisual();
+        isDragging = false;
+        suppressNextClick = false;
+
+        if (icon != null)
+            UpdateSlot();
+    }
+
+    void CleanupDragVisual()
+    {
+        if (dragIcon != null)
+        {
+            Destroy(dragIcon);
+            dragIcon = null;
         }
     }
 }

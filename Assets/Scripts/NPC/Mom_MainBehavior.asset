@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a1fea00fcd49046b92055366603f2f, type: 3}
   m_Name: Mom_MainBehavior
   m_EditorClassIdentifier: Assembly-CSharp::MomBehaviorProfile
-  minIdleTime: 1.5
-  maxIdleTime: 4
+  minIdleTime: 0.5
+  maxIdleTime: 1.25
   allowRandomWander: 0
   useSchedule: 1

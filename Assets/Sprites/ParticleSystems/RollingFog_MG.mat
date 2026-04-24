@@ -31,7 +31,8 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -54,8 +55,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _DustSize: 1
     - _FogSize: 3
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
+    - _DustColor: {r: 0.9137255, g: 0.8784314, b: 0.8, a: 0.282353}
+    - _DustSpeed: {r: 1, g: 0, b: 0, a: 0}
     - _FogColor: {r: 1, g: 1, b: 1, a: 0.1176471}
     - _FogSpeed: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

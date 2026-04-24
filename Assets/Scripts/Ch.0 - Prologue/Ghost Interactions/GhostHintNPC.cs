@@ -3,6 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class GhostHintNPC : MonoBehaviour
 {
+    [Header("Progress Gate")]
+    [SerializeField] private bool requireGateClueFirst = true;
+    [SerializeField] private string requiredDialogueID = "Chapter0_gateCluePrimary";
+    [Tooltip("Played when requireGateClueFirst is on and the player has not viewed the gate stone clue yet.")]
+    [SerializeField] private DialogueAsset blockedBeforeGateClueDialogue;
+
     [Header("Required Item")]
     [SerializeField] private ItemData requiredItem;
 
@@ -20,6 +26,8 @@ public class GhostHintNPC : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
+    public ItemData RequiredItem => requiredItem;
+
     private void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -33,6 +41,11 @@ public class GhostHintNPC : MonoBehaviour
     public void Interact()
     {
         Debug.Log("GhostHintNPC.Interact() called");
+
+        if (!CanStartGhostInteraction())
+        {
+            return;
+        }
 
         if (IsSolved())
         {
@@ -127,9 +140,20 @@ public class GhostHintNPC : MonoBehaviour
 
     private bool PlayerHasAnyItems()
     {
-        return playerInventory != null &&
-               playerInventory.GetItems() != null &&
-               playerInventory.GetItems().Count > 0;
+        if (playerInventory == null || playerInventory.GetItems() == null)
+        {
+            return false;
+        }
+
+        foreach (ItemData item in playerInventory.GetItems())
+        {
+            if (item != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void OfferItem(ItemData offeredItem)
@@ -151,7 +175,7 @@ public class GhostHintNPC : MonoBehaviour
             return;
         }
 
-        if (offeredItem != requiredItem)
+        if (!IsRequiredItem(offeredItem))
         {
             PlayDialogue(wrongItemDialogue);
             return;
@@ -171,6 +195,22 @@ public class GhostHintNPC : MonoBehaviour
         }
 
         PlayDialogue(successDialogue);
+    }
+
+    private bool IsRequiredItem(ItemData offeredItem)
+    {
+        if (offeredItem == null || requiredItem == null)
+        {
+            return false;
+        }
+
+        if (offeredItem == requiredItem)
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(offeredItem.itemID) &&
+               offeredItem.itemID == requiredItem.itemID;
     }
 
     private bool IsSolved()
@@ -201,5 +241,30 @@ public class GhostHintNPC : MonoBehaviour
                SaveSystem.Instance != null &&
                !string.IsNullOrEmpty(needItemDialogue.dialogueID) &&
                SaveSystem.Instance.HasViewedDialogue(needItemDialogue.dialogueID);
+    }
+
+    private bool CanStartGhostInteraction()
+    {
+        if (!requireGateClueFirst)
+        {
+            return true;
+        }
+
+        if (SaveSystem.Instance == null || string.IsNullOrEmpty(requiredDialogueID))
+        {
+            return true;
+        }
+
+        if (SaveSystem.Instance.HasViewedDialogue(requiredDialogueID))
+        {
+            return true;
+        }
+
+        if (blockedBeforeGateClueDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.StartDialogue(blockedBeforeGateClueDialogue);
+        }
+
+        return false;
     }
 }

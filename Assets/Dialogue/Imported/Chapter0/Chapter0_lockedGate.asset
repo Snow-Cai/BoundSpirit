@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter0_lockedGate
   lines:
   - speakerName: Akila
-    dialogueText: There\u2019s some sort of seal on the gate. Maybe there's a clue
-      nearby...
+    dialogueText: Now that I have helped the three spirits, I should know how to
+      solve this.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

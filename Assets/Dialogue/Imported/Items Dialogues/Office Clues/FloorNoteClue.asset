@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b6aea4d3b0f2f49a09c9eed57149e5, type: 3}
+  m_Name: FloorNoteClue
+  m_EditorClassIdentifier: Assembly-CSharp::Clue
+  itemID: FLOOR_CLUE
+  itemName: Floor Note
+  icon: {fileID: 5303690284097778548, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
+  description: It appears to be a page torn out of a book. The writing says "...a
+    common password tactic is to include a meaningful number like birth year or age
+    and a meaningful word, name, or object to the user..."
+  canInspect: 1
+  clueID: floorclue
+  clueName: FloorNote
+  clueLetter: 
+  clueText: '*Looks like a torn page of a book*  "...a common password tactic is
+    to include a meaningful number like birth year or age and a meaningful word,
+    name, or object to the user..."'
+  hintDescription: 
+  clueIcon: {fileID: 2762278503595733111, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  isRequiredForPassword: 1
+  canBeReviewedInJournal: 1
+  canTriggerEvents: 0

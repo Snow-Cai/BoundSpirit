@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_tombstoneRepeat
   lines:
   - speakerName: Akila
-    dialogueText: My name... it's Akila.
+    dialogueText: Akila... that's my name. I need to get out of this graveyard.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

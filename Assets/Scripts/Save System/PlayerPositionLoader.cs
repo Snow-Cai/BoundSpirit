@@ -32,6 +32,18 @@ public class PlayerPositionLoader : MonoBehaviour
             return;
         }
 
+        if (SceneSpawnPoint.HasPlacedPlayerThisScene)
+        {
+            Debug.Log("LOAD: Skipping saved position because a scene spawn point already placed the player.");
+            return;
+        }
+
+        if (SceneSpawnPoint.TryPlacePlayerAtPendingSpawn(player))
+        {
+            Debug.Log("LOAD: Used pending map transition spawn point instead of saved position.");
+            return;
+        }
+
         Vector3 savedPosition = SaveSystem.Instance.GetPlayerPosition();
         Debug.Log("LOAD: Retrieved saved position: " + savedPosition);
 

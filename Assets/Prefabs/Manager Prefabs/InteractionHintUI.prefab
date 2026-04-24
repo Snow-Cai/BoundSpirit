@@ -167,10 +167,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press E to Interact
+  m_text: 'Press E to interact
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
+  m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -301,4 +303,6 @@ MonoBehaviour:
   maxDistance: 2
   hintFormat: Press {0} to interact
   hideWhenDialogueActive: 1
+  hideUntilIntroDialogueSeen: 1
+  introDialogueID: Chapter0_awakening
   fadeSpeed: 10

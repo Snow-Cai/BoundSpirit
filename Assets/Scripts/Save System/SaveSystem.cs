@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static SaveData;
 
 [System.Serializable]
@@ -43,6 +44,8 @@ public class SaveData
     public bool knowsNameIsAkila;
     public bool edenRevealed;
     public bool truthRevealed;
+    public bool foundMenuSecret;
+    public bool foundHiddenTombstone;
 
     //Timestamps
     public string lastSaveTime;
@@ -54,6 +57,7 @@ public class SaveSystem : MonoBehaviour
 
     private SaveData currentSave;
     private const string SAVE_KEY = "GameSave";
+    private const string MENU_SECRET_KEY = "FoundMenuSecret";
     private bool isTransitioning = false;
 
     void Awake()
@@ -93,6 +97,13 @@ public class SaveSystem : MonoBehaviour
         if (currentSave == null)
         {
             currentSave = new SaveData();
+        }
+
+        string activeSceneName = SceneManager.GetActiveScene().name;
+        if (string.Equals(activeSceneName, "MenuScene", StringComparison.Ordinal))
+        {
+            Debug.Log("SAVE: Skipping save in MenuScene.");
+            return;
         }
 
         //Save player position if player exists
@@ -164,7 +175,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         //Save current scene
-        currentSave.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        currentSave.currentScene = activeSceneName;
         Debug.Log("SAVE: Scene saved: " + currentSave.currentScene);
 
         //Save timestamp
@@ -184,19 +195,21 @@ public class SaveSystem : MonoBehaviour
         {
             string json = PlayerPrefs.GetString(SAVE_KEY);
             currentSave = JsonUtility.FromJson<SaveData>(json);
+            currentSave.foundMenuSecret = currentSave.foundMenuSecret || PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("Game Loaded!");
         }
         else
         {
             //Create new save if none exists
             currentSave = new SaveData();
+            currentSave.foundMenuSecret = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("No save found. Creating new save.");
         }
     }
 
     public void LoadSavedScene()
     {
-        if (currentSave != null && !string.IsNullOrEmpty(currentSave.currentScene))
+        if (HasPlayableSaveData())
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(currentSave.currentScene);
             //after scene loads, restore game state
@@ -204,8 +217,8 @@ public class SaveSystem : MonoBehaviour
         }
         else
         {
-            //default to first gameplay scene (skip cutscene)
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            Debug.LogWarning("SAVE: No playable save scene found. Starting a new game instead.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Chapter0_Prologue");
         }
     }
 
@@ -228,7 +241,14 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) return;
         //Deactivate items already collected from the world
-        Transform map = GameObject.Find("Map").transform;
+        GameObject mapGo = GameObject.Find("Map");
+        if (mapGo == null)
+        {
+            Debug.LogWarning("SAVE: Map GameObject not found — skipped hiding world collectibles.");
+        }
+        else
+        {
+            Transform map = mapGo.transform;
         foreach (Transform floor in map)
         {
             Transform itemsParent = floor.Find("CollectibleItemsParent");
@@ -240,12 +260,17 @@ public class SaveSystem : MonoBehaviour
                 string id = co != null ? co.item.itemID : item.name;
                 if (currentSave.collectedItems.Contains(id))
                 {
-                    if(co.disappearOnPickup == true)
+                    if (co != null && co.disappearOnPickup)
+                    {
                         item.gameObject.SetActive(false);
+                    }
+
                     Debug.Log("Restored collected item: " + id);
                 }
             }
         }
+        }
+
         //Restore player's inventory
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -259,6 +284,29 @@ public class SaveSystem : MonoBehaviour
             else
             {
                 Debug.LogWarning("RESTORE: Player object not found!");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Syncs graveyard gate visuals with save after runtime save edits (e.g. dev progress shortcuts).
+    /// Does not hide world collectibles or puzzle objects — use a scene reload for full restore.
+    /// </summary>
+    public void ApplySaveToLoadedScene()
+    {
+        if (currentSave == null)
+        {
+            return;
+        }
+
+        GraveyardGateController[] gates = UnityEngine.Object.FindObjectsByType<GraveyardGateController>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None);
+        for (int i = 0; i < gates.Length; i++)
+        {
+            if (gates[i] != null)
+            {
+                gates[i].SyncUnlockedStateWithSave();
             }
         }
     }
@@ -281,6 +329,7 @@ public class SaveSystem : MonoBehaviour
     public void DeleteSave()
     {
         PlayerPrefs.DeleteKey(SAVE_KEY);
+        PlayerPrefs.DeleteKey(MENU_SECRET_KEY);
         PlayerPrefs.Save();
         currentSave = new SaveData();
         Debug.Log("Save deleted!");
@@ -289,6 +338,23 @@ public class SaveSystem : MonoBehaviour
     public bool HasSaveData()
     {
         return PlayerPrefs.HasKey(SAVE_KEY);
+    }
+
+    public bool HasPlayableSaveData()
+    {
+        if (!HasSaveData())
+            return false;
+
+        if (currentSave == null)
+            LoadGame();
+
+        if (currentSave == null || string.IsNullOrWhiteSpace(currentSave.currentScene))
+            return false;
+
+        if (string.Equals(currentSave.currentScene, "MenuScene", StringComparison.Ordinal))
+            return false;
+
+        return Application.CanStreamedLevelBeLoaded(currentSave.currentScene);
     }
 
     //Getters and Setters for easy access
@@ -414,8 +480,24 @@ public class SaveSystem : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        SaveGame();
-        Debug.Log("SAVE: Game saved on application quit!");
+        if (CanSaveCurrentSceneOnQuit())
+        {
+            SaveGame();
+            Debug.Log("SAVE: Game saved on application quit!");
+        }
+        else
+        {
+            Debug.Log("SAVE: Skipped save on application quit.");
+        }
+    }
+
+    private bool CanSaveCurrentSceneOnQuit()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (!activeScene.IsValid())
+            return false;
+
+        return !string.Equals(activeScene.name, "MenuScene", StringComparison.Ordinal);
     }
 
     public bool KnowsNameIsAkila()
@@ -427,6 +509,42 @@ public class SaveSystem : MonoBehaviour
     {
         if (currentSave == null) currentSave = new SaveData();
         currentSave.knowsNameIsAkila = value;
+        SaveGame();
+    }
+
+    public bool FoundHiddenTombstone()
+    {
+        return currentSave != null && currentSave.foundHiddenTombstone;
+    }
+
+    public bool FoundMenuSecret()
+    {
+        return (currentSave != null && currentSave.foundMenuSecret) ||
+               PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
+    }
+
+    public void SetFoundMenuSecret(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+
+        bool persistedValue = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
+        if (currentSave.foundMenuSecret == value && persistedValue == value)
+            return;
+
+        currentSave.foundMenuSecret = value;
+        PlayerPrefs.SetInt(MENU_SECRET_KEY, value ? 1 : 0);
+        PlayerPrefs.Save();
+        SaveGame();
+    }
+
+    public void SetFoundHiddenTombstone(bool value = true)
+    {
+        if (currentSave == null) currentSave = new SaveData();
+
+        if (currentSave.foundHiddenTombstone == value)
+            return;
+
+        currentSave.foundHiddenTombstone = value;
         SaveGame();
     }
 
