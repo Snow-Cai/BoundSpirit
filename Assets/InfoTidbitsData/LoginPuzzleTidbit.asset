@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
   m_Name: LoginPuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
-  title: INFO TIDBIT!
+  title: 
   body: As you've seen, you can often find out someone's password with personal information
     if their password contains information relating to them that can be found out.
     This information can be found out through digging through openly available information(OSINT)

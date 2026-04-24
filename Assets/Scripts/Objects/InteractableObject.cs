@@ -32,11 +32,14 @@ public class InteractableObject : MonoBehaviour
     public string puzzleID;
     public GameObject puzzleUI;
     public bool isPuzzleOpen = false;
+    [Tooltip("If enabled, the player can still open this puzzle after it has already been solved.")]
+    public bool allowSolvedPuzzleReopen = false;
 
     [Header("Puzzle Components")]
     public LoginPuzzle loginPuzzle;
 
     [Header("Informational Tidbit")]
+    public GameObject tidbitPopupCanvas;
     public InformationalTidbitData informationalTidbit;
     [TextArea]
     public string tidbitMessage;
@@ -295,7 +298,8 @@ public class InteractableObject : MonoBehaviour
         {
             if (SaveSystem.Instance != null &&
                 !string.IsNullOrEmpty(puzzleID) &&
-                SaveSystem.Instance.IsPuzzleSolved(puzzleID))
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID) &&
+                !allowSolvedPuzzleReopen)
             {
                 yield break;
             }
@@ -314,6 +318,8 @@ public class InteractableObject : MonoBehaviour
 
     void OpenPuzzle()
     {
+        PuzzleBridge.currentPuzzleSource = this;
+
         if (loginPuzzle != null)
         {
             loginPuzzle.ResetFields();
@@ -346,6 +352,10 @@ public class InteractableObject : MonoBehaviour
         }
 
         isPuzzleOpen = false;
+        if (PuzzleBridge.currentPuzzleSource == this)
+        {
+            PuzzleBridge.currentPuzzleSource = null;
+        }
         SetGameplayInputEnabled(true);
         InputLock.Instance.CanToggleInventory = true;
         Time.timeScale = 1f;
@@ -362,6 +372,10 @@ public class InteractableObject : MonoBehaviour
 
     public void OnPuzzleSolved()
     {
+        bool wasAlreadySolved = SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(puzzleID) &&
+            SaveSystem.Instance.IsPuzzleSolved(puzzleID);
+
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.UnlockPuzzle(puzzleID);
@@ -374,9 +388,25 @@ public class InteractableObject : MonoBehaviour
             PlayDialogue();
         }
 
-        if (showTidbitOnSolve)
+        if (!wasAlreadySolved && showTidbitOnSolve)
         {
-            UICluePopup popup = Object.FindFirstObjectByType<UICluePopup>();
+            UICluePopup popup = null;
+
+            if (tidbitPopupCanvas != null)
+            {
+                popup = tidbitPopupCanvas.GetComponent<UICluePopup>();
+
+                if (popup == null)
+                {
+                    popup = tidbitPopupCanvas.GetComponentInChildren<UICluePopup>(true);
+                }
+            }
+
+            if (popup == null)
+            {
+                popup = Object.FindFirstObjectByType<UICluePopup>();
+            }
+
             if (popup != null)
             {
                 if (informationalTidbit != null)
