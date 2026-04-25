@@ -15719,9 +15719,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.01438849
     width: 1
-    height: 1
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -16156,8 +16156,9 @@ MonoBehaviour:
   treePoint: {fileID: 293978703}
   walkSpeed: 1.5
   fadeCanvas: {fileID: 2022505768}
-  zoomOutScale: 10
-  zoomDuration: 4
+  zoomOutSize: 10
+  zoomDuration: 8
+  panUpAmount: 1
   mainCamera: {fileID: 1437723104}
   camFollow: {fileID: 1437723101}
   ppc: {fileID: 1437723100}

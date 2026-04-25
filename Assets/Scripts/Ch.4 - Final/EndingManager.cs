@@ -33,8 +33,9 @@ public class EndingManager : MonoBehaviour
     public Transform player, hillStartPoint, treePoint;
     public float walkSpeed = 0.5f;
     public CanvasGroup fadeCanvas;
-    public float zoomOutScale = 10f;
-    public float zoomDuration = 4f;
+    public float zoomOutSize = 10f;
+    public float zoomDuration = 8f;
+    public float panUpAmount = 1f;
     public Camera mainCamera;
     public CameraFollow camFollow;
     public PixelPerfectCamera ppc;
@@ -153,7 +154,7 @@ public class EndingManager : MonoBehaviour
 
     private EndingType ResolveSelectedEnding()                  // TEMPORARY: UPDATE WHEN SAVE SYSTEM IMPLEMENTS THE CHOICE FLAGS i.e. read from SaveSystem flags instead of dialogue system
     {
-        return EndingType.Forgive;
+        return EndingType.Revenge;
 
         //int resulting = 
         //if (resultingChoice < 0)
@@ -217,7 +218,7 @@ public class EndingManager : MonoBehaviour
 
             default:
                 title = "FOUND SPIRIT";
-                subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit a grave with oranges and apples, because those were her favorites.\n\nAkila. 2001-2019. Loving daughter.";
+                subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit Akila's grave with oranges and apples, because those were her favorites.\n\nAkila. 2001-2019. Loving daughter.";
                 break;
         }
     }
@@ -256,23 +257,9 @@ public class EndingManager : MonoBehaviour
 
     private IEnumerator PlayEndingCutscene(EndingType ending)
     {
-        switch (ending)
-        {
-            case EndingType.Forgive:
-                yield return StartCoroutine(ForgiveCutscene());
-                break;
-            case EndingType.Revenge:
-                //yield return StartCoroutine(RevengeCutscene());
-                break;
-            case EndingType.Secret:
-                //yield return StartCoroutine(SecretCutscene());
-                break;
-        }
-    }
-
-    private IEnumerator ForgiveCutscene()
-    {
+        if (ppc != null) ppc.enabled = false;
         yield return StartCoroutine(FadeFromBlack());
+
         if (walkingDialogue != null)
         {
             DialogueSystem.Instance.QueueDialogue(walkingDialogue);
@@ -285,10 +272,51 @@ public class EndingManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         yield return StartCoroutine(ZoomOutCamera());
 
-        if(musicAudio != null) musicAudio.Play();
+        if (musicAudio != null) musicAudio.Play();
+
+        switch (ending)
+        {
+            case EndingType.Forgive:
+                yield return StartCoroutine(ForgiveCutscene());
+                break;
+            case EndingType.Revenge:
+                yield return StartCoroutine(RevengeCutscene());
+                break;
+            case EndingType.Secret:
+                yield return StartCoroutine(SecretCutscene());
+                break;
+        }
+    }
+
+    private IEnumerator ForgiveCutscene()
+    {
         if(forgiveEndingDialogue != null)
         {
             DialogueSystem.Instance.QueueDialogue(forgiveEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
+    }
+
+    private IEnumerator RevengeCutscene()
+    {
+        if (revengeEndingDialogue != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(revengeEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
+    }
+
+    private IEnumerator SecretCutscene()
+    {
+        if (secretEndingDialogue != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(secretEndingDialogue);
             yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
         }
 
@@ -349,23 +377,33 @@ public class EndingManager : MonoBehaviour
     private IEnumerator ZoomOutCamera()
     {
         if (camFollow != null) camFollow.followEnabled = false;         // Allow zoom out
-        if (ppc != null) ppc.enabled = false;
 
         yield return null;
 
+        Vector3 startPos = mainCamera.transform.position; ;
+        Vector3 targetPos = startPos + new Vector3(0f, panUpAmount, 0f);
+        
         float startSize = mainCamera.orthographicSize;
-        float targetSize = zoomOutScale;
+        float targetSize = zoomOutSize;
 
         float t = 0f;
 
         while (t < zoomDuration)
         {
             t += Time.deltaTime;
-            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, t / zoomDuration);
+            float normalized = t / zoomDuration;
+            float eased = 1f - Mathf.Pow(1f - normalized, 3f);
+            mainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, eased);
+
+            Vector3 pos = Vector3.Lerp(startPos, targetPos, eased);
+            pos.x = Mathf.Round(pos.x * 32f) / 32f;
+            pos.y = Mathf.Round(pos.y * 32f) / 32f;
+            mainCamera.transform.position = pos;
             yield return null;
         }
 
         mainCamera.orthographicSize = targetSize;
+        mainCamera.transform.position = targetPos;
     }
 
     private enum EndingType
