@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_02
   correctOrder: 2
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: 2028618449220498050, guid: d425358dbdb020a469e76f2e15101314, type: 3}
   year: 2015
-  captionText: c
-  inspectDescription: cc
+  captionText: Soccer!
+  inspectDescription: I meet Eden at soccer ^^

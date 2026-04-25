@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_00
   correctOrder: 0
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: 4042451682132468736, guid: 8738addabfc6adc49abec8c537236abf, type: 3}
   year: 2001
-  captionText: a
-  inspectDescription: aa
+  captionText: Baby!
+  inspectDescription: Me as a baby <3

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_05
   correctOrder: 5
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: -8580150039939932520, guid: b63f9d17a156f2c459d58bb45a800b10, type: 3}
   year: 2019
-  captionText: f
-  inspectDescription: ff
+  captionText: Library
+  inspectDescription: Our favorite hangout space!

@@ -110,6 +110,9 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
         }
 
         puzzleManager?.OpenPuzzle();
+        if (interactPrompt != null)
+            interactPrompt.SetActive(false);
+
     }
 
     private void TryHandleSolvedInteraction()
