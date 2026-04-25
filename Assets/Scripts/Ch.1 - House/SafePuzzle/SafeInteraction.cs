@@ -8,7 +8,7 @@ public class SafeInteraction : MonoBehaviour
     public Transform playerTransform;
 
     private CanvasGroup cg;
-    private bool isOpen = false;
+    public bool isOpen = false;
     private bool isSolved = false;
 
     public CanvasGroup weaponCanvas;
@@ -46,6 +46,10 @@ public class SafeInteraction : MonoBehaviour
             else if(isSolved && isOpen && !DialogueSystem.Instance.IsDialogueActive())
             {
                 HideWeapon();
+            }
+            else if(isSolved && isOpen && DialogueSystem.Instance.IsDialogueActive())
+            {
+                return;
             }
             else
             {
