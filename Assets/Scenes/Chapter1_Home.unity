@@ -28126,6 +28126,9 @@ MonoBehaviour:
   puzzleManager: {fileID: 1493422114}
   interactPrompt: {fileID: 0}
   firstApproachDialogue: {fileID: 0}
+  solvedDialogue: {fileID: 11400000, guid: 6d6e9809a90e4f4b9cfd36af7a65a841, type: 2}
+  solvedRepeatDialogue: {fileID: 11400000, guid: 15d59c020e048e14eb19bce4a4ae5a53, type: 2}
+  playSolvedDialogueOnlyOnce: 1
 --- !u!61 &1224715388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28255,7 +28258,7 @@ MonoBehaviour:
   repeatDialogue: {fileID: 0}
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 0
+  isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
@@ -32650,7 +32653,7 @@ MonoBehaviour:
   confirmButton: {fileID: 1492477348}
   feedbackText: {fileID: 1799466602}
   feedbackDisplayTime: 2
-  onSolveDialogue: {fileID: 0}
+  onSolveDialogue: {fileID: 11400000, guid: 6d6e9809a90e4f4b9cfd36af7a65a841, type: 2}
   onWrongDialogue: {fileID: 0}
   solveObjectiveMessage: You remember the library... Eden.
 --- !u!114 &1493422115
