@@ -150,6 +150,17 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (ShouldSuppressPromptOrInteraction())
+        {
+            if (playerInRange)
+            {
+                playerInRange = false;
+                HidePrompt();
+            }
+
+            return;
+        }
+
         if (withinInteractRange)
         {
             if (!playerInRange)
@@ -549,12 +560,31 @@ public class InteractableObject : MonoBehaviour
             return false;
         }
 
-        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen)
+        {
+            return false;
+        }
+
+        if (CaesarDecodePanel.IsPanelActuallyOpen || LibraryWordSearchPanel.IsPanelActuallyOpen)
         {
             return false;
         }
 
         return withinInteractRange;
+    }
+
+    private bool ShouldSuppressPromptOrInteraction()
+    {
+        if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+            return true;
+
+        if (InspectUI.Instance != null && InspectUI.Instance.IsOpen)
+            return true;
+
+        if (CaesarDecodePanel.IsPanelActuallyOpen || LibraryWordSearchPanel.IsPanelActuallyOpen)
+            return true;
+
+        return false;
     }
 
     private void SetGlow(bool enabled)

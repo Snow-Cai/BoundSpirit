@@ -57,7 +57,12 @@ public class InteractionHintUI : MonoBehaviour
             EndingManager.Instance != null &&
             EndingManager.Instance.IsEndingPresentationActive;
 
+        bool inspectOpen = InspectUI.Instance != null && InspectUI.Instance.IsOpen;
+        bool puzzleOverlayOpen = CaesarDecodePanel.IsPanelActuallyOpen || LibraryWordSearchPanel.IsPanelActuallyOpen;
+
         if ((hideWhenDialogueActive && (GameInputState.DialogueActive || endingPresentationActive)) ||
+            puzzleOverlayOpen ||
+            inspectOpen ||
             !IntroDialogueHasPlayed())
         {
             SetTargetVisible(false);

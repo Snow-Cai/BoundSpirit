@@ -877,6 +877,7 @@ GameObject:
   - component: {fileID: 140562881}
   - component: {fileID: 140562880}
   - component: {fileID: 140562879}
+  - component: {fileID: 140562883}
   - component: {fileID: 140562882}
   m_Layer: 0
   m_Name: CAESAR_NOTE
@@ -1046,6 +1047,49 @@ MonoBehaviour:
   sparkleSizePulseSpeed: 2.2
   companionScaleMultiplier: 0.5
   companionOffsetRadius: 0.28
+--- !u!114 &140562883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140562877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
+  objectDialogue: {fileID: 0}
+  hasDialogue: 1
+  triggerEndingSequence: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
+  loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
+  informationalTidbit: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 0}
+  promptText: {fileID: 0}
+  promptDistance: 3
+  interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!1001 &153427522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1120,6 +1164,7 @@ GameObject:
   - component: {fileID: 165744761}
   - component: {fileID: 165744760}
   - component: {fileID: 165744759}
+  - component: {fileID: 165744763}
   - component: {fileID: 165744762}
   m_Layer: 0
   m_Name: CAESAR_WHEEL
@@ -1289,6 +1334,49 @@ MonoBehaviour:
   sparkleSizePulseSpeed: 2.2
   companionScaleMultiplier: 0.5
   companionOffsetRadius: 0.28
+--- !u!114 &165744763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165744757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: Object
+  interactKey: 101
+  interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
+  objectDialogue: {fileID: 0}
+  hasDialogue: 0
+  triggerEndingSequence: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
+  loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
+  informationalTidbit: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 0}
+  promptText: {fileID: 0}
+  promptDistance: 3
+  interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!1001 &167453863
 PrefabInstance:
   m_ObjectHideFlags: 0
