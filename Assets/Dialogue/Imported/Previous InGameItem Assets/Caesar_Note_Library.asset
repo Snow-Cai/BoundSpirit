@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CaesarNotePuzzleData
   puzzleKey: Caesar_Note_Library
   plaintext: The case file will reveal the truth.
-  shift: 7
+  shift: 13

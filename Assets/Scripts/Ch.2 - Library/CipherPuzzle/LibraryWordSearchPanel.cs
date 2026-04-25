@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public sealed class LibraryWordSearchPanel : MonoBehaviour
 {
+    private static LibraryWordSearchPanel instance;
+
+    public static bool IsPanelActuallyOpen =>
+        instance != null &&
+        instance.isActiveAndEnabled &&
+        instance.gameObject.activeInHierarchy;
+
     [Header("Puzzle Identity")]
     [SerializeField] private string puzzleKey = "Library_WordSearch_13";
 
@@ -80,6 +87,11 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
     private static readonly Color PreviewCellColor = new(0.98f, 0.88f, 0.54f, 0.9f);
     private static readonly Color InkColor = new(0.22f, 0.16f, 0.08f, 1f);
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void OnEnable()
     {
         ResolveDependencies();
@@ -93,6 +105,12 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
     private void OnDisable()
     {
         PersistProgress();
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
     }
 
     public void OnWordSearchCellPointerDown(int row, int column)

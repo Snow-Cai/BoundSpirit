@@ -10,6 +10,15 @@ using UnityEngine.UI;
 /// </summary>
 public sealed class CaesarDecodePanel : MonoBehaviour
 {
+    private const string SavedAnswerPrefix = "ANSWER=";
+    private const string SavedShiftPrefix = "SHIFT=";
+    private static CaesarDecodePanel instance;
+
+    public static bool IsPanelActuallyOpen =>
+        instance != null &&
+        instance.isActiveAndEnabled &&
+        instance.gameObject.activeInHierarchy;
+
     [Header("Puzzle Config")]
     [SerializeField] private CaesarNotePuzzleData puzzleData;
     [SerializeField] private ItemData requiredNoteItem;
@@ -38,11 +47,20 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private bool solved;
     private int currentPreviewShift;
+    private bool suppressProgressSave;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnEnable()
     {
         if (submitButton != null)
             submitButton.onClick.AddListener(Submit);
+
+        if (answerInput != null)
+            answerInput.onValueChanged.AddListener(HandleAnswerChanged);
 
         if (shiftBackwardButton != null)
             shiftBackwardButton.onClick.AddListener(PreviewPreviousShift);
@@ -58,11 +76,22 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (submitButton != null)
             submitButton.onClick.RemoveListener(Submit);
 
+        if (answerInput != null)
+            answerInput.onValueChanged.RemoveListener(HandleAnswerChanged);
+
         if (shiftBackwardButton != null)
             shiftBackwardButton.onClick.RemoveListener(PreviewPreviousShift);
 
         if (shiftForwardButton != null)
             shiftForwardButton.onClick.RemoveListener(PreviewNextShift);
+
+        PersistProgress();
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
+            instance = null;
     }
 
     private void InitializeOrGate()
@@ -111,13 +140,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         solved = false;
-        currentPreviewShift = 0;
+        ApplySavedProgress();
 
         encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
         RefreshShiftPreview();
         feedbackText.text = "Decode the message.";
 
-        answerInput.text = string.Empty;
         answerInput.interactable = true;
 
         if (submitButton != null)
@@ -159,6 +187,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             submitButton.interactable = false;
 
         SetShiftControlsInteractable(false);
+        ClearSavedProgress();
     }
 
     private void SetBlockedState(string message)
@@ -191,6 +220,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (typed != expected)
         {
             feedbackText.text = "Not quite... try again.";
+            PersistProgress();
             return;
         }
 
@@ -213,6 +243,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (onSolveDialogue != null && DialogueSystem.Instance != null)
             DialogueSystem.Instance.StartDialogue(onSolveDialogue);
 
+        ClearSavedProgress();
         onSolved?.Invoke();
     }
 
@@ -220,12 +251,19 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         currentPreviewShift = (currentPreviewShift + 25) % 26;
         RefreshShiftPreview();
+        PersistProgress();
     }
 
     private void PreviewNextShift()
     {
         currentPreviewShift = (currentPreviewShift + 1) % 26;
         RefreshShiftPreview();
+        PersistProgress();
+    }
+
+    private void HandleAnswerChanged(string _)
+    {
+        PersistProgress();
     }
 
     private void RefreshShiftPreview()
@@ -244,6 +282,66 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (shiftForwardButton != null)
             shiftForwardButton.interactable = interactable;
+    }
+
+    private void ApplySavedProgress()
+    {
+        suppressProgressSave = true;
+        currentPreviewShift = 0;
+
+        if (answerInput != null)
+            answerInput.text = string.Empty;
+
+        if (saveSystem == null || puzzleData == null || string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
+            return;
+
+        var savedValues = saveSystem.GetPuzzleProgress(puzzleData.PuzzleKey);
+        for (int i = 0; i < savedValues.Count; i++)
+        {
+            string value = savedValues[i];
+            if (string.IsNullOrEmpty(value))
+                continue;
+
+            if (value.StartsWith(SavedAnswerPrefix))
+            {
+                if (answerInput != null)
+                    answerInput.text = value.Substring(SavedAnswerPrefix.Length);
+
+                continue;
+            }
+
+            if (value.StartsWith(SavedShiftPrefix))
+            {
+                string shiftText = value.Substring(SavedShiftPrefix.Length);
+                if (int.TryParse(shiftText, out int savedShift))
+                    currentPreviewShift = Mathf.Abs(savedShift % 26);
+            }
+        }
+
+        suppressProgressSave = false;
+    }
+
+    private void PersistProgress()
+    {
+        if (suppressProgressSave || solved || saveSystem == null || puzzleData == null || string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
+            return;
+
+        string currentAnswer = answerInput != null ? answerInput.text : string.Empty;
+        saveSystem.SavePuzzleProgress(
+            puzzleData.PuzzleKey,
+            new[]
+            {
+                $"{SavedAnswerPrefix}{currentAnswer}",
+                $"{SavedShiftPrefix}{currentPreviewShift}"
+            });
+    }
+
+    private void ClearSavedProgress()
+    {
+        if (saveSystem == null || puzzleData == null || string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
+            return;
+
+        saveSystem.ClearPuzzleProgress(puzzleData.PuzzleKey);
     }
 
     private void Close()
