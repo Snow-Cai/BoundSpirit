@@ -123,6 +123,16 @@ public class GraveyardGateController : MonoBehaviour
 
         if (distance <= interactionRange && Input.GetKeyDown(interactKey))
         {
+            if (!InteractionPriorityResolver.IsHighestPriorityTarget(this, player))
+            {
+                return;
+            }
+
+            if (!InteractionPriorityResolver.TryConsumeInteraction())
+            {
+                return;
+            }
+
             HandleGateInteraction();
         }
     }
@@ -475,4 +485,32 @@ public class GraveyardGateController : MonoBehaviour
         ClosePuzzleUI();
         ApplyGateUnlockedState();
     }
+
+    public bool CanBeInteractedWith(Transform targetPlayer)
+    {
+        if (targetPlayer == null || !isActiveAndEnabled)
+        {
+            return false;
+        }
+
+        bool puzzleOpen = puzzleUI != null && puzzleUI.activeSelf;
+        if (GameInputState.DialogueActive && !puzzleOpen)
+        {
+            return false;
+        }
+
+        return GetDistanceTo(targetPlayer) <= interactionRange;
+    }
+
+    public float GetDistanceTo(Transform targetPlayer)
+    {
+        if (targetPlayer == null)
+        {
+            return float.MaxValue;
+        }
+
+        return Vector2.Distance(transform.position, targetPlayer.position);
+    }
+
+    public float InteractionRange => interactionRange;
 }

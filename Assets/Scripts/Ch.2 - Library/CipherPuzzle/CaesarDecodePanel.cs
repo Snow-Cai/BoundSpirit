@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +14,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 {
     private const string SavedAnswerPrefix = "ANSWER=";
     private const string SavedShiftPrefix = "SHIFT=";
+    private const string SavedPartialPrefix = "PARTIAL=";
     private static CaesarDecodePanel instance;
 
     public static bool IsPanelActuallyOpen =>
@@ -25,6 +28,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private ItemData requiredWheelItem;
     [SerializeField] private string requiredWordSearchPuzzleKey = "Library_WordSearch_13";
     [SerializeField] private string legacyPuzzleID = "CaesarCipher Puzzle";
+    [SerializeField] private string maskedDecodedPhrase = "case file";
+    [SerializeField] private string maskedPhrasePlaceholder = "&#@* ^~+*";
+    [TextArea(2, 6)]
+    [SerializeField] private string maskedEncodedTextOverride = "Gur &#@* ^~+*\njvyy erirny\ngur gehgu.";
+    [SerializeField] private string revealMaskedPhraseAfterPuzzleKey = "StationLocker";
+    [SerializeField] private string revealMaskedPhraseAfterLegacyPuzzleKey = "";
 
     [Header("Runtime Dependencies (Auto-Resolved)")]
     [SerializeField] private SaveSystem saveSystem;
@@ -36,18 +45,37 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private TMP_Text mappingText;
     [SerializeField] private TMP_Text shiftValueText;
     [SerializeField] private TMP_InputField answerInput;
+    [SerializeField] private RectTransform answerSlotsRoot;
     [SerializeField] private TMP_Text feedbackText;
     [SerializeField] private Button submitButton;
     [SerializeField] private Button shiftBackwardButton;
     [SerializeField] private Button shiftForwardButton;
 
+    [Header("Answer Slots")]
+    [SerializeField] private int[] wordsPerRow = { 3, 2, 2 };
+    [SerializeField] private int maxLettersPerRow = 14;
+    [SerializeField] private Vector2 slotSize = new(34f, 42f);
+    [SerializeField] private float slotSpacing = 8f;
+    [SerializeField] private float wordSpacing = 18f;
+    [SerializeField] private float rowSpacing = 10f;
+    [SerializeField] private Color slotBackgroundColor = new Color32(0xB4, 0xB4, 0xB4, 0xFF);
+    [SerializeField] private float staticTokenFontSize = 35f;
+    [SerializeField] private Color staticTokenFontColor = Color.black;
+    [SerializeField] private float encodedLineSpacing = 18f;
+
     [Header("Events")]
-    [SerializeField] private DialogueAsset onSolveDialogue;
+    [SerializeField] private DialogueAsset onCorrectShiftDialogue;
+    [SerializeField] private DialogueAsset onFinalSolveDialogue;
     [SerializeField] private UnityEvent onSolved;
 
+    private readonly List<TMP_InputField> answerSlots = new();
+    private readonly List<int> wordLengths = new();
     private bool solved;
+    private bool partialDecodeComplete;
     private int currentPreviewShift;
+    private string savedAnswer = string.Empty;
     private bool suppressProgressSave;
+    private bool suppressSlotCallbacks;
 
     private void Awake()
     {
@@ -58,9 +86,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         if (submitButton != null)
             submitButton.onClick.AddListener(Submit);
-
-        if (answerInput != null)
-            answerInput.onValueChanged.AddListener(HandleAnswerChanged);
 
         if (shiftBackwardButton != null)
             shiftBackwardButton.onClick.AddListener(PreviewPreviousShift);
@@ -73,11 +98,11 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private void OnDisable()
     {
+        if (!Application.isPlaying)
+            return;
+
         if (submitButton != null)
             submitButton.onClick.RemoveListener(Submit);
-
-        if (answerInput != null)
-            answerInput.onValueChanged.RemoveListener(HandleAnswerChanged);
 
         if (shiftBackwardButton != null)
             shiftBackwardButton.onClick.RemoveListener(PreviewPreviousShift);
@@ -141,12 +166,26 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         solved = false;
         ApplySavedProgress();
+        SyncAnswerSlotsFromHierarchy();
 
-        encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
+        ApplyEncodedTextPresentation();
+        encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
-        feedbackText.text = "Decode the message.";
 
-        answerInput.interactable = true;
+        if (partialDecodeComplete && !ShouldRevealMaskedPhrase())
+        {
+            feedbackText.text = "I have the right shift, but part of the message is still obscured.";
+            SetAnswerSlotsInteractable(false);
+
+            if (submitButton != null)
+                submitButton.interactable = false;
+
+            SetShiftControlsInteractable(false);
+            return;
+        }
+
+        feedbackText.text = "Decode the message.";
+        SetAnswerSlotsInteractable(true);
 
         if (submitButton != null)
             submitButton.interactable = true;
@@ -176,12 +215,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private void SetSolvedState()
     {
         currentPreviewShift = Mathf.Abs(puzzleData.Shift % 26);
-        encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
+        SyncAnswerSlotsFromHierarchy();
+
+        ApplyEncodedTextPresentation();
+        encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
         feedbackText.text = "Decoded!";
 
-        answerInput.text = puzzleData.Plaintext;
-        answerInput.interactable = false;
+        SetAnswerFromString(BuildAnswerTarget());
+        SetAnswerSlotsInteractable(false);
 
         if (submitButton != null)
             submitButton.interactable = false;
@@ -192,16 +234,27 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private void SetBlockedState(string message)
     {
-        encodedText.text = string.Empty;
-        mappingText.text = string.Empty;
+        if (encodedText != null)
+            encodedText.text = string.Empty;
+
+        if (mappingText != null)
+            mappingText.text = string.Empty;
 
         if (shiftValueText != null)
             shiftValueText.text = string.Empty;
 
-        feedbackText.text = message;
+        if (feedbackText != null)
+            feedbackText.text = message;
 
-        answerInput.text = string.Empty;
-        answerInput.interactable = false;
+        answerSlots.Clear();
+        wordLengths.Clear();
+
+        if (answerInput != null)
+        {
+            answerInput.text = string.Empty;
+            answerInput.interactable = false;
+            answerInput.gameObject.SetActive(false);
+        }
 
         if (submitButton != null)
             submitButton.interactable = false;
@@ -214,8 +267,45 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (puzzleData == null || solved)
             return;
 
-        string typed = CaesarCipher.NormalizeForCompare(answerInput.text);
-        string expected = CaesarCipher.NormalizeForCompare(puzzleData.Plaintext);
+        if (currentPreviewShift != Mathf.Abs(puzzleData.Shift % 26))
+        {
+            feedbackText.text = "The shift still doesn't look right.";
+            PersistProgress();
+            return;
+        }
+
+        string typed = CaesarCipher.NormalizeForCompare(GetCurrentAnswerString());
+
+        bool revealWords = ShouldRevealMaskedPhrase();
+
+        if (!revealWords)
+        {
+            string partialExpected = "THEWILLREVEALTHETRUTH";
+            string partialTyped = typed.Replace(" ", "");
+
+            if (partialTyped == partialExpected)
+            {
+                partialDecodeComplete = true;
+                feedbackText.text = "I can read part of it now, but some symbols still need another clue.";
+
+                SetAnswerSlotsInteractable(false);
+
+                if (submitButton != null)
+                    submitButton.interactable = false;
+
+                SetShiftControlsInteractable(false);
+
+                TryPlayDialogue(onCorrectShiftDialogue, true);
+                PersistProgress();
+                return;
+            }
+
+            feedbackText.text = "Not quite... try again.";
+            PersistProgress();
+            return;
+        }
+
+        string expected = CaesarCipher.NormalizeForCompare("THE CASE FILE WILL REVEAL THE TRUTH");
 
         if (typed != expected)
         {
@@ -235,13 +325,14 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                 saveSystem.UnlockPuzzle(legacyPuzzleID);
         }
 
-        answerInput.interactable = false;
+        SetAnswerSlotsInteractable(false);
 
         if (submitButton != null)
             submitButton.interactable = false;
 
-        if (onSolveDialogue != null && DialogueSystem.Instance != null)
-            DialogueSystem.Instance.StartDialogue(onSolveDialogue);
+        SetShiftControlsInteractable(false);
+
+        TryPlayDialogue(onFinalSolveDialogue, true);
 
         ClearSavedProgress();
         onSolved?.Invoke();
@@ -258,11 +349,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         currentPreviewShift = (currentPreviewShift + 1) % 26;
         RefreshShiftPreview();
-        PersistProgress();
-    }
-
-    private void HandleAnswerChanged(string _)
-    {
         PersistProgress();
     }
 
@@ -288,14 +374,16 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         suppressProgressSave = true;
         currentPreviewShift = 0;
-
-        if (answerInput != null)
-            answerInput.text = string.Empty;
+        partialDecodeComplete = false;
+        savedAnswer = string.Empty;
 
         if (saveSystem == null || puzzleData == null || string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
+        {
+            suppressProgressSave = false;
             return;
+        }
 
-        var savedValues = saveSystem.GetPuzzleProgress(puzzleData.PuzzleKey);
+        List<string> savedValues = saveSystem.GetPuzzleProgress(puzzleData.PuzzleKey);
         for (int i = 0; i < savedValues.Count; i++)
         {
             string value = savedValues[i];
@@ -304,9 +392,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
             if (value.StartsWith(SavedAnswerPrefix))
             {
-                if (answerInput != null)
-                    answerInput.text = value.Substring(SavedAnswerPrefix.Length);
-
+                savedAnswer = value.Substring(SavedAnswerPrefix.Length);
                 continue;
             }
 
@@ -315,6 +401,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                 string shiftText = value.Substring(SavedShiftPrefix.Length);
                 if (int.TryParse(shiftText, out int savedShift))
                     currentPreviewShift = Mathf.Abs(savedShift % 26);
+
+                continue;
+            }
+
+            if (value.StartsWith(SavedPartialPrefix))
+            {
+                string partialText = value.Substring(SavedPartialPrefix.Length);
+                if (bool.TryParse(partialText, out bool savedPartial))
+                    partialDecodeComplete = savedPartial;
             }
         }
 
@@ -326,13 +421,13 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (suppressProgressSave || solved || saveSystem == null || puzzleData == null || string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
             return;
 
-        string currentAnswer = answerInput != null ? answerInput.text : string.Empty;
         saveSystem.SavePuzzleProgress(
             puzzleData.PuzzleKey,
             new[]
             {
-                $"{SavedAnswerPrefix}{currentAnswer}",
-                $"{SavedShiftPrefix}{currentPreviewShift}"
+                $"{SavedAnswerPrefix}{GetCurrentAnswerString()}",
+                $"{SavedShiftPrefix}{currentPreviewShift}",
+                $"{SavedPartialPrefix}{partialDecodeComplete}"
             });
     }
 
@@ -347,5 +442,428 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private void Close()
     {
         gameObject.SetActive(false);
+    }
+
+    private string GetVisiblePlaintext()
+    {
+        if (puzzleData == null)
+            return string.Empty;
+
+        string plaintext = puzzleData.Plaintext;
+        if (ShouldRevealMaskedPhrase())
+            return plaintext;
+
+        return ReplaceIgnoreCase(plaintext, maskedDecodedPhrase, maskedPhrasePlaceholder);
+    }
+
+    private bool ShouldRevealMaskedPhrase()
+    {
+        if (saveSystem == null)
+            return false;
+
+        if (!string.IsNullOrWhiteSpace(revealMaskedPhraseAfterPuzzleKey) &&
+            saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterPuzzleKey))
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(revealMaskedPhraseAfterLegacyPuzzleKey) &&
+               saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterLegacyPuzzleKey);
+    }
+
+    private string BuildAnswerTarget()
+    {
+        return CaesarCipher.NormalizeForCompare(GetVisiblePlaintext());
+    }
+
+    private string BuildFormattedVisiblePlaintext()
+    {
+        List<List<AnswerTokenLayout>> rows = BuildAnswerTokenRows();
+        var rowStrings = new List<string>(rows.Count);
+
+        for (int rowIndex = 0; rowIndex < rows.Count; rowIndex++)
+        {
+            var tokenTexts = new List<string>(rows[rowIndex].Count);
+            for (int tokenIndex = 0; tokenIndex < rows[rowIndex].Count; tokenIndex++)
+                tokenTexts.Add(rows[rowIndex][tokenIndex].DisplayToken);
+
+            rowStrings.Add(string.Join(" ", tokenTexts));
+        }
+
+        return string.Join("\n", rowStrings);
+    }
+
+    private string GetDisplayedEncodedText()
+    {
+        if (puzzleData == null)
+            return string.Empty;
+
+        if (!ShouldRevealMaskedPhrase() && !string.IsNullOrWhiteSpace(maskedEncodedTextOverride))
+            return maskedEncodedTextOverride;
+
+        return CaesarCipher.Shift(BuildFormattedVisiblePlaintext(), puzzleData.Shift);
+    }
+
+    private List<List<AnswerTokenLayout>> BuildAnswerTokenRows()
+    {
+        string visiblePlaintext = GetVisiblePlaintext();
+        string[] rawTokens = visiblePlaintext.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var rows = new List<List<AnswerTokenLayout>>();
+
+        if (rawTokens.Length == 0)
+            return rows;
+
+        if (TryBuildConfiguredRows(rawTokens, rows))
+            return rows;
+
+        var currentRow = new List<AnswerTokenLayout>();
+        int currentRowDisplayLength = 0;
+
+        for (int i = 0; i < rawTokens.Length; i++)
+        {
+            string displayToken = rawTokens[i];
+            string normalizedToken = CaesarCipher.NormalizeForCompare(displayToken);
+            int displayLength = displayToken.Length;
+            int answerLength = normalizedToken.Replace(" ", string.Empty).Length;
+
+            int additionalLength = displayLength + (currentRow.Count > 0 ? 1 : 0);
+            if (currentRow.Count > 0 && currentRowDisplayLength + additionalLength > maxLettersPerRow)
+            {
+                rows.Add(currentRow);
+                currentRow = new List<AnswerTokenLayout>();
+                currentRowDisplayLength = 0;
+            }
+
+            currentRow.Add(new AnswerTokenLayout(displayToken, displayLength, answerLength));
+            currentRowDisplayLength += displayLength + (currentRow.Count > 1 ? 1 : 0);
+        }
+
+        if (currentRow.Count > 0)
+            rows.Add(currentRow);
+
+        return rows;
+    }
+
+    private bool TryBuildConfiguredRows(string[] rawTokens, List<List<AnswerTokenLayout>> rows)
+    {
+        if (wordsPerRow == null || wordsPerRow.Length == 0)
+            return false;
+
+        int configuredWordTotal = 0;
+        for (int i = 0; i < wordsPerRow.Length; i++)
+            configuredWordTotal += Mathf.Max(0, wordsPerRow[i]);
+
+        if (configuredWordTotal != rawTokens.Length)
+            return false;
+
+        int tokenIndex = 0;
+        for (int rowIndex = 0; rowIndex < wordsPerRow.Length; rowIndex++)
+        {
+            int wordsInRow = Mathf.Max(0, wordsPerRow[rowIndex]);
+            var row = new List<AnswerTokenLayout>(wordsInRow);
+
+            for (int i = 0; i < wordsInRow; i++, tokenIndex++)
+            {
+                string displayToken = rawTokens[tokenIndex];
+                string normalizedToken = CaesarCipher.NormalizeForCompare(displayToken);
+                int displayLength = displayToken.Length;
+                int answerLength = normalizedToken.Replace(" ", string.Empty).Length;
+                row.Add(new AnswerTokenLayout(displayToken, displayLength, answerLength));
+            }
+
+            if (row.Count > 0)
+                rows.Add(row);
+        }
+
+        return rows.Count > 0;
+    }
+
+    private void SyncAnswerSlotsFromHierarchy()
+    {
+        if (answerSlotsRoot == null)
+            answerSlotsRoot = FindAnswerSlotsRoot();
+
+        if (answerInput != null)
+            answerInput.gameObject.SetActive(false);
+
+        answerSlots.Clear();
+        wordLengths.Clear();
+
+        if (answerSlotsRoot == null)
+            return;
+
+        for (int rowIndex = 0; rowIndex < answerSlotsRoot.childCount; rowIndex++)
+        {
+            Transform row = answerSlotsRoot.GetChild(rowIndex);
+            for (int tokenIndex = 0; tokenIndex < row.childCount; tokenIndex++)
+            {
+                Transform token = row.GetChild(tokenIndex);
+                TMP_InputField[] tokenSlots = token.GetComponentsInChildren<TMP_InputField>(true);
+                if (tokenSlots == null || tokenSlots.Length == 0)
+                {
+                    ApplyStaticTokenPresentation(token);
+                    continue;
+                }
+
+                wordLengths.Add(tokenSlots.Length);
+                for (int slotIndex = 0; slotIndex < tokenSlots.Length; slotIndex++)
+                {
+                    TMP_InputField slot = tokenSlots[slotIndex];
+                    ApplyAnswerSlotPresentation(slot);
+                    slot.onValueChanged.RemoveAllListeners();
+                    answerSlots.Add(slot);
+                }
+            }
+        }
+
+        for (int i = 0; i < answerSlots.Count; i++)
+        {
+            TMP_InputField slot = answerSlots[i];
+            int slotIndex = i;
+            slot.onValueChanged.AddListener(value => HandleSlotValueChanged(slotIndex, value));
+        }
+
+        SetAnswerFromString(savedAnswer);
+    }
+
+    private void ApplyStaticTokenPresentation(Transform token)
+    {
+        TMP_Text[] tokenTexts = token.GetComponentsInChildren<TMP_Text>(true);
+        for (int i = 0; i < tokenTexts.Length; i++)
+        {
+            TMP_Text text = tokenTexts[i];
+            if (text == null)
+                continue;
+
+            text.fontSize = staticTokenFontSize;
+            text.color = staticTokenFontColor;
+        }
+    }
+
+    private void ApplyAnswerSlotPresentation(TMP_InputField slot)
+    {
+        if (slot == null)
+            return;
+
+        slot.characterLimit = 1;
+        slot.contentType = TMP_InputField.ContentType.Alphanumeric;
+        slot.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric;
+        slot.lineType = TMP_InputField.LineType.SingleLine;
+
+        if (slot.textComponent != null)
+        {
+            slot.textComponent.alignment = TextAlignmentOptions.Center;
+            slot.textComponent.fontSize = 24f;
+        }
+
+        if (slot.placeholder is TMP_Text placeholderText)
+            placeholderText.text = string.Empty;
+
+        Image background = slot.GetComponent<Image>();
+        if (background != null)
+            background.color = slotBackgroundColor;
+    }
+
+    private RectTransform FindAnswerSlotsRoot()
+    {
+        if (answerSlotsRoot != null)
+            return answerSlotsRoot;
+
+        if (answerInput == null)
+            return null;
+
+        RectTransform templateRect = answerInput.transform as RectTransform;
+        RectTransform parent = templateRect != null ? templateRect.parent as RectTransform : null;
+        if (parent == null)
+            return null;
+
+        Transform existing = parent.Find("AnswerSlotsRoot");
+        return existing as RectTransform;
+    }
+
+    private TMP_InputField CreateAnswerSlot(RectTransform parent, int wordIndex, int letterIndex)
+    {
+        GameObject slotObject = Instantiate(answerInput.gameObject, parent);
+        slotObject.name = $"AnswerSlot_{wordIndex}_{letterIndex}";
+        slotObject.SetActive(true);
+
+        RectTransform rect = slotObject.transform as RectTransform;
+        if (rect != null)
+            rect.sizeDelta = slotSize;
+
+        TMP_InputField slot = slotObject.GetComponent<TMP_InputField>();
+        slot.text = string.Empty;
+        slot.characterLimit = 1;
+        slot.contentType = TMP_InputField.ContentType.Alphanumeric;
+        slot.characterValidation = TMP_InputField.CharacterValidation.Alphanumeric;
+        slot.lineType = TMP_InputField.LineType.SingleLine;
+        slot.onValueChanged.RemoveAllListeners();
+        slot.onEndEdit.RemoveAllListeners();
+        slot.onSelect.RemoveAllListeners();
+
+        if (slot.textComponent != null)
+        {
+            slot.textComponent.alignment = TextAlignmentOptions.Center;
+            slot.textComponent.fontSize = 24f;
+            slot.textComponent.text = string.Empty;
+        }
+
+        if (slot.placeholder is TMP_Text placeholderText)
+            placeholderText.text = string.Empty;
+
+        Image background = slotObject.GetComponent<Image>();
+        if (background != null)
+            background.color = slotBackgroundColor;
+
+        int slotIndex = answerSlots.Count;
+        slot.onValueChanged.AddListener(value => HandleSlotValueChanged(slotIndex, value));
+        return slot;
+    }
+
+    private void ApplyEncodedTextPresentation()
+    {
+        if (encodedText == null)
+            return;
+
+        encodedText.lineSpacing = encodedLineSpacing;
+    }
+
+    private void HandleSlotValueChanged(int slotIndex, string value)
+    {
+        if (suppressSlotCallbacks || slotIndex < 0 || slotIndex >= answerSlots.Count)
+            return;
+
+        TMP_InputField slot = answerSlots[slotIndex];
+        string sanitized = SanitizeSlotValue(value);
+        if (!string.Equals(slot.text, sanitized, StringComparison.Ordinal))
+        {
+            suppressSlotCallbacks = true;
+            slot.text = sanitized;
+            suppressSlotCallbacks = false;
+        }
+
+        if (!string.IsNullOrEmpty(sanitized))
+        {
+            int nextIndex = slotIndex + 1;
+            if (nextIndex < answerSlots.Count)
+                answerSlots[nextIndex].ActivateInputField();
+        }
+
+        PersistProgress();
+    }
+
+    private static string SanitizeSlotValue(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return string.Empty;
+
+        foreach (char c in value)
+        {
+            if (char.IsLetterOrDigit(c))
+                return char.ToUpperInvariant(c).ToString();
+        }
+
+        return string.Empty;
+    }
+
+    private void SetAnswerFromString(string answer)
+    {
+        suppressSlotCallbacks = true;
+
+        string normalized = CaesarCipher.NormalizeForCompare(answer);
+        string[] words = normalized.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int slotIndex = 0;
+
+        for (int wordIndex = 0; wordIndex < wordLengths.Count; wordIndex++)
+        {
+            string word = wordIndex < words.Length ? words[wordIndex] : string.Empty;
+            for (int charIndex = 0; charIndex < wordLengths[wordIndex] && slotIndex < answerSlots.Count; charIndex++, slotIndex++)
+            {
+                answerSlots[slotIndex].text = charIndex < word.Length
+                    ? char.ToUpperInvariant(word[charIndex]).ToString()
+                    : string.Empty;
+            }
+        }
+
+        while (slotIndex < answerSlots.Count)
+        {
+            answerSlots[slotIndex].text = string.Empty;
+            slotIndex++;
+        }
+
+        suppressSlotCallbacks = false;
+    }
+
+    private string GetCurrentAnswerString()
+    {
+        if (answerSlots.Count == 0 || wordLengths.Count == 0)
+            return string.Empty;
+
+        var words = new List<string>(wordLengths.Count);
+        int slotIndex = 0;
+
+        for (int wordIndex = 0; wordIndex < wordLengths.Count; wordIndex++)
+        {
+            char[] chars = new char[wordLengths[wordIndex]];
+            for (int charIndex = 0; charIndex < wordLengths[wordIndex] && slotIndex < answerSlots.Count; charIndex++, slotIndex++)
+            {
+                string value = answerSlots[slotIndex].text;
+                chars[charIndex] = string.IsNullOrEmpty(value) ? ' ' : value[0];
+            }
+
+            words.Add(new string(chars).TrimEnd());
+        }
+
+        return string.Join(" ", words).Trim();
+    }
+
+    private void SetAnswerSlotsInteractable(bool interactable)
+    {
+        for (int i = 0; i < answerSlots.Count; i++)
+            answerSlots[i].interactable = interactable;
+    }
+
+    private static string ReplaceIgnoreCase(string source, string oldValue, string newValue)
+    {
+        if (string.IsNullOrEmpty(source) || string.IsNullOrEmpty(oldValue))
+            return source;
+
+        int matchIndex = source.IndexOf(oldValue, StringComparison.OrdinalIgnoreCase);
+        if (matchIndex < 0)
+            return source;
+
+        return source.Remove(matchIndex, oldValue.Length).Insert(matchIndex, newValue ?? string.Empty);
+    }
+
+    private void TryPlayDialogue(DialogueAsset dialogue, bool immediate)
+    {
+        if (dialogue == null || DialogueSystem.Instance == null)
+            return;
+
+        if (saveSystem != null &&
+            !string.IsNullOrWhiteSpace(dialogue.dialogueID) &&
+            saveSystem.HasViewedDialogue(dialogue.dialogueID))
+        {
+            return;
+        }
+
+        if (immediate)
+            DialogueSystem.Instance.StartDialogue(dialogue);
+        else
+            DialogueSystem.Instance.QueueDialogue(dialogue);
+    }
+
+    private readonly struct AnswerTokenLayout
+    {
+        public AnswerTokenLayout(string displayToken, int displayLength, int answerLength)
+        {
+            DisplayToken = displayToken;
+            DisplayLength = displayLength;
+            AnswerLength = answerLength;
+        }
+
+        public string DisplayToken { get; }
+        public int DisplayLength { get; }
+        public int AnswerLength { get; }
     }
 }

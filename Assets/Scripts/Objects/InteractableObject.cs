@@ -174,6 +174,16 @@ public class InteractableObject : MonoBehaviour
                 InputLock.Instance.InteractEnabled &&
                 Input.GetKeyDown(interactKey))
             {
+                if (!InteractionPriorityResolver.IsHighestPriorityTarget(this, player))
+                {
+                    return;
+                }
+
+                if (!InteractionPriorityResolver.TryConsumeInteraction())
+                {
+                    return;
+                }
+
                 Interact();
             }
         }
@@ -255,14 +265,7 @@ public class InteractableObject : MonoBehaviour
 
     private bool IsPlayerWithinInteractionRange()
     {
-        if (player == null)
-        {
-            return false;
-        }
-
-        Vector3 promptOrigin = objectCollider != null ? objectCollider.bounds.center : transform.position;
-        float distance = Vector3.Distance(promptOrigin, player.position);
-        return distance <= interactionRange;
+        return IsWithinInteractionRange(player);
     }
 
     void Interact()
@@ -531,6 +534,65 @@ public class InteractableObject : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
+    }
+
+    public bool CanBeInteractedWith(Transform targetPlayer)
+    {
+        if (targetPlayer == null || !isActiveAndEnabled)
+        {
+            return false;
+        }
+
+        if (GetComponent<CollectibleObject>() != null)
+        {
+            return false;
+        }
+
+        if (isPuzzleOpen)
+        {
+            return false;
+        }
+
+        if (ShouldSuppressPromptOrInteraction())
+        {
+            return false;
+        }
+
+        if (InputLock.Instance == null ||
+            !InputLock.Instance.GameplayInputEnabled ||
+            !InputLock.Instance.InteractEnabled)
+        {
+            return false;
+        }
+
+        return IsWithinInteractionRange(targetPlayer);
+    }
+
+    public bool IsDialoguePriorityTarget()
+    {
+        return npcController != null ||
+               GetComponent<GhostHintNPC>() != null;
+    }
+
+    public bool IsPuzzlePriorityTarget()
+    {
+        return isPuzzle;
+    }
+
+    public float GetDistanceTo(Transform targetPlayer)
+    {
+        if (targetPlayer == null)
+        {
+            return float.MaxValue;
+        }
+
+        Vector3 promptOrigin = objectCollider != null ? objectCollider.bounds.center : transform.position;
+        return Vector2.Distance(targetPlayer.position, promptOrigin);
+    }
+
+    public bool IsWithinInteractionRange(Transform targetPlayer)
+    {
+        return GetDistanceTo(targetPlayer) <= interactionRange;
     }
 
     private bool ShouldShowGlow(bool withinInteractRange)
