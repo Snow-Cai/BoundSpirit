@@ -47,16 +47,20 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
 
     [Header("Optional UI References")]
     [SerializeField] private RectTransform boardContainer;
+
+    [Header("Scene Text References")]
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text statusText;
+    [SerializeField] private TMP_Text wordsText;
+    [SerializeField] private TMP_Text hintText;
+
+    [Header("Fallback Placeholder Containers")]
     [SerializeField] private RectTransform titlePlaceholder;
     [SerializeField] private RectTransform statusPlaceholder;
     [SerializeField] private RectTransform wordsPlaceholder;
     [SerializeField] private RectTransform hintPlaceholder;
 
     private WordSearchBoard board;
-    private TMP_Text titleText;
-    private TMP_Text statusText;
-    private TMP_Text wordsText;
-    private TMP_Text hintText;
     private readonly HashSet<string> foundWords = new();
     private readonly Dictionary<Vector2Int, WordSearchCellUI> cellViews = new();
     private readonly List<Color> solvedWordColors = new()
@@ -87,6 +91,11 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         ApplySavedState();
         RefreshTexts();
         RefreshBoardVisuals();
+    }
+
+    private void OnDisable()
+    {
+        PersistProgress();
     }
 
     public void OnWordSearchCellPointerDown(int row, int column)
@@ -124,6 +133,7 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
 
     private void Close()
     {
+        PersistProgress();
         gameObject.SetActive(false);
     }
 
@@ -172,19 +182,16 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
             gridLayout.childAlignment = TextAnchor.MiddleCenter;
         }
 
-        titleText = EnsurePlaceholderText(titlePlaceholder, "Title", font, 28f, TextAlignmentOptions.TopLeft);
-        statusText = EnsurePlaceholderText(statusPlaceholder, "Status", font, 18f, TextAlignmentOptions.TopLeft);
-        wordsText = EnsurePlaceholderText(wordsPlaceholder, "Words", font, 18f, TextAlignmentOptions.TopLeft);
-        hintText = EnsurePlaceholderText(hintPlaceholder, "Hint", font, 22f, TextAlignmentOptions.TopLeft);
+        titleText = ResolveTextReference(titleText, titlePlaceholder, "Title", font, 28f, TextAlignmentOptions.TopLeft);
+        statusText = ResolveTextReference(statusText, statusPlaceholder, "Status", font, 18f, TextAlignmentOptions.TopLeft);
+        wordsText = ResolveTextReference(wordsText, wordsPlaceholder, "Words", font, 18f, TextAlignmentOptions.TopLeft);
+        hintText = ResolveTextReference(hintText, hintPlaceholder, "Hint", font, 22f, TextAlignmentOptions.TopLeft);
 
         if (wordsText != null)
         {
             wordsText.enableWordWrapping = true;
             wordsText.richText = true;
         }
-
-        if (titleText != null)
-            titleText.text = "Find 7 words that draw the hint";
     }
 
     private void BuildBoard()
@@ -262,11 +269,33 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
     {
         foundWords.Clear();
 
-        if (!IsSolved())
+        if (IsSolved())
+        {
+            foreach (WordSearchPlacement placement in board.Placements)
+                foundWords.Add(placement.Word);
+
+            return;
+        }
+
+        if (saveSystem == null)
             return;
 
-        foreach (WordSearchPlacement placement in board.Placements)
-            foundWords.Add(placement.Word);
+        List<string> savedWords = saveSystem.GetPuzzleProgress(puzzleKey);
+        for (int i = 0; i < savedWords.Count; i++)
+        {
+            string savedWord = savedWords[i];
+            if (string.IsNullOrWhiteSpace(savedWord))
+                continue;
+
+            for (int placementIndex = 0; placementIndex < board.Placements.Count; placementIndex++)
+            {
+                if (board.Placements[placementIndex].Word == savedWord)
+                {
+                    foundWords.Add(savedWord);
+                    break;
+                }
+            }
+        }
     }
 
     private void TryCommitSelection()
@@ -285,11 +314,53 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         }
 
         foundWords.Add(matchedWord);
+        PersistProgress();
 
-        if (foundWords.Count >= board.Placements.Count && saveSystem != null)
-            saveSystem.UnlockPuzzle(puzzleKey);
+        if (foundWords.Count >= board.Placements.Count)
+        {
+            CompletePuzzle();
+            return;
+        }
 
         RefreshTexts();
+    }
+
+    private void CompletePuzzle()
+    {
+        bool firstSolve = !IsSolved();
+
+        if (!firstSolve)
+        {
+            RefreshTexts();
+            return;
+        }
+
+        InteractableObject puzzleSource = PuzzleBridge.currentPuzzleSource;
+        if (puzzleSource != null)
+        {
+            if (saveSystem != null)
+                saveSystem.ClearPuzzleProgress(puzzleKey);
+
+            puzzleSource.OnPuzzleSolved();
+            RefreshTexts();
+            return;
+        }
+
+        if (saveSystem != null)
+        {
+            saveSystem.ClearPuzzleProgress(puzzleKey);
+            saveSystem.UnlockPuzzle(puzzleKey);
+        }
+
+        RefreshTexts();
+    }
+
+    private void PersistProgress()
+    {
+        if (saveSystem == null || IsSolved())
+            return;
+
+        saveSystem.SavePuzzleProgress(puzzleKey, foundWords);
     }
 
     private void RefreshTexts()
@@ -447,6 +518,23 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         return rect;
     }
 
+    private static TMP_Text ResolveTextReference(
+        TMP_Text existingText,
+        RectTransform placeholder,
+        string childName,
+        TMP_FontAsset font,
+        float fontSize,
+        TextAlignmentOptions alignment)
+    {
+        if (existingText != null)
+        {
+            PrepareExistingText(existingText, font);
+            return existingText;
+        }
+
+        return EnsurePlaceholderText(placeholder, childName, font, fontSize, alignment);
+    }
+
     private static TMP_Text EnsurePlaceholderText(
         RectTransform placeholder,
         string childName,
@@ -463,11 +551,7 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         TMP_Text existing = placeholder.GetComponentInChildren<TMP_Text>(true);
         if (existing != null)
         {
-            existing.font = font;
-            existing.fontSize = fontSize;
-            existing.color = InkColor;
-            existing.alignment = alignment;
-            existing.raycastTarget = false;
+            PrepareExistingText(existing, font);
             return existing;
         }
 
@@ -481,14 +565,37 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         rect.offsetMax = Vector2.zero;
 
         TMP_Text text = textObject.GetComponent<TMP_Text>();
+        ApplyTextStyle(text, font, fontSize, alignment);
+        text.text = string.Empty;
+
+        return text;
+    }
+
+    private static void ApplyTextStyle(
+        TMP_Text text,
+        TMP_FontAsset font,
+        float fontSize,
+        TextAlignmentOptions alignment)
+    {
+        if (text == null)
+            return;
+
         text.font = font;
         text.fontSize = fontSize;
         text.color = InkColor;
         text.alignment = alignment;
-        text.text = string.Empty;
         text.raycastTarget = false;
+    }
 
-        return text;
+    private static void PrepareExistingText(TMP_Text text, TMP_FontAsset fallbackFont)
+    {
+        if (text == null)
+            return;
+
+        if (text.font == null)
+            text.font = fallbackFont;
+
+        text.raycastTarget = false;
     }
 
     [System.Serializable]

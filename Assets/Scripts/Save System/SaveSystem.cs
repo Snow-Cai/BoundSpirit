@@ -37,6 +37,13 @@ public class SaveData
         public int choiceIndex;
     }
     public List<DialogueChoiceEntry> dialogueChoices = new List<DialogueChoiceEntry>();
+    [System.Serializable]
+    public class PuzzleProgressEntry
+    {
+        public string puzzleID;
+        public List<string> values = new List<string>();
+    }
+    public List<PuzzleProgressEntry> puzzleProgress = new List<PuzzleProgressEntry>();
     //public Dictionary<string, int> dialogueChoices = new Dictionary<string, int>();
 
     //Story Flags
@@ -401,6 +408,40 @@ public class SaveSystem : MonoBehaviour
     public bool IsPuzzleSolved(string puzzleName)
     {
         return currentSave.solvedPuzzles.Contains(puzzleName);
+    }
+
+    public void SavePuzzleProgress(string puzzleName, IEnumerable<string> values)
+    {
+        if (currentSave == null)
+            currentSave = new SaveData();
+
+        var existing = currentSave.puzzleProgress.Find(e => e.puzzleID == puzzleName);
+        if (existing == null)
+        {
+            existing = new SaveData.PuzzleProgressEntry { puzzleID = puzzleName };
+            currentSave.puzzleProgress.Add(existing);
+        }
+
+        existing.values = values != null ? new List<string>(values) : new List<string>();
+        SaveGame();
+    }
+
+    public List<string> GetPuzzleProgress(string puzzleName)
+    {
+        if (currentSave == null)
+            return new List<string>();
+
+        var existing = currentSave.puzzleProgress.Find(e => e.puzzleID == puzzleName);
+        return existing != null ? new List<string>(existing.values) : new List<string>();
+    }
+
+    public void ClearPuzzleProgress(string puzzleName)
+    {
+        if (currentSave == null)
+            return;
+
+        currentSave.puzzleProgress.RemoveAll(e => e.puzzleID == puzzleName);
+        SaveGame();
     }
 
     public void CollectItem(string itemName)

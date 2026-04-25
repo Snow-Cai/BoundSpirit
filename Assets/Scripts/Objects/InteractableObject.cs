@@ -300,15 +300,28 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
-            if (SaveSystem.Instance != null &&
+            bool puzzleAlreadySolved =
+                SaveSystem.Instance != null &&
                 !string.IsNullOrEmpty(puzzleID) &&
-                SaveSystem.Instance.IsPuzzleSolved(puzzleID) &&
-                !allowSolvedPuzzleReopen)
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID);
+
+            if (puzzleAlreadySolved && !allowSolvedPuzzleReopen)
             {
+                if (hasDialogue)
+                {
+                    PlayDialogue();
+                }
+
                 yield break;
             }
 
             OpenPuzzle();
+
+            if (puzzleAlreadySolved && hasDialogue)
+            {
+                PlayDialogue();
+            }
+
             yield break;
         }
 
