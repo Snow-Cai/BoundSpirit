@@ -759,6 +759,7 @@ MonoBehaviour:
   mainSettingsPanel: {fileID: 1333455411}
   audioSettingsPanel: {fileID: 1484807817}
   graphicsSettingsPanel: {fileID: 1390792023}
+  informationalTidbitsToggle: {fileID: 0}
 --- !u!4 &108482879
 Transform:
   m_ObjectHideFlags: 0
@@ -8248,6 +8249,7 @@ MonoBehaviour:
   sceneType: 0
   defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
+  customVolume: 0
   fadeInMusic: 1
   shouldLoadPlayerPosition: 0
   defaultSpawnPoint: {fileID: 0}
