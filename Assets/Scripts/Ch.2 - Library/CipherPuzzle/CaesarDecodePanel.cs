@@ -182,9 +182,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (saveSystem != null)
         {
             saveSystem.UnlockPuzzle(puzzleData.PuzzleKey);
+        }
 
-            if (!string.IsNullOrWhiteSpace(legacyPuzzleID))
-                saveSystem.UnlockPuzzle(legacyPuzzleID);
+        if (PuzzleBridge.currentPuzzleSource != null)
+        {
+            PuzzleBridge.currentPuzzleSource.OnPuzzleSolved();
+        }
+        else if (saveSystem != null && !string.IsNullOrWhiteSpace(legacyPuzzleID))
+        {
+            saveSystem.UnlockPuzzle(legacyPuzzleID);
         }
 
         answerInput.interactable = false;

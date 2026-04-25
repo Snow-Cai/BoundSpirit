@@ -467,7 +467,12 @@ public class GraveyardGateController : MonoBehaviour
 
     public void OnGatePuzzleSolved()
     {
-        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(gatePuzzleID))
+        InteractableObject puzzleSource = GetComponent<InteractableObject>();
+        if (puzzleSource != null)
+        {
+            puzzleSource.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null && !string.IsNullOrEmpty(gatePuzzleID))
         {
             SaveSystem.Instance.UnlockPuzzle(gatePuzzleID);
         }

@@ -35,6 +35,7 @@ public class SafeInteraction : MonoBehaviour
     }
     private IEnumerator OpenSafe()
     {
+        PuzzleBridge.currentPuzzleSource = GetComponent<InteractableObject>();
         safeUIPanel.SetActive(true);
         InputLock.Instance.CanToggleInventory = false;
         InputLock.Instance.GameplayInputEnabled = false;
@@ -54,6 +55,8 @@ public class SafeInteraction : MonoBehaviour
         cg.blocksRaycasts = false;
         cg.alpha = 0;
         safeUIPanel.SetActive(false);
+        if (PuzzleBridge.currentPuzzleSource == GetComponent<InteractableObject>())
+            PuzzleBridge.currentPuzzleSource = null;
         InputLock.Instance.CanToggleInventory = true;
         InputLock.Instance.GameplayInputEnabled = true;
         isOpen = false;

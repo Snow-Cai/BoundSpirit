@@ -122,7 +122,11 @@ public class SafeControllerKeypad : MonoBehaviour
             successLight.color = UnityEngine.Color.green;
         inputText.text = "UNLOCKED";
 
-        if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
+        if (PuzzleBridge.currentPuzzleSource != null)
+        {
+            PuzzleBridge.currentPuzzleSource.OnPuzzleSolved();
+        }
+        else if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
         {
             SaveSystem.Instance.UnlockPuzzle(savePuzzleIdWhenUnlocked);
         }

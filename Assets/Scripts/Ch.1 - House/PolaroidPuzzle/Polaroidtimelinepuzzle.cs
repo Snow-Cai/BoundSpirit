@@ -133,6 +133,9 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
         }
 
+        if (PuzzleBridge.currentPuzzleSource != null)
+            PuzzleBridge.currentPuzzleSource = null;
+
         InputLock.Instance.GameplayInputEnabled = true;
     }
 
@@ -229,11 +232,17 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     private void HandleSuccess()
     {
+        bool firstSolve = SaveSystem.Instance == null || !SaveSystem.Instance.IsPuzzleSolved(puzzleID);
         puzzleSolved = true;
 
-        //save puzzle state
-        if (SaveSystem.Instance != null)
+        if (firstSolve && PuzzleBridge.currentPuzzleSource != null)
+        {
+            PuzzleBridge.currentPuzzleSource.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null)
+        {
             SaveSystem.Instance.UnlockPuzzle(puzzleID);
+        }
 
         //close puzzle UI
         ClosePuzzle();

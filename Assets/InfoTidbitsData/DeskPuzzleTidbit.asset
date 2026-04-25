@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: DeskPuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: 'just like with the login puzzle, easily discoverable information is being
-    used for the password. However, this time there is a second authentication factor
-    connected to unlocking the safe: the key. This is an example of Multi-Factor
-    Authentication. If you need two ways to authenticate and unlock a system, it
-    increases the security. It is even better if the second authentication method
-    is a physical aspect, like the key, because it cannot be bruteforced and guessed!'
+  body: "Just like with the login puzzle, easily discoverable information is being
+    used for the password. This time, it is only using important dates. \r\nWhile
+    using important dates to you so that you remember a passcode can be good, make
+    sure to use one that is not easily findable through things like social media
+    or learning about your life. If you use your birthday and year for your bank
+    PIN, it will be much easier to guess than if you picked a meaningful date or
+    number no one else would know about."

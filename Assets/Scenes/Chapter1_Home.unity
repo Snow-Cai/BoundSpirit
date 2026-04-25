@@ -27976,16 +27976,16 @@ MonoBehaviour:
   repeatDialogue: {fileID: 0}
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 0
-  puzzleID: 
+  isPuzzle: 1
+  puzzleID: Chapter1_polaroid_timeline
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
-  tidbitPopupCanvas: {fileID: 0}
-  informationalTidbit: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 1978106980}
+  informationalTidbit: {fileID: 11400000, guid: 073514df7bec5a04cafb0bd839da7138, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 0
+  showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
@@ -31213,9 +31213,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.076682314
-    width: 1
-    height: 0.8450704
+    y: -0.042613637
+    width: 0.5683837
+    height: 0.7670455
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -38878,15 +38878,16 @@ MonoBehaviour:
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 0
-  puzzleID: 
+  puzzleID: Chapter1_parentRoomSafe
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  allowSolvedPuzzleReopen: 0
+  allowSolvedPuzzleReopen: 1
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
-  tidbitPopupCanvas: {fileID: 0}
-  informationalTidbit: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 1978106980}
+  informationalTidbit: {fileID: 11400000, guid: 83b277605c594564a9623bc9ca7c81b3, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 0
+  showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}
@@ -40279,10 +40280,10 @@ MonoBehaviour:
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
   loginPuzzle: {fileID: 0}
-  tidbitPopupCanvas: {fileID: 0}
-  informationalTidbit: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 1978106980}
+  informationalTidbit: {fileID: 11400000, guid: 8f171c29aa43b3446b4013cf97fda138, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 0
+  showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 622910808}
   promptText: {fileID: 622910807}

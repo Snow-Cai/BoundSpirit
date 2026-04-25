@@ -92,6 +92,14 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
 
     private void HandleInteract()
     {
+        InteractableObject puzzleSource = GetComponent<InteractableObject>();
+
+        if (puzzleManager != null && puzzleManager.IsSolved)
+        {
+            TryHandleSolvedInteraction();
+            return;
+        }
+
         if (!firstApproachDone && firstApproachDialogue != null && DialogueSystem.Instance != null)
         {
             firstApproachDone = true;
@@ -103,12 +111,14 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
             return;
         }
 
+        PuzzleBridge.currentPuzzleSource = puzzleSource;
         puzzleManager?.OpenPuzzle();
     }
 
     private void OnFirstDialogueEnded(DialogueAsset asset)
     {
         DialogueSystem.Instance.OnDialogueEnded -= OnFirstDialogueEnded;
+        PuzzleBridge.currentPuzzleSource = GetComponent<InteractableObject>();
         puzzleManager?.OpenPuzzle();
     }
 
