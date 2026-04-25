@@ -14,11 +14,17 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
     [Header("Dialogue - First Approach")]
     public DialogueAsset firstApproachDialogue;
 
+    [Header("Dialogue - After Solve")]
+    public DialogueAsset solvedDialogue;
+    public DialogueAsset solvedRepeatDialogue;
+    public bool playSolvedDialogueOnlyOnce = true;
+
     private Transform player;
     private bool playerInRange = false;
     private bool firstApproachDone = false;
     private float inputCooldown = 0f;
     private const string FIRST_APPROACH_KEY = "Chapter1_polaroid_firstApproach";
+    private const string SOLVED_DIALOGUE_KEY = "Chapter1_polaroid_solvedDialogue";
 
     private void Start()
     {
@@ -30,12 +36,6 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
         if (SaveSystem.Instance != null)
             firstApproachDone = SaveSystem.Instance.HasViewedDialogue(FIRST_APPROACH_KEY);
 
-        if (SaveSystem.Instance != null && SaveSystem.Instance.IsPuzzleSolved(puzzleManager?.puzzleID))
-        {
-            if (interactPrompt != null)
-                interactPrompt.SetActive(false);
-            enabled = false;
-        }
     }
 
     private void Update()
@@ -92,8 +92,6 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
 
     private void HandleInteract()
     {
-        InteractableObject puzzleSource = GetComponent<InteractableObject>();
-
         if (puzzleManager != null && puzzleManager.IsSolved)
         {
             TryHandleSolvedInteraction();
@@ -111,14 +109,51 @@ public class PolaroidPuzzleInteractable : MonoBehaviour
             return;
         }
 
-        PuzzleBridge.currentPuzzleSource = puzzleSource;
         puzzleManager?.OpenPuzzle();
+    }
+
+    private void TryHandleSolvedInteraction()
+    {
+        if (DialogueSystem.Instance == null)
+        {
+            puzzleManager?.OpenPuzzle();
+            return;
+        }
+
+        DialogueAsset dialogueToPlay = null;
+        bool solvedDialogueAlreadyViewed =
+            SaveSystem.Instance != null &&
+            SaveSystem.Instance.HasViewedDialogue(SOLVED_DIALOGUE_KEY);
+
+        if (!solvedDialogueAlreadyViewed || !playSolvedDialogueOnlyOnce)
+        {
+            dialogueToPlay = solvedDialogue;
+        }
+
+        if (dialogueToPlay == null)
+        {
+            dialogueToPlay = solvedRepeatDialogue;
+        }
+
+        if (dialogueToPlay == null)
+        {
+            puzzleManager?.OpenPuzzle();
+            return;
+        }
+
+        puzzleManager?.OpenPuzzle();
+
+        if (!solvedDialogueAlreadyViewed && SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.MarkDialogueViewed(SOLVED_DIALOGUE_KEY);
+        }
+
+        DialogueSystem.Instance.StartDialogue(dialogueToPlay);
     }
 
     private void OnFirstDialogueEnded(DialogueAsset asset)
     {
         DialogueSystem.Instance.OnDialogueEnded -= OnFirstDialogueEnded;
-        PuzzleBridge.currentPuzzleSource = GetComponent<InteractableObject>();
         puzzleManager?.OpenPuzzle();
     }
 

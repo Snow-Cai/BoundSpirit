@@ -448,7 +448,7 @@ public class InteractableObject : MonoBehaviour
 
             if (popup == null)
             {
-                popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+                popup = Object.FindFirstObjectByType<UICluePopup>();
             }
 
             if (popup != null)

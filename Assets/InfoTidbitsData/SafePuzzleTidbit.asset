@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: SafePuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: "In this puzzle there is a second authentication factor connected to unlocking
-    the safe in addition to a passcode: the key. \r\nThis is an example of \"Multi-Factor
-    Authentication\". If you need two ways to authenticate and unlock a system, it
-    increases the security. It is even better if the second authentication method
-    is a physical aspect, like the key, because it cannot be bruteforced and guessed!"
+  body: 

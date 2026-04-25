@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: LoginPuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: "As you've seen, you can often find out <u><b> someone's password with personal
-    information</u></b> if their password contains information relating to them that
-    can be found out. \nThis information can be found out through digging through
-    openly available information(OSINT) or by getting the information out of the
-    target directly through conversation or other interaction (social engineering).
-    It is important to safeguard your information!"
+  body: As you've seen, you can often find out someone's password with personal information
+    if their password contains information relating to them that can be found out.
+    This information can be found out through digging through openly available information(OSINT)
+    or by getting the information out of the target directly through conversation
+    or other interaction (social engineering). It is important to safeguard your
+    information!
