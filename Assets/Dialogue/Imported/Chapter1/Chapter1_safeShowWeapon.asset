@@ -10,18 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter1_safePuzzleSolve
+  m_Name: Chapter1_safeShowWeapon
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter1_safePuzzleSolve
+  dialogueID: 
   lines:
   - speakerName: Akila
-    dialogueText: "What is this\u2026 It looks like a weapon!!!"
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: 'Was it the one that killed me? Why does my dad have this?? '
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Maybe I should check my room to look for more clues.
+    dialogueText: Could this have been the weapon used to kill me? But... Something
+      isn't adding up.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

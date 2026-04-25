@@ -10,6 +10,9 @@ public class SafeControllerKeypad : MonoBehaviour
     public TextMeshProUGUI inputText;
     public Image successLight;
     public RectTransform knob;
+    public CanvasGroup safeCanvas;
+    public CanvasGroup weaponCanvas;
+    public Image weaponObject;
 
     [Header("Keypad Settings")]
     public int maxDigits = 6;               //6-digit code
@@ -118,6 +121,7 @@ public class SafeControllerKeypad : MonoBehaviour
         if (hasUnlockedSuccessfully)
             return;
         hasUnlockedSuccessfully = true;
+        InputLock.Instance.InteractEnabled = false;
 
         if (successLight != null)
             successLight.color = UnityEngine.Color.green;
@@ -133,13 +137,55 @@ public class SafeControllerKeypad : MonoBehaviour
         if (knob != null)
             StartCoroutine(UnlockAfterKnobRoutine());
         else
-            PlaySolveDialogueIfConfigured();
+            StartCoroutine(UnlockTransitionSequence());
     }
 
     IEnumerator UnlockAfterKnobRoutine()
     {
         yield return StartCoroutine(RotateKnob());
+        StartCoroutine(UnlockTransitionSequence());
+    }
+
+    IEnumerator UnlockTransitionSequence()
+    {
+        yield return StartCoroutine(FadeCanvas(safeCanvas, 1f, 0f, 0.5f));
+        if (weaponObject != null) weaponObject.gameObject.SetActive(true);
+        yield return StartCoroutine(FadeCanvas(weaponCanvas, 0f, 1f, 0.5f));
+        yield return StartCoroutine(FadeImage(weaponObject, 0f, 1f, 0.5f));
+        yield return new WaitForSeconds(0.3f);
         PlaySolveDialogueIfConfigured();
+    }
+
+    IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float duration)
+    {
+        if (cg == null) yield break;
+        float t = 0f;
+        cg.alpha = from;
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(from, to, t /  duration);
+            yield return null;
+        }
+        cg.alpha = to;
+    }
+
+    IEnumerator FadeImage(Image img, float from, float to, float duration)
+    {
+        if(img == null) yield break;
+        Color c = img.color;
+        float t = 0f;
+
+        c.a = from;
+        img.color = c;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(from, to, t / duration);
+            img.color = new Color(c.r, c.g, c.b, a);
+            yield return null;
+        }
+        img.color = new Color(c.r, c.g, c.b, to);
     }
 
     void PlaySolveDialogueIfConfigured()
@@ -147,6 +193,22 @@ public class SafeControllerKeypad : MonoBehaviour
         if (dialogueOnUnlock == null || DialogueSystem.Instance == null)
             return;
         DialogueSystem.Instance.StartDialogue(dialogueOnUnlock);
+        StartCoroutine(WaitForDialogueThenClose());
+    }
+
+    IEnumerator WaitForDialogueThenClose()
+    {
+        yield return new WaitUntil(() => DialogueSystem.Instance == null || !DialogueSystem.Instance.IsDialogueActive());
+        if (safeCanvas != null) safeCanvas.gameObject.SetActive(false);
+        if (weaponObject != null) weaponObject.gameObject.SetActive(false);
+        if (weaponCanvas != null) weaponCanvas.alpha = 0f;
+        safeCanvas.interactable = false;
+        safeCanvas.blocksRaycasts = false;
+        FindFirstObjectByType<SafeInteraction>().SetOpen();
+        FindFirstObjectByType<SafeInteraction>().SetSolved();
+        InputLock.Instance.CanToggleInventory = true;
+        InputLock.Instance.GameplayInputEnabled = true;
+        InputLock.Instance.InteractEnabled = true;
     }
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe

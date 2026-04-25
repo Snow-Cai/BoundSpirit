@@ -774,6 +774,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 231855480859935086, guid: 16d7b6fc98b4a604ea74ce542b2f4f66, type: 3}
   m_PrefabInstance: {fileID: 66416826}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &66429047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66429048}
+  - component: {fileID: 66429051}
+  - component: {fileID: 66429050}
+  - component: {fileID: 66429049}
+  m_Layer: 5
+  m_Name: WeaponCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &66429048
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66429047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.7, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1766448193}
+  m_Father: {fileID: 1412077240}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 35}
+  m_SizeDelta: {x: 0, y: -70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &66429049
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66429047}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &66429050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66429047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 308756595079027927, guid: 55ad6db86bef3f943a44b0ed363ed374, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &66429051
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66429047}
+  m_CullTransparentMesh: 1
 --- !u!4 &72290172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3098714534546668724, guid: 6ab4be47097cbdb4187286866407578f, type: 3}
@@ -2356,6 +2445,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -18224,6 +18314,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -18658,6 +18749,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -19189,6 +19281,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -28158,6 +28251,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -28833,6 +28927,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -29033,6 +29128,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -29675,6 +29771,9 @@ MonoBehaviour:
   inputText: {fileID: 2122758080}
   successLight: {fileID: 61933680}
   knob: {fileID: 1090375420}
+  safeCanvas: {fileID: 1291626100}
+  weaponCanvas: {fileID: 66429049}
+  weaponObject: {fileID: 1766448194}
   maxDigits: 6
   targetCode: 030111
   keyInserted: 0
@@ -31193,6 +31292,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1291626097}
+  - {fileID: 66429048}
   m_Father: {fileID: 403161366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -33298,6 +33398,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -33974,6 +34075,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -35685,6 +35787,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758119932}
+  m_CullTransparentMesh: 1
+--- !u!1 &1766448192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1766448193}
+  - component: {fileID: 1766448195}
+  - component: {fileID: 1766448194}
+  m_Layer: 5
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1766448193
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766448192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 6, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 66429048}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 32, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1766448194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766448192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1518363075290452430, guid: ff7f62d5ba9914f49a6cf1663be211ed, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1766448195
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766448192}
   m_CullTransparentMesh: 1
 --- !u!1 &1787646222
 GameObject:
@@ -38633,6 +38810,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 1973412644}
   isPuzzleOpen: 1
   allowSolvedPuzzleReopen: 1
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 2039610850}
   tidbitPopupCanvas: {fileID: 1978106980}
   informationalTidbit: {fileID: 11400000, guid: 9a7c0f672bb38de4f879bc3fcb862d30, type: 2}
@@ -38893,6 +39071,9 @@ MonoBehaviour:
   safeUIPanel: {fileID: 1291626096}
   interactionRadius: 1.5
   playerTransform: {fileID: 2000622937}
+  weaponCanvas: {fileID: 66429049}
+  weaponObject: {fileID: 1766448194}
+  dialogueOnShowWeapon: {fileID: 11400000, guid: aa2da0eec93d0f64e9021a75759610b4, type: 2}
 --- !u!114 &1956579851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38923,6 +39104,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -40314,6 +40496,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 493091663}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 1
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}

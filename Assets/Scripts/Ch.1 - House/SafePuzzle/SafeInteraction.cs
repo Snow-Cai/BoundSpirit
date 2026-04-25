@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 public class SafeInteraction : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class SafeInteraction : MonoBehaviour
 
     private CanvasGroup cg;
     private bool isOpen = false;
+    private bool isSolved = false;
+
+    public CanvasGroup weaponCanvas;
+    public Image weaponObject;
+    public DialogueAsset dialogueOnShowWeapon;
 
     private void Start()
     {
@@ -31,14 +37,28 @@ public class SafeInteraction : MonoBehaviour
         }
 
         float dist = Vector2.Distance(playerTransform.position, transform.position);
-        if(!isOpen && dist <= interactionRadius && Input.GetKeyDown(KeyCode.E))
+        if(dist <= interactionRadius && Input.GetKeyDown(KeyCode.E))
         {
-            isOpen = true;
-            StartCoroutine(OpenSafe());
-        }
-        else if(isOpen && Input.GetKeyDown(KeyCode.E))
-        {
-            StartCoroutine(CloseRoutine());
+            if (isSolved && !isOpen)
+            {
+                ShowWeapon();
+            }
+            else if(isSolved && isOpen && !DialogueSystem.Instance.IsDialogueActive())
+            {
+                HideWeapon();
+            }
+            else
+            {
+                if (!isOpen)
+                {
+                    isOpen = true;
+                    StartCoroutine(OpenSafe());
+                }
+                else
+                {
+                    if (InputLock.Instance.InteractEnabled) StartCoroutine(CloseRoutine());
+                }
+            }
         }
     }
     private IEnumerator OpenSafe()
@@ -66,5 +86,33 @@ public class SafeInteraction : MonoBehaviour
         InputLock.Instance.GameplayInputEnabled = true;
         isOpen = false;
         yield return null;
+    }
+
+    void ShowWeapon()
+    {
+        if (safeUIPanel != null) safeUIPanel.SetActive(false);
+        if (weaponCanvas != null) weaponCanvas.alpha = 1f;
+        if (weaponObject != null) weaponObject.gameObject.SetActive(true);
+        isOpen = true;
+        DialogueSystem.Instance.StartDialogue(dialogueOnShowWeapon);
+        InputLock.Instance.CanToggleInventory = false;
+        InputLock.Instance.GameplayInputEnabled = false;
+    }
+
+    void HideWeapon()
+    {
+        if (weaponCanvas != null) weaponCanvas.alpha = 0f;
+        if (weaponObject != null) weaponObject.gameObject.SetActive(false);
+        StartCoroutine(CloseRoutine());
+    }
+
+    public void SetSolved()
+    {
+        isSolved = true;
+    }
+
+    public void SetOpen()
+    {
+        isOpen = false;
     }
 }
