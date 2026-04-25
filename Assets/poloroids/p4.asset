@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_04
   correctOrder: 4
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: -4642131626203068719, guid: 2796fd6d482f5ec4fa5b2c9ae7fbc1a3, type: 3}
   year: 2018
-  captionText: e
-  inspectDescription: ee
+  captionText: Sad Eden
+  inspectDescription: Eden has been sad lately :(

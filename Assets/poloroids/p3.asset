@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_03
   correctOrder: 3
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: -2094565500346129595, guid: 2d9d960e220cda3419590fe4ac20c70e, type: 3}
   year: 2017
-  captionText: d
-  inspectDescription: dd
+  captionText: Soccer again!
+  inspectDescription: I love hanging out with Eden <3
