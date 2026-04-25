@@ -7819,9 +7819,9 @@ RectTransform:
   - {fileID: 155563129}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -226}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262543422
@@ -8582,7 +8582,7 @@ MonoBehaviour:
   repeatDialogue: {fileID: 0}
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 0
+  isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
@@ -9389,9 +9389,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.37785015
+    y: 0
     width: 1
-    height: 1.7589576
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -11401,14 +11401,14 @@ GameObject:
   m_Component:
   - component: {fileID: 886374550}
   - component: {fileID: 886374551}
-  - component: {fileID: 886374552}
+  - component: {fileID: 886374553}
   m_Layer: 0
   m_Name: StairTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &886374550
 Transform:
   m_ObjectHideFlags: 0
@@ -11418,7 +11418,7 @@ Transform:
   m_GameObject: {fileID: 886374549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.016, y: -20.366, z: 0}
+  m_LocalPosition: {x: 19.016, y: -20.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11458,7 +11458,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.014224052, y: -0.3413601}
+  m_Offset: {x: -0.014224052, y: -3.6547775}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11468,24 +11468,35 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.014597, y: 0.48796082}
+  m_Size: {x: 2.014597, y: 2.1353607}
   m_EdgeRadius: 0
---- !u!114 &886374552
-MonoBehaviour:
+--- !u!50 &886374553
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886374549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d41f08524ae534c42b6c37885cea8fda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StairToNextScene
-  charMovement: {fileID: 1494143748}
-  player: {fileID: 1494143745}
-  walkSpeed: 2
-  fadeScreen: {fileID: 1089773648}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &896658865
 GameObject:
   m_ObjectHideFlags: 0
@@ -17220,9 +17231,9 @@ RectTransform:
   - {fileID: 1238239354}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -138}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008950118
@@ -17401,7 +17412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1036898949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17992,9 +18003,9 @@ RectTransform:
   - {fileID: 726688458}
   m_Father: {fileID: 1221681924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1128128417
@@ -18358,7 +18369,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 358, y: 58}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221681925
 MonoBehaviour:
@@ -27193,7 +27204,7 @@ MonoBehaviour:
   - "\u25A0"
   correctPattern: 000000000100000002000000
   wrongPatternDialogue: {fileID: 11400000, guid: 8c44e4c7e83e06245a5315b68a6440e1, type: 2}
-  puzzleCompleteDialogue: {fileID: 11400000, guid: a6555ee405151fc40a7866ab0dd7b248, type: 2}
+  puzzleCompleteDialogue: {fileID: 11400000, guid: f5134415eab12524f8800b59a0a5ceae, type: 2}
 --- !u!1 &1530538460
 GameObject:
   m_ObjectHideFlags: 0
