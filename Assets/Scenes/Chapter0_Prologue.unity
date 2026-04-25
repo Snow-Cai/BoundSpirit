@@ -2167,6 +2167,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
       insertIndex: -1
       addedObject: {fileID: 126733295}
+    - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 126733296}
   m_SourcePrefab: {fileID: 100100000, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
 --- !u!4 &126733293 stripped
 Transform:
@@ -2208,6 +2211,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -2218,6 +2222,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 126733296}
+--- !u!114 &126733296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126733294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &133802446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7689,6 +7715,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -7699,6 +7726,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 0
+  glow: {fileID: 249432485}
 --- !u!114 &249432485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7910,6 +7939,7 @@ GameObject:
   - component: {fileID: 270792443}
   - component: {fileID: 270792444}
   - component: {fileID: 270792445}
+  - component: {fileID: 270792446}
   m_Layer: 0
   m_Name: AfterlifeGate
   m_TagString: AfterlifeGate
@@ -8035,6 +8065,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -8045,6 +8076,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 270792446}
 --- !u!61 &270792445
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8091,6 +8124,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.693512, y: 3.488987}
   m_EdgeRadius: 0
+--- !u!114 &270792446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270792439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &278087434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8342,6 +8395,7 @@ GameObject:
   - component: {fileID: 357102270}
   - component: {fileID: 357102269}
   - component: {fileID: 357102271}
+  - component: {fileID: 357102272}
   m_Layer: 0
   m_Name: Gates
   m_TagString: Untagged
@@ -8498,6 +8552,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -8508,6 +8563,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 357102272}
+--- !u!114 &357102272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357102266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!114 &365257060 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6079202392425596933, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -9158,9 +9235,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.080935255
-    width: 1.2802769
-    height: 0.97122306
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -9456,7 +9533,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 54.7731, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &539039709
@@ -9756,7 +9833,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &604086614
@@ -10212,6 +10289,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -10222,6 +10300,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 0
+  glow: {fileID: 670987756}
 --- !u!114 &670987756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11570,6 +11650,7 @@ GameObject:
   - component: {fileID: 923856396}
   - component: {fileID: 923856397}
   - component: {fileID: 923856398}
+  - component: {fileID: 923856399}
   m_Layer: 0
   m_Name: Gentle GhostNPC
   m_TagString: Untagged
@@ -11680,6 +11761,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -11690,6 +11772,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &923856396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11748,6 +11832,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &923856399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923856392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &936733617
 GameObject:
   m_ObjectHideFlags: 0
@@ -17219,6 +17323,7 @@ MonoBehaviour:
   sceneType: 2
   defaultSfxMixerGroup: {fileID: -3674158871675159730, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
   customMusic: {fileID: 0}
+  customVolume: 0
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
   defaultSpawnPoint: {fileID: 1530538461}
@@ -17375,7 +17480,7 @@ MonoBehaviour:
   m_margin: {x: 234.26794, y: 14.187892, z: 2.0312805, w: 1.4437828}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1082755165
@@ -19670,6 +19775,7 @@ GameObject:
   - component: {fileID: 1272994298}
   - component: {fileID: 1272994301}
   - component: {fileID: 1272994302}
+  - component: {fileID: 1272994303}
   m_Layer: 0
   m_Name: Wandering GhostNPC
   m_TagString: Untagged
@@ -19746,6 +19852,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -19756,6 +19863,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!212 &1272994300
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19848,6 +19957,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1272994303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272994296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1273041183
 GameObject:
   m_ObjectHideFlags: 0
@@ -24967,7 +25096,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1286752163
@@ -25567,7 +25696,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1380209849
@@ -26043,6 +26172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1490956534}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1490956535}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1490956532 stripped
 Transform:
@@ -26084,6 +26216,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -26094,6 +26227,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1490956535}
+--- !u!114 &1490956535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490956533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &1494143744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32657,7 +32812,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 52.510605, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1728839212
@@ -33168,6 +33323,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -33178,6 +33334,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 0
+  glow: {fileID: 1748752413}
 --- !u!114 &1748752413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33847,6 +34005,7 @@ GameObject:
   - component: {fileID: 1868248599}
   - component: {fileID: 1868248602}
   - component: {fileID: 1868248603}
+  - component: {fileID: 1868248604}
   m_Layer: 0
   m_Name: Restless GhostNPC
   m_TagString: Untagged
@@ -33923,6 +34082,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -33933,6 +34093,8 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 8300000, guid: 1bbdf1c18232d214fb21b8e3e8ccaf3e, type: 3}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!212 &1868248601
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34025,6 +34187,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1868248604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868248597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1875596273
 GameObject:
   m_ObjectHideFlags: 0
@@ -41007,7 +41189,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 54.7731, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1961887140
@@ -41100,6 +41282,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1964929243}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1964929244}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &1964929241 stripped
 Transform:
@@ -41141,6 +41326,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -41151,6 +41337,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1964929244}
+--- !u!114 &1964929244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964929242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1977143318
 GameObject:
   m_ObjectHideFlags: 0
@@ -41279,7 +41487,7 @@ MonoBehaviour:
   m_margin: {x: -151.94447, y: -23.169964, z: -160.51581, w: -16.153439}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1977143321
@@ -41392,6 +41600,7 @@ MonoBehaviour:
   sceneType: 2
   defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
+  customVolume: 0
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
   defaultSpawnPoint: {fileID: 0}
@@ -43759,6 +43968,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2025022739}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2025022740}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!4 &2025022735 stripped
 Transform:
@@ -43795,6 +44007,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -43805,6 +44018,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 2025022740}
+--- !u!114 &2025022740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349533711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &2054940777
 GameObject:
   m_ObjectHideFlags: 0
@@ -44791,6 +45026,7 @@ MonoBehaviour:
   sceneType: 2
   defaultSfxMixerGroup: {fileID: 0}
   customMusic: {fileID: 0}
+  customVolume: 0
   fadeInMusic: 1
   shouldLoadPlayerPosition: 1
   defaultSpawnPoint: {fileID: 0}
@@ -44913,6 +45149,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1061976112376788876}
+    - targetCorrespondingSourceObject: {fileID: 6124344609648327471, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1061976112376788877}
   m_SourcePrefab: {fileID: 100100000, guid: 1efadfeb5e9815e47ad7bb025028b616, type: 3}
 --- !u!1 &1061976112376788875 stripped
 GameObject:
@@ -44949,6 +45188,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -44959,6 +45199,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1061976112376788877}
+--- !u!114 &1061976112376788877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061976112376788875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!114 &1126535270003636972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45238,6 +45500,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020699516489247184}
+    - targetCorrespondingSourceObject: {fileID: 565651676248338367, guid: e604af9202e69734a9ba26abe295e144, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020699516489247185}
   m_SourcePrefab: {fileID: 100100000, guid: e604af9202e69734a9ba26abe295e144, type: 3}
 --- !u!1 &2020699516489247183 stripped
 GameObject:
@@ -45274,6 +45539,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -45284,6 +45550,28 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 2020699516489247185}
+--- !u!114 &2020699516489247185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020699516489247183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!114 &2124840470745086358
 MonoBehaviour:
   m_ObjectHideFlags: 0
