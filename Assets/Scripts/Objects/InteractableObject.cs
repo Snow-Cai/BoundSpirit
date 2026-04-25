@@ -34,6 +34,7 @@ public class InteractableObject : MonoBehaviour
     public bool isPuzzleOpen = false;
     [Tooltip("If enabled, the player can still open this puzzle after it has already been solved.")]
     public bool allowSolvedPuzzleReopen = false;
+    public bool timeRemainsOn = false;
 
     [Header("Puzzle Components")]
     public LoginPuzzle loginPuzzle;
@@ -338,7 +339,7 @@ public class InteractableObject : MonoBehaviour
         HidePrompt();
         SetGameplayInputEnabled(false);
         InputLock.Instance.CanToggleInventory = false;
-        Time.timeScale = 0f;
+        if (!timeRemainsOn) Time.timeScale = 0f;
     }
 
 

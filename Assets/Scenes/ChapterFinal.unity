@@ -16147,7 +16147,7 @@ MonoBehaviour:
   walkingDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
   endScreenCanvas: {fileID: 870131234}
   fadeInDuration: 2
-  endScreenHoldDuration: 5
+  endScreenHoldDuration: 10
   returnToScene: MenuScene
   endingTitleText: {fileID: 205089109}
   endingSubtitleText: {fileID: 694151554}

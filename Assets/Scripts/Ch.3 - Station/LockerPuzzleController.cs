@@ -19,6 +19,11 @@ public class LockerPuzzleController : MonoBehaviour
     [Header("Save Progress")]
     [SerializeField] private string puzzleID = "StationLocker";
 
+    private void OnEnable()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void Open()
     {
         lockerUI.SetActive(true);

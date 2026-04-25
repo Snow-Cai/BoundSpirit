@@ -986,6 +986,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 907081996}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -6353,6 +6354,7 @@ MonoBehaviour:
   puzzleUI: {fileID: 2118891725}
   isPuzzleOpen: 0
   allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 1
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -7700,6 +7702,14 @@ PrefabInstance:
     - target: {fileID: 8003396708253603967, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: playPrimaryOnlyOnce
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152800031698245947, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.375
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9871,9 +9881,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.01438849
+    y: 0
     width: 1
-    height: 0.97122306
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
