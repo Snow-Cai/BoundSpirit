@@ -15,8 +15,8 @@ MonoBehaviour:
   dialogueID: Chapter2_libraryWordSearchSolved
   lines:
   - speakerName: Akila
-    dialogueText: I think there is number showing in these highlights after solving
-      this puzzle. I wonder where I can use it.
+    dialogueText: I think a number appeared after solving the puzzle... I wonder
+      where I can use it.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

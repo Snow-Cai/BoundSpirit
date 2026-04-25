@@ -8,7 +8,6 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
 {
     [Header("Puzzle Identity")]
     [SerializeField] private string puzzleKey = "Library_WordSearch_13";
-    [SerializeField] private string revealedHintText = "13";
 
     [Header("Runtime Dependencies")]
     [SerializeField] private SaveSystem saveSystem;
@@ -52,13 +51,11 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text wordsText;
-    [SerializeField] private TMP_Text hintText;
 
     [Header("Fallback Placeholder Containers")]
     [SerializeField] private RectTransform titlePlaceholder;
     [SerializeField] private RectTransform statusPlaceholder;
     [SerializeField] private RectTransform wordsPlaceholder;
-    [SerializeField] private RectTransform hintPlaceholder;
 
     private WordSearchBoard board;
     private readonly HashSet<string> foundWords = new();
@@ -165,9 +162,6 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         if (wordsPlaceholder == null)
             wordsPlaceholder = CreatePlaceholder("WordsPlaceholder", root, new Vector2(230f, 130f), new Vector2(222f, 36f));
 
-        if (hintPlaceholder == null)
-            hintPlaceholder = CreatePlaceholder("HintPlaceholder", root, new Vector2(230f, 60f), new Vector2(222f, -116f));
-
         if (gridLayout == null)
         {
             gridLayout = boardContainer.GetComponent<GridLayoutGroup>();
@@ -185,7 +179,6 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         titleText = ResolveTextReference(titleText, titlePlaceholder, "Title", font, 28f, TextAlignmentOptions.TopLeft);
         statusText = ResolveTextReference(statusText, statusPlaceholder, "Status", font, 18f, TextAlignmentOptions.TopLeft);
         wordsText = ResolveTextReference(wordsText, wordsPlaceholder, "Words", font, 18f, TextAlignmentOptions.TopLeft);
-        hintText = ResolveTextReference(hintText, hintPlaceholder, "Hint", font, 22f, TextAlignmentOptions.TopLeft);
 
         if (wordsText != null)
         {
@@ -372,17 +365,11 @@ public sealed class LibraryWordSearchPanel : MonoBehaviour
         {
             if (statusText != null)
                 statusText.text = "All 7 words found.";
-
-            if (hintText != null)
-                hintText.text = $"Cipher shift hint: {revealedHintText}";
         }
         else
         {
             if (statusText != null)
                 statusText.text = $"Find all 7 words. {foundWords.Count}/{board.Placements.Count} found.";
-
-            if (hintText != null)
-                hintText.text = string.Empty;
         }
     }
 
