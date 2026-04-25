@@ -275,26 +275,41 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         string typed = CaesarCipher.NormalizeForCompare(GetCurrentAnswerString());
-        string expected = BuildAnswerTarget();
 
-        if (typed != expected)
+        bool revealWords = ShouldRevealMaskedPhrase();
+
+        if (!revealWords)
         {
+            string partialExpected = "THEWILLREVEALTHETRUTH";
+            string partialTyped = typed.Replace(" ", "");
+
+            if (partialTyped == partialExpected)
+            {
+                partialDecodeComplete = true;
+                feedbackText.text = "I can read part of it now, but some symbols still need another clue.";
+
+                SetAnswerSlotsInteractable(false);
+
+                if (submitButton != null)
+                    submitButton.interactable = false;
+
+                SetShiftControlsInteractable(false);
+
+                TryPlayDialogue(onCorrectShiftDialogue, true);
+                PersistProgress();
+                return;
+            }
+
             feedbackText.text = "Not quite... try again.";
             PersistProgress();
             return;
         }
 
-        if (!ShouldRevealMaskedPhrase())
+        string expected = CaesarCipher.NormalizeForCompare("THE CASE FILE WILL REVEAL THE TRUTH");
+
+        if (typed != expected)
         {
-            partialDecodeComplete = true;
-            feedbackText.text = "I can read part of it now, but some symbols still need another clue.";
-            SetAnswerSlotsInteractable(false);
-
-            if (submitButton != null)
-                submitButton.interactable = false;
-
-            SetShiftControlsInteractable(false);
-            TryPlayDialogue(onCorrectShiftDialogue, true);
+            feedbackText.text = "Not quite... try again.";
             PersistProgress();
             return;
         }
@@ -316,6 +331,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             submitButton.interactable = false;
 
         SetShiftControlsInteractable(false);
+
         TryPlayDialogue(onFinalSolveDialogue, true);
 
         ClearSavedProgress();
