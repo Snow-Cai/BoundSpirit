@@ -10,3 +10,4 @@ public class NPC : MonoBehaviour
         Debug.Log($"{npcName} says: {dialogueLines[0]}");
     }
 }
+sbyte

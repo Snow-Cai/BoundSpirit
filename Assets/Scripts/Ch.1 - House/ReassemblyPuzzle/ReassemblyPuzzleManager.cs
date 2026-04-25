@@ -51,8 +51,8 @@ public class ReassemblyPuzzleManager : MonoBehaviour
         }
         finalResultImage.rectTransform.localScale = endScale;
 
-        if (puzzleInteractable != null && SaveSystem.Instance != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
-            SaveSystem.Instance.UnlockPuzzle(puzzleInteractable.puzzleID);
+        if (puzzleInteractable != null)
+            puzzleInteractable.OnPuzzleSolved();
 
         if (solveDialogue != null && DialogueSystem.Instance != null)
         {

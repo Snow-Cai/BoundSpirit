@@ -13,4 +13,11 @@ MonoBehaviour:
   m_Name: CipherPuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: 
+  body: "The puzzle you just solved used a Caesar cipher wheel, which is a type of
+    cipher that decodes a message by shifting the alphabet a certain number of times
+    to the right or left. In cybersecurity, this kind of practice is known as cryptography.
+    \r\nThe point of this is to encrypt messages or sensitive info so that even if
+    this information is found, there is an extra layer needed to be uncovered. Scrambling
+    information keeps it safer, and only people with the right key can read it. \nCryptography
+    is also used to ensure the integrity of something, meaning it is used to ensure
+    that a message or a file that is sent is the real deal. \r\n"

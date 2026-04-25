@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: GatePuzzleTidbit
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: 
+  body: "In cybersecurity, even tiny pieces of information can matter. When you talked
+    to the three ghosts and learned the order \u2014 circle \u2192 square \u2192
+    triangle \u2014 you collected hints that unlocked a puzzle. At a base level,
+    real attackers do the same thing: they gather small clues from people to figure
+    out how to break into systems. That\u2019s why being careful about what you share
+    keeps things safer."

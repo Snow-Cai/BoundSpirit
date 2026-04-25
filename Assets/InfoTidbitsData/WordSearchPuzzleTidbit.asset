@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: WordSearchPuzzleTidbit
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: "The word search asked you to find one useful clue hidden inside a lot of
+    distracting information. In cybersecurity, that is a real skill. Analysts often
+    have to scan through logs, files, and other noisy data to spot the one pattern
+    that matters.\nBeing able to separate signal from noise helps you find warning
+    signs faster and notice clues that might otherwise be buried in the crowd.\n"
