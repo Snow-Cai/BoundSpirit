@@ -25,20 +25,30 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TMP_Text encodedText;
     [SerializeField] private TMP_Text mappingText;
+    [SerializeField] private TMP_Text shiftValueText;
     [SerializeField] private TMP_InputField answerInput;
     [SerializeField] private TMP_Text feedbackText;
     [SerializeField] private Button submitButton;
+    [SerializeField] private Button shiftBackwardButton;
+    [SerializeField] private Button shiftForwardButton;
 
     [Header("Events")]
     [SerializeField] private DialogueAsset onSolveDialogue;
     [SerializeField] private UnityEvent onSolved;
 
     private bool solved;
+    private int currentPreviewShift;
 
     private void OnEnable()
     {
         if (submitButton != null)
             submitButton.onClick.AddListener(Submit);
+
+        if (shiftBackwardButton != null)
+            shiftBackwardButton.onClick.AddListener(PreviewPreviousShift);
+
+        if (shiftForwardButton != null)
+            shiftForwardButton.onClick.AddListener(PreviewNextShift);
 
         InitializeOrGate();
     }
@@ -47,6 +57,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         if (submitButton != null)
             submitButton.onClick.RemoveListener(Submit);
+
+        if (shiftBackwardButton != null)
+            shiftBackwardButton.onClick.RemoveListener(PreviewPreviousShift);
+
+        if (shiftForwardButton != null)
+            shiftForwardButton.onClick.RemoveListener(PreviewNextShift);
     }
 
     private void InitializeOrGate()
@@ -95,9 +111,10 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         solved = false;
+        currentPreviewShift = 0;
 
         encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
-        mappingText.text = CaesarCipher.BuildAlphabetStrip(-puzzleData.Shift);
+        RefreshShiftPreview();
         feedbackText.text = "Decode the message.";
 
         answerInput.text = string.Empty;
@@ -105,6 +122,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = true;
+
+        SetShiftControlsInteractable(true);
     }
 
     private void ResolveDependencies()
@@ -128,8 +147,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private void SetSolvedState()
     {
+        currentPreviewShift = Mathf.Abs(puzzleData.Shift % 26);
         encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
-        mappingText.text = CaesarCipher.BuildAlphabetStrip(-puzzleData.Shift);
+        RefreshShiftPreview();
         feedbackText.text = "Decoded!";
 
         answerInput.text = puzzleData.Plaintext;
@@ -137,12 +157,18 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = false;
+
+        SetShiftControlsInteractable(false);
     }
 
     private void SetBlockedState(string message)
     {
         encodedText.text = string.Empty;
         mappingText.text = string.Empty;
+
+        if (shiftValueText != null)
+            shiftValueText.text = string.Empty;
+
         feedbackText.text = message;
 
         answerInput.text = string.Empty;
@@ -150,6 +176,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = false;
+
+        SetShiftControlsInteractable(false);
     }
 
     private void Submit()
@@ -186,6 +214,36 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             DialogueSystem.Instance.StartDialogue(onSolveDialogue);
 
         onSolved?.Invoke();
+    }
+
+    private void PreviewPreviousShift()
+    {
+        currentPreviewShift = (currentPreviewShift + 25) % 26;
+        RefreshShiftPreview();
+    }
+
+    private void PreviewNextShift()
+    {
+        currentPreviewShift = (currentPreviewShift + 1) % 26;
+        RefreshShiftPreview();
+    }
+
+    private void RefreshShiftPreview()
+    {
+        if (mappingText != null)
+            mappingText.text = CaesarCipher.BuildAlphabetStrip(-currentPreviewShift);
+
+        if (shiftValueText != null)
+            shiftValueText.text = $"+{currentPreviewShift}";
+    }
+
+    private void SetShiftControlsInteractable(bool interactable)
+    {
+        if (shiftBackwardButton != null)
+            shiftBackwardButton.interactable = interactable;
+
+        if (shiftForwardButton != null)
+            shiftForwardButton.interactable = interactable;
     }
 
     private void Close()
