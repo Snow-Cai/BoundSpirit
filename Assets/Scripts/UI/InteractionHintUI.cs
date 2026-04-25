@@ -109,68 +109,13 @@ public class InteractionHintUI : MonoBehaviour
             return false;
         }
 
-        Vector2 playerPosition = player.position;
-        float nearestDistance = maxDistance;
-        bool found = false;
-
-        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None
-        );
-
-        foreach (InteractableObject interactable in interactables)
+        if (!InteractionPriorityResolver.TryGetHighestPriorityKey(player, out targetKey))
         {
-            if (interactable == null || !interactable.enabled)
-            {
-                continue;
-            }
-
-            Vector2 interactablePosition = GetInteractablePosition(interactable);
-            float allowedDistance = Mathf.Max(maxDistance, interactable.interactionRange);
-            float distance = Vector2.Distance(playerPosition, interactablePosition);
-            if (distance <= allowedDistance && distance <= nearestDistance)
-            {
-                nearestDistance = distance;
-                targetPosition = interactablePosition;
-                targetKey = interactable.interactKey;
-                found = true;
-            }
+            return false;
         }
 
-        GraveyardGateController[] gates = FindObjectsByType<GraveyardGateController>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None
-        );
-
-        foreach (GraveyardGateController gate in gates)
-        {
-            if (gate == null || !gate.enabled)
-            {
-                continue;
-            }
-
-            float distance = Vector2.Distance(playerPosition, (Vector2)gate.transform.position);
-            if (distance <= nearestDistance)
-            {
-                nearestDistance = distance;
-                targetPosition = gate.transform.position;
-                targetKey = gate.InteractKey;
-                found = true;
-            }
-        }
-
-        return found;
-    }
-
-    private static Vector2 GetInteractablePosition(InteractableObject interactable)
-    {
-        Collider2D collider = interactable.GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            return collider.bounds.center;
-        }
-
-        return interactable.transform.position;
+        targetPosition = player.position;
+        return true;
     }
 
     private void UpdateHintText(KeyCode key)
@@ -235,5 +180,195 @@ public class InteractionHintUI : MonoBehaviour
         {
             hintLabel.text = string.Empty;
         }
+    }
+}
+
+public static class InteractionPriorityResolver
+{
+    private static int lastConsumedFrame = -1;
+
+    private enum InteractionPriority
+    {
+        Collectible = 0,
+        Interactable = 1,
+        Puzzle = 2,
+        Dialogue = 3
+    }
+
+    private struct Candidate
+    {
+        public Object Source;
+        public KeyCode Key;
+        public InteractionPriority Priority;
+        public float Distance;
+    }
+
+    public static bool IsHighestPriorityTarget(CollectibleObject collectible, Transform player)
+    {
+        return collectible != null &&
+               TryGetHighestPriorityTarget(player, out Candidate candidate) &&
+               ReferenceEquals(candidate.Source, collectible);
+    }
+
+    public static bool IsHighestPriorityTarget(InteractableObject interactable, Transform player)
+    {
+        return interactable != null &&
+               TryGetHighestPriorityTarget(player, out Candidate candidate) &&
+               ReferenceEquals(candidate.Source, interactable);
+    }
+
+    public static bool IsHighestPriorityTarget(GraveyardGateController gate, Transform player)
+    {
+        return gate != null &&
+               TryGetHighestPriorityTarget(player, out Candidate candidate) &&
+               ReferenceEquals(candidate.Source, gate);
+    }
+
+    public static bool TryGetHighestPriorityKey(Transform player, out KeyCode key)
+    {
+        if (TryGetHighestPriorityTarget(player, out Candidate candidate))
+        {
+            key = candidate.Key;
+            return true;
+        }
+
+        key = KeyCode.None;
+        return false;
+    }
+
+    public static bool TryConsumeInteraction()
+    {
+        if (Time.frameCount == lastConsumedFrame)
+        {
+            return false;
+        }
+
+        lastConsumedFrame = Time.frameCount;
+        return true;
+    }
+
+    private static bool TryGetHighestPriorityTarget(Transform player, out Candidate bestCandidate)
+    {
+        bestCandidate = default;
+
+        if (player == null)
+        {
+            return false;
+        }
+
+        bool found = false;
+
+        CollectibleObject[] collectibles = Object.FindObjectsByType<CollectibleObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (CollectibleObject collectible in collectibles)
+        {
+            if (collectible == null || !collectible.CanBeInteractedWith(player))
+            {
+                continue;
+            }
+
+            Candidate candidate = new Candidate
+            {
+                Source = collectible,
+                Key = KeyCode.E,
+                Priority = InteractionPriority.Collectible,
+                Distance = collectible.GetDistanceTo(player)
+            };
+
+            if (!found || IsBetterCandidate(candidate, bestCandidate))
+            {
+                bestCandidate = candidate;
+                found = true;
+            }
+        }
+
+        InteractableObject[] interactables = Object.FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || !interactable.CanBeInteractedWith(player))
+            {
+                continue;
+            }
+
+            Candidate candidate = new Candidate
+            {
+                Source = interactable,
+                Key = interactable.interactKey,
+                Priority = GetInteractablePriority(interactable),
+                Distance = interactable.GetDistanceTo(player)
+            };
+
+            if (!found || IsBetterCandidate(candidate, bestCandidate))
+            {
+                bestCandidate = candidate;
+                found = true;
+            }
+        }
+
+        GraveyardGateController[] gates = Object.FindObjectsByType<GraveyardGateController>(
+            FindObjectsInactive.Exclude,
+            FindObjectsSortMode.None
+        );
+
+        foreach (GraveyardGateController gate in gates)
+        {
+            if (gate == null || !gate.CanBeInteractedWith(player))
+            {
+                continue;
+            }
+
+            Candidate candidate = new Candidate
+            {
+                Source = gate,
+                Key = gate.InteractKey,
+                Priority = InteractionPriority.Puzzle,
+                Distance = gate.GetDistanceTo(player)
+            };
+
+            if (!found || IsBetterCandidate(candidate, bestCandidate))
+            {
+                bestCandidate = candidate;
+                found = true;
+            }
+        }
+
+        return found;
+    }
+
+    private static bool IsBetterCandidate(Candidate candidate, Candidate currentBest)
+    {
+        if (candidate.Priority != currentBest.Priority)
+        {
+            return candidate.Priority < currentBest.Priority;
+        }
+
+        if (!Mathf.Approximately(candidate.Distance, currentBest.Distance))
+        {
+            return candidate.Distance < currentBest.Distance;
+        }
+
+        return candidate.Source.GetInstanceID() < currentBest.Source.GetInstanceID();
+    }
+
+    private static InteractionPriority GetInteractablePriority(InteractableObject interactable)
+    {
+        if (interactable.IsDialoguePriorityTarget())
+        {
+            return InteractionPriority.Dialogue;
+        }
+
+        if (interactable.IsPuzzlePriorityTarget())
+        {
+            return InteractionPriority.Puzzle;
+        }
+
+        return InteractionPriority.Interactable;
     }
 }
