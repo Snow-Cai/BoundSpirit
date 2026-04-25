@@ -63,9 +63,25 @@ public class InteractableObject : MonoBehaviour
     [Header("NPC")]
     private NPCController npcController;
 
+    [Header("Visual Highlight")]
+    [Tooltip("If enabled, this interactable sparkles while the player is within interaction range. NPCs are excluded.")]
+    [SerializeField] private bool glowWhenInRange = true;
+    [SerializeField] private InteractableGlow glow;
+
     private Transform player;
     private Collider2D objectCollider;
     private bool playerInRange = false;
+
+    private void Reset()
+    {
+        EnsureGlowReference();
+    }
+
+    private void OnValidate()
+    {
+        EnsureGlowReference();
+        SetGlow(false);
+    }
 
     void Start()
     {
@@ -87,6 +103,7 @@ public class InteractableObject : MonoBehaviour
 
         npcController = GetComponent<NPCController>();
         objectCollider = GetComponent<Collider2D>();
+        EnsureGlowReference();
 
         if (puzzleUI != null)
         {
@@ -101,6 +118,7 @@ public class InteractableObject : MonoBehaviour
     {
         if (player == null)
         {
+            SetGlow(false);
             return;
         }
 
@@ -110,6 +128,15 @@ public class InteractableObject : MonoBehaviour
         );
 
         bool withinInteractRange = distance <= interactionRange;
+
+        if (ShouldShowGlow(withinInteractRange))
+        {
+            SetGlow(true);
+        }
+        else
+        {
+            SetGlow(false);
+        }
 
         if (isPuzzleOpen)
         {
@@ -300,15 +327,28 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
-            if (SaveSystem.Instance != null &&
+            bool puzzleAlreadySolved =
+                SaveSystem.Instance != null &&
                 !string.IsNullOrEmpty(puzzleID) &&
-                SaveSystem.Instance.IsPuzzleSolved(puzzleID) &&
-                !allowSolvedPuzzleReopen)
+                SaveSystem.Instance.IsPuzzleSolved(puzzleID);
+
+            if (puzzleAlreadySolved && !allowSolvedPuzzleReopen)
             {
+                if (hasDialogue)
+                {
+                    PlayDialogue();
+                }
+
                 yield break;
             }
 
             OpenPuzzle();
+
+            if (puzzleAlreadySolved && hasDialogue)
+            {
+                PlayDialogue();
+            }
+
             yield break;
         }
 
@@ -480,6 +520,84 @@ public class InteractableObject : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
+    }
+
+    private bool ShouldShowGlow(bool withinInteractRange)
+    {
+        if (GetComponent<CollectibleObject>() != null)
+        {
+            return false;
+        }
+
+        if (npcController != null || GetComponent<GhostHintNPC>() != null)
+        {
+            return false;
+        }
+
+        if (!glowWhenInRange)
+        {
+            return false;
+        }
+
+        if (isPuzzleOpen)
+        {
+            return false;
+        }
+
+        if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+        {
+            return false;
+        }
+
+        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+        {
+            return false;
+        }
+
+        return withinInteractRange;
+    }
+
+    private void SetGlow(bool enabled)
+    {
+        if (glow == null)
+        {
+            return;
+        }
+
+        glow.SetHighlighted(enabled);
+    }
+
+    private void EnsureGlowReference()
+    {
+        npcController = GetComponent<NPCController>();
+        GhostHintNPC ghostHint = GetComponent<GhostHintNPC>();
+        CollectibleObject collectible = GetComponent<CollectibleObject>();
+
+        if (npcController != null || ghostHint != null || collectible != null)
+        {
+            InteractableGlow existingGlow = glow != null ? glow : GetComponent<InteractableGlow>();
+            if (existingGlow != null)
+            {
+                existingGlow.SetHighlighted(false);
+            }
+            glow = null;
+            return;
+        }
+
+        if (glow == null)
+        {
+            glow = GetComponent<InteractableGlow>();
+        }
+
+        if (glow == null)
+        {
+            glow = gameObject.AddComponent<InteractableGlow>();
+        }
+
+        if (glow != null)
+        {
+            glow.ApplyStyle(InteractableGlow.HighlightStyle.InteractableSparkle);
+        }
     }
 
 }

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
 /// Self-contained Caesar cipher decode panel.
@@ -14,6 +14,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private CaesarNotePuzzleData puzzleData;
     [SerializeField] private ItemData requiredNoteItem;
     [SerializeField] private ItemData requiredWheelItem;
+    [SerializeField] private string requiredWordSearchPuzzleKey = "Library_WordSearch_13";
     [SerializeField] private string legacyPuzzleID = "CaesarCipher Puzzle";
 
     [Header("Runtime Dependencies (Auto-Resolved)")]
@@ -34,8 +35,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private bool solved;
 
-    #region Unity Lifecycle
-
     private void OnEnable()
     {
         if (submitButton != null)
@@ -49,10 +48,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (submitButton != null)
             submitButton.onClick.RemoveListener(Submit);
     }
-
-    #endregion
-
-    #region Initialization
 
     private void InitializeOrGate()
     {
@@ -84,7 +79,14 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        // Check solved state from SaveSystem
+        if (!string.IsNullOrWhiteSpace(requiredWordSearchPuzzleKey) &&
+            saveSystem != null &&
+            !saveSystem.IsPuzzleSolved(requiredWordSearchPuzzleKey))
+        {
+            SetBlockedState("Solve the library word search to learn the shift hint.");
+            return;
+        }
+
         if (saveSystem != null && saveSystem.IsPuzzleSolved(puzzleData.PuzzleKey))
         {
             solved = true;
@@ -94,13 +96,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         solved = false;
 
-        string encoded = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
-        encodedText.text = encoded;
-
-        // Player is decoding → show negative shift mapping
+        encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
         mappingText.text = CaesarCipher.BuildAlphabetStrip(-puzzleData.Shift);
-
-        feedbackText.text = "Find out the decoded message.";
+        feedbackText.text = "Decode the message.";
 
         answerInput.text = string.Empty;
         answerInput.interactable = true;
@@ -119,7 +117,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (!string.IsNullOrWhiteSpace(playerTag))
         {
-            var player = GameObject.FindGameObjectWithTag(playerTag);
+            GameObject player = GameObject.FindGameObjectWithTag(playerTag);
             if (player != null)
                 playerInventory = player.GetComponent<PlayerInventory>();
         }
@@ -128,15 +126,10 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             playerInventory = FindFirstObjectByType<PlayerInventory>();
     }
 
-    #endregion
-
-    #region States
-
     private void SetSolvedState()
     {
         encodedText.text = CaesarCipher.Shift(puzzleData.Plaintext, puzzleData.Shift);
         mappingText.text = CaesarCipher.BuildAlphabetStrip(-puzzleData.Shift);
-
         feedbackText.text = "Decoded!";
 
         answerInput.text = puzzleData.Plaintext;
@@ -159,10 +152,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             submitButton.interactable = false;
     }
 
-    #endregion
-
-    #region Actions
-
     private void Submit()
     {
         if (puzzleData == null || solved)
@@ -173,7 +162,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (typed != expected)
         {
-            feedbackText.text = "Not quite… try again.";
+            feedbackText.text = "Not quite... try again.";
             return;
         }
 
@@ -203,6 +192,4 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    #endregion
 }

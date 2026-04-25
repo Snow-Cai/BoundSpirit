@@ -2456,6 +2456,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &171221834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18325,6 +18327,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &842411745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18760,6 +18764,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 853468463}
 --- !u!212 &853468462
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18831,7 +18837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
   showSparkle: 1
-  sparkleColor: {r: 0.91764706, g: 0.9137255, b: 0.6784314, a: 1}
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
   sparkleScale: 0.5
   sparkleIntervalRange: {x: 0.5, y: 2}
   sparkleAlphaPulseSpeed: 3.2
@@ -19292,6 +19298,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 2
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &882899478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28076,6 +28084,7 @@ GameObject:
   - component: {fileID: 1224715387}
   - component: {fileID: 1224715390}
   - component: {fileID: 1224715391}
+  - component: {fileID: 1224715392}
   m_Layer: 0
   m_Name: PolaroidCorkboard
   m_TagString: Untagged
@@ -28117,6 +28126,9 @@ MonoBehaviour:
   puzzleManager: {fileID: 1493422114}
   interactPrompt: {fileID: 0}
   firstApproachDialogue: {fileID: 0}
+  solvedDialogue: {fileID: 11400000, guid: 6d6e9809a90e4f4b9cfd36af7a65a841, type: 2}
+  solvedRepeatDialogue: {fileID: 11400000, guid: 15d59c020e048e14eb19bce4a4ae5a53, type: 2}
+  playSolvedDialogueOnlyOnce: 1
 --- !u!61 &1224715388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28246,11 +28258,11 @@ MonoBehaviour:
   repeatDialogue: {fileID: 0}
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 0
+  isPuzzle: 1
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
-  allowSolvedPuzzleReopen: 0
+  allowSolvedPuzzleReopen: 1
   timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
@@ -28262,6 +28274,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1224715392}
 --- !u!50 &1224715391
 Rigidbody2D:
   serializedVersion: 5
@@ -28289,6 +28303,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1224715392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224715385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1227161218
 GameObject:
   m_ObjectHideFlags: 0
@@ -28938,6 +28972,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &1266857959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29139,6 +29175,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &1268758796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31522,9 +31560,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.01438849
+    y: 0
     width: 1
-    height: 0.97122306
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -32615,7 +32653,7 @@ MonoBehaviour:
   confirmButton: {fileID: 1492477348}
   feedbackText: {fileID: 1799466602}
   feedbackDisplayTime: 2
-  onSolveDialogue: {fileID: 0}
+  onSolveDialogue: {fileID: 11400000, guid: 6d6e9809a90e4f4b9cfd36af7a65a841, type: 2}
   onWrongDialogue: {fileID: 0}
   solveObjectiveMessage: You remember the library... Eden.
 --- !u!114 &1493422115
@@ -33409,6 +33447,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 2
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &1548588744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34086,6 +34126,8 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 0}
 --- !u!114 &1613116043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38654,6 +38696,7 @@ GameObject:
   - component: {fileID: 1948428923}
   - component: {fileID: 1948428925}
   - component: {fileID: 1948428926}
+  - component: {fileID: 1948428927}
   m_Layer: 0
   m_Name: Computer
   m_TagString: Untagged
@@ -38825,6 +38868,28 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 3
   interactSound: {fileID: 8300000, guid: ca51a6f34f799524bac7aaede1acdbbd, type: 3}
+  glowWhenInRange: 1
+  glow: {fileID: 1948428927}
+--- !u!114 &1948428927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948428922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1 &1951109361
 GameObject:
   m_ObjectHideFlags: 0
@@ -38930,6 +38995,7 @@ GameObject:
   - component: {fileID: 1956579847}
   - component: {fileID: 1956579850}
   - component: {fileID: 1956579851}
+  - component: {fileID: 1956579852}
   m_Layer: 0
   m_Name: Safe
   m_TagString: Interactable
@@ -39071,6 +39137,7 @@ MonoBehaviour:
   safeUIPanel: {fileID: 1291626096}
   interactionRadius: 1.5
   playerTransform: {fileID: 2000622937}
+  isOpen: 0
   weaponCanvas: {fileID: 66429049}
   weaponObject: {fileID: 1766448194}
   dialogueOnShowWeapon: {fileID: 11400000, guid: aa2da0eec93d0f64e9021a75759610b4, type: 2}
@@ -39115,6 +39182,28 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 2
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1956579852}
+--- !u!114 &1956579852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956579846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &1967477166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40340,6 +40429,7 @@ GameObject:
   - component: {fileID: 2050588828}
   - component: {fileID: 2050588831}
   - component: {fileID: 2050588830}
+  - component: {fileID: 2050588832}
   m_Layer: 0
   m_Name: DeskPuzzle
   m_TagString: Untagged
@@ -40507,6 +40597,28 @@ MonoBehaviour:
   promptText: {fileID: 622910807}
   promptDistance: 2
   interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 2050588832}
+--- !u!114 &2050588832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050588826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
 --- !u!1001 &2052195676
 PrefabInstance:
   m_ObjectHideFlags: 0
