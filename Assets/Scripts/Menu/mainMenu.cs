@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,25 +12,30 @@ public class mainMenu : MonoBehaviour
     public Button chapter0Button;
     public Button chapter1Button;
     public Button chapter2Button;
+    public Button chapter3Button;
+    public Button chapter4Button;
+
+    [Header("Chapter Scene Names")]
+    public string chapter0Scene = "Chapter0_Prologue";
+    public string chapter1Scene = "Chapter1_Home";
+    public string chapter2Scene = "Chapter2_TBD";
+    public string chapter3Scene = "Chapter3_TBD";
+    public string chapter4Scene = "Chapter4_TBD";
 
     [Header("Popup References (Optional)")]
     public GameObject newGameWarningPopup;
 
+    private static readonly Color LockedColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+    private static readonly Color UnlockedColor = Color.white;
+
     void Start()
     {
-        //Update continue button if it exists
         if (continueButton != null && SaveSystem.Instance != null)
         {
             bool hasSave = SaveSystem.Instance.HasPlayableSaveData();
             continueButton.interactable = hasSave;
-
-            //Make button look disabled if no save
             if (!hasSave)
-            {
-                var colors = continueButton.colors;
-                colors.normalColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                continueButton.colors = colors;
-            }
+                SetButtonColor(continueButton, LockedColor);
         }
 
         UpdateChapterButtons();
@@ -48,122 +52,114 @@ public class mainMenu : MonoBehaviour
         }
 #endif
     }
-    void UpdateChapterButtons()
+
+    public void UpdateChapterButtons()
     {
         if (SaveSystem.Instance == null) return;
 
-        //Chapter 0 is always unlocked
-        if (chapter0Button != null)
-        {
-            chapter0Button.interactable = true;
-        }
+        //Chapter 0 is always unlock
+        SetChapterButton(chapter0Button, unlocked: true);
 
-        //Check if Chapter 1 is unlocked
-        if (chapter1Button != null)
-        {
-            bool chapter1Unlocked = SaveSystem.Instance.IsChapterUnlocked(1);
-            chapter1Button.interactable = chapter1Unlocked;
-
-            if (!chapter1Unlocked)
-            {
-                var colors = chapter1Button.colors;
-                colors.normalColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                colors.disabledColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                chapter1Button.colors = colors;
-            }
-        }
-
-        //Check if Chapter 2 is unlocked
-        if (chapter2Button != null)
-        {
-            bool chapter2Unlocked = SaveSystem.Instance.IsChapterUnlocked(2);
-            chapter2Button.interactable = chapter2Unlocked;
-
-            if (!chapter2Unlocked)
-            {
-                var colors = chapter2Button.colors;
-                colors.normalColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                colors.disabledColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-                chapter2Button.colors = colors;
-            }
-        }
+        //chapters 1-4 unlock once the player has completed the previous chapter
+        SetChapterButton(chapter1Button, SaveSystem.Instance.IsChapterUnlocked(1));
+        SetChapterButton(chapter2Button, SaveSystem.Instance.IsChapterUnlocked(2));
+        SetChapterButton(chapter3Button, SaveSystem.Instance.IsChapterUnlocked(3));
+        SetChapterButton(chapter4Button, SaveSystem.Instance.IsChapterUnlocked(4));
     }
 
-    //Chapter button methods
+    private void SetChapterButton(Button btn, bool unlocked)
+    {
+        if (btn == null) return;
+        btn.interactable = unlocked;
+        SetButtonColor(btn, unlocked ? UnlockedColor : LockedColor);
+    }
+
+    private static void SetButtonColor(Button btn, Color c)
+    {
+        if (btn == null) return;
+        var colors = btn.colors;
+        colors.normalColor = c;
+        colors.disabledColor = c;
+        btn.colors = colors;
+    }
+
+    private void LoadChapter(string sceneName, int chapterNumber)
+    {
+        if (SaveSystem.Instance != null)
+        {
+            SaveData data = SaveSystem.Instance.GetSaveData();
+
+            //check whether the player is returning to the chapter they were just in (same scene name already saved) or jumping to a different one
+            bool returningToSameChapter =
+                !string.IsNullOrEmpty(data.currentScene) &&
+                string.Equals(data.currentScene, sceneName, System.StringComparison.Ordinal);
+
+            //update chapter tracker so progression logic stays correct
+            data.currentChapter = chapterNumber;
+
+            if (returningToSameChapter)
+            {
+                Debug.Log("Chapter select: returning to same chapter — keeping saved position.");
+            }
+            else
+            {
+                data.playerPosX = 0f;
+                data.playerPosY = 0f;
+                data.playerPosZ = 0f;
+                data.currentScene = string.Empty; //force defaultSpawnPoint
+                data.onSecondFloor = false;         //start on floor 1
+                Debug.Log("Chapter select: switching chapter — using default spawn.");
+            }
+
+            TravelState.NextSpawnPointId = null;
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void LoadChapter0()
     {
-        if (SaveSystem.Instance == null || SaveSystem.Instance.GetSaveData().currentChapter <= 0)
-        {
-            LoadChapter("Chapter0_Prologue", 0);
-        }
-        else
-        {
-            Debug.Log("Cannot go back to previous chapters!");
-        }
+        LoadChapter(chapter0Scene, 0);
     }
 
     public void LoadChapter1()
     {
         if (SaveSystem.Instance != null && SaveSystem.Instance.IsChapterUnlocked(1))
-        {
-            //Allow if current chapter is 0 (moving forward) or 1 (replaying current)
-            if (SaveSystem.Instance.GetSaveData().currentChapter <= 1)
-            {
-                LoadChapter("Chapter1_Home", 1);
-            }
-            else
-            {
-                Debug.Log("Cannot go back to previous chapters!");
-            }
-        }
+            LoadChapter(chapter1Scene, 1);
     }
 
     public void LoadChapter2()
     {
         if (SaveSystem.Instance != null && SaveSystem.Instance.IsChapterUnlocked(2))
-        {
-            //Allow if current chapter is 1 (moving forward) or 2 (replaying current)
-            if (SaveSystem.Instance.GetSaveData().currentChapter <= 2)
-            {
-                LoadChapter("Chapter2_TBD", 2);
-            }
-            else
-            {
-                Debug.Log("Cannot go back to previous chapters!");
-            }
-        }
+            LoadChapter(chapter2Scene, 2);
     }
 
-    void LoadChapter(string sceneName, int chapterNumber)
+    public void LoadChapter3()
     {
-        //set current chapter in the save system
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.GetSaveData().currentChapter = chapterNumber;
-        }
-
-        //Load scene by name
-        SceneManager.LoadScene(sceneName);
+        if (SaveSystem.Instance != null && SaveSystem.Instance.IsChapterUnlocked(3))
+            LoadChapter(chapter3Scene, 3);
     }
 
-    //For Play Game button
+    public void LoadChapter4()
+    {
+        if (SaveSystem.Instance != null && SaveSystem.Instance.IsChapterUnlocked(4))
+            LoadChapter(chapter4Scene, 4);
+    }
+
     public void PlayGame()
     {
-        //Check if save exists and show warning
         if (SaveSystem.Instance != null && SaveSystem.Instance.HasPlayableSaveData())
         {
             if (newGameWarningPopup != null)
             {
                 newGameWarningPopup.SetActive(true);
-                return; //Wait for user to confirm
+                return;
             }
         }
 
-        //No save exists just start new game
         StartNewGame();
     }
 
-    //For Continue button 
     public void ContinueGame()
     {
         if (SaveSystem.Instance != null && SaveSystem.Instance.HasPlayableSaveData())
@@ -177,40 +173,26 @@ public class mainMenu : MonoBehaviour
         }
     }
 
-    //Called by "Yes" button on warning popup
     public void ConfirmNewGame()
     {
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.DeleteSave();
-        }
+        SaveSystem.Instance?.DeleteSave();
 
         if (newGameWarningPopup != null)
-        {
             newGameWarningPopup.SetActive(false);
-        }
 
         StartNewGame();
     }
 
-    //Called by "Cancel" button on warning popup
     public void CancelNewGame()
     {
         if (newGameWarningPopup != null)
-        {
             newGameWarningPopup.SetActive(false);
-        }
     }
 
     void StartNewGame()
     {
-        if (SaveSystem.Instance != null)
-        {
-            SaveSystem.Instance.DeleteSave();
-        }
-
-        //Load the next scene (first chapter)
-        SceneManager.LoadScene("Chapter0_Prologue");
+        SaveSystem.Instance?.DeleteSave();
+        SceneManager.LoadScene(chapter0Scene);
     }
 
     public void QuitGame()
@@ -219,7 +201,7 @@ public class mainMenu : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+        Application.Quit();
 #endif
     }
 }

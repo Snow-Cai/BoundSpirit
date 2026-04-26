@@ -32,9 +32,20 @@ public class InteractableObject : MonoBehaviour
     public string puzzleID;
     public GameObject puzzleUI;
     public bool isPuzzleOpen = false;
+    [Tooltip("Use this when another component on the same object handles the actual E-key interaction and puzzle open/close flow.")]
+    public bool useExternalInteractionHandler = false;
     [Tooltip("If enabled, the player can still open this puzzle after it has already been solved.")]
     public bool allowSolvedPuzzleReopen = false;
     public bool timeRemainsOn = false;
+
+    [Header("Puzzle Dialogue")]
+    [SerializeField] private DialogueAsset puzzleFirstApproachDialogue;
+    [SerializeField] private DialogueAsset puzzleSolvedDialogue;
+    [SerializeField] private DialogueAsset puzzleSolvedRepeatDialogue;
+    [SerializeField] private bool puzzlePlaySolvedDialogueOnlyOnce = true;
+    [SerializeField] private bool openPuzzleAfterFirstApproachDialogue = true;
+    [SerializeField] private string puzzleFirstApproachViewedKeyOverride;
+    [SerializeField] private string puzzleSolvedViewedKeyOverride;
 
     [Header("Puzzle Components")]
     public LoginPuzzle loginPuzzle;
@@ -71,10 +82,17 @@ public class InteractableObject : MonoBehaviour
     private Transform player;
     private Collider2D objectCollider;
     private bool playerInRange = false;
+    private DialogueAsset pendingPuzzleDialogueToWatch;
+    private bool pendingOpenPuzzleAfterDialogue;
 
     private void Reset()
     {
         EnsureGlowReference();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribePuzzleDialogueHandler();
     }
 
     private void OnValidate()
@@ -140,6 +158,11 @@ public class InteractableObject : MonoBehaviour
 
         if (isPuzzleOpen)
         {
+            if (useExternalInteractionHandler)
+            {
+                return;
+            }
+
             if (InputLock.Instance != null && InputLock.Instance.InteractEnabled && !IsTypingInUI() && Input.GetKeyDown(interactKey))
             {
                 if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
@@ -167,6 +190,11 @@ public class InteractableObject : MonoBehaviour
             {
                 playerInRange = true;
                 ShowPrompt();
+            }
+
+            if (useExternalInteractionHandler)
+            {
+                return;
             }
 
             if (InputLock.Instance != null &&
@@ -346,6 +374,16 @@ public class InteractableObject : MonoBehaviour
                 !string.IsNullOrEmpty(puzzleID) &&
                 SaveSystem.Instance.IsPuzzleSolved(puzzleID);
 
+            if (!puzzleAlreadySolved && TryHandlePuzzleFirstApproachDialogue())
+            {
+                yield break;
+            }
+
+            if (puzzleAlreadySolved && TryHandleSolvedPuzzleDialogue())
+            {
+                yield break;
+            }
+
             if (puzzleAlreadySolved && !allowSolvedPuzzleReopen)
             {
                 if (hasDialogue)
@@ -373,8 +411,132 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
+    private bool TryHandlePuzzleFirstApproachDialogue()
+    {
+        if (puzzleFirstApproachDialogue == null || DialogueSystem.Instance == null)
+        {
+            return false;
+        }
 
-    void OpenPuzzle()
+        string viewedKey = GetPuzzleDialogueKey(puzzleFirstApproachDialogue, puzzleFirstApproachViewedKeyOverride);
+        bool alreadyViewed =
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(viewedKey) &&
+            SaveSystem.Instance.HasViewedDialogue(viewedKey);
+
+        if (alreadyViewed)
+        {
+            return false;
+        }
+
+        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(viewedKey))
+        {
+            SaveSystem.Instance.MarkDialogueViewed(viewedKey);
+        }
+
+        pendingPuzzleDialogueToWatch = puzzleFirstApproachDialogue;
+        pendingOpenPuzzleAfterDialogue = openPuzzleAfterFirstApproachDialogue;
+
+        DialogueSystem.Instance.OnDialogueEnded -= HandlePuzzleDialogueEnded;
+        DialogueSystem.Instance.OnDialogueEnded += HandlePuzzleDialogueEnded;
+        DialogueSystem.Instance.StartDialogue(puzzleFirstApproachDialogue);
+        return true;
+    }
+
+    private bool TryHandleSolvedPuzzleDialogue()
+    {
+        if (DialogueSystem.Instance == null)
+        {
+            return false;
+        }
+
+        DialogueAsset dialogueToPlay = null;
+        string viewedKey = GetPuzzleDialogueKey(puzzleSolvedDialogue, puzzleSolvedViewedKeyOverride);
+        bool solvedDialogueAlreadyViewed =
+            SaveSystem.Instance != null &&
+            !string.IsNullOrEmpty(viewedKey) &&
+            SaveSystem.Instance.HasViewedDialogue(viewedKey);
+
+        if (!solvedDialogueAlreadyViewed || !puzzlePlaySolvedDialogueOnlyOnce)
+        {
+            dialogueToPlay = puzzleSolvedDialogue;
+        }
+
+        if (dialogueToPlay == null)
+        {
+            dialogueToPlay = puzzleSolvedRepeatDialogue;
+        }
+
+        if (dialogueToPlay == null)
+        {
+            return false;
+        }
+
+        OpenPuzzle();
+
+        if (!solvedDialogueAlreadyViewed && SaveSystem.Instance != null && !string.IsNullOrEmpty(viewedKey))
+        {
+            SaveSystem.Instance.MarkDialogueViewed(viewedKey);
+        }
+
+        DialogueSystem.Instance.StartDialogue(dialogueToPlay);
+        return true;
+    }
+
+    private void HandlePuzzleDialogueEnded(DialogueAsset asset)
+    {
+        if (!DialogueMatches(pendingPuzzleDialogueToWatch, asset))
+        {
+            return;
+        }
+
+        bool shouldOpenPuzzle = pendingOpenPuzzleAfterDialogue;
+
+        pendingPuzzleDialogueToWatch = null;
+        pendingOpenPuzzleAfterDialogue = false;
+        UnsubscribePuzzleDialogueHandler();
+
+        if (shouldOpenPuzzle)
+        {
+            OpenPuzzle();
+        }
+    }
+
+    private void UnsubscribePuzzleDialogueHandler()
+    {
+        if (DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.OnDialogueEnded -= HandlePuzzleDialogueEnded;
+        }
+    }
+
+    private string GetPuzzleDialogueKey(DialogueAsset asset, string overrideKey)
+    {
+        if (!string.IsNullOrWhiteSpace(overrideKey))
+        {
+            return overrideKey;
+        }
+
+        return asset != null ? asset.dialogueID : string.Empty;
+    }
+
+    private static bool DialogueMatches(DialogueAsset expected, DialogueAsset finished)
+    {
+        if (expected == null || finished == null)
+        {
+            return false;
+        }
+
+        if (!string.IsNullOrEmpty(expected.dialogueID) && !string.IsNullOrEmpty(finished.dialogueID))
+        {
+            return expected.dialogueID == finished.dialogueID;
+        }
+
+        return ReferenceEquals(expected, finished);
+    }
+
+
+    public void OpenPuzzle()
     {
         PuzzleBridge.currentPuzzleSource = this;
 
@@ -462,7 +624,22 @@ public class InteractableObject : MonoBehaviour
 
             if (popup == null)
             {
-                popup = Object.FindFirstObjectByType<UICluePopup>();
+                popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+            }
+
+            if (popup == null)
+            {
+                GameObject popupPrefab = Resources.Load<GameObject>("PopupCanvas");
+                if (popupPrefab != null)
+                {
+                    GameObject popupInstance = Object.Instantiate(popupPrefab);
+                    popup = popupInstance.GetComponent<UICluePopup>();
+
+                    if (popup == null)
+                    {
+                        popup = popupInstance.GetComponentInChildren<UICluePopup>(true);
+                    }
+                }
             }
 
             if (popup != null)
