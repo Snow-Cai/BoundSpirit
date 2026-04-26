@@ -21,6 +21,9 @@ MonoBehaviour:
   - speakerName: Akila
     dialogueText: These must be the missing words from the encrypted message!
     voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I should return to read the full message now.
+    voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1

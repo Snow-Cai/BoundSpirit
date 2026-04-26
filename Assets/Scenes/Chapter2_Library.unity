@@ -18409,9 +18409,9 @@ MonoBehaviour:
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
-  puzzleID: CaesarCipher Puzzle
+  puzzleID: CaesarCipherPuzzle
   puzzleUI: {fileID: 895794466}
-  isPuzzleOpen: 0
+  isPuzzleOpen: 1
   useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 1
   timeRemainsOn: 0
@@ -18820,6 +18820,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1966618233}
     - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
+      propertyPath: legacyPuzzleID
+      value: CaesarCipherPuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 28343401}
@@ -18827,6 +18831,10 @@ PrefabInstance:
       propertyPath: resultPaperPanel
       value: 
       objectReference: {fileID: 120984538}
+    - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
+      propertyPath: puzzleInteractable
+      value: 
+      objectReference: {fileID: 634195555055406540}
     - target: {fileID: 9153983512227948811, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
       propertyPath: m_Pivot.x
       value: 0

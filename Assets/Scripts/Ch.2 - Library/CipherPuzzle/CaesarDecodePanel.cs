@@ -27,7 +27,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private ItemData requiredNoteItem;
     [SerializeField] private ItemData requiredWheelItem;
     [SerializeField] private string requiredWordSearchPuzzleKey = "Library_WordSearch_13";
-    [SerializeField] private string legacyPuzzleID = "CaesarCipher Puzzle";
+    [SerializeField] private string legacyPuzzleID = "CaesarCipherPuzzle";
     [SerializeField] private string maskedDecodedPhrase = "case file";
     [SerializeField] private string maskedPhrasePlaceholder = "&#@* ^~+*";
     [TextArea(2, 6)]
@@ -67,9 +67,16 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private DialogueAsset onCorrectShiftDialogue;
     [SerializeField] private DialogueAsset onFinalSolveDialogue;
     [SerializeField] private UnityEvent onSolved;
+    [SerializeField] private bool wasSolved = false;            // Use to ensure onPuzzleSolved() is run only once
 
     [SerializeField] private GameObject decodeUIPanel;
     [SerializeField] private GameObject resultPaperPanel;
+
+    [Header("Solve Bridge")]
+    [SerializeField] private InteractableObject puzzleInteractable;
+
+    [Header("Puzzle Identity")]
+    public string puzzleID = "CaesarCipherPuzzle";
 
     private readonly List<TMP_InputField> answerSlots = new();
     private readonly List<int> wordLengths = new();
@@ -168,6 +175,29 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
+        if (puzzleInteractable == null)
+        {
+            InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+            foreach (InteractableObject interactable in interactables)
+            {
+                if (interactable == null || !interactable.isPuzzle)
+                {
+                    continue;
+                }
+
+                if (interactable.puzzleUI == decodeUIPanel ||
+                    (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+                {
+                    puzzleInteractable = interactable;
+                    break;
+                }
+            }
+        }
+
         if (saveSystem != null && saveSystem.IsPuzzleSolved(puzzleData.PuzzleKey))
         {
             solved = true;
@@ -209,8 +239,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if(decodeUIPanel != null) decodeUIPanel.SetActive(false);
         if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
         feedbackText.text = "The final message has been decoded.";
-        if (submitButton != null) submitButton.interactable = true;
-        SetShiftControlsInteractable(true);
+
+        if (puzzleInteractable != null && !wasSolved) puzzleInteractable.OnPuzzleSolved();
+        if (!wasSolved) TryPlayDialogue(onFinalSolveDialogue, true);
+        wasSolved = true;
+        submitButton.interactable = false;
+        SetShiftControlsInteractable(false);
     }
 
     private void ResolveDependencies()
