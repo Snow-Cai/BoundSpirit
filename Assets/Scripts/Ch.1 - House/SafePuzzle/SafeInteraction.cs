@@ -101,6 +101,7 @@ public class SafeInteraction : MonoBehaviour
         DialogueSystem.Instance.StartDialogue(dialogueOnShowWeapon);
         InputLock.Instance.CanToggleInventory = false;
         InputLock.Instance.GameplayInputEnabled = false;
+        CloseAfterDialogue();
     }
 
     void HideWeapon()
@@ -108,6 +109,17 @@ public class SafeInteraction : MonoBehaviour
         if (weaponCanvas != null) weaponCanvas.alpha = 0f;
         if (weaponObject != null) weaponObject.gameObject.SetActive(false);
         StartCoroutine(CloseRoutine());
+    }
+
+    public void CloseAfterDialogue()
+    {
+        StartCoroutine(CloseAfterDialogueRoutine());
+    }
+
+    private IEnumerator CloseAfterDialogueRoutine()
+    {
+        yield return new WaitUntil(() => DialogueSystem.Instance == null || !DialogueSystem.Instance.IsDialogueActive());
+        HideWeapon();
     }
 
     public void SetSolved()
