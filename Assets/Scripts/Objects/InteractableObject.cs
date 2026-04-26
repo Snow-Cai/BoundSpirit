@@ -369,6 +369,12 @@ public class InteractableObject : MonoBehaviour
         // Puzzle interaction
         if (isPuzzle && puzzleUI != null && !isPuzzleOpen)
         {
+            if(puzzleID == "PaintingPuzzle" && LibraryPuzzleStateBridge.Instance != null && !LibraryPuzzleStateBridge.Instance.cipherHalfSolved)        // Special case for library connected puzzle states
+            {
+                if (hasDialogue) PlayDialogue();
+                yield break;
+            }
+            
             bool puzzleAlreadySolved =
                 SaveSystem.Instance != null &&
                 !string.IsNullOrEmpty(puzzleID) &&
