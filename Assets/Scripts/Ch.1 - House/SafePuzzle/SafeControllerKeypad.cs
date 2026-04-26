@@ -42,8 +42,23 @@ public class SafeControllerKeypad : MonoBehaviour
     [Tooltip("Played once when the correct code succeeds (after knob turn), not when opening the safe.")]
     public DialogueAsset dialogueOnUnlock;
 
+    [Header("Solve Bridge")]
+    [SerializeField] private InteractableObject puzzleInteractable;
+
     private StringBuilder currentInput = new StringBuilder();
     private bool hasUnlockedSuccessfully;
+
+    private void Awake()
+    {
+        if (puzzleInteractable == null)
+        {
+            SafeInteraction safeInteraction = FindFirstObjectByType<SafeInteraction>();
+            if (safeInteraction != null)
+            {
+                puzzleInteractable = safeInteraction.GetComponent<InteractableObject>();
+            }
+        }
+    }
 
     public void OnDigitPressed(string digit)
     {
@@ -127,7 +142,11 @@ public class SafeControllerKeypad : MonoBehaviour
             successLight.color = UnityEngine.Color.green;
         inputText.text = "UNLOCKED";
 
-        if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
+        if (puzzleInteractable != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
         {
             SaveSystem.Instance.UnlockPuzzle(savePuzzleIdWhenUnlocked);
         }

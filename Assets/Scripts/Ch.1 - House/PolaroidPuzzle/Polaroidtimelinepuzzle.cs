@@ -46,6 +46,9 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
     [Header("Objective")]
     public string solveObjectiveMessage = "You remember the library... Eden.";
 
+    [Header("Solve Bridge")]
+    [SerializeField] private InteractableObject puzzleInteractable;
+
     private bool puzzleSolved = false;
     private Coroutine feedbackCoroutine;
 
@@ -55,6 +58,29 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     private void Start()
     {
+        if (puzzleInteractable == null)
+        {
+            InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+            foreach (InteractableObject interactable in interactables)
+            {
+                if (interactable == null || !interactable.isPuzzle)
+                {
+                    continue;
+                }
+
+                if (interactable.puzzleUI == puzzlePanel ||
+                    (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+                {
+                    puzzleInteractable = interactable;
+                    break;
+                }
+            }
+        }
+
         if (inspectPopup != null)
             inspectPopup.SetActive(false);
 
@@ -107,6 +133,12 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     public void ClosePuzzle()
     {
+        if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+        {
+            puzzleInteractable.ClosePuzzle();
+            return;
+        }
+
         if (puzzlePanel != null)
         {
             Canvas canvas = puzzlePanel.GetComponent<Canvas>();
@@ -225,12 +257,17 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
     {
         puzzleSolved = true;
         PopulateSolvedState();
+        ClosePuzzle();
 
-        //save puzzle state
-        if (SaveSystem.Instance != null)
+        if (puzzleInteractable != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null)
+        {
             SaveSystem.Instance.UnlockPuzzle(puzzleID);
+        }
 
-        //play solve dialogue
         if (onSolveDialogue != null && DialogueSystem.Instance != null)
             DialogueSystem.Instance.StartDialogue(onSolveDialogue);
 

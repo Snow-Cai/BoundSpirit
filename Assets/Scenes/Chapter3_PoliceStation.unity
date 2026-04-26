@@ -984,14 +984,15 @@ MonoBehaviour:
   isPuzzle: 1
   puzzleID: StationComputerPuzzle
   puzzleUI: {fileID: 907081996}
-  isPuzzleOpen: 0
+  isPuzzleOpen: 1
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
   loginPuzzle: {fileID: 0}
-  tidbitPopupCanvas: {fileID: 0}
-  informationalTidbit: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 1939730739}
+  informationalTidbit: {fileID: 11400000, guid: 780b150c5b0cfa745a9ea2d5df9b182e, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 0
+  showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 0}
   promptText: {fileID: 0}
@@ -6467,6 +6468,7 @@ MonoBehaviour:
   puzzleID: StationLocker
   puzzleUI: {fileID: 2118891725}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 1
   loginPuzzle: {fileID: 0}
@@ -9425,7 +9427,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 4.3199997, y: -62.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930714562
 MonoBehaviour:
@@ -10018,9 +10020,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.16698655
+    width: 1.8465228
+    height: 1.0364683
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -12488,7 +12490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1499355195
 Transform:
   m_ObjectHideFlags: 0
@@ -13441,7 +13443,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 88.32, y: 0}
+  m_SizeDelta: {x: 88.32, y: 27.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640661960
 MonoBehaviour:
@@ -15434,23 +15436,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -551
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -278.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15470,7 +15472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15480,6 +15482,11 @@ PrefabInstance:
 --- !u!224 &1939730738 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+  m_PrefabInstance: {fileID: 1939730737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1939730739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8144920994590030644, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
   m_PrefabInstance: {fileID: 1939730737}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1987189997
