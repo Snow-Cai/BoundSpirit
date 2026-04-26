@@ -54,3 +54,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1448f12dd8b7d944490ef5b4928eae41, type: 2}
   - {fileID: 11400000, guid: 65dfe6cf09025884793c8ec16c8e8d44, type: 2}
   - {fileID: 11400000, guid: 06ebccd20d2ec9744920832a09117586, type: 2}
+  prevPageButton: {fileID: 0}
+  nextPageButton: {fileID: 0}
