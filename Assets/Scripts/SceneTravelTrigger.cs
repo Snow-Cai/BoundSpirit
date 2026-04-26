@@ -124,6 +124,11 @@ public class SceneTravelTrigger : MonoBehaviour
 
         if (SaveSystem.Instance != null)
         {
+            //unlock the destination chapter so it becomes available in chapter select
+            int destChapter = GetChapterNumberForScene(destination.sceneName);
+            if (destChapter >= 0)
+                SaveSystem.Instance.UnlockChapter(destChapter);
+
             SaveSystem.Instance.SaveGame();
             SaveSystem.Instance.SetTransitioning(true);
         }
@@ -148,6 +153,19 @@ public class SceneTravelTrigger : MonoBehaviour
         }
 
         SceneManager.LoadScene(destination.sceneName);
+    }
+
+    //returns the chapter number for a given scene name, or -1 if not a chapter scene
+    private static int GetChapterNumberForScene(string sceneName)
+    {
+        if (string.IsNullOrEmpty(sceneName)) return -1;
+        if (sceneName.StartsWith("Chapter0", System.StringComparison.OrdinalIgnoreCase)) return 0;
+        if (sceneName.StartsWith("Chapter1", System.StringComparison.OrdinalIgnoreCase)) return 1;
+        if (sceneName.StartsWith("Chapter2", System.StringComparison.OrdinalIgnoreCase)) return 2;
+        if (sceneName.StartsWith("Chapter3", System.StringComparison.OrdinalIgnoreCase)) return 3;
+        if (sceneName.StartsWith("Chapter4", System.StringComparison.OrdinalIgnoreCase)) return 4; //??? no need?
+        if (sceneName.Equals("ChapterFinal", System.StringComparison.OrdinalIgnoreCase)) return 4;
+        return -1;
     }
 
     public void ConfigureButtonVisual(Destination destination)
