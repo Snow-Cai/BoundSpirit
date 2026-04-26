@@ -31,7 +31,7 @@ public class ClueObject : MonoBehaviour
             playerInventory = player.GetComponent<PlayerInventory>();
 
         clueJournal = Object.FindFirstObjectByType<ClueJournal>();
-        popup = Object.FindFirstObjectByType<UICluePopup>();
+        popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
 
         if (promptUI != null)
             promptUI.SetActive(false);
