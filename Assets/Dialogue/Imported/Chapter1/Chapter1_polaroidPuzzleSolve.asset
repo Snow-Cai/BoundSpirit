@@ -15,7 +15,15 @@ MonoBehaviour:
   dialogueID: Chapter1_polaroidPuzzleSolve
   lines:
   - speakerName: Akila
-    dialogueText: These photos... the library. Maybe I can find more clues there.
+    dialogueText: 'These photos... I think I''m remembering my life more clearly
+      now. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: 'I... think I was killed? In 2019, the same year as the last photo. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: And also, Eden... she was important to me. I think I should go
+      to the library. Maybe I can find more clues there.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
