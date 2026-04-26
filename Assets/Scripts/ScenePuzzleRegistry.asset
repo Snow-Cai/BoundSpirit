@@ -16,9 +16,20 @@ MonoBehaviour:
   - sceneName: Chapter0_Prologue
     puzzleIDs:
     - Chapter0_graveyard_gate
+    - graveyard_ghost_rose
+    - graveyard_ghost_crumpledPaper
+    - graveyard_ghost_key
   - sceneName: Chapter1_Home
     puzzleIDs:
     - Chapter1_polaroid_timeline
     - ReassemblyPuzzle
     - Chapter1_parentRoomSafe
     - LoginPuzzle
+  - sceneName: Chapter2_Library
+    puzzleIDs:
+    - CaesarCipher Puzzle
+    - Library_WordSearch_13
+  - sceneName: Chapter3_PoliceStation
+    puzzleIDs:
+    - StationLocker
+    - StationComputerPuzzle
