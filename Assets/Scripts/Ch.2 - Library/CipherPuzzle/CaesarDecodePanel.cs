@@ -288,6 +288,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                 partialDecodeComplete = true;
                 feedbackText.text = "I can read part of it now, but some symbols still need another clue.";
 
+                LibraryPuzzleStateBridge.Instance.SetCipherHalfSolved();        // Connect painting puzzle part
+
                 SetAnswerSlotsInteractable(false);
 
                 if (submitButton != null)
@@ -305,6 +307,14 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
+        bool canFinalize = LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize();
+
+        if (!canFinalize)
+        {
+            feedbackText.text = "I'm missing something... part of the message is still unclear. Maybe I should look around for clues.";
+            return;
+        }
+
         string expected = CaesarCipher.NormalizeForCompare("THE CASE FILE WILL REVEAL THE TRUTH");
 
         if (typed != expected)
@@ -315,7 +325,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         solved = true;
-        feedbackText.text = "Decoded!";
+        feedbackText.text = "The full message is decoded!";
 
         if (saveSystem != null)
         {
