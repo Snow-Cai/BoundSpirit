@@ -154,7 +154,7 @@ public class EndingManager : MonoBehaviour
 
     private EndingType ResolveSelectedEnding()                  // TEMPORARY: UPDATE WHEN SAVE SYSTEM IMPLEMENTS THE CHOICE FLAGS i.e. read from SaveSystem flags instead of dialogue system
     {
-        return EndingType.Revenge;
+        return EndingType.Secret;
 
         //int resulting = 
         //if (resultingChoice < 0)
