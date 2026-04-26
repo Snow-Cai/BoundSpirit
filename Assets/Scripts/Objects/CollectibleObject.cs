@@ -44,7 +44,7 @@ public class CollectibleObject : MonoBehaviour
     private void Start()
     {
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        popup = Object.FindFirstObjectByType<UICluePopup>();
+        popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
         EnsureGlowReference();
         if (p != null)
             player = p.transform;

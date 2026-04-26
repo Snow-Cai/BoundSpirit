@@ -16,12 +16,16 @@ public class UICluePopup : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (popupCanvas == null)
+        {
+            popupCanvas = GetComponent<CanvasGroup>();
+        }
+
         if (popupCanvas != null)
         {
-            popupCanvas.gameObject.SetActive(true);
+            popupCanvas.gameObject.SetActive(false);
             popupCanvas.alpha = 0f;
-            popupCanvas.blocksRaycasts = false;  
+            popupCanvas.blocksRaycasts = false;
         }
 
         // Find player & movement script
@@ -38,10 +42,31 @@ public class UICluePopup : MonoBehaviour
         if (string.IsNullOrWhiteSpace(message) || popupCanvas == null || clueText == null)
             return;
 
+        if (!popupCanvas.gameObject.activeSelf)
+        {
+            popupCanvas.gameObject.SetActive(true);
+        }
+
         if (popupRoutine != null)
             StopCoroutine(popupRoutine);
 
-        popupRoutine = StartCoroutine(PopupRoutine(message));
+        popupRoutine = StartCoroutine(PopupRoutine(message, null));
+    }
+
+    public void ShowTransientMessage(string message, float autoCloseDelay)
+    {
+        if (string.IsNullOrWhiteSpace(message) || popupCanvas == null || clueText == null)
+            return;
+
+        if (!popupCanvas.gameObject.activeSelf)
+        {
+            popupCanvas.gameObject.SetActive(true);
+        }
+
+        if (popupRoutine != null)
+            StopCoroutine(popupRoutine);
+
+        popupRoutine = StartCoroutine(PopupRoutine(message, autoCloseDelay));
     }
 
     public void ShowTidbit(InformationalTidbitData tidbit)
@@ -65,7 +90,7 @@ public class UICluePopup : MonoBehaviour
         ShowMessage(message);
     }
 
-    private IEnumerator PopupRoutine(string msg)
+    private IEnumerator PopupRoutine(string msg, float? autoCloseDelay)
     {
         popupOpen = true;
         GameInputState.MovementLocked = true;
@@ -91,8 +116,20 @@ public class UICluePopup : MonoBehaviour
 
         closeRequested = false;
 
-        while (!closeRequested && !Input.GetKeyDown(KeyCode.E))
-            yield return null;
+        if (autoCloseDelay.HasValue)
+        {
+            float remaining = autoCloseDelay.Value;
+            while (remaining > 0f)
+            {
+                remaining -= Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (!closeRequested)
+                yield return null;
+        }
 
         t = 0f;
         while (t < fadeDuration)
@@ -104,6 +141,7 @@ public class UICluePopup : MonoBehaviour
 
         popupCanvas.alpha = 0f;
         popupCanvas.blocksRaycasts = false;
+        popupCanvas.gameObject.SetActive(false);
 
         if (movementScript != null)
             movementScript.enabled = true;
