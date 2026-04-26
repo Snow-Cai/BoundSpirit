@@ -68,6 +68,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private DialogueAsset onFinalSolveDialogue;
     [SerializeField] private UnityEvent onSolved;
 
+    [SerializeField] private GameObject decodeUIPanel;
+    [SerializeField] private GameObject resultPaperPanel;
+
     private readonly List<TMP_InputField> answerSlots = new();
     private readonly List<int> wordLengths = new();
     private bool solved;
@@ -123,6 +126,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         ResolveDependencies();
 
+        if(resultPaperPanel != null) resultPaperPanel.SetActive(false);
+
         if (puzzleData == null)
         {
             SetBlockedState("Missing puzzle data.");
@@ -146,6 +151,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (requiredWheelItem != null && !playerInventory.HasItem(requiredWheelItem))
         {
             SetBlockedState("You need the Caesar Cipher Wheel.");
+            return;
+        }
+
+        if(LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize() && !solved)
+        {
+            ApplyFinalRevealState();
             return;
         }
 
@@ -190,6 +201,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (submitButton != null)
             submitButton.interactable = true;
 
+        SetShiftControlsInteractable(true);
+    }
+
+    private void ApplyFinalRevealState()
+    {
+        if(decodeUIPanel != null) decodeUIPanel.SetActive(false);
+        if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
+        feedbackText.text = "The final message has been decoded.";
+        if (submitButton != null) submitButton.interactable = true;
         SetShiftControlsInteractable(true);
     }
 
@@ -507,6 +527,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         if (puzzleData == null)
             return string.Empty;
+
+        if (solved)
+            return GetVisiblePlaintext();
 
         if (!ShouldRevealMaskedPhrase() && !string.IsNullOrWhiteSpace(maskedEncodedTextOverride))
             return maskedEncodedTextOverride;
