@@ -11,7 +11,7 @@ public class SaveData
     public float playerPosX;
     public float playerPosY;
     public float playerPosZ;
-    public bool onSecondFloor = false;  
+    public bool onSecondFloor = false;
 
 
     //progress
@@ -67,6 +67,10 @@ public class SaveSystem : MonoBehaviour
     private const string MENU_SECRET_KEY = "FoundMenuSecret";
     private bool isTransitioning = false;
 
+    //set to true by SceneInitializer after inventory is loaded into the player
+    //prevents SaveGame from overwriting collectedItems with an empty inventory
+    private bool inventoryReadyToSave = false;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -85,7 +89,14 @@ public class SaveSystem : MonoBehaviour
     public void SetTransitioning(bool transitioning)
     {
         isTransitioning = transitioning;
+        if (transitioning)
+            inventoryReadyToSave = false; // will be reset by SceneInitializer after load
         Debug.Log("SAVE: Transition state: " + transitioning);
+    }
+
+    public void MarkInventoryReady()
+    {
+        inventoryReadyToSave = true;
     }
     public bool IsTransitioning()
     {
@@ -119,7 +130,7 @@ public class SaveSystem : MonoBehaviour
         {
             Vector3 pos = player.transform.position;
 
-            //SAFETY CHECK 1: Make sure player is grounded
+            //SAFETY CHECK: Make sure player is grounded
             CharacterController controller = player.GetComponent<CharacterController>();
             Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
 
@@ -146,8 +157,8 @@ public class SaveSystem : MonoBehaviour
                 isGrounded = true;
             }
 
-            //SAFETY CHECK 2: Don't save if position seems invalid (falling into void)
-            bool validPosition = pos.y > -50f; // Adjust based on map bounds
+            //SAFETY CHECK: Don't save if position seems invalid (falling into void)
+            bool validPosition = pos.y > -50f;
 
             if (isGrounded && validPosition)
             {
@@ -166,14 +177,21 @@ public class SaveSystem : MonoBehaviour
             Debug.LogError("SAVE: No player found!");
         }
 
-        //Save player's inventory (only if player exists)
+        //Save player's inventory
         if (player != null)
         {
             PlayerInventory inv = player.GetComponent<PlayerInventory>();
             if (inv != null)
             {
-                currentSave.collectedItems = inv.GetInventoryItemIDs();
-                Debug.Log("SAVE: Inventory has been saved (" + currentSave.collectedItems.Count + " items)");
+                if (inventoryReadyToSave)
+                {
+                    currentSave.collectedItems = inv.GetInventoryItemIDs();
+                    Debug.Log("SAVE: Inventory saved (" + currentSave.collectedItems.Count + " items)");
+                }
+                else
+                {
+                    Debug.Log("SAVE: Inventory not ready yet — keeping previous collectedItems to avoid wipe.");
+                }
             }
             else
             {
@@ -234,7 +252,7 @@ public class SaveSystem : MonoBehaviour
         //unsubscribe so this only runs once
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        // Reset transition flag after scene loads
+        //Reset transition flag after scene loads
         isTransitioning = false;
 
         //restore collected items
@@ -256,26 +274,26 @@ public class SaveSystem : MonoBehaviour
         else
         {
             Transform map = mapGo.transform;
-        foreach (Transform floor in map)
-        {
-            Transform itemsParent = floor.Find("CollectibleItemsParent");
-            if (itemsParent == null) continue;
-            Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
-            foreach (Transform item in items)
+            foreach (Transform floor in map)
             {
-                CollectibleObject co = item.GetComponent<CollectibleObject>();
-                string id = co != null ? co.item.itemID : item.name;
-                if (currentSave.collectedItems.Contains(id))
+                Transform itemsParent = floor.Find("CollectibleItemsParent");
+                if (itemsParent == null) continue;
+                Transform[] items = itemsParent.GetComponentsInChildren<Transform>(true);
+                foreach (Transform item in items)
                 {
-                    if (co != null && co.disappearOnPickup)
+                    CollectibleObject co = item.GetComponent<CollectibleObject>();
+                    string id = co != null ? co.item.itemID : item.name;
+                    if (currentSave.collectedItems.Contains(id))
                     {
-                        item.gameObject.SetActive(false);
-                    }
+                        if (co != null && co.disappearOnPickup)
+                        {
+                            item.gameObject.SetActive(false);
+                        }
 
-                    Debug.Log("Restored collected item: " + id);
+                        Debug.Log("Restored collected item: " + id);
+                    }
                 }
             }
-        }
         }
 
         //Restore player's inventory
@@ -287,6 +305,7 @@ public class SaveSystem : MonoBehaviour
             {
                 inv.LoadInventoryFromIDs(currentSave.collectedItems);
                 Debug.Log("RESTORE: Player inventory restored! " + currentSave.collectedItems.Count + " items restored.");
+                inventoryReadyToSave = true;
             }
             else
             {
@@ -295,10 +314,6 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Syncs graveyard gate visuals with save after runtime save edits (e.g. dev progress shortcuts).
-    /// Does not hide world collectibles or puzzle objects — use a scene reload for full restore.
-    /// </summary>
     public void ApplySaveToLoadedScene()
     {
         if (currentSave == null)
@@ -360,16 +375,19 @@ public class SaveSystem : MonoBehaviour
         if (currentSave == null)
             LoadGame();
 
-        if (currentSave == null || string.IsNullOrWhiteSpace(currentSave.currentScene))
+        if (currentSave == null)
             return false;
 
-        if (string.Equals(currentSave.currentScene, "MenuScene", StringComparison.Ordinal))
-            return false;
+        bool hasScene = !string.IsNullOrWhiteSpace(currentSave.currentScene) &&
+                        !string.Equals(currentSave.currentScene, "MenuScene", StringComparison.Ordinal);
 
-        return Application.CanStreamedLevelBeLoaded(currentSave.currentScene);
+        if (hasScene)
+            return Application.CanStreamedLevelBeLoaded(currentSave.currentScene);
+
+        return currentSave.currentChapter > 0;
     }
 
-    //Getters and Setters for easy access
+    //Getters and Setters
     public SaveData GetSaveData()
     {
         return currentSave;
@@ -495,7 +513,7 @@ public class SaveSystem : MonoBehaviour
             return chapterNumber == 0; //only chapter 0 if no save
         }
 
-        //a chapter is unlocked if it's <= the highest unlocked chapter
+        if (chapterNumber == 0) return true;
         return chapterNumber <= currentSave.highestChapterUnlocked;
     }
 
