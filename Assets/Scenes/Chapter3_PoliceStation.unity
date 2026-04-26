@@ -988,6 +988,13 @@ MonoBehaviour:
   useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 1939730739}
   informationalTidbit: {fileID: 11400000, guid: 780b150c5b0cfa745a9ea2d5df9b182e, type: 2}
@@ -6471,11 +6478,18 @@ MonoBehaviour:
   useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 1
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
-  tidbitPopupCanvas: {fileID: 0}
-  informationalTidbit: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 1939730739}
+  informationalTidbit: {fileID: 11400000, guid: 572edd664b9f0504dac2d8be89c276b8, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 0
+  showTidbitOnSolve: 1
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 0}
   promptText: {fileID: 0}
@@ -7396,28 +7410,24 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1499355195}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Name
       value: HelpBookCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1764021672645596107, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1646370981}
-    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PrevPage
-      objectReference: {fileID: 0}
     - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1646370981}
-    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextPage
-      objectReference: {fileID: 0}
     - target: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7503,11 +7513,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be55368f501716a40b43760001c4dadc, type: 3}
---- !u!224 &690354648 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
-  m_PrefabInstance: {fileID: 690354647}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &690354649 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -7764,7 +7769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3461793804168183608, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.45
+      value: 22.483
       objectReference: {fileID: 0}
     - target: {fileID: 3461793804168183608, guid: 355b54e26efde9342ad0b929ec644e9b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8816,6 +8821,7 @@ MonoBehaviour:
   correctCode: 020000000900000005000000030000000700000004000000
   policeFileObtainedDialogue: {fileID: 11400000, guid: 0bd92613026a4b541873feac57dc4f10, type: 2}
   puzzleID: StationLocker
+  puzzleInteractable: {fileID: 0}
 --- !u!1 &891089591
 GameObject:
   m_ObjectHideFlags: 0
@@ -9348,6 +9354,8 @@ MonoBehaviour:
   correctcaseIndex: 3
   interactDialogue: {fileID: 11400000, guid: 7d2f34f69d8a0874c87e85bb28a99aa5, type: 2}
   alarmEventTriggeredDialogue: {fileID: 11400000, guid: 2c071386655ff0e41a3384504c5760cd, type: 2}
+  puzzleID: StationComputerPuzzle
+  puzzleInteractable: {fileID: 0}
 --- !u!114 &907082002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9427,7 +9435,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4.3199997, y: -62.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930714562
 MonoBehaviour:
@@ -10020,9 +10028,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.16698655
-    width: 1.8465228
-    height: 1.0364683
+    y: 0.0631068
+    width: 1
+    height: 0.87378645
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -12490,7 +12498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1499355195
 Transform:
   m_ObjectHideFlags: 0
@@ -12510,7 +12518,6 @@ Transform:
   - {fileID: 1577007742}
   - {fileID: 791926198}
   - {fileID: 1715420762}
-  - {fileID: 690354648}
   - {fileID: 453985146}
   - {fileID: 384066273}
   m_Father: {fileID: 0}
@@ -13443,7 +13450,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 88.32, y: 27.8}
+  m_SizeDelta: {x: 88.32, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640661960
 MonoBehaviour:
@@ -19055,6 +19062,7 @@ SceneRoots:
   - {fileID: 89137259}
   - {fileID: 1172835108}
   - {fileID: 1177185906}
+  - {fileID: 690354647}
   - {fileID: 1499355195}
   - {fileID: 1350610684}
   - {fileID: 879472567}

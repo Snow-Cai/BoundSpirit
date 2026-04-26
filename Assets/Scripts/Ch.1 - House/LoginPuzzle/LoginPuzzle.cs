@@ -8,7 +8,7 @@ using System.Collections;
 
 public class LoginPuzzle : MonoBehaviour
 {
-    private const string ForgotPasswordHintMessage = "Hint: Password format is year + important person's name in lower case. EX: yyyynaame";
+    private const string ForgotPasswordHintMessage = "Hint: Password format is year + important person's name in lower case. EX: YYYYname";
     private const string ForgotUsernameHintMessage = "Hint: What dad calls me";
     private const string RecoveryTriggeredMessage = "Password entry wrong more than 5 times. Initiating recovery.";
 

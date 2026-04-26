@@ -18,6 +18,12 @@ public class LockerPuzzleController : MonoBehaviour
 
     [Header("Save Progress")]
     [SerializeField] private string puzzleID = "StationLocker";
+    [SerializeField] private InteractableObject puzzleInteractable;
+
+    private void Awake()
+    {
+        ResolvePuzzleInteractable();
+    }
 
     public void Open()
     {
@@ -60,7 +66,13 @@ public class LockerPuzzleController : MonoBehaviour
 
     void Unlock()
     {
-        if (SaveSystem.Instance != null && !string.IsNullOrWhiteSpace(puzzleID))
+        ResolvePuzzleInteractable();
+
+        if (puzzleInteractable != null && !string.IsNullOrWhiteSpace(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null && !string.IsNullOrWhiteSpace(puzzleID))
         {
             SaveSystem.Instance.UnlockPuzzle(puzzleID);
         }
@@ -74,6 +86,34 @@ public class LockerPuzzleController : MonoBehaviour
         for(int i = 0; i <digitTexts.Length; i++)
         {
             digitTexts[i].text = currentCode[i].ToString();
+        }
+    }
+
+    private void ResolvePuzzleInteractable()
+    {
+        if (puzzleInteractable != null)
+        {
+            return;
+        }
+
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || !interactable.isPuzzle)
+            {
+                continue;
+            }
+
+            if (interactable.puzzleUI == lockerUI ||
+                (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+            {
+                puzzleInteractable = interactable;
+                break;
+            }
         }
     }
 }
