@@ -374,7 +374,7 @@ public class InteractableObject : MonoBehaviour
     }
 
 
-    void OpenPuzzle()
+    public void OpenPuzzle()
     {
         PuzzleBridge.currentPuzzleSource = this;
 
@@ -462,7 +462,22 @@ public class InteractableObject : MonoBehaviour
 
             if (popup == null)
             {
-                popup = Object.FindFirstObjectByType<UICluePopup>();
+                popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+            }
+
+            if (popup == null)
+            {
+                GameObject popupPrefab = Resources.Load<GameObject>("PopupCanvas");
+                if (popupPrefab != null)
+                {
+                    GameObject popupInstance = Object.Instantiate(popupPrefab);
+                    popup = popupInstance.GetComponent<UICluePopup>();
+
+                    if (popup == null)
+                    {
+                        popup = popupInstance.GetComponentInChildren<UICluePopup>(true);
+                    }
+                }
             }
 
             if (popup != null)

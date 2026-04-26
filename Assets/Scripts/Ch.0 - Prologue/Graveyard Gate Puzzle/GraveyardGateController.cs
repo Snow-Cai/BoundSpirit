@@ -38,6 +38,7 @@ public class GraveyardGateController : MonoBehaviour
 
     [Header("Puzzle UI")]
     [SerializeField] private GameObject puzzleUI;
+    [SerializeField] private InteractableObject puzzleInteractable;
 
     [Header("Gate Visuals")]
     [Tooltip("Visual object to disable when the gate is unlocked")]
@@ -55,6 +56,14 @@ public class GraveyardGateController : MonoBehaviour
     private bool closePuzzleUiAfterGateHintDialogue;
     private bool closePuzzleUiAfterGhostsIncompleteDialogue;
     private bool movementLockedUntilPuzzleInput;
+
+    private void Awake()
+    {
+        if (puzzleInteractable == null)
+        {
+            puzzleInteractable = GetComponent<InteractableObject>();
+        }
+    }
 
     private void Start()
     {
@@ -104,7 +113,7 @@ public class GraveyardGateController : MonoBehaviour
             return;
         }
 
-        bool puzzleOpen = puzzleUI != null && puzzleUI.activeSelf;
+        bool puzzleOpen = IsPuzzleOpen();
 
         // When no puzzle is open, respect the global input lock.
         if (GameInputState.DialogueActive && !puzzleOpen)
@@ -118,6 +127,13 @@ public class GraveyardGateController : MonoBehaviour
         if (puzzleOpen && Input.GetKeyDown(KeyCode.Escape))
         {
             ClosePuzzleUI();
+            return;
+        }
+
+        // Let InteractableObject own the "press E again to close" behavior once
+        // the puzzle is already registered as open.
+        if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+        {
             return;
         }
 
@@ -349,7 +365,19 @@ public class GraveyardGateController : MonoBehaviour
 
     private void OpenPuzzleUI(bool lockMovementUntilInput = false)
     {
-        if (puzzleUI != null)
+        if (puzzleInteractable != null)
+        {
+            if (puzzleInteractable.puzzleUI == null)
+            {
+                puzzleInteractable.puzzleUI = puzzleUI;
+            }
+
+            if (!puzzleInteractable.isPuzzleOpen)
+            {
+                puzzleInteractable.OpenPuzzle();
+            }
+        }
+        else if (puzzleUI != null)
         {
             puzzleUI.SetActive(true);
         }
@@ -365,7 +393,11 @@ public class GraveyardGateController : MonoBehaviour
         closePuzzleUiAfterGateHintDialogue = false;
         closePuzzleUiAfterGhostsIncompleteDialogue = false;
 
-        if (puzzleUI != null)
+        if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+        {
+            puzzleInteractable.ClosePuzzle();
+        }
+        else if (puzzleUI != null)
         {
             puzzleUI.SetActive(false);
         }
@@ -452,12 +484,17 @@ public class GraveyardGateController : MonoBehaviour
 
     public void OnGatePuzzleSolved()
     {
-        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(gatePuzzleID))
+        ClosePuzzleUI();
+
+        if (puzzleInteractable != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null && !string.IsNullOrEmpty(gatePuzzleID))
         {
             SaveSystem.Instance.UnlockPuzzle(gatePuzzleID);
         }
 
-        ClosePuzzleUI();
         ApplyGateUnlockedState();
         Debug.Log("Gate puzzle solved. Gate unlocked.");
     }
@@ -510,6 +547,16 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         return Vector2.Distance(transform.position, targetPlayer.position);
+    }
+
+    private bool IsPuzzleOpen()
+    {
+        if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+        {
+            return true;
+        }
+
+        return puzzleUI != null && puzzleUI.activeSelf;
     }
 
     public float InteractionRange => interactionRange;

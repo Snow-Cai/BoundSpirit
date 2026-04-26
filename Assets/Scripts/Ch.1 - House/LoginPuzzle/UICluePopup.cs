@@ -8,6 +8,7 @@ public class UICluePopup : MonoBehaviour
     public TextMeshProUGUI clueText;
     public float fadeDuration = 0.4f;
 
+    private bool closeRequested = false;
     private Coroutine popupRoutine;
     private CharMovement movementScript;
     private Rigidbody2D playerRigidbody;
@@ -88,7 +89,9 @@ public class UICluePopup : MonoBehaviour
         }
         popupCanvas.alpha = 1f;
 
-        while (!Input.GetKeyDown(KeyCode.E))
+        closeRequested = false;
+
+        while (!closeRequested && !Input.GetKeyDown(KeyCode.E))
             yield return null;
 
         t = 0f;
@@ -108,6 +111,7 @@ public class UICluePopup : MonoBehaviour
         GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
+        closeRequested = false;
     }
 
     public bool IsPopupOpen()
@@ -128,6 +132,10 @@ public class UICluePopup : MonoBehaviour
         }
     }
 
+    public void ClosePopup()
+    {
+        closeRequested = true;
+    }
     private void OnDisable()
     {
         if (movementScript != null)
