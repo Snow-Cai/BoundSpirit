@@ -1076,8 +1076,16 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -1369,8 +1377,16 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -2102,8 +2118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a8b292850b53444b760080971caae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::LibraryPuzzleStateBridge
-  caesarPanel: {fileID: 0}
-  paintingPuzzle: {fileID: 0}
+  caesarPanel: {fileID: 895794468}
+  paintingPuzzle: {fileID: 1121634136}
   cipherHalfSolved: 0
   paintingSolved: 0
 --- !u!4 &261811477
@@ -3057,8 +3073,16 @@ MonoBehaviour:
   puzzleID: 
   puzzleUI: {fileID: 0}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -4158,8 +4182,16 @@ MonoBehaviour:
   puzzleID: Library_WordSearch_13
   puzzleUI: {fileID: 8677320663046725603}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 1
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -4616,6 +4648,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8677320662711431425, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
   m_PrefabInstance: {fileID: 8661512274842124778}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &895794468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
+  m_PrefabInstance: {fileID: 8661512274842124778}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895794466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ea91a9166d09c4a9a0dd9a1e260aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CaesarDecodePanel
 --- !u!1001 &961987494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8759,9 +8802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a225f57da45228e4db4aadc14e023c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PaintingPuzzleManager
-  puzzleReady: 0
   displayText: {fileID: 1248302942}
-  dialogueOnPaintingSolve: {fileID: 0}
+  dialogueOnPaintingSolve: {fileID: 11400000, guid: 2cca676ed0eb66547bad2750cefdc6d5, type: 2}
+  puzzleReady: 0
 --- !u!1 &1125612418
 GameObject:
   m_ObjectHideFlags: 0
@@ -10219,9 +10262,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.01438849
     width: 1
-    height: 1
+    height: 0.97122306
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -11100,8 +11143,16 @@ MonoBehaviour:
   puzzleID: PaintingPuzzle
   puzzleUI: {fileID: 1121634131}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 0}
   informationalTidbit: {fileID: 0}
@@ -18045,8 +18096,16 @@ MonoBehaviour:
   puzzleID: CaesarCipher Puzzle
   puzzleUI: {fileID: 895794466}
   isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
   allowSolvedPuzzleReopen: 1
   timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
   loginPuzzle: {fileID: 0}
   tidbitPopupCanvas: {fileID: 1417884732}
   informationalTidbit: {fileID: 11400000, guid: 72db96ea25b363d4da43008c83a59f77, type: 2}
