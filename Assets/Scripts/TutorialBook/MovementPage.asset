@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a13461709dc07e24da1c1018a915d5d7, type: 3}
-  m_Name: DialoguePage
+  m_Name: MovementPage
   m_EditorClassIdentifier: BoundSpiritRuntime::JournalPage
-  leftPageText: 'INTERACTION:
+  leftPageText: 'MOVEMENT:
+
+    To move, you may use the arrow keys or WASD for the
+    respective direction you wish to float.'
+  rightPageText: 'INTERACTION:
 
     There will be many objects you can interact with.
     Interactable objects will have a prompt, letting you know you can interact with
     them. Interact by pressing ''E''. Sometimes, this will cause a popup to appear.
     To exit an interaction popup, press ''E'' again.'
-  rightPageText: 'DIALOGUE:
-
-    Some people love to blabber. When in a dialogue,
-    press ''Space'' to speed through or progress to the next line of dialogue.'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}

@@ -7410,11 +7410,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1499355195}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Name
       value: HelpBookCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1764021672645596107, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7517,11 +7521,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be55368f501716a40b43760001c4dadc, type: 3}
---- !u!224 &690354648 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
-  m_PrefabInstance: {fileID: 690354647}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &690354649 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8149519695380784282, guid: be55368f501716a40b43760001c4dadc, type: 3}
@@ -12527,7 +12526,6 @@ Transform:
   - {fileID: 1577007742}
   - {fileID: 791926198}
   - {fileID: 1715420762}
-  - {fileID: 690354648}
   - {fileID: 453985146}
   - {fileID: 384066273}
   m_Father: {fileID: 0}
@@ -19072,6 +19070,7 @@ SceneRoots:
   - {fileID: 89137259}
   - {fileID: 1172835108}
   - {fileID: 1177185906}
+  - {fileID: 690354647}
   - {fileID: 1499355195}
   - {fileID: 1350610684}
   - {fileID: 879472567}
