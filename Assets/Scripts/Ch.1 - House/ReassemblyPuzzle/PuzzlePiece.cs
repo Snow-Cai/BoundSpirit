@@ -45,6 +45,9 @@ public class PuzzlePiece : MonoBehaviour, IPointerDownHandler, IDragHandler, IPo
             rect.anchoredPosition = correctPos;
             isPlaced = true;
 
+            GetComponent<UnityEngine.UI.Image>().raycastTarget = false;
+            rect.SetSiblingIndex(1);
+
             manager.CheckPuzzleCompletion();
         }
     }
