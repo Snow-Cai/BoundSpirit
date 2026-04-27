@@ -29,6 +29,7 @@ MonoBehaviour:
     puzzleIDs:
     - CaesarCipher Puzzle
     - Library_WordSearch_13
+    - PaintingPuzzle
   - sceneName: Chapter3_PoliceStation
     puzzleIDs:
     - StationLocker
