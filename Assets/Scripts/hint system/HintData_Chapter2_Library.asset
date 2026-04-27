@@ -35,6 +35,13 @@ MonoBehaviour:
     requiredStoryFlag: 
     gatedBehindPuzzleID: 
     gatedBehindDialogueID: Chapter2_caesarCorrectShift
+  - editorLabel: "Ch2 \u2013 paitning done, need to go to cipher"
+    hintText: Now that you've solved the painting, go check out the cipher again!
+    requiredPuzzleID: CaesarCipherPuzzle
+    requiredDialogueID: Chapter2_libraryClue
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: PaintingPuzzle
+    gatedBehindDialogueID: 
   - editorLabel: "Ch2 \u2013 All done, go to police station"
     hintText: A case file... Dad was a police officer. Maybe his station has the
       answers.
