@@ -11114,18 +11114,17 @@ RectTransform:
   m_GameObject: {fileID: 724515724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2084703103}
-  - {fileID: 1525299439}
   m_Father: {fileID: 1626130169}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 800, y: 450}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &724515726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12067,6 +12066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d71eb86b79bd8f41916b17d82d7ef5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::PrologueInventoryHintController
+  timeShown: 10
   tutorialPopup: {fileID: 724515724}
 --- !u!1 &886374549
 GameObject:
@@ -27878,17 +27878,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525299438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.6666666, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 724515725}
+  m_Father: {fileID: 2084703103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 770, y: 50}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: 650, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525299440
 MonoBehaviour:
@@ -27911,7 +27911,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "You just picked up an item! Press \u026A to open your inventory, hover
-    over items to see their names, and click to inspect more details!"
+    over items to see their names, & click to inspect more details!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
   m_sharedMaterial: {fileID: -7712678409183204614, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
@@ -27938,8 +27938,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -46324,14 +46324,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1525299439}
   m_Father: {fileID: 724515725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 12, y: -10}
+  m_SizeDelta: {x: 670, y: 220}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &2084703104
 MonoBehaviour:
   m_ObjectHideFlags: 0

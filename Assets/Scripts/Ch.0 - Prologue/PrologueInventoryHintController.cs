@@ -4,6 +4,7 @@ using System.Collections;
 public class PrologueInventoryHintController : MonoBehaviour
 {
     public static bool hasShownTutorial = false;
+    public float timeShown = 5f;
 
     [SerializeField] private GameObject tutorialPopup;
 
@@ -18,7 +19,7 @@ public class PrologueInventoryHintController : MonoBehaviour
 
     IEnumerator Hide()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(timeShown);
         tutorialPopup.SetActive(false);
     }
 }
