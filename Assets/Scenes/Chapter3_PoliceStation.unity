@@ -6533,7 +6533,7 @@ MonoBehaviour:
   tidbitPopupCanvas: {fileID: 1939730739}
   informationalTidbit: {fileID: 11400000, guid: 572edd664b9f0504dac2d8be89c276b8, type: 2}
   tidbitMessage: 
-  showTidbitOnSolve: 1
+  showTidbitOnSolve: 0
   useLocalInteractPrompt: 1
   interactPrompt: {fileID: 0}
   promptText: {fileID: 0}
@@ -10073,9 +10073,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.54098356
-    width: 2.8096116
-    height: 4.4262295
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

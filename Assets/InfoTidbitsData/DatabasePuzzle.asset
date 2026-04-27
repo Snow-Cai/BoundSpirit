@@ -13,17 +13,7 @@ MonoBehaviour:
   m_Name: DatabasePuzzle
   m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
   title: 
-  body: 'meow meow meow meow meow
-
-    placeholder
-
-    meow meow meow
-
-    roof
-
-    woof
-
-    haha
-    roof
-
-'
+  body: Most secure systems will check to ensure that the person trying to access
+    information is also allowed to do so. In this puzzle, even when inputting the
+    correct details about the case, you still get denied because you don't have proof
+    of authorization. Sensitive data requires verified access!
