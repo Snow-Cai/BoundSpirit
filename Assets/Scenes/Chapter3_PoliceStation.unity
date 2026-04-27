@@ -10028,9 +10028,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0631068
+    y: 0
     width: 1
-    height: 0.87378645
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -12476,13 +12476,95 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1252426643007516218, guid: ef88f67d5872a434ca4f2f88832511be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1483745141}
+    - targetCorrespondingSourceObject: {fileID: 1252426643007516218, guid: ef88f67d5872a434ca4f2f88832511be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1483745140}
   m_SourcePrefab: {fileID: 100100000, guid: ef88f67d5872a434ca4f2f88832511be, type: 3}
 --- !u!4 &1483745138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 131122522874222990, guid: ef88f67d5872a434ca4f2f88832511be, type: 3}
   m_PrefabInstance: {fileID: 1483745137}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1483745139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1252426643007516218, guid: ef88f67d5872a434ca4f2f88832511be, type: 3}
+  m_PrefabInstance: {fileID: 1483745137}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1483745140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483745139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd58a3399d0d54f87887653cd24e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableGlow
+  showSparkle: 1
+  sparkleColor: {r: 0.78039217, g: 0.6862745, b: 0.36078432, a: 1}
+  sparkleScale: 0.5
+  sparkleIntervalRange: {x: 0.5, y: 2}
+  sparkleAlphaPulseSpeed: 3.2
+  sparkleSizePulseSpeed: 2.2
+  companionScaleMultiplier: 0.5
+  companionOffsetRadius: 0.28
+--- !u!114 &1483745141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483745139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::InteractableObject
+  objectName: TrashCanWithNewspaper
+  interactKey: 101
+  interactionRange: 2
+  itemRequired: 0
+  requiredItem: {fileID: 0}
+  objectDialogue: {fileID: 11400000, guid: 7c6eb9866244d1040a98845e74da9182, type: 2}
+  hasDialogue: 1
+  triggerEndingSequence: 0
+  playPrimaryOnlyOnce: 0
+  primaryDialogue: {fileID: 0}
+  repeatDialogue: {fileID: 0}
+  missingItemDialogue: {fileID: 0}
+  setFoundHiddenTombstoneOnInteract: 0
+  isPuzzle: 0
+  puzzleID: 
+  puzzleUI: {fileID: 0}
+  isPuzzleOpen: 0
+  useExternalInteractionHandler: 0
+  allowSolvedPuzzleReopen: 0
+  timeRemainsOn: 0
+  puzzleFirstApproachDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 0}
+  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzlePlaySolvedDialogueOnlyOnce: 1
+  openPuzzleAfterFirstApproachDialogue: 1
+  puzzleFirstApproachViewedKeyOverride: 
+  puzzleSolvedViewedKeyOverride: 
+  loginPuzzle: {fileID: 0}
+  tidbitPopupCanvas: {fileID: 0}
+  informationalTidbit: {fileID: 0}
+  tidbitMessage: 
+  showTidbitOnSolve: 0
+  useLocalInteractPrompt: 1
+  interactPrompt: {fileID: 0}
+  promptText: {fileID: 0}
+  promptDistance: 3
+  interactSound: {fileID: 0}
+  glowWhenInRange: 1
+  glow: {fileID: 1483745140}
 --- !u!1 &1499355194
 GameObject:
   m_ObjectHideFlags: 0
@@ -13450,7 +13532,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 88.32, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640661960
 MonoBehaviour:
