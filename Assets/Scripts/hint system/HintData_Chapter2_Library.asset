@@ -41,5 +41,5 @@ MonoBehaviour:
     requiredPuzzleID: 
     requiredDialogueID: 
     requiredStoryFlag: 
-    gatedBehindPuzzleID: 
+    gatedBehindPuzzleID: PaintingPuzzle
     gatedBehindDialogueID: Chapter2_libraryClue
