@@ -138,7 +138,7 @@ public static class DialogueCsvImporter
                         nextDialogue = null,
                         requiredFlags = new List<string>(),
                         forbiddenFlags = new List<string>(),
-                        onChoiceSelected = new UnityEvent()
+                        onChoiceSelectedID = row.Event
                     };
 
                     if (!string.IsNullOrWhiteSpace(row.NextDialogueID) &&

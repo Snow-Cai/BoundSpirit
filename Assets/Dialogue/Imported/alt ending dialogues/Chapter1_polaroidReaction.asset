@@ -22,40 +22,12 @@ MonoBehaviour:
     nextDialogue: {fileID: 0}
     requiredFlags: []
     forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-          m_MethodName: set_name
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: ClarityChoiceHandler.OnPolaroid_Empathy
-            m_BoolArgument: 0
-          m_CallState: 2
+    onChoiceSelectedID: 
   - choiceText: She was the last person close to me before I died.
     nextDialogue: {fileID: 0}
     requiredFlags: []
     forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-          m_MethodName: set_name
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: ClarityChoiceHandler.OnPolaroid_Deflect
-            m_BoolArgument: 0
-          m_CallState: 2
+    onChoiceSelectedID: Tombstone_Deflect
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1

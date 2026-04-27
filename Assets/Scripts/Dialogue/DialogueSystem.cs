@@ -173,7 +173,7 @@ public class DialogueSystem : MonoBehaviour
             return;
 
         lastSelectedChoiceIndex = choiceIndex;
-        choice.onChoiceSelected?.Invoke();
+        HandleChoiceEvent(choice.onChoiceSelectedID);
 
         if (SaveSystem.Instance != null &&
             currentDialogue != null &&
@@ -187,6 +187,84 @@ public class DialogueSystem : MonoBehaviour
             QueueDialogue(choice.nextDialogue);
 
         FinishCurrentDialogue();
+    }
+
+    private void HandleChoiceEvent(string id)
+    {
+        switch (id)
+        {
+            case "Tombstone_SelfAware":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Tombstone_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Weapon_SelfAware":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Weapon_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Polaroid_Empathy":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Cipher_OpenMinded":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Cipher_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Polaroid_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Files_FullAcceptance":
+                ClaritySystem.AddClarity(2);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Files_PartialAcceptance":
+                ClaritySystem.AddClarity(2);
+                Debug.Log("Added 2 clarity points.");
+                break;
+            case "Files_Denial":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "ForgiveChosen":
+                StoryFlags.Set(StoryFlags.Flag.TruthRevealed);
+                Debug.Log("Chapter4: Forgive ending chosen.");
+                break;
+            case "RevengeChosen":
+                // EdenRevealed should already be true from chpt3, but set it explicitly as a safety net
+                StoryFlags.Set(StoryFlags.Flag.EdenRevealed);
+
+                // Ensure TruthRevealed stays false so ResolveSelectedEnding returns Revenge
+                if (SaveSystem.Instance != null)
+                {
+                    SaveData data = SaveSystem.Instance.GetSaveData();
+                    if (data != null)
+                    {
+                        data.truthRevealed = false;
+                        SaveSystem.Instance.SaveGame();
+                    }
+                }
+
+                Debug.Log("Chapter4: Revenge ending chosen.");
+                break;
+            case "SecretChosen":
+                StoryFlags.UnlockSecretEnding();
+                Debug.Log("Chapter4: Secret ending chosen.");
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>

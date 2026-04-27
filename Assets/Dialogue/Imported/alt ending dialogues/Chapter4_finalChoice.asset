@@ -23,61 +23,19 @@ MonoBehaviour:
     requiredFlags:
     - clarityForForgive
     forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-          m_MethodName: set_name
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: ClarityChoiceHandler.OnForgiveChosen
-            m_BoolArgument: 0
-          m_CallState: 2
+    onChoiceSelectedID: ForgiveChosen
   - choiceText: You took everything from me.
     nextDialogue: {fileID: 0}
     requiredFlags: []
     forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-          m_MethodName: set_name
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: ClarityChoiceHandler.OnRevengeChosen
-            m_BoolArgument: 0
-          m_CallState: 2
-  - choiceText: There's somewhere else I need to go.
+    onChoiceSelectedID: RevengeChosen
+  - choiceText: Something strange has been going on.
     nextDialogue: {fileID: 0}
     requiredFlags:
     - foundHiddenTombstone
     - foundMenuSecret
     forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-          m_MethodName: set_name
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: ClarityChoiceHandler.OnSecretChosen
-            m_BoolArgument: 0
-          m_CallState: 2
+    onChoiceSelectedID: SecretChosen
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1
