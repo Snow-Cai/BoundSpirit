@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -161,9 +162,19 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        if(LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize() && !solved)
+        ResolvePuzzleInteractableReference();
+        ApplySavedProgress();
+
+        bool finalRevealAlreadyCompleted = HasFinalRevealBeenCompleted();
+        if (finalRevealAlreadyCompleted)
         {
-            ApplyFinalRevealState();
+            ApplyFinalRevealState(false);
+            return;
+        }
+
+        if (CanRevealFinalMessage())
+        {
+            ApplyFinalRevealState(true);
             return;
         }
 
@@ -175,38 +186,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        if (puzzleInteractable == null)
-        {
-            InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
-                FindObjectsInactive.Include,
-                FindObjectsSortMode.None
-            );
-
-            foreach (InteractableObject interactable in interactables)
-            {
-                if (interactable == null || !interactable.isPuzzle)
-                {
-                    continue;
-                }
-
-                if (interactable.puzzleUI == decodeUIPanel ||
-                    (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
-                {
-                    puzzleInteractable = interactable;
-                    break;
-                }
-            }
-        }
-
-        if (saveSystem != null && saveSystem.IsPuzzleSolved(puzzleData.PuzzleKey))
-        {
-            solved = true;
-            SetSolvedState();
-            return;
-        }
-
         solved = false;
-        ApplySavedProgress();
         SyncAnswerSlotsFromHierarchy();
 
         ApplyEncodedTextPresentation();
@@ -234,17 +214,48 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         SetShiftControlsInteractable(true);
     }
 
-    private void ApplyFinalRevealState()
+    private void ApplyFinalRevealState(bool triggerSolveEffects)
     {
+        solved = true;
+
         if(decodeUIPanel != null) decodeUIPanel.SetActive(false);
         if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
         feedbackText.text = "The final message has been decoded.";
 
-        if (puzzleInteractable != null && !wasSolved) puzzleInteractable.OnPuzzleSolved();
-        if (!wasSolved) TryPlayDialogue(onFinalSolveDialogue, true);
+        if (triggerSolveEffects)
+        {
+            if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+            {
+                puzzleInteractable.ClosePuzzle();
+            }
+
+            ShowConfiguredFinalTidbit();
+
+            if (saveSystem != null)
+            {
+                if (puzzleData != null && !string.IsNullOrWhiteSpace(puzzleData.PuzzleKey))
+                {
+                    saveSystem.UnlockPuzzle(puzzleData.PuzzleKey);
+                }
+
+                if (!string.IsNullOrWhiteSpace(legacyPuzzleID))
+                {
+                    saveSystem.UnlockPuzzle(legacyPuzzleID);
+                }
+            }
+
+            StartCoroutine(PlayFinalDialogueAfterTidbitCloses());
+            ClearSavedProgress();
+            onSolved?.Invoke();
+        }
+
         wasSolved = true;
-        submitButton.interactable = false;
+
+        if (submitButton != null)
+            submitButton.interactable = false;
+
         SetShiftControlsInteractable(false);
+        SetAnswerSlotsInteractable(false);
     }
 
     private void ResolveDependencies()
@@ -342,7 +353,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                 partialDecodeComplete = true;
                 feedbackText.text = "I can read part of it now, but some symbols still need another clue.";
 
-                LibraryPuzzleStateBridge.Instance.SetCipherHalfSolved();        // Connect painting puzzle part
+                LibraryPuzzleStateBridge.Instance?.SetCipherHalfSolved();        // Connect painting puzzle part
 
                 SetAnswerSlotsInteractable(false);
 
@@ -361,7 +372,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        bool canFinalize = LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize();
+        bool canFinalize = CanRevealFinalMessage();
 
         if (!canFinalize)
         {
@@ -378,28 +389,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        solved = true;
-        feedbackText.text = "The full message is decoded!";
-
-        if (saveSystem != null)
-        {
-            saveSystem.UnlockPuzzle(puzzleData.PuzzleKey);
-
-            if (!string.IsNullOrWhiteSpace(legacyPuzzleID))
-                saveSystem.UnlockPuzzle(legacyPuzzleID);
-        }
-
-        SetAnswerSlotsInteractable(false);
-
-        if (submitButton != null)
-            submitButton.interactable = false;
-
-        SetShiftControlsInteractable(false);
-
-        TryPlayDialogue(onFinalSolveDialogue, true);
-
-        ClearSavedProgress();
-        onSolved?.Invoke();
+        ApplyFinalRevealState(!HasFinalRevealBeenCompleted());
     }
 
     private void PreviewPreviousShift()
@@ -522,6 +512,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private bool ShouldRevealMaskedPhrase()
     {
+        if (CanRevealFinalMessage())
+            return true;
+
         if (saveSystem == null)
             return false;
 
@@ -532,6 +525,77 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         return !string.IsNullOrWhiteSpace(revealMaskedPhraseAfterLegacyPuzzleKey) &&
+               saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterLegacyPuzzleKey);
+    }
+
+    private void ResolvePuzzleInteractableReference()
+    {
+        if (puzzleInteractable != null)
+            return;
+
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || !interactable.isPuzzle)
+            {
+                continue;
+            }
+
+            if (interactable.puzzleUI == decodeUIPanel ||
+                (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+            {
+                puzzleInteractable = interactable;
+                break;
+            }
+        }
+    }
+
+    private bool HasFinalRevealBeenCompleted()
+    {
+        if (wasSolved)
+            return true;
+
+        if (saveSystem == null)
+            return false;
+
+        if (puzzleData != null &&
+            !string.IsNullOrWhiteSpace(puzzleData.PuzzleKey) &&
+            saveSystem.IsPuzzleSolved(puzzleData.PuzzleKey))
+        {
+            return true;
+        }
+
+        return !string.IsNullOrWhiteSpace(legacyPuzzleID) &&
+               saveSystem.IsPuzzleSolved(legacyPuzzleID);
+    }
+
+    private bool CanRevealFinalMessage()
+    {
+        if (LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize())
+            return true;
+
+        if (!partialDecodeComplete)
+            return false;
+
+        if (LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.paintingSolved)
+            return true;
+
+        if (saveSystem != null && saveSystem.IsPuzzleSolved("PaintingPuzzle"))
+            return true;
+
+        if (saveSystem != null &&
+            !string.IsNullOrWhiteSpace(revealMaskedPhraseAfterPuzzleKey) &&
+            saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterPuzzleKey))
+        {
+            return true;
+        }
+
+        return saveSystem != null &&
+               !string.IsNullOrWhiteSpace(revealMaskedPhraseAfterLegacyPuzzleKey) &&
                saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterLegacyPuzzleKey);
     }
 
@@ -918,6 +982,74 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             DialogueSystem.Instance.StartDialogue(dialogue);
         else
             DialogueSystem.Instance.QueueDialogue(dialogue);
+    }
+
+    private void ShowConfiguredFinalTidbit()
+    {
+        UICluePopup popup = ResolveTidbitPopup();
+        if (popup == null || puzzleInteractable == null)
+            return;
+
+        if (puzzleInteractable.informationalTidbit != null)
+        {
+            popup.ShowTidbit(puzzleInteractable.informationalTidbit);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(puzzleInteractable.tidbitMessage))
+        {
+            popup.ShowTidbitMessage(puzzleInteractable.tidbitMessage);
+        }
+    }
+
+    private UICluePopup ResolveTidbitPopup()
+    {
+        UICluePopup popup = null;
+
+        if (puzzleInteractable != null && puzzleInteractable.tidbitPopupCanvas != null)
+        {
+            popup = puzzleInteractable.tidbitPopupCanvas.GetComponent<UICluePopup>();
+
+            if (popup == null)
+            {
+                popup = puzzleInteractable.tidbitPopupCanvas.GetComponentInChildren<UICluePopup>(true);
+            }
+        }
+
+        if (popup == null)
+        {
+            popup = FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+        }
+
+        if (popup == null)
+        {
+            GameObject popupPrefab = Resources.Load<GameObject>("PopupCanvas");
+            if (popupPrefab != null)
+            {
+                GameObject popupInstance = Instantiate(popupPrefab);
+                popup = popupInstance.GetComponent<UICluePopup>();
+
+                if (popup == null)
+                {
+                    popup = popupInstance.GetComponentInChildren<UICluePopup>(true);
+                }
+            }
+        }
+
+        return popup;
+    }
+
+    private IEnumerator PlayFinalDialogueAfterTidbitCloses()
+    {
+        yield return null;
+
+        UICluePopup popup = FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+        while (popup != null && popup.IsPopupOpen())
+        {
+            yield return null;
+        }
+
+        TryPlayDialogue(onFinalSolveDialogue, true);
     }
 
     private readonly struct AnswerTokenLayout

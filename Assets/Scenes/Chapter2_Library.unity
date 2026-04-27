@@ -399,6 +399,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1677839486}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &42562090 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
+  m_PrefabInstance: {fileID: 207061834}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &50538799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1955,7 +1960,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1677839486}
     m_Modifications:
     - target: {fileID: 3596076546910437139, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_Pivot.x
@@ -12261,6 +12266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 42562090}
   - {fileID: 335589416}
   - {fileID: 203034309}
   - {fileID: 1013020150}
@@ -18953,6 +18959,5 @@ SceneRoots:
   - {fileID: 1984584652}
   - {fileID: 1751097584}
   - {fileID: 1236233006}
-  - {fileID: 207061834}
   - {fileID: 261811477}
   - {fileID: 180859856}

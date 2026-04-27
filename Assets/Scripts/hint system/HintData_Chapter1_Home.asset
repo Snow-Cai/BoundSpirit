@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b139b6e3f48b1a443b7afdb704e86cab, type: 3}
+  m_Name: HintData_Chapter1_Home
+  m_EditorClassIdentifier: BoundSpiritRuntime::SceneHintData
+  hints:
+  - editorLabel: "Ch1 \u2013 Talk to Mom"
+    hintText: Find your mom!
+    requiredPuzzleID: 
+    requiredDialogueID: Chapter2_mom
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch1 \u2013 Talk to Dad"
+    hintText: The stairs are open now. Someone is upstairs.
+    requiredPuzzleID: 
+    requiredDialogueID: Chapter2_dad
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter2_mom
+  - editorLabel: "Ch1 \u2013 Solve login puzzle"
+    hintText: 'There''s a computer in the office. Dad kept calling you something:
+      a nickname.'
+    requiredPuzzleID: LoginPuzzle
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter2_dad
+  - editorLabel: "Ch1 \u2013 Find desk puzzle clue"
+    hintText: There's something in your parents' room that explains what code the
+      safe uses. It seems to have fell on the ground. Find it and inspect it on their
+      desk.
+    requiredPuzzleID: ReassemblyPuzzle
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: LoginPuzzle
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch1 \u2013 Get the key"
+    hintText: There may have been a key downstairs. The safe probably needs it. The
+      reassembled note gave me the numbers. I just need to put them together at the
+      safe.
+    requiredPuzzleID: Chapter1_parentRoomSafe
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: ReassemblyPuzzle
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch1 \u2013 Polaroid puzzle"
+    hintText: 'The photos on your desk need to be in order: the way time flows. Youngest
+      first, oldest last.'
+    requiredPuzzleID: Chapter1_polaroid_timeline
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: Chapter1_parentRoomSafe
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch1 \u2013 All done, go to library"
+    hintText: The latest polaroid showed the library. You used to go there all the
+      time with Eden. Maybe you should go there now.
+    requiredPuzzleID: 
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: Chapter1_polaroid_timeline
+    gatedBehindDialogueID: 
