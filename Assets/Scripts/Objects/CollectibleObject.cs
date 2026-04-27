@@ -102,6 +102,7 @@ public class CollectibleObject : MonoBehaviour
                 SfxPlayback.PlayClipAtPoint(pickupSound, transform.position);
             if (pickupDialogue != null && DialogueSystem.Instance != null)
                 DialogueSystem.Instance.QueueDialogue(pickupDialogue);
+            FindFirstObjectByType<PrologueInventoryHintController>()?.TryShowTutorial();
             collected = true;
         }
         else if (
