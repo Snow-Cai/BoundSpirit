@@ -59,9 +59,11 @@ public class InteractionHintUI : MonoBehaviour
 
         bool inspectOpen = InspectUI.Instance != null && InspectUI.Instance.IsOpen;
         bool puzzleOverlayOpen = CaesarDecodePanel.IsPanelActuallyOpen || LibraryWordSearchPanel.IsPanelActuallyOpen;
+        bool gameplayInputBlocked = InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled;
 
         if ((hideWhenDialogueActive && (GameInputState.DialogueActive || endingPresentationActive)) ||
             puzzleOverlayOpen ||
+            gameplayInputBlocked ||
             inspectOpen ||
             !IntroDialogueHasPlayed())
         {
@@ -167,7 +169,7 @@ public class InteractionHintUI : MonoBehaviour
         float newAlpha = Mathf.MoveTowards(
             hintCanvasGroup.alpha,
             targetAlpha,
-            fadeSpeed * Time.deltaTime
+            fadeSpeed * Time.unscaledDeltaTime
         );
 
         hintCanvasGroup.alpha = newAlpha;
