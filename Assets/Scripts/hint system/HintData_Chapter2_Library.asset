@@ -48,5 +48,5 @@ MonoBehaviour:
     requiredPuzzleID: 
     requiredDialogueID: 
     requiredStoryFlag: 
-    gatedBehindPuzzleID: PaintingPuzzle
+    gatedBehindPuzzleID: CaesarCipherPuzzle
     gatedBehindDialogueID: Chapter2_libraryClue
