@@ -32256,7 +32256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848841235827521886, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 168.4
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 5007489772089502366, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_Pivot.x
@@ -32790,9 +32790,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.057407405
+    width: 0.77291673
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
