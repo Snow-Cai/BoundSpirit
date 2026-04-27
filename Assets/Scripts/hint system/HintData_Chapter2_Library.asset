@@ -49,4 +49,4 @@ MonoBehaviour:
     requiredDialogueID: 
     requiredStoryFlag: 
     gatedBehindPuzzleID: CaesarCipherPuzzle
-    gatedBehindDialogueID: Chapter2_libraryClue
+    gatedBehindDialogueID: 
