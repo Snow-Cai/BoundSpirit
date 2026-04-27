@@ -13,10 +13,33 @@ MonoBehaviour:
   m_Name: HintData_Chapter2_Library
   m_EditorClassIdentifier: BoundSpiritRuntime::SceneHintData
   hints:
-  - editorLabel: 
-    hintText: 
-    requiredPuzzleID: 
+  - editorLabel: "Ch2 \u2013 word search"
+    hintText: There seems to be a word search in the library that is hiding a number.
+    requiredPuzzleID: Library_WordSearch_13
     requiredDialogueID: 
     requiredStoryFlag: 
     gatedBehindPuzzleID: 
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch2 \u2013 cipher"
+    hintText: Pick up some helpful items and find the cipher on a table around here.
+    requiredPuzzleID: 
+    requiredDialogueID: Chapter2_caesarCorrectShift
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: Library_WordSearch_13
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch2 \u2013 cipher2 pic"
+    hintText: There is a weird looking painting. Maybe it can help with the missing
+      words.
+    requiredPuzzleID: PaintingPuzzle
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: CaesarCipherPuzzle
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch2 \u2013 All done, go to police station"
+    hintText: A case file... Dad was a police officer. Maybe his station has the
+      answers.
+    requiredPuzzleID: PaintingPuzzle
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: PaintingPuzzle
     gatedBehindDialogueID: 
