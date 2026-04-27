@@ -210,13 +210,10 @@ public class DialogueUI : MonoBehaviour
             if (tmpText != null)
             {
                 tmpText.text = choice.choiceText;
-                tmpText.enableAutoSizing = true;
-                tmpText.fontSizeMin = 20f;
-                tmpText.fontSizeMax = 28f;
                 tmpText.alignment = TextAlignmentOptions.Center;
             }
 
-            ConfigureChoiceButtonLayout(button, availableChoiceCount);
+            //ConfigureChoiceButtonLayout(button, availableChoiceCount);
 
             int index = i;
             button.onClick.AddListener(() =>
