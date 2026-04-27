@@ -143,6 +143,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if(resultPaperPanel != null) resultPaperPanel.SetActive(false);
 
+        bool hasNote = playerInventory != null && requiredNoteItem != null && playerInventory.HasItem(requiredNoteItem);
+        bool hasWheel = playerInventory != null && requiredWheelItem != null && playerInventory.HasItem(requiredWheelItem);
+
         if (puzzleData == null)
         {
             SetBlockedState("Missing puzzle data.");
@@ -159,13 +162,21 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (requiredNoteItem != null && !playerInventory.HasItem(requiredNoteItem))
         {
-            SetBlockedState("You need the encoded note.");
+            SetBlockedState(
+                "You need the encoded note.",
+                keepPuzzleLayoutVisible: false,
+                showEncodedWriting: false,
+                showShiftPreview: hasWheel);
             return;
         }
 
         if (requiredWheelItem != null && !playerInventory.HasItem(requiredWheelItem))
         {
-            SetBlockedState("You need the Caesar Cipher Wheel.");
+            SetBlockedState(
+                "You need the Caesar Cipher Wheel.",
+                keepPuzzleLayoutVisible: hasNote,
+                showEncodedWriting: hasNote,
+                showShiftPreview: false);
             return;
         }
 
@@ -181,7 +192,11 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (!IsRequiredWordSearchSolved())
         {
-            SetBlockedState("Solve the library word search to learn the shift hint.");
+            SetBlockedState(
+                "Solve the library word search to learn the shift hint.",
+                keepPuzzleLayoutVisible: true,
+                showEncodedWriting: true,
+                showShiftPreview: true);
             return;
         }
 
@@ -193,9 +208,11 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         solved = false;
         SyncAnswerSlotsFromHierarchy();
+        SetAnswerSlotsRootVisible(true);
         SetAnswerSlotTextVisible(true);
 
         ApplyEncodedTextPresentation();
+        SetEncodedWritingVisible(true);
         encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
 
@@ -226,6 +243,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if(decodeUIPanel != null) decodeUIPanel.SetActive(false);
         if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
+        SetAnswerSlotsRootVisible(false);
+        SetEncodedWritingVisible(false);
         feedbackText.text = "The final message has been decoded.";
 
         if (triggerSolveEffects)
@@ -287,9 +306,11 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         currentPreviewShift = Mathf.Abs(puzzleData.Shift % 26);
         SyncAnswerSlotsFromHierarchy();
+        SetAnswerSlotsRootVisible(true);
         SetAnswerSlotTextVisible(true);
 
         ApplyEncodedTextPresentation();
+        SetEncodedWritingVisible(true);
         encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
         feedbackText.text = "Decoded!";
@@ -304,16 +325,21 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         ClearSavedProgress();
     }
 
-    private void SetBlockedState(string message)
+    private void SetBlockedState(
+        string message,
+        bool keepPuzzleLayoutVisible = false,
+        bool showEncodedWriting = false,
+        bool showShiftPreview = false)
     {
+        SetEncodedWritingVisible(showEncodedWriting);
         if (encodedText != null)
-            encodedText.text = string.Empty;
+            encodedText.text = showEncodedWriting ? GetDisplayedEncodedText() : string.Empty;
 
         if (mappingText != null)
-            mappingText.text = string.Empty;
+            mappingText.text = showShiftPreview ? CaesarCipher.BuildAlphabetStrip(-currentPreviewShift) : string.Empty;
 
         if (shiftValueText != null)
-            shiftValueText.text = string.Empty;
+            shiftValueText.text = showShiftPreview ? $"+{currentPreviewShift}" : string.Empty;
 
         if (feedbackText != null)
             feedbackText.text = message;
@@ -333,10 +359,13 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (submitButton != null)
             submitButton.interactable = false;
 
-        if (!IsRequiredWordSearchSolved())
+        SetAnswerSlotsRootVisible(keepPuzzleLayoutVisible);
+
+        if (keepPuzzleLayoutVisible)
         {
             SyncAnswerSlotsFromHierarchy();
-            SetAnswerSlotTextVisible(false);
+            SetAnswerSlotTextVisible(true);
+            SetAnswerFromString(string.Empty);
             SetAnswerSlotsInteractable(false);
         }
 
@@ -998,6 +1027,21 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         for (int i = 0; i < answerSlots.Count; i++)
             answerSlots[i].interactable = interactable;
+    }
+
+    private void SetAnswerSlotsRootVisible(bool visible)
+    {
+        if (answerSlotsRoot == null)
+            answerSlotsRoot = FindAnswerSlotsRoot();
+
+        if (answerSlotsRoot != null)
+            answerSlotsRoot.gameObject.SetActive(visible);
+    }
+
+    private void SetEncodedWritingVisible(bool visible)
+    {
+        if (encodedText != null)
+            encodedText.gameObject.SetActive(visible);
     }
 
     private void SetAnswerSlotTextVisible(bool visible)
