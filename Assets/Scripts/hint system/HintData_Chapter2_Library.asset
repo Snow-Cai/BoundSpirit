@@ -38,8 +38,8 @@ MonoBehaviour:
   - editorLabel: "Ch2 \u2013 All done, go to police station"
     hintText: A case file... Dad was a police officer. Maybe his station has the
       answers.
-    requiredPuzzleID: PaintingPuzzle
+    requiredPuzzleID: 
     requiredDialogueID: 
     requiredStoryFlag: 
-    gatedBehindPuzzleID: PaintingPuzzle
+    gatedBehindPuzzleID: CaesarCipherPuzzle
     gatedBehindDialogueID: 
