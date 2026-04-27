@@ -155,7 +155,6 @@ Transform:
   - {fileID: 693537063}
   - {fileID: 1293568015738003764}
   - {fileID: 1261520285}
-  - {fileID: 1528216651}
   - {fileID: 7221849304831083353}
   - {fileID: 3828611165910388461}
   - {fileID: 1730973968}
@@ -9651,9 +9650,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: -0.031516742
     width: 1
-    height: 1
+    height: 1.0636901
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -28128,7 +28127,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1390953173}
-  m_Father: {fileID: 11399264}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -29231,14 +29230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48235297, g: 0.47450984, b: 0.48235297, a: 0.8}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.93333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 254e15a1cd1a1804fa55226cbd03711a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -49290,6 +49289,7 @@ SceneRoots:
   - {fileID: 426701584}
   - {fileID: 462012845}
   - {fileID: 1235057420}
+  - {fileID: 1528216651}
   - {fileID: 11399264}
   - {fileID: 432719657}
   - {fileID: 1898709077}
