@@ -2683,8 +2683,6 @@ GameObject:
   m_Component:
   - component: {fileID: 416071874}
   - component: {fileID: 416071877}
-  - component: {fileID: 416071876}
-  - component: {fileID: 416071875}
   m_Layer: 0
   m_Name: StationLight_0 (1)
   m_TagString: Untagged
@@ -2708,128 +2706,6 @@ Transform:
   - {fileID: 865121761}
   m_Father: {fileID: 353722055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &416071875
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416071873}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2af599afffd31814fa6e689a123505dd, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &416071876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416071873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de1149c194ed4c42bfc97e173d0835f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::AlarmEventController
-  computers:
-  - {fileID: 133876411}
-  - {fileID: 1818969010}
-  - {fileID: 1186546224}
-  - {fileID: 252534776}
-  - {fileID: 457782412}
-  - {fileID: 1523440892}
-  redOverlay: {fileID: 1804131616}
-  overlayPulseSpeed: 0.1
-  overlayMaxAlpha: 0.1
-  overlayMinAlpha: 0
-  alarmSiren: {fileID: 416071875}
-  dialogueTrigger: {fileID: 0}
 --- !u!212 &416071877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7594,8 +7470,6 @@ GameObject:
   m_Component:
   - component: {fileID: 691188130}
   - component: {fileID: 691188133}
-  - component: {fileID: 691188132}
-  - component: {fileID: 691188131}
   m_Layer: 0
   m_Name: StationLight_0 (2)
   m_TagString: Untagged
@@ -7619,128 +7493,6 @@ Transform:
   - {fileID: 2128503112}
   m_Father: {fileID: 353722055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &691188131
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691188129}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2af599afffd31814fa6e689a123505dd, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &691188132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691188129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5de1149c194ed4c42bfc97e173d0835f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::AlarmEventController
-  computers:
-  - {fileID: 133876411}
-  - {fileID: 1818969010}
-  - {fileID: 1186546224}
-  - {fileID: 252534776}
-  - {fileID: 457782412}
-  - {fileID: 1523440892}
-  redOverlay: {fileID: 1804131616}
-  overlayPulseSpeed: 0.1
-  overlayMaxAlpha: 0.1
-  overlayMinAlpha: 0
-  alarmSiren: {fileID: 691188131}
-  dialogueTrigger: {fileID: 0}
 --- !u!212 &691188133
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15948,11 +15700,13 @@ MonoBehaviour:
   - {fileID: 457782412}
   - {fileID: 1523440892}
   redOverlay: {fileID: 1804131616}
-  overlayPulseSpeed: 0.1
-  overlayMaxAlpha: 0.1
+  overlayPulseSpeed: 0.05
+  overlayMaxAlpha: 0.05
   overlayMinAlpha: 0
   alarmSiren: {fileID: 2026887116}
   dialogueTrigger: {fileID: 0}
+  autoStopDelay: 60
+  postAlarmDialogue: {fileID: 11400000, guid: 469ac19bdd7895546a7f9c00a4864252, type: 2}
 --- !u!82 &2026887116
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15966,7 +15720,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 2af599afffd31814fa6e689a123505dd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

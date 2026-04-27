@@ -22,6 +22,10 @@ public class AlarmEventController : MonoBehaviour
 
     private Coroutine overlayCoroutine;
 
+    public float autoStopDelay = 30f;
+    public DialogueAsset postAlarmDialogue;
+    private Coroutine autoStopRoutine;
+
     private void Awake()
     {
         if (redOverlay != null)
@@ -48,6 +52,21 @@ public class AlarmEventController : MonoBehaviour
 
         if (dialogueTrigger != null)                // activate response dialogue
             dialogueTrigger.SetActive(true);
+
+        if (autoStopRoutine != null)
+            StopCoroutine(autoStopRoutine);
+
+        autoStopRoutine = StartCoroutine(AutoStopAlarm());
+    }
+
+    private IEnumerator AutoStopAlarm()
+    {
+        yield return new WaitForSeconds(autoStopDelay);
+        StopAlarm();
+        if(postAlarmDialogue != null && DialogueSystem.Instance != null && !DialogueSystem.Instance.IsDialogueActive())
+        {
+            DialogueSystem.Instance.QueueDialogue(postAlarmDialogue);
+        }
     }
 
     private IEnumerator AnimateRedOverlay()
