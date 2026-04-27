@@ -223,6 +223,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e0f5a33a5efc1940b08b3a3fc33f196, type: 2}
   - {fileID: 11400000, guid: 7268b3abf38dbb041a7815db827cfa14, type: 2}
   - {fileID: 11400000, guid: 078dcd4da14d94845a484b01e8ff365d, type: 2}
+  - {fileID: 11400000, guid: 4b6a548f023afc449bc88678d17f0764, type: 2}
   allSolvedMessage: You've solved everything here. Time to move on.
 --- !u!1 &40174589
 GameObject:
@@ -9648,9 +9649,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.30476192
+    width: 2.7700539
+    height: 2.5714288
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
