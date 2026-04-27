@@ -19,6 +19,7 @@ public class PaintingPuzzleManager : MonoBehaviour
     public DialogueAsset dialogueOnPaintingSolve;
 
     [HideInInspector] public bool puzzleReady;
+    [SerializeField] private string puzzleID = "PaintingPuzzle";
 
     private void Awake()
     {
@@ -69,6 +70,13 @@ public class PaintingPuzzleManager : MonoBehaviour
     {
         LibraryPuzzleStateBridge.Instance.SetPaintingSolved();
         DialogueSystem.Instance.StartDialogue(dialogueOnPaintingSolve);
+        if (SaveSystem.Instance != null)
+        {
+            if (puzzleID != null && !string.IsNullOrWhiteSpace(puzzleID))
+            {
+                SaveSystem.Instance.UnlockPuzzle(puzzleID);
+            }
+        }
         Debug.Log("Found missing words!");
     }
 }
