@@ -359,7 +359,7 @@ public class DialogueSystem : MonoBehaviour
         // Open journal automatically after first grave dialogue ---
         if (!graveDialogueCompleted &&
             finishedDialogue != null &&
-            finishedDialogue.dialogueID == "Chapter0_tombstonePrimary") // replace with your grave dialogue ID
+            finishedDialogue.dialogueID == "Chapter0_tombstoneReaction") // replace with your grave dialogue ID
         {
             graveDialogueCompleted = true;
 
