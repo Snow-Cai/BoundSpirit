@@ -72,6 +72,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [Header("Events")]
     [SerializeField] private DialogueAsset onCorrectShiftDialogue;
     [SerializeField] private DialogueAsset onFinalSolveDialogue;
+    [SerializeField] private DialogueAsset onWordSearchRequiredDialogue;
     [SerializeField] private UnityEvent onSolved;
     [SerializeField] private bool wasSolved = false;            // Use to ensure onPuzzleSolved() is run only once
 
@@ -160,23 +161,16 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
-        if (requiredNoteItem != null && !playerInventory.HasItem(requiredNoteItem))
-        {
-            SetBlockedState(
-                "You need the encoded note.",
-                keepPuzzleLayoutVisible: false,
-                showEncodedWriting: false,
-                showShiftPreview: hasWheel);
-            return;
-        }
+        bool missingNote = requiredNoteItem != null && !hasNote;
+        bool missingWheel = requiredWheelItem != null && !hasWheel;
 
-        if (requiredWheelItem != null && !playerInventory.HasItem(requiredWheelItem))
+        if (missingNote || missingWheel)
         {
             SetBlockedState(
-                "You need the Caesar Cipher Wheel.",
-                keepPuzzleLayoutVisible: hasNote,
+                BuildMissingItemMessage(missingNote, missingWheel),
+                keepPuzzleLayoutVisible: hasNote && !missingNote,
                 showEncodedWriting: hasNote,
-                showShiftPreview: false);
+                showShiftPreview: hasWheel);
             return;
         }
 
@@ -197,6 +191,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                 keepPuzzleLayoutVisible: true,
                 showEncodedWriting: true,
                 showShiftPreview: true);
+            PlayWordSearchRequiredDialogue();
             return;
         }
 
@@ -370,6 +365,27 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         SetShiftControlsInteractable(false);
+    }
+
+    private string BuildMissingItemMessage(bool missingNote, bool missingWheel)
+    {
+        if (missingNote && missingWheel)
+            return $"You need both the {GetItemLabel(requiredNoteItem, "cipher note")} and the {GetItemLabel(requiredWheelItem, "cipher wheel")}.";
+
+        if (missingNote)
+            return $"You need the {GetItemLabel(requiredNoteItem, "cipher note")}.";
+
+        if (missingWheel)
+            return $"You need the {GetItemLabel(requiredWheelItem, "cipher wheel")}.";
+
+        return "You're missing something.";
+    }
+
+    private static string GetItemLabel(ItemData item, string fallback)
+    {
+        return item != null && !string.IsNullOrWhiteSpace(item.itemName)
+            ? item.itemName
+            : fallback;
     }
 
     private void Submit()
@@ -1091,6 +1107,14 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             DialogueSystem.Instance.StartDialogue(dialogue);
         else
             DialogueSystem.Instance.QueueDialogue(dialogue);
+    }
+
+    private void PlayWordSearchRequiredDialogue()
+    {
+        if (onWordSearchRequiredDialogue == null || DialogueSystem.Instance == null)
+            return;
+
+        DialogueSystem.Instance.StartDialogue(onWordSearchRequiredDialogue);
     }
 
     private void ShowConfiguredFinalTidbit()

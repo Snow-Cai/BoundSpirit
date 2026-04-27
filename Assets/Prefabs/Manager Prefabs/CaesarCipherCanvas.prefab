@@ -14569,6 +14569,7 @@ MonoBehaviour:
   encodedLineSpacing: 18
   onCorrectShiftDialogue: {fileID: 11400000, guid: c2f8b52d2a604f4da8f197d2d4d3f6b1, type: 2}
   onFinalSolveDialogue: {fileID: 11400000, guid: b1b9c1bb22f1473d8af0dc2b9c61d99d, type: 2}
+  onWordSearchRequiredDialogue: {fileID: 11400000, guid: 5f5af338af3245f6b137ec1f03f7539a, type: 2}
   onSolved:
     m_PersistentCalls:
       m_Calls:
