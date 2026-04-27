@@ -16,6 +16,11 @@ public class GhostOfferUI : MonoBehaviour
         panelRoot.activeSelf &&
         currentGhost != null;
 
+    private void OnDisable()
+    {
+        Close();
+    }
+
     private void Awake()
     {
         Close();
@@ -78,6 +83,7 @@ public class GhostOfferUI : MonoBehaviour
         SetGameplayInputEnabled(false);
         if (InputLock.Instance != null)
         {
+            InputLock.Instance.CanToggleInventory = false;
             InputLock.Instance.AllowInspect = false;
         }
     }
@@ -98,6 +104,7 @@ public class GhostOfferUI : MonoBehaviour
         SetGameplayInputEnabled(true);
         if (InputLock.Instance != null)
         {
+            InputLock.Instance.CanToggleInventory = true;
             InputLock.Instance.AllowInspect = true;
         }
     }
