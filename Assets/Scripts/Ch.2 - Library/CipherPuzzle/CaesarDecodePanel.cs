@@ -27,7 +27,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private ItemData requiredNoteItem;
     [SerializeField] private ItemData requiredWheelItem;
     [SerializeField] private string requiredWordSearchPuzzleKey = "Library_WordSearch_13";
-    [SerializeField] private string legacyPuzzleID = "CaesarCipherPuzzle";
+    [SerializeField] private string legacyPuzzleID = "CaesarCipher Puzzle";
     [SerializeField] private string maskedDecodedPhrase = "case file";
     [SerializeField] private string maskedPhrasePlaceholder = "&#@* ^~+*";
     [TextArea(2, 6)]
@@ -76,7 +76,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private InteractableObject puzzleInteractable;
 
     [Header("Puzzle Identity")]
-    public string puzzleID = "CaesarCipherPuzzle";
+    public string puzzleID = "CaesarCipher Puzzle";
 
     private readonly List<TMP_InputField> answerSlots = new();
     private readonly List<int> wordLengths = new();

@@ -2047,7 +2047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8442762126738775521, guid: f6bb3a5da35282b48aee4ea0e1b6b581, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10573,9 +10573,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.10490693
+    width: 1.4119885
+    height: 0.9137056
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -18409,7 +18409,7 @@ MonoBehaviour:
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
   isPuzzle: 1
-  puzzleID: CaesarCipherPuzzle
+  puzzleID: CaesarCipher Puzzle
   puzzleUI: {fileID: 895794466}
   isPuzzleOpen: 1
   useExternalInteractionHandler: 0
@@ -18821,7 +18821,7 @@ PrefabInstance:
       objectReference: {fileID: 1966618233}
     - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
       propertyPath: legacyPuzzleID
-      value: CaesarCipherPuzzle
+      value: CaesarCipher Puzzle
       objectReference: {fileID: 0}
     - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
       propertyPath: playerInventory

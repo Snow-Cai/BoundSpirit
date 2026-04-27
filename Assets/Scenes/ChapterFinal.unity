@@ -14913,9 +14913,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 738aa4dc8002cfb42ad8c37974ec08cb, type: 3}
+  m_Resource: {fileID: 8300000, guid: 279b732a7122f3e47b56114aeb16f2fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.02
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -14959,7 +14959,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -15719,9 +15719,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.042301185
+    width: 0.99904853
+    height: 0.9137056
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
