@@ -33872,9 +33872,9 @@ MonoBehaviour:
   allowSolvedPuzzleReopen: 1
   timeRemainsOn: 0
   puzzleFirstApproachDialogue: {fileID: 0}
-  puzzleSolvedDialogue: {fileID: 0}
-  puzzleSolvedRepeatDialogue: {fileID: 0}
-  puzzlePlaySolvedDialogueOnlyOnce: 1
+  puzzleSolvedDialogue: {fileID: 11400000, guid: d8e4f1a2c3b4476598e7f6a5b4c3d201, type: 2}
+  puzzleSolvedRepeatDialogue: {fileID: 11400000, guid: 2bba57a81a5f0424cbba53c5c5aa3ea0, type: 2}
+  puzzlePlaySolvedDialogueOnlyOnce: 0
   openPuzzleAfterFirstApproachDialogue: 1
   puzzleFirstApproachViewedKeyOverride: 
   puzzleSolvedViewedKeyOverride: 
