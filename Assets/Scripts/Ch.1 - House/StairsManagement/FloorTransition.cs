@@ -22,7 +22,14 @@ public class FloorTransition : MonoBehaviour
 
     void Start()
     {
-        //Load which floor player should be on when scene starts
+        //delay by two frames to match SceneInitializer's WaitForEndOfFrame timing
+        StartCoroutine(LoadFloorStateAfterSpawn());
+    }
+
+    private System.Collections.IEnumerator LoadFloorStateAfterSpawn()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         LoadFloorState();
     }
 
@@ -33,7 +40,7 @@ public class FloorTransition : MonoBehaviour
 
     private IEnumerator SwitchFloor()
     {
-        //Block saving during floor transition
+        //block saving during floor transition
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.SetTransitioning(true);
@@ -80,7 +87,7 @@ public class FloorTransition : MonoBehaviour
 
         fadeCanvas.alpha = 0;
 
-        //Re-enable saving after transition completes
+        //Reenable saving after transition completes
         if (SaveSystem.Instance != null)
         {
             SaveSystem.Instance.SetTransitioning(false);

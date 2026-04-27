@@ -19,9 +19,12 @@ MonoBehaviour:
 
     I, too, was a fresh ghost
     once. I have recorded my findings for you to learn from.'
-  rightPageText: 'MOVEMENT:
+  rightPageText: 'CLICKABLE COMPONENTS:
 
-    To move, you may use the arrow keys or WASD for
-    the respective direction you wish to float.'
+    Some puzzles will require you to use
+    your hands to get dirty. You can use your cursor to click and drag components
+    in some puzzles. You will only ever need to click things that show up in a popup.
+
+'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}

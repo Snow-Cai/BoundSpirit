@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: CipherPuzzleTidbit
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: "The puzzle you just solved used a Caesar cipher wheel, which is a type of
+    cipher that decodes a message by shifting the alphabet a certain number of times
+    to the right or left. In cybersecurity, this kind of practice is known as cryptography.
+    \r\nThe point of this is to encrypt messages or sensitive info so that even if
+    this information is found, there is an extra layer needed to be uncovered. Scrambling
+    information keeps it safer, and only people with the right key can read it. Cryptography
+    is also used to ensure the integrity of something, meaning it is used to ensure
+    that a message or a file that is sent is the real deal. \r\n"

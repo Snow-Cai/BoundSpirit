@@ -70,6 +70,7 @@ public class JournalUI : MonoBehaviour
         if (InputLock.Instance != null)
         {
             InputLock.Instance.GameplayInputEnabled = !isOpen;
+            InputLock.Instance.CanToggleInventory = !isOpen;
         }
     }
 
@@ -86,6 +87,7 @@ public class JournalUI : MonoBehaviour
             if (InputLock.Instance != null)
             {
                 InputLock.Instance.GameplayInputEnabled = false;
+                InputLock.Instance.CanToggleInventory = false;
             }
         }
     }
@@ -103,6 +105,7 @@ public class JournalUI : MonoBehaviour
             if (InputLock.Instance != null)
             {
                 InputLock.Instance.GameplayInputEnabled = true;
+                InputLock.Instance.CanToggleInventory = true;
             }
         }
     }

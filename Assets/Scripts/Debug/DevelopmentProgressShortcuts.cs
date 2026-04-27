@@ -34,20 +34,19 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
             return;
         }
 
-        // Ctrl+Shift+9 — reload active scene (full object state from save on load).
+        // Ctrl+Shift+9 — reload active scene
         if (TryGetRestartSceneShortcutPressed())
         {
             ReloadCurrentScene();
             return;
         }
 
-        // Ctrl+Shift+0 .. 4 — complete through that chapter (cumulative from prologue).
-        // Uses the new Input System when available (project uses com.unity.inputsystem); legacy Input alone often misses keys in "Both" mode.
+        // Ctrl+Shift+0..4 — complete through that chapter
         if (TryGetDigitPressed(out int digit) && digit >= 0 && digit <= 4)
         {
             if (SaveSystem.Instance == null)
             {
-                Debug.LogWarning(LogPrefix + "SaveSystem not ready yet — open a scene with SaveSystem or wait a frame.");
+                Debug.LogWarning(LogPrefix + "SaveSystem not ready yet.");
                 return;
             }
 
@@ -59,9 +58,7 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
     {
         Keyboard kb = Keyboard.current;
         if (kb != null && (kb.digit9Key.wasPressedThisFrame || kb.numpad9Key.wasPressedThisFrame))
-        {
             return true;
-        }
 
         return Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9);
     }
@@ -94,7 +91,6 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
         return legacyCtrl && legacyShift;
     }
 
-    /// <summary>Returns true if 0–4 was pressed this frame (main row or numpad).</summary>
     private static bool TryGetDigitPressed(out int digit)
     {
         digit = -1;
@@ -102,73 +98,26 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
 
         if (kb != null)
         {
-            if (kb.digit0Key.wasPressedThisFrame || kb.numpad0Key.wasPressedThisFrame)
-            {
-                digit = 0;
-                return true;
-            }
-
-            if (kb.digit1Key.wasPressedThisFrame || kb.numpad1Key.wasPressedThisFrame)
-            {
-                digit = 1;
-                return true;
-            }
-
-            if (kb.digit2Key.wasPressedThisFrame || kb.numpad2Key.wasPressedThisFrame)
-            {
-                digit = 2;
-                return true;
-            }
-
-            if (kb.digit3Key.wasPressedThisFrame || kb.numpad3Key.wasPressedThisFrame)
-            {
-                digit = 3;
-                return true;
-            }
-
-            if (kb.digit4Key.wasPressedThisFrame || kb.numpad4Key.wasPressedThisFrame)
-            {
-                digit = 4;
-                return true;
-            }
+            if (kb.digit0Key.wasPressedThisFrame || kb.numpad0Key.wasPressedThisFrame) { digit = 0; return true; }
+            if (kb.digit1Key.wasPressedThisFrame || kb.numpad1Key.wasPressedThisFrame) { digit = 1; return true; }
+            if (kb.digit2Key.wasPressedThisFrame || kb.numpad2Key.wasPressedThisFrame) { digit = 2; return true; }
+            if (kb.digit3Key.wasPressedThisFrame || kb.numpad3Key.wasPressedThisFrame) { digit = 3; return true; }
+            if (kb.digit4Key.wasPressedThisFrame || kb.numpad4Key.wasPressedThisFrame) { digit = 4; return true; }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            digit = 0;
-            return true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            digit = 1;
-            return true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            digit = 2;
-            return true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            digit = 3;
-            return true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            digit = 4;
-            return true;
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0)) { digit = 0; return true; }
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)) { digit = 1; return true; }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2)) { digit = 2; return true; }
+        if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3)) { digit = 3; return true; }
+        if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4)) { digit = 4; return true; }
 
         return false;
     }
 
     /// <summary>
-    /// Completes all story content through the given chapter index (0 = prologue, 1 = home, …).
-    /// Unlocks the next chapter in the menu and advances currentChapter accordingly.
+    /// Completes all story content through the given chapter index.
+    /// clarityScore is set to the maximum for each chapter so all endings
+    /// are testable without replaying the game.
     /// </summary>
     public static void ApplyThroughChapter(int throughChapter)
     {
@@ -187,30 +136,11 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
 
         throughChapter = Mathf.Clamp(throughChapter, 0, 4);
 
-        if (throughChapter >= 0)
-        {
-            ApplyChapter0(data);
-        }
-
-        if (throughChapter >= 1)
-        {
-            ApplyChapter1(data);
-        }
-
-        if (throughChapter >= 2)
-        {
-            ApplyChapter2(data);
-        }
-
-        if (throughChapter >= 3)
-        {
-            ApplyChapter3(data);
-        }
-
-        if (throughChapter >= 4)
-        {
-            ApplyChapter4(data);
-        }
+        if (throughChapter >= 0) ApplyChapter0(data);
+        if (throughChapter >= 1) ApplyChapter1(data);
+        if (throughChapter >= 2) ApplyChapter2(data);
+        if (throughChapter >= 3) ApplyChapter3(data);
+        if (throughChapter >= 4) ApplyChapter4(data);
 
         int unlockThrough = throughChapter + 1;
         data.highestChapterUnlocked = Mathf.Max(data.highestChapterUnlocked, unlockThrough);
@@ -220,13 +150,17 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
         SaveSystem.Instance.ApplySaveToLoadedScene();
         Debug.Log(LogPrefix + "Applied dev progress through chapter " + throughChapter +
                   " (highestChapterUnlocked=" + data.highestChapterUnlocked +
-                  ", currentChapter=" + data.currentChapter + ").");
+                  ", currentChapter=" + data.currentChapter +
+                  ", clarityScore=" + data.clarityScore + ").");
     }
 
     private static void ApplyChapter0(SaveData data)
     {
         data.knowsPlayerIsDead = true;
         data.knowsNameIsAkila = true;
+
+        // clarityScore: one choice moment in Ch0, max +1
+        data.clarityScore = Mathf.Max(data.clarityScore, 1);
 
         AddPuzzle(data, "Chapter0_graveyard_gate");
         AddPuzzle(data, "graveyard_ghost_rose");
@@ -236,12 +170,15 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
         MarkDialogues(data,
             "Chapter0_tombstonePrimary",
             "Chapter0_gateCluePrimary",
-            "Chapter0_awakening");
+            "Chapter0_awakening",
+            "Chapter0_tombstoneReaction");   // clarity choice dialogue
     }
 
     private static void ApplyChapter1(SaveData data)
     {
-        // StoryFlags defaults (stored as solved puzzle IDs by name)
+        // clarityScore: two choice moments in Ch1 (+1 each), cumulative max now 3
+        data.clarityScore = Mathf.Max(data.clarityScore, 3);
+
         AddPuzzle(data, "FoundKey");
         AddPuzzle(data, "SafeOpened");
         AddPuzzle(data, "FoundWeapon");
@@ -250,7 +187,6 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
         AddPuzzle(data, "ReassembledNote");
         AddPuzzle(data, "ComputerUnlocked");
         AddPuzzle(data, "KnowsEdenFromComputer");
-
         AddPuzzle(data, "Chapter1_polaroid_timeline");
         AddPuzzle(data, "ReassemblyPuzzle");
 
@@ -259,11 +195,16 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
             "Chapter1_computerSuccess",
             "Chapter1_safeWeapon",
             "Chapter1_edenPhoto",
-            "Chapter1_safeKeyPickup");
+            "Chapter1_safeKeyPickup",
+            "Chapter1_weaponReaction",       // clarity choice dialogue
+            "Chapter1_polaroidReaction");    // clarity choice dialogue
     }
 
     private static void ApplyChapter2(SaveData data)
     {
+        // clarityScore: one choice moment in Ch2 (+1), cumulative max now 4
+        data.clarityScore = Mathf.Max(data.clarityScore, 4);
+
         AddPuzzle(data, "WentToLibrary");
         AddPuzzle(data, "LibraryClueFound");
         AddPuzzle(data, "PoliceStationVisited");
@@ -272,20 +213,28 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
 
         MarkDialogues(data,
             "Chapter2_libraryClue",
-            "Chapter2_policeFiles");
+            "Chapter2_policeFiles",
+            "Chapter2_cipherReaction");      // clarity choice dialogue
     }
 
     private static void ApplyChapter3(SaveData data)
     {
+        // clarityScore: one choice moment in Ch3, worth up to +2, cumulative max now 6
+        data.clarityScore = Mathf.Max(data.clarityScore, 6);
+
         data.edenRevealed = true;
         AddPuzzle(data, "PoliceFilesContradiction");
 
-        MarkDialogues(data, "Chapter3_filesContradiction");
+        MarkDialogues(data,
+            "Chapter3_filesContradiction",
+            "Chapter3_filesReaction");       // clarity choice dialogue
     }
 
     private static void ApplyChapter4(SaveData data)
     {
         data.truthRevealed = true;
+        // Full clarity so all endings are available during testing
+        data.clarityScore = Mathf.Max(data.clarityScore, ClaritySystem.MaxScore);
 
         MarkDialogues(data, "Chapter4_fullTruth");
     }
@@ -293,9 +242,7 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
     private static void AddPuzzle(SaveData data, string puzzleId)
     {
         if (string.IsNullOrEmpty(puzzleId) || data.solvedPuzzles.Contains(puzzleId))
-        {
             return;
-        }
 
         data.solvedPuzzles.Add(puzzleId);
     }
@@ -303,16 +250,12 @@ public sealed class DevelopmentProgressShortcuts : MonoBehaviour
     private static void MarkDialogues(SaveData data, params string[] dialogueIds)
     {
         if (dialogueIds == null)
-        {
             return;
-        }
 
         foreach (string id in dialogueIds)
         {
             if (string.IsNullOrEmpty(id) || data.viewedDialogues.Contains(id))
-            {
                 continue;
-            }
 
             data.viewedDialogues.Add(id);
         }

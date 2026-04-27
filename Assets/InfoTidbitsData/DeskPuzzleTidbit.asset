@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: DeskPuzzleTidbit
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: "Just like with the login puzzle, easily discoverable information is being
+    used for the password. This time, it is only using important dates. \r\nWhile
+    using important dates to you so that you remember a passcode can be good, make
+    sure to use one that is not easily findable through things like social media
+    or learning about your life. If you use your birthday and year for your bank
+    PIN, it will be much easier to guess than if you picked a meaningful date or
+    number no one else would know about.\r\n"

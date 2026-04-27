@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Clue
   itemID: JOURNAL_CLUE
   itemName: Journal Entry
-  icon: {fileID: 2353571312451627304, guid: afcb5b1b3a869d248ad055874b773b08, type: 3}
+  icon: {fileID: 4099542229428907789, guid: aad0ca188f35ed341af659278f94d2ea, type: 3}
   description: 'A diary entry that belonged to me.
 
 

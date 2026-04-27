@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Chapter3_filesReaction
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Chapter3_filesReaction
+  lines:
+  - speakerName: Akila
+    dialogueText: "This is\u2026 a police file about me? And Eden was involved. But...
+      This isn't what I thought happened to me."
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: The files say Eden was defending herself. That I followed her.
+      That I had a weapon.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: "Wait\u2026 The hill? That\u2019s\u2026 where I died. I have a
+      feeling that\u2019s where I need to go."
+    voiceClip: {fileID: 0}
+  choices:
+  - choiceText: ...I did this. I brought the knife. She was afraid of me.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelectedID: Files_FullAcceptance
+  - choiceText: I don't understand. I loved her. How did it come to this?
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelectedID: Files_PartialAcceptance
+  - choiceText: This doesn't make sense. The files must be wrong.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelectedID: Files_Denial
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1

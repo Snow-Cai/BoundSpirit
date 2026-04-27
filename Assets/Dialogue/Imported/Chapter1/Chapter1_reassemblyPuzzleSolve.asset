@@ -15,7 +15,9 @@ MonoBehaviour:
   dialogueID: Chapter1_reassemblyPuzzleSolve
   lines:
   - speakerName: Akila
-    dialogueText: This code... maybe this can help me open the safe!
+    dialogueText: This looks like a hint for a passcode... maybe this can help me
+      open the safe! But my dad never had a bike... So I think these hints must be
+      about me.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

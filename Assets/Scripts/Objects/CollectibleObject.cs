@@ -44,7 +44,7 @@ public class CollectibleObject : MonoBehaviour
     private void Start()
     {
         GameObject p = GameObject.FindGameObjectWithTag("Player");
-        popup = Object.FindFirstObjectByType<UICluePopup>();
+        popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
         EnsureGlowReference();
         if (p != null)
             player = p.transform;
@@ -79,13 +79,14 @@ public class CollectibleObject : MonoBehaviour
         bool shouldShowSparkle = !glowWhenInRange || withinRange;
         SetGlow(shouldShowSparkle);
 
-        if (HasNearbyPriorityInteractable())
-        {
-            return;
-        }
-
         if (withinRange && Input.GetKeyDown(KeyCode.E))
         {
+            if (!InteractionPriorityResolver.IsHighestPriorityTarget(this, player))
+                return;
+
+            if (!InteractionPriorityResolver.TryConsumeInteraction())
+                return;
+
             PickUp();
         }
     }
@@ -101,6 +102,7 @@ public class CollectibleObject : MonoBehaviour
                 SfxPlayback.PlayClipAtPoint(pickupSound, transform.position);
             if (pickupDialogue != null && DialogueSystem.Instance != null)
                 DialogueSystem.Instance.QueueDialogue(pickupDialogue);
+            FindFirstObjectByType<PrologueInventoryHintController>()?.TryShowTutorial();
             collected = true;
         }
         else if (
@@ -150,26 +152,31 @@ public class CollectibleObject : MonoBehaviour
         }
     }
 
-    private bool HasNearbyPriorityInteractable()
+    public bool CanBeInteractedWith(Transform targetPlayer)
     {
-        InteractableObject[] interactables = Object.FindObjectsByType<InteractableObject>(
-            FindObjectsInactive.Exclude,
-            FindObjectsSortMode.None
-        );
+        if (targetPlayer == null || !isActiveAndEnabled)
+            return false;
 
-        foreach (InteractableObject interactable in interactables)
-        {
-            if (interactable == null || !interactable.isActiveAndEnabled)
-                continue;
+        if (popup != null && popup.IsPopupOpen())
+            return false;
 
-            if (interactable.GetComponent<NPCController>() == null)
-                continue;
+        if (DialogueSystem.Instance != null && DialogueSystem.Instance.IsDialogueActive())
+            return false;
 
-            float dist = Vector2.Distance(player.position, interactable.transform.position);
-            if (dist <= interactable.interactionRange)
-                return true;
-        }
+        if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
+            return false;
 
-        return false;
+        if (collected && !repeatPickupDialogueAfterCollect)
+            return false;
+
+        return GetDistanceTo(targetPlayer) <= collectDistance;
+    }
+
+    public float GetDistanceTo(Transform targetPlayer)
+    {
+        if (targetPlayer == null)
+            return float.MaxValue;
+
+        return Vector2.Distance(targetPlayer.position, transform.position);
     }
 }

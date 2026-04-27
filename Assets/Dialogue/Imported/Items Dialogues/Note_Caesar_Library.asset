@@ -15,5 +15,6 @@ MonoBehaviour:
   itemID: CAESAR_NOTE
   itemName: Encrypted Note
   icon: {fileID: 2762278503595733111, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
-  description: 
+  description: A strange note. The words seem to be encrypted somehow, so I don't
+    know what it says.
   canInspect: 1

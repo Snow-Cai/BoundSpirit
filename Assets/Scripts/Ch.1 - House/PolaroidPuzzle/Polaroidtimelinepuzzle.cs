@@ -9,6 +9,9 @@ using TMPro;
 
 public class PolaroidTimelinePuzzle : MonoBehaviour
 {
+    [Header("Clarity Choice")]
+    public DialogueAsset polaroidReactionDialogue;
+
     [Header("Puzzle Identity")]
     public string puzzleID = "Chapter1_polaroid_timeline";
 
@@ -46,25 +49,39 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
     [Header("Objective")]
     public string solveObjectiveMessage = "You remember the library... Eden.";
 
+    [Header("Solve Bridge")]
+    [SerializeField] private InteractableObject puzzleInteractable;
+
     private bool puzzleSolved = false;
     private Coroutine feedbackCoroutine;
+
+    public bool IsSolved => puzzleSolved || (SaveSystem.Instance != null && SaveSystem.Instance.IsPuzzleSolved(puzzleID));
 
     //lifecycle
 
     private void Start()
     {
-        //check if already solved from save
-        if (SaveSystem.Instance != null && SaveSystem.Instance.IsPuzzleSolved(puzzleID))
+        if (puzzleInteractable == null)
         {
-            puzzleSolved = true;
-            if (puzzlePanel != null)
+            InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.None
+            );
+
+            foreach (InteractableObject interactable in interactables)
             {
-                puzzlePanel.SetActive(false);
-                Canvas canvas = puzzlePanel.GetComponent<Canvas>();
-                if (canvas != null)
-                    canvas.enabled = false;
+                if (interactable == null || !interactable.isPuzzle)
+                {
+                    continue;
+                }
+
+                if (interactable.puzzleUI == puzzlePanel ||
+                    (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+                {
+                    puzzleInteractable = interactable;
+                    break;
+                }
             }
-            return;
         }
 
         if (inspectPopup != null)
@@ -82,6 +99,14 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
         if (puzzlePanel != null)
             puzzlePanel.SetActive(false);
 
+        //check if already solved from save
+        if (SaveSystem.Instance != null && SaveSystem.Instance.IsPuzzleSolved(puzzleID))
+        {
+            puzzleSolved = true;
+            PopulateSolvedState();
+            return;
+        }
+
         ShuffleAndDealPolaroids();
     }
 
@@ -89,8 +114,6 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     public void OpenPuzzle()
     {
-        if (puzzleSolved) return;
-
         //force stop player movement immediately
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
@@ -113,6 +136,12 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
 
     public void ClosePuzzle()
     {
+        if (puzzleInteractable != null && puzzleInteractable.isPuzzleOpen)
+        {
+            puzzleInteractable.ClosePuzzle();
+            return;
+        }
+
         if (puzzlePanel != null)
         {
             Canvas canvas = puzzlePanel.GetComponent<Canvas>();
@@ -230,22 +259,66 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
     private void HandleSuccess()
     {
         puzzleSolved = true;
-
-        //save puzzle state
-        if (SaveSystem.Instance != null)
-            SaveSystem.Instance.UnlockPuzzle(puzzleID);
-
-        //close puzzle UI
+        PopulateSolvedState();
         ClosePuzzle();
 
-        //show objective banner
-        ObjectiveBanner.Instance?.ShowMessage(solveObjectiveMessage);
+        if (puzzleInteractable != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (SaveSystem.Instance != null)
+        {
+            SaveSystem.Instance.UnlockPuzzle(puzzleID);
+        }
 
-        //play solve dialogue
         if (onSolveDialogue != null && DialogueSystem.Instance != null)
-            DialogueSystem.Instance.StartDialogue(onSolveDialogue);
+            DialogueSystem.Instance.QueueDialogue(onSolveDialogue);
+
+        // Queue the polaroid reaction clarity choice after the solve dialogue
+        if (polaroidReactionDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(polaroidReactionDialogue);
 
         Debug.Log("POLAROID PUZZLE: Solved!");
+    }
+
+    private void PopulateSolvedState()
+    {
+        if (timelineSlots == null || allPolaroids == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < timelineSlots.Length; i++)
+        {
+            PolaroidSlotUI slot = timelineSlots[i];
+            if (slot == null)
+            {
+                continue;
+            }
+
+            PolaroidData correctPolaroid = null;
+            for (int p = 0; p < allPolaroids.Length; p++)
+            {
+                if (allPolaroids[p] != null && allPolaroids[p].correctOrder == i)
+                {
+                    correctPolaroid = allPolaroids[p];
+                    break;
+                }
+            }
+
+            slot.SetPolaroid(correctPolaroid);
+        }
+
+        if (handSlots != null)
+        {
+            for (int i = 0; i < handSlots.Length; i++)
+            {
+                if (handSlots[i] != null)
+                {
+                    handSlots[i].SetPolaroid(null);
+                }
+            }
+        }
     }
 
     private void HandleFailure()

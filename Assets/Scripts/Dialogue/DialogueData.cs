@@ -25,5 +25,5 @@ public class DialogueChoice
     public List<string> requiredFlags = new List<string>();
     public List<string> forbiddenFlags = new List<string>();
 
-    public UnityEvent onChoiceSelected;
+    public string onChoiceSelectedID;
 }

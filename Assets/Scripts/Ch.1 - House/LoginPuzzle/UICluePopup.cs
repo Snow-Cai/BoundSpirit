@@ -8,6 +8,7 @@ public class UICluePopup : MonoBehaviour
     public TextMeshProUGUI clueText;
     public float fadeDuration = 0.4f;
 
+    private bool closeRequested = false;
     private Coroutine popupRoutine;
     private CharMovement movementScript;
     private Rigidbody2D playerRigidbody;
@@ -15,11 +16,16 @@ public class UICluePopup : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (popupCanvas == null)
+        {
+            popupCanvas = GetComponent<CanvasGroup>();
+        }
+
         if (popupCanvas != null)
         {
+            popupCanvas.gameObject.SetActive(false);
             popupCanvas.alpha = 0f;
-            popupCanvas.blocksRaycasts = false;  
+            popupCanvas.blocksRaycasts = false;
         }
 
         // Find player & movement script
@@ -36,10 +42,31 @@ public class UICluePopup : MonoBehaviour
         if (string.IsNullOrWhiteSpace(message) || popupCanvas == null || clueText == null)
             return;
 
+        if (!popupCanvas.gameObject.activeSelf)
+        {
+            popupCanvas.gameObject.SetActive(true);
+        }
+
         if (popupRoutine != null)
             StopCoroutine(popupRoutine);
 
-        popupRoutine = StartCoroutine(PopupRoutine(message));
+        popupRoutine = StartCoroutine(PopupRoutine(message, null));
+    }
+
+    public void ShowTransientMessage(string message, float autoCloseDelay)
+    {
+        if (string.IsNullOrWhiteSpace(message) || popupCanvas == null || clueText == null)
+            return;
+
+        if (!popupCanvas.gameObject.activeSelf)
+        {
+            popupCanvas.gameObject.SetActive(true);
+        }
+
+        if (popupRoutine != null)
+            StopCoroutine(popupRoutine);
+
+        popupRoutine = StartCoroutine(PopupRoutine(message, autoCloseDelay));
     }
 
     public void ShowTidbit(InformationalTidbitData tidbit)
@@ -63,7 +90,7 @@ public class UICluePopup : MonoBehaviour
         ShowMessage(message);
     }
 
-    private IEnumerator PopupRoutine(string msg)
+    private IEnumerator PopupRoutine(string msg, float? autoCloseDelay)
     {
         popupOpen = true;
         GameInputState.MovementLocked = true;
@@ -87,8 +114,22 @@ public class UICluePopup : MonoBehaviour
         }
         popupCanvas.alpha = 1f;
 
-        while (!Input.GetKeyDown(KeyCode.E))
-            yield return null;
+        closeRequested = false;
+
+        if (autoCloseDelay.HasValue)
+        {
+            float remaining = autoCloseDelay.Value;
+            while (remaining > 0f)
+            {
+                remaining -= Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (!closeRequested)
+                yield return null;
+        }
 
         t = 0f;
         while (t < fadeDuration)
@@ -108,6 +149,7 @@ public class UICluePopup : MonoBehaviour
         GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
+        closeRequested = false;
     }
 
     public bool IsPopupOpen()
@@ -128,6 +170,10 @@ public class UICluePopup : MonoBehaviour
         }
     }
 
+    public void ClosePopup()
+    {
+        closeRequested = true;
+    }
     private void OnDisable()
     {
         if (movementScript != null)

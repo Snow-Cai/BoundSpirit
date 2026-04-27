@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Caesar_Note_Library
   m_EditorClassIdentifier: Assembly-CSharp::CaesarNotePuzzleData
   puzzleKey: Caesar_Note_Library
-  plaintext: The file will prove itself.
-  shift: 7
+  plaintext: The case file will reveal the truth.
+  shift: 13

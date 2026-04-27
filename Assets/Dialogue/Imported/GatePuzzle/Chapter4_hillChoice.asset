@@ -31,33 +31,7 @@ MonoBehaviour:
     dialogueText: And all I could think about was how much I loved her. I thought
       love made it okay.
     voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Eden. I don't know if you can hear me. But I need to say something.
-    voiceClip: {fileID: 0}
-  choices:
-  - choiceText: I'm sorry
-    nextDialogue: {fileID: 0}
-    requiredFlags: []
-    forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls: []
-  - choiceText: You took everything
-    nextDialogue: {fileID: 0}
-    requiredFlags: []
-    forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls: []
-  - choiceText: I need to go
-    nextDialogue: {fileID: 0}
-    requiredFlags:
-    - foundMenuSecret
-    - foundHiddenTombstone
-    forbiddenFlags: []
-    onChoiceSelected:
-      m_PersistentCalls:
-        m_Calls: []
+  choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
   showChoicesAtEnd: 1

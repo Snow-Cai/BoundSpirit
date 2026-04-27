@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: DatabasePuzzle
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: Most secure systems will check to ensure that the person trying to access
+    information is also allowed to do so. In this puzzle, even when inputting the
+    correct details about the case, you still get denied because you don't have proof
+    of authorization. Sensitive data requires verified access!

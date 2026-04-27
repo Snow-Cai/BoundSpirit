@@ -41,6 +41,7 @@ public class InventoryUI : MonoBehaviour
         {
             movement.enabled = false;
             InputLock.Instance.GameplayInputEnabled = false;
+            InputLock.Instance.InteractEnabled = false;
             Rigidbody2D rb = movement.GetComponent<Rigidbody2D>();
             if (rb != null)
                 rb.linearVelocity = Vector2.zero;
@@ -49,6 +50,7 @@ public class InventoryUI : MonoBehaviour
         {                    //re-enable movement and gameplay input when closing inventory 
             movement.enabled = true;
             InputLock.Instance.GameplayInputEnabled = true;
+            InputLock.Instance.InteractEnabled = true;
         }
         if(isOpen)
             RefreshUI();
@@ -66,6 +68,8 @@ public class InventoryUI : MonoBehaviour
     { 
         if (inventoryPanel != null)
             inventoryPanel.SetActive(visible);
+
+        isOpen = visible;
 
         if (!visible && TooltipUI.Instance != null)
             TooltipUI.Instance.Hide();

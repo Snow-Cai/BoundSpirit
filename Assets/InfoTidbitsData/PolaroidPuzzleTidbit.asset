@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ccca1471d34164ba6a48d39b9b87a9, type: 3}
+  m_Name: PolaroidPuzzleTidbit
+  m_EditorClassIdentifier: BoundSpiritRuntime::InformationalTidbitData
+  title: 
+  body: "By dragging the Polaroids into the right order \u2014 baby photo (2001),
+    first day of school (2008), soccer years, study sessions \u2014 you rebuilt someone\u2019s
+    whole timeline.\r\nIn cybersecurity, this is a real thing: when people post lots
+    of photos or memories online, others can piece together their life story the
+    same way you just did. And the more someone learns about you \u2014 your hobbies,
+    your friends, your important years \u2014 the easier it becomes to guess passwords,
+    answer security questions, or predict patterns.\r\nRearranging photos is fun
+    in a puzzle\u2026 but in real life, sharing too much can give strangers a full
+    picture you didn\u2019t mean to reveal.\r\n"

@@ -16,6 +16,7 @@ public class SceneInitializer : MonoBehaviour
     [Header("Custom Music (Optional)")]
     [Tooltip("Leave empty to use default music for scene type")]
     public AudioClip customMusic;
+    public float customVolume;
 
     [Header("Fade Settings")]
     public bool fadeInMusic = true;
@@ -72,7 +73,7 @@ public class SceneInitializer : MonoBehaviour
         //Load player inventory
         LoadPlayerInventory();
 
-        //REMOVED AUTO-SAVE We'll save manually at safe times only
+        //REMOVED AUTO-SAVE - save manually at safe times only
         //Don't auto-save when entering scenes: this was causing the void spawning issue
     }
 
@@ -87,6 +88,7 @@ public class SceneInitializer : MonoBehaviour
         {
             //Use custom music if assigned
             musicToPlay = customMusic;
+            MusicManager.Instance.SetSliderVolume(customVolume);
         }
         else
         {
@@ -158,7 +160,7 @@ public class SceneInitializer : MonoBehaviour
                 //Check if position is not zero (default value) AND is valid (not in void)
                 if (savedPosition != Vector3.zero && savedPosition.y > -50f)
                 {
-                    // Disable controller before moving
+                    //disable controller before moving
                     CharacterController controller = player.GetComponent<CharacterController>();
                     Rigidbody2D rb2d = player.GetComponent<Rigidbody2D>();
 
@@ -168,13 +170,12 @@ public class SceneInitializer : MonoBehaviour
                     }
                     if (rb2d != null)
                     {
-                        rb2d.linearVelocity = Vector2.zero; // Stop any movement
+                        rb2d.linearVelocity = Vector2.zero; //stop any movement
                     }
 
                     player.transform.position = savedPosition;
                     Debug.Log("Loaded player position: " + savedPosition);
 
-                    // Re-enable controller
                     if (controller != null)
                     {
                         controller.enabled = true;
@@ -198,6 +199,12 @@ public class SceneInitializer : MonoBehaviour
             player.transform.position = defaultSpawnPoint.position;
             player.transform.rotation = defaultSpawnPoint.rotation;
             Debug.Log("Using default spawn point at: " + defaultSpawnPoint.position);
+
+            FloorTransition floorTransition = FindFirstObjectByType<FloorTransition>();
+            if (floorTransition != null)
+            {
+                floorTransition.LoadFloorState();
+            }
         }
         else
         {
@@ -248,5 +255,8 @@ public class SceneInitializer : MonoBehaviour
         InventoryUI ui = FindFirstObjectByType<InventoryUI>();
         if (ui != null)
             ui.RefreshUI();
+
+        if (SaveSystem.Instance != null)
+            SaveSystem.Instance.MarkInventoryReady();
     }
 }

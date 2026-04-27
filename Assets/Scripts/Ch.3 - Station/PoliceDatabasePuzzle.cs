@@ -24,11 +24,19 @@ public class PoliceDatabasePuzzle : MonoBehaviour
     [Tooltip("Played on initial interact.")]
     public DialogueAsset interactDialogue;
 
+    [Tooltip("Clarity choice shown after the player sees their police file.")]
+    public DialogueAsset filesReactionDialogue;
+
     [Tooltip("Played when the player succeeds.")]
     public DialogueAsset alarmEventTriggeredDialogue;
 
+    [Header("Solve Bridge")]
+    [SerializeField] private string puzzleID = "StationComputerPuzzle";
+    [SerializeField] private InteractableObject puzzleInteractable;
+
     private void OnEnable()
     {
+        ResolvePuzzleInteractable();
         hasFocused = false;
         StartCoroutine(BeginPuzzleFlow());
     }
@@ -94,6 +102,15 @@ public class PoliceDatabasePuzzle : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.5f);
             if (alarmEvent != null)
             {
+                if (puzzleInteractable != null && !string.IsNullOrWhiteSpace(puzzleInteractable.puzzleID))
+                {
+                    puzzleInteractable.OnPuzzleSolved();
+                }
+                else if (SaveSystem.Instance != null && !string.IsNullOrWhiteSpace(puzzleID))
+                {
+                    SaveSystem.Instance.UnlockPuzzle(puzzleID);
+                }
+
                 Time.timeScale = 1f;            // Re-enable time for alarm animation to appear properly
                 alarmEvent.TriggerAlarmEvent();
                 yield return new WaitForSecondsRealtime(1.5f);
@@ -126,6 +143,9 @@ public class PoliceDatabasePuzzle : MonoBehaviour
         }
         Time.timeScale = 1f;
         DialogueSystem.Instance.QueueDialogue(alarmEventTriggeredDialogue);
+
+        if (filesReactionDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(filesReactionDialogue);
     }
 
     private void Update()
@@ -134,6 +154,34 @@ public class PoliceDatabasePuzzle : MonoBehaviour
         {
             if(nameInput.isFocused)
                 EventSystem.current.SetSelectedGameObject(yearInput.gameObject);
+        }
+    }
+
+    private void ResolvePuzzleInteractable()
+    {
+        if (puzzleInteractable != null)
+        {
+            return;
+        }
+
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null || !interactable.isPuzzle)
+            {
+                continue;
+            }
+
+            if (interactable.puzzleUI == databaseUI ||
+                (!string.IsNullOrEmpty(puzzleID) && interactable.puzzleID == puzzleID))
+            {
+                puzzleInteractable = interactable;
+                break;
+            }
         }
     }
 }

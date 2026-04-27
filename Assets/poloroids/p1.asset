@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PolaroidData
   polaroidID: polaroid_01
   correctOrder: 1
-  polaroidImage: {fileID: 0}
+  polaroidImage: {fileID: 8031608298631845020, guid: 08cfebd07ff6d9042823dd396eaa62fb, type: 3}
   year: 2008
-  captionText: b
-  inspectDescription: bb
+  captionText: School!
+  inspectDescription: First day of school :/

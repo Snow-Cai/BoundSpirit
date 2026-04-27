@@ -12,6 +12,38 @@ public class MapPopupUI : MonoBehaviour
     private SceneTravelTrigger currentTrigger;
     private bool previousMovementLocked;
     private bool isMovementLockedByMap;
+    private bool previousCanToggleInventory = true;
+    private bool previousInteractEnabled = true;
+    private bool restoredInputLock = true;
+
+    public static MapPopupUI GetOrCreateInstance()
+    {
+        if (Instance != null)
+            return Instance;
+
+        MapPopupUI[] popups = Resources.FindObjectsOfTypeAll<MapPopupUI>();
+        for (int i = 0; i < popups.Length; i++)
+        {
+            MapPopupUI popup = popups[i];
+            if (popup == null)
+                continue;
+
+            GameObject candidate = popup.gameObject;
+            if (candidate.hideFlags != HideFlags.None)
+                continue;
+
+            if (!candidate.scene.IsValid())
+                continue;
+
+            if (!candidate.activeSelf)
+                candidate.SetActive(true);
+
+            Instance = popup;
+            return popup;
+        }
+
+        return null;
+    }
 
     private void Awake()
     {
@@ -33,17 +65,31 @@ public class MapPopupUI : MonoBehaviour
     private void OnDestroy()
     {
         UnlockPlayerMovement();
+        RestoreInputLock();
 
         if (Instance == this)
             Instance = null;
+    }
+
+    private void Update()
+    {
+        if (rootPanel == null || !rootPanel.activeSelf || currentTrigger == null)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.E))
+            Close();
     }
 
     public void Open(SceneTravelTrigger trigger)
     {
         if (trigger == null) return;
 
+        if (!gameObject.activeSelf)
+            gameObject.SetActive(true);
+
         currentTrigger = trigger;
         LockPlayerMovement();
+        ApplyInputLock();
 
         if (rootPanel != null)
             rootPanel.SetActive(true);
@@ -78,6 +124,7 @@ public class MapPopupUI : MonoBehaviour
             currentTrigger.RestorePlayerControl();
 
         UnlockPlayerMovement();
+        RestoreInputLock();
         currentTrigger = null;
     }
 
@@ -85,6 +132,8 @@ public class MapPopupUI : MonoBehaviour
     {
         if (rootPanel != null)
             rootPanel.SetActive(false);
+
+        RestoreInputLock();
     }
 
     private void LockPlayerMovement()
@@ -102,5 +151,28 @@ public class MapPopupUI : MonoBehaviour
 
         GameInputState.MovementLocked = previousMovementLocked;
         isMovementLockedByMap = false;
+    }
+
+    private void ApplyInputLock()
+    {
+        if (InputLock.Instance == null || !restoredInputLock)
+            return;
+
+        previousCanToggleInventory = InputLock.Instance.CanToggleInventory;
+        previousInteractEnabled = InputLock.Instance.InteractEnabled;
+
+        InputLock.Instance.CanToggleInventory = false;
+        InputLock.Instance.InteractEnabled = false;
+        restoredInputLock = false;
+    }
+
+    private void RestoreInputLock()
+    {
+        if (InputLock.Instance == null || restoredInputLock)
+            return;
+
+        InputLock.Instance.CanToggleInventory = previousCanToggleInventory;
+        InputLock.Instance.InteractEnabled = previousInteractEnabled;
+        restoredInputLock = true;
     }
 }

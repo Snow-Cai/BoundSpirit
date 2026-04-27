@@ -7,7 +7,8 @@ public class InteractableGlow : MonoBehaviour
 {
     public enum HighlightStyle
     {
-        CollectibleSparkle
+        CollectibleSparkle,
+        InteractableSparkle
     }
 
     [Header("Sparkle")]
@@ -55,16 +56,25 @@ public class InteractableGlow : MonoBehaviour
 
     public void ApplyStyle(HighlightStyle style)
     {
-        if (style != HighlightStyle.CollectibleSparkle)
+        if (style == HighlightStyle.CollectibleSparkle)
         {
+            showSparkle = true;
+            sparkleColor = new Color(234f / 255f, 233f / 255f, 173f / 255f, 1f);
+            sparkleScale = 0.5f;
+            companionScaleMultiplier = 0.5f;
+            sparkleIntervalRange = new Vector2(0.5f, 2f);
             return;
         }
 
-        showSparkle = true;
-        sparkleColor = new Color(234f / 255f, 233f / 255f, 173f / 255f, 1f);
-        sparkleScale = 0.5f;
-        companionScaleMultiplier = 0.5f;
-        sparkleIntervalRange = new Vector2(0.5f, 2f);
+        if (style == HighlightStyle.InteractableSparkle)
+        {
+            showSparkle = true;
+            sparkleColor = new Color(199f / 255f, 175f / 255f, 92f / 255f, 1f);
+            sparkleScale = 0.5f;
+            companionScaleMultiplier = 0.5f;
+            sparkleIntervalRange = new Vector2(0.5f, 2f);
+            return;
+        }
     }
 
     private void BuildSparkle()

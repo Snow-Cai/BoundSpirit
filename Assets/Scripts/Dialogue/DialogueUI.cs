@@ -108,7 +108,7 @@ public class DialogueUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !DialogueSystem.Instance.AutoAdvance)
         {
             HandleAdvanceInput();
         }
@@ -210,13 +210,10 @@ public class DialogueUI : MonoBehaviour
             if (tmpText != null)
             {
                 tmpText.text = choice.choiceText;
-                tmpText.enableAutoSizing = true;
-                tmpText.fontSizeMin = 20f;
-                tmpText.fontSizeMax = 28f;
                 tmpText.alignment = TextAlignmentOptions.Center;
             }
 
-            ConfigureChoiceButtonLayout(button, availableChoiceCount);
+            //ConfigureChoiceButtonLayout(button, availableChoiceCount);
 
             int index = i;
             button.onClick.AddListener(() =>
@@ -312,6 +309,11 @@ public class DialogueUI : MonoBehaviour
                 return false;
 
             return SaveSystem.Instance.FoundMenuSecret();
+        }
+
+        if (string.Equals(flagName, "clarityForForgive", System.StringComparison.OrdinalIgnoreCase))
+        {
+            return ClaritySystem.CanSeeForgiveEnding();
         }
 
         if (SaveSystem.Instance == null)
@@ -433,6 +435,10 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator DelayedShowContinueHint()
     {
         yield return new WaitForSecondsRealtime(continueHintAppearDelay);
+
+        // Don't show if dialogue is advancing automatically
+        if (DialogueSystem.Instance.AutoAdvance == true)
+            yield break;
 
         // Player might have advanced / dialogue ended / choices appeared
         if (dialogueSystem == null || !dialogueSystem.IsDialogueActive())

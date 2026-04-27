@@ -15,13 +15,13 @@ MonoBehaviour:
   dialogueID: Chapter1_safePuzzleSolve
   lines:
   - speakerName: Akila
-    dialogueText: "What is this\u2026 it looks like a weapon!! "
+    dialogueText: "What is this\u2026 It looks like a weapon!!!"
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: 'Was it the one that killed me?? Why does dad have this?? '
+    dialogueText: 'Was it the one that killed me? Why does my dad have this?? '
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: Maybe I can find something in my room.
+    dialogueText: Maybe I should check my room to look for more clues.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

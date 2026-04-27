@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ public class DialogueSystem : MonoBehaviour
     private DialogueAsset currentDialogue;
     private int currentLineIndex = -1;
     private int lastSelectedChoiceIndex = -1;
+    
+    // For dialogue automatic advance in the final chapter.
+    public bool AutoAdvance = false;
 
     public DialogueState State { get; private set; } = DialogueState.Inactive;
 
@@ -169,7 +173,7 @@ public class DialogueSystem : MonoBehaviour
             return;
 
         lastSelectedChoiceIndex = choiceIndex;
-        choice.onChoiceSelected?.Invoke();
+        HandleChoiceEvent(choice.onChoiceSelectedID);
 
         if (SaveSystem.Instance != null &&
             currentDialogue != null &&
@@ -185,13 +189,111 @@ public class DialogueSystem : MonoBehaviour
         FinishCurrentDialogue();
     }
 
+    private void HandleChoiceEvent(string id)
+    {
+        switch (id)
+        {
+            case "Tombstone_SelfAware":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Tombstone_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Weapon_SelfAware":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Weapon_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Polaroid_Empathy":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Cipher_OpenMinded":
+                ClaritySystem.AddClarity(1);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Cipher_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Polaroid_Deflect":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "Files_FullAcceptance":
+                ClaritySystem.AddClarity(2);
+                Debug.Log("Added 1 clarity point.");
+                break;
+            case "Files_PartialAcceptance":
+                ClaritySystem.AddClarity(2);
+                Debug.Log("Added 2 clarity points.");
+                break;
+            case "Files_Denial":
+                ClaritySystem.AddClarity(0);
+                Debug.Log("Added 0 clarity points.");
+                break;
+            case "ForgiveChosen":
+                StoryFlags.Set(StoryFlags.Flag.TruthRevealed);
+                Debug.Log("Chapter4: Forgive ending chosen.");
+                break;
+            case "RevengeChosen":
+                // EdenRevealed should already be true from chpt3, but set it explicitly as a safety net
+                StoryFlags.Set(StoryFlags.Flag.EdenRevealed);
+
+                // Ensure TruthRevealed stays false so ResolveSelectedEnding returns Revenge
+                if (SaveSystem.Instance != null)
+                {
+                    SaveData data = SaveSystem.Instance.GetSaveData();
+                    if (data != null)
+                    {
+                        data.truthRevealed = false;
+                        SaveSystem.Instance.SaveGame();
+                    }
+                }
+
+                Debug.Log("Chapter4: Revenge ending chosen.");
+                break;
+            case "SecretChosen":
+                StoryFlags.UnlockSecretEnding();
+                Debug.Log("Chapter4: Secret ending chosen.");
+                break;
+            default:
+                break;
+        }
+    }
+
     /// <summary>
     /// UI notifies the system that text finished typing, enabling progression.
     /// </summary>
     public void NotifyLineFinishedTyping()
     {
         if (State == DialogueState.PlayingLine)
+        {
             State = DialogueState.WaitingForAdvance;
+            if (AutoAdvance)
+            {
+                StartCoroutine(AutoAdvanceRoutine());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Plays dialogue automatically if needed.
+    /// </summary>
+    private IEnumerator AutoAdvanceRoutine()
+    {
+        if (currentDialogue == null || currentLineIndex < 0 || currentLineIndex >= currentDialogue.lines.Count) yield break;
+        DialogueLine line = currentDialogue.lines[currentLineIndex];
+        // Change delay appropriately based on dialogue length.
+        float scaledDelay = Mathf.Clamp(line.dialogueText.Length * 0.05f, 1.5f, 5f);
+        yield return new WaitForSeconds(scaledDelay);
+
+        if (State == DialogueState.WaitingForAdvance && AutoAdvance) AdvanceLine();
     }
 
     /// <summary>
@@ -204,7 +306,10 @@ public class DialogueSystem : MonoBehaviour
             currentDialogue = null;
             State = DialogueState.Inactive;
             GameInputState.DialogueActive = false;
-            InputLock.Instance.CanToggleInventory = true;
+
+            if (InputLock.Instance != null && InputLock.Instance.GameplayInputEnabled)
+                InputLock.Instance.CanToggleInventory = true;
+
             return;
         }
 

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b139b6e3f48b1a443b7afdb704e86cab, type: 3}
+  m_Name: HintData_Chapter0_Prologue
+  m_EditorClassIdentifier: BoundSpiritRuntime::SceneHintData
+  hints:
+  - editorLabel: "Ch0 \u2013 Read akila tombstone"
+    hintText: That tombstone in the center had a pink bow just like yours. Maybe
+      start there.
+    requiredPuzzleID: 
+    requiredDialogueID: Chapter0_tombstonePrimary
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch0 \u2013 first stone"
+    hintText: 'There are other graves here. One mentions a gate: something about
+      memories. Where could this grave be?'
+    requiredPuzzleID: 
+    requiredDialogueID: Chapter0_gateCluePrimary
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter0_tombstonePrimary
+  - editorLabel: "Ch0 \u2013 Help the ghosts"
+    hintText: "There\u2019s a spirit nearby who needs help\u2026"
+    requiredPuzzleID: graveyard_ghost_rose
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter0_gateCluePrimary
+  - editorLabel: "Ch0 \u2013 Help the ghosts"
+    hintText: "There is a spirit around here who seems troubled\u2026"
+    requiredPuzzleID: graveyard_ghost_key
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter0_gateCluePrimary
+  - editorLabel: "Ch0 \u2013 Help the ghosts"
+    hintText: "There\u2019s still someone here who hasn\u2019t moved on\u2026"
+    requiredPuzzleID: graveyard_ghost_crumpledPaper
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: 
+    gatedBehindDialogueID: Chapter0_gateCluePrimary
+  - editorLabel: "Ch0 \u2013 Solve the gate"
+    hintText: A gate seems to be blocking your way out. Go check and see if you can
+      fix that.
+    requiredPuzzleID: Chapter0_graveyard_gate
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: graveyard_ghost_crumpledPaper
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch0 \u2013 Solve the gate"
+    hintText: A gate seems to be blocking your way out. Go check and see if you can
+      fix that.
+    requiredPuzzleID: Chapter0_graveyard_gate
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: graveyard_ghost_rose
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch0 \u2013 Solve the gate"
+    hintText: A gate seems to be blocking your way out. Go check and see if you can
+      fix that.
+    requiredPuzzleID: Chapter0_graveyard_gate
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: graveyard_ghost_rose
+    gatedBehindDialogueID: 
+  - editorLabel: "Ch0 \u2013 Solve the gate"
+    hintText: The gate is open. Follow the path forward.
+    requiredPuzzleID: Chapter0_graveyard_gate
+    requiredDialogueID: 
+    requiredStoryFlag: 
+    gatedBehindPuzzleID: graveyard_ghost_rose
+    gatedBehindDialogueID: 

@@ -10,6 +10,9 @@ public class SafeControllerKeypad : MonoBehaviour
     public TextMeshProUGUI inputText;
     public Image successLight;
     public RectTransform knob;
+    public CanvasGroup safeCanvas;
+    public CanvasGroup weaponCanvas;
+    public Image weaponObject;
 
     [Header("Keypad Settings")]
     public int maxDigits = 6;               //6-digit code
@@ -17,6 +20,7 @@ public class SafeControllerKeypad : MonoBehaviour
 
     [Header("Keyhole")]
     public bool keyInserted = false;        //checks if the physical key was inserted
+    [SerializeField] private ItemData itemToConsume;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -38,8 +42,23 @@ public class SafeControllerKeypad : MonoBehaviour
     [Tooltip("Played once when the correct code succeeds (after knob turn), not when opening the safe.")]
     public DialogueAsset dialogueOnUnlock;
 
+    [Header("Solve Bridge")]
+    [SerializeField] private InteractableObject puzzleInteractable;
+
     private StringBuilder currentInput = new StringBuilder();
     private bool hasUnlockedSuccessfully;
+
+    private void Awake()
+    {
+        if (puzzleInteractable == null)
+        {
+            SafeInteraction safeInteraction = FindFirstObjectByType<SafeInteraction>();
+            if (safeInteraction != null)
+            {
+                puzzleInteractable = safeInteraction.GetComponent<InteractableObject>();
+            }
+        }
+    }
 
     public void OnDigitPressed(string digit)
     {
@@ -117,12 +136,17 @@ public class SafeControllerKeypad : MonoBehaviour
         if (hasUnlockedSuccessfully)
             return;
         hasUnlockedSuccessfully = true;
+        InputLock.Instance.InteractEnabled = false;
 
         if (successLight != null)
             successLight.color = UnityEngine.Color.green;
         inputText.text = "UNLOCKED";
 
-        if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
+        if (puzzleInteractable != null && !string.IsNullOrEmpty(puzzleInteractable.puzzleID))
+        {
+            puzzleInteractable.OnPuzzleSolved();
+        }
+        else if (!string.IsNullOrEmpty(savePuzzleIdWhenUnlocked) && SaveSystem.Instance != null)
         {
             SaveSystem.Instance.UnlockPuzzle(savePuzzleIdWhenUnlocked);
         }
@@ -132,13 +156,55 @@ public class SafeControllerKeypad : MonoBehaviour
         if (knob != null)
             StartCoroutine(UnlockAfterKnobRoutine());
         else
-            PlaySolveDialogueIfConfigured();
+            StartCoroutine(UnlockTransitionSequence());
     }
 
     IEnumerator UnlockAfterKnobRoutine()
     {
         yield return StartCoroutine(RotateKnob());
+        StartCoroutine(UnlockTransitionSequence());
+    }
+
+    IEnumerator UnlockTransitionSequence()
+    {
+        yield return StartCoroutine(FadeCanvas(safeCanvas, 1f, 0f, 0.5f));
+        if (weaponObject != null) weaponObject.gameObject.SetActive(true);
+        yield return StartCoroutine(FadeCanvas(weaponCanvas, 0f, 1f, 0.5f));
+        yield return StartCoroutine(FadeImage(weaponObject, 0f, 1f, 0.5f));
+        yield return new WaitForSeconds(0.3f);
         PlaySolveDialogueIfConfigured();
+    }
+
+    IEnumerator FadeCanvas(CanvasGroup cg, float from, float to, float duration)
+    {
+        if (cg == null) yield break;
+        float t = 0f;
+        cg.alpha = from;
+        while(t < duration)
+        {
+            t += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(from, to, t /  duration);
+            yield return null;
+        }
+        cg.alpha = to;
+    }
+
+    IEnumerator FadeImage(Image img, float from, float to, float duration)
+    {
+        if(img == null) yield break;
+        Color c = img.color;
+        float t = 0f;
+
+        c.a = from;
+        img.color = c;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Lerp(from, to, t / duration);
+            img.color = new Color(c.r, c.g, c.b, a);
+            yield return null;
+        }
+        img.color = new Color(c.r, c.g, c.b, to);
     }
 
     void PlaySolveDialogueIfConfigured()
@@ -146,6 +212,26 @@ public class SafeControllerKeypad : MonoBehaviour
         if (dialogueOnUnlock == null || DialogueSystem.Instance == null)
             return;
         DialogueSystem.Instance.StartDialogue(dialogueOnUnlock);
+        StartCoroutine(WaitForDialogueThenClose());
+    }
+
+    IEnumerator WaitForDialogueThenClose()
+    {
+        yield return new WaitUntil(() => DialogueSystem.Instance == null || !DialogueSystem.Instance.IsDialogueActive());
+        if (safeCanvas != null) safeCanvas.gameObject.SetActive(false);
+        if (weaponObject != null) weaponObject.gameObject.SetActive(false);
+        if (weaponCanvas != null) weaponCanvas.alpha = 0f;
+        safeCanvas.interactable = false;
+        safeCanvas.blocksRaycasts = false;
+        FindFirstObjectByType<SafeInteraction>().SetOpen();
+        FindFirstObjectByType<SafeInteraction>().SetSolved();
+        //Queue the weapon reaction clarity choice
+        DialogueAsset weaponReaction = Resources.Load<DialogueAsset>("Chapter1_weaponReaction");
+        if (weaponReaction != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(weaponReaction);
+        InputLock.Instance.CanToggleInventory = true;
+        InputLock.Instance.GameplayInputEnabled = true;
+        InputLock.Instance.InteractEnabled = true;
     }
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe
@@ -168,6 +254,12 @@ public class SafeControllerKeypad : MonoBehaviour
     public void InsertKey()     //call when inserting key in safe interaction
     {
         keyInserted = true;
+        if (itemToConsume != null)
+        {
+            PlayerInventory inv = FindFirstObjectByType<PlayerInventory>();
+            if (inv != null)
+                inv.RemoveItem(itemToConsume);
+        }
     }
 
     void PlayButtonSound()          //plays for all keypad buttons
