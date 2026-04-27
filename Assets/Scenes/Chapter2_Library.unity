@@ -8980,6 +8980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: BoundSpiritRuntime::PaintingPuzzleManager
   displayText: {fileID: 1248302942}
   dialogueOnPaintingSolve: {fileID: 11400000, guid: 2cca676ed0eb66547bad2750cefdc6d5, type: 2}
+  paintingRenderer: {fileID: 1527769877}
+  solvedSprite: {fileID: 3712825890203000235, guid: 83b7a54abf3d67048b88d538051b7314, type: 3}
   puzzleReady: 0
   puzzleID: PaintingPuzzle
 --- !u!1 &1125612418

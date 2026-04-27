@@ -18,6 +18,9 @@ public class PaintingPuzzleManager : MonoBehaviour
     [Header("Completion")]
     public DialogueAsset dialogueOnPaintingSolve;
 
+    [SerializeField] private SpriteRenderer paintingRenderer;
+    [SerializeField] private Sprite solvedSprite;
+
     [HideInInspector] public bool puzzleReady;
     [SerializeField] private string puzzleID = "PaintingPuzzle";
 
@@ -76,6 +79,10 @@ public class PaintingPuzzleManager : MonoBehaviour
             {
                 SaveSystem.Instance.UnlockPuzzle(puzzleID);
             }
+        }
+        if(paintingRenderer != null && solvedSprite != null)
+        {
+            paintingRenderer.sprite = solvedSprite;
         }
         Debug.Log("Found missing words!");
     }
