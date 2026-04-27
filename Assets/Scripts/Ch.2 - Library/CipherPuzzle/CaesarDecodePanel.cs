@@ -66,6 +66,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private Color slotBackgroundColor = new Color32(0xB4, 0xB4, 0xB4, 0xFF);
     [SerializeField] private float staticTokenFontSize = 35f;
     [SerializeField] private Color staticTokenFontColor = Color.black;
+    [SerializeField] private Color hiddenSlotTextColor = new Color(0f, 0f, 0f, 0f);
     [SerializeField] private float encodedLineSpacing = 18f;
 
     [Header("Events")]
@@ -84,6 +85,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     public string puzzleID = "CaesarCipher Puzzle";
 
     private readonly List<TMP_InputField> answerSlots = new();
+    private readonly Dictionary<TMP_InputField, TMP_Text> answerSlotTextComponents = new();
+    private readonly Dictionary<TMP_InputField, Color> answerSlotVisibleColors = new();
     private readonly List<int> wordLengths = new();
     private bool solved;
     private bool partialDecodeComplete;
@@ -176,22 +179,21 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             return;
         }
 
+        if (!IsRequiredWordSearchSolved())
+        {
+            SetBlockedState("Solve the library word search to learn the shift hint.");
+            return;
+        }
+
         if (CanRevealFinalMessage())
         {
             ApplyFinalRevealState(true);
             return;
         }
 
-        if (!string.IsNullOrWhiteSpace(requiredWordSearchPuzzleKey) &&
-            saveSystem != null &&
-            !saveSystem.IsPuzzleSolved(requiredWordSearchPuzzleKey))
-        {
-            SetBlockedState("Solve the library word search to learn the shift hint.");
-            return;
-        }
-
         solved = false;
         SyncAnswerSlotsFromHierarchy();
+        SetAnswerSlotTextVisible(true);
 
         ApplyEncodedTextPresentation();
         encodedText.text = GetDisplayedEncodedText();
@@ -285,6 +287,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         currentPreviewShift = Mathf.Abs(puzzleData.Shift % 26);
         SyncAnswerSlotsFromHierarchy();
+        SetAnswerSlotTextVisible(true);
 
         ApplyEncodedTextPresentation();
         encodedText.text = GetDisplayedEncodedText();
@@ -316,6 +319,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             feedbackText.text = message;
 
         answerSlots.Clear();
+        answerSlotTextComponents.Clear();
+        answerSlotVisibleColors.Clear();
         wordLengths.Clear();
 
         if (answerInput != null)
@@ -327,6 +332,13 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (submitButton != null)
             submitButton.interactable = false;
+
+        if (!IsRequiredWordSearchSolved())
+        {
+            SyncAnswerSlotsFromHierarchy();
+            SetAnswerSlotTextVisible(false);
+            SetAnswerSlotsInteractable(false);
+        }
 
         SetShiftControlsInteractable(false);
     }
@@ -525,6 +537,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private bool ShouldRevealMaskedPhrase()
     {
+        if (!IsRequiredWordSearchSolved())
+            return false;
+
         if (CanRevealFinalMessage())
             return true;
 
@@ -588,6 +603,9 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
     private bool CanRevealFinalMessage()
     {
+        if (!IsRequiredWordSearchSolved())
+            return false;
+
         if (LibraryPuzzleStateBridge.Instance != null && LibraryPuzzleStateBridge.Instance.CanFinalize())
             return true;
 
@@ -610,6 +628,13 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         return saveSystem != null &&
                !string.IsNullOrWhiteSpace(revealMaskedPhraseAfterLegacyPuzzleKey) &&
                saveSystem.IsPuzzleSolved(revealMaskedPhraseAfterLegacyPuzzleKey);
+    }
+
+    private bool IsRequiredWordSearchSolved()
+    {
+        return string.IsNullOrWhiteSpace(requiredWordSearchPuzzleKey) ||
+               saveSystem == null ||
+               saveSystem.IsPuzzleSolved(requiredWordSearchPuzzleKey);
     }
 
     private string BuildAnswerTarget()
@@ -731,6 +756,8 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             answerInput.gameObject.SetActive(false);
 
         answerSlots.Clear();
+        answerSlotTextComponents.Clear();
+        answerSlotVisibleColors.Clear();
         wordLengths.Clear();
 
         if (answerSlotsRoot == null)
@@ -756,6 +783,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
                     ApplyAnswerSlotPresentation(slot);
                     slot.onValueChanged.RemoveAllListeners();
                     answerSlots.Add(slot);
+
+                    if (slot.textComponent != null)
+                    {
+                        answerSlotTextComponents[slot] = slot.textComponent;
+                        answerSlotVisibleColors[slot] = slot.textComponent.color;
+                    }
                 }
             }
         }
@@ -965,6 +998,25 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     {
         for (int i = 0; i < answerSlots.Count; i++)
             answerSlots[i].interactable = interactable;
+    }
+
+    private void SetAnswerSlotTextVisible(bool visible)
+    {
+        for (int i = 0; i < answerSlots.Count; i++)
+        {
+            TMP_InputField slot = answerSlots[i];
+            if (slot == null)
+                continue;
+
+            if (!answerSlotTextComponents.TryGetValue(slot, out TMP_Text text) || text == null)
+                continue;
+
+            Color visibleColor = answerSlotVisibleColors.TryGetValue(slot, out Color storedColor)
+                ? storedColor
+                : text.color;
+
+            text.color = visible ? visibleColor : hiddenSlotTextColor;
+        }
     }
 
     private static string ReplaceIgnoreCase(string source, string oldValue, string newValue)
