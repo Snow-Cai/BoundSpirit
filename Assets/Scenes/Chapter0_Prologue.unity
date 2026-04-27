@@ -200,7 +200,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -250, y: 18}
+  m_AnchoredPosition: {x: -250, y: 17.999939}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &33546715
@@ -220,7 +220,7 @@ MonoBehaviour:
   hintPopupText: {fileID: 651132146}
   closeButton: {fileID: 351651498}
   cooldownLabel: {fileID: 1961561552}
-  hintCooldown: 2
+  hintCooldown: 30
   sceneHints:
   - {fileID: 11400000, guid: 2e0f5a33a5efc1940b08b3a3fc33f196, type: 2}
   - {fileID: 11400000, guid: 7268b3abf38dbb041a7815db827cfa14, type: 2}
@@ -9542,7 +9542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473813446}
-  - component: {fileID: 473813445}
+  - component: {fileID: 473813447}
   m_Layer: 0
   m_Name: ClarityChoiceHandler
   m_TagString: Untagged
@@ -9550,18 +9550,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &473813445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473813444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: BoundSpiritRuntime::ClarityChoiceHandler
 --- !u!4 &473813446
 Transform:
   m_ObjectHideFlags: 0
@@ -9577,6 +9565,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473813447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473813444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::ClarityChoiceHandler
 --- !u!4 &500618572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5718375164715921363, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
@@ -9695,9 +9695,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.5144231
+    width: 2.172973
+    height: 2.596154
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -20644,6 +20644,30 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 934cd15b59b4ae54fbc9c667323cfce7, type: 2}
     - target: {fileID: 5239401067651490055, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713306829205526838, guid: 9334c29fceb311945b86f735450ba263, type: 3}
+      propertyPath: m_ChildForceExpandWidth
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6999337976627734301, guid: 9334c29fceb311945b86f735450ba263, type: 3}

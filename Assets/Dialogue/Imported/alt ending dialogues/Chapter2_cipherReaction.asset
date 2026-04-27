@@ -15,7 +15,14 @@ MonoBehaviour:
   dialogueID: Chapter2_cipherReaction
   lines:
   - speakerName: Akila
-    dialogueText: A case file. About me.
+    dialogueText: 'File? Is this connected to dad''s police job? I need to get to
+      the bottom of this. '
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I should go to the police station. I can find more answers there.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I wonder...
     voiceClip: {fileID: 0}
   choices:
   - choiceText: The truth might be harder than I want it to be.

@@ -18,6 +18,10 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private const string SavedPartialPrefix = "PARTIAL=";
     private static CaesarDecodePanel instance;
 
+    [Header("Clarity Choice")]
+    [SerializeField] private DialogueAsset cipherReactionDialogue;
+
+
     public static bool IsPanelActuallyOpen =>
         instance != null &&
         instance.isActiveAndEnabled &&
@@ -388,6 +392,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             PersistProgress();
             return;
         }
+
+        // Queue the normal solve dialogue
+        if (onFinalSolveDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(onFinalSolveDialogue);
+
+        // Queue the clarity reaction dialogue
+        if (cipherReactionDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(cipherReactionDialogue);
+
 
         ApplyFinalRevealState(!HasFinalRevealBeenCompleted());
     }

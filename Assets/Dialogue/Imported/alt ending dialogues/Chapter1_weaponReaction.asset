@@ -15,7 +15,11 @@ MonoBehaviour:
   dialogueID: Chapter1_weaponReaction
   lines:
   - speakerName: Akila
-    dialogueText: Why would he have this?
+    dialogueText: "What is this\u2026 It looks like a weapon!!! Was it the one that
+      killed me? "
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: 'Why does my dad have this?? '
     voiceClip: {fileID: 0}
   choices:
   - choiceText: ...Was this mine?

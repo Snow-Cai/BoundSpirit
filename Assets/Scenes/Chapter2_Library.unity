@@ -10625,9 +10625,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.54098356
-    width: 2.8096116
-    height: 4.4262295
+    y: -0.42307693
+    width: 2.193362
+    height: 3.4615386
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -18888,6 +18888,10 @@ PrefabInstance:
       propertyPath: puzzleInteractable
       value: 
       objectReference: {fileID: 634195555055406540}
+    - target: {fileID: 3228566466303776510, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
+      propertyPath: onFinalSolveDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 16bff961be252d044ac379386d0a3a41, type: 2}
     - target: {fileID: 9153983512227948811, guid: 6f5d01b285444864384952901c6ddc78, type: 3}
       propertyPath: m_Pivot.x
       value: 0

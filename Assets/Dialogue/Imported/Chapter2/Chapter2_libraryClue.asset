@@ -19,7 +19,7 @@ MonoBehaviour:
       bottom of this.
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: I should go to the police station. I can find more answers there.
+    dialogueText: II should go to the police station. I can find more answers there.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

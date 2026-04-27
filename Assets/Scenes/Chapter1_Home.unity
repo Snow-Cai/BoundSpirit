@@ -31058,7 +31058,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   savePuzzleIdWhenUnlocked: Chapter1_parentRoomSafe
-  dialogueOnUnlock: {fileID: 11400000, guid: d771d48436e021649ba4f822185e7478, type: 2}
+  dialogueOnUnlock: {fileID: 11400000, guid: 73f2e8336a0c4244c860a9a47768fca5, type: 2}
   puzzleInteractable: {fileID: 0}
 --- !u!82 &1291626102
 AudioSource:
@@ -32256,7 +32256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848841235827521886, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 260
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5007489772089502366, guid: 9334c29fceb311945b86f735450ba263, type: 3}
       propertyPath: m_Pivot.x
@@ -32790,9 +32790,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.057407405
-    width: 0.77291673
-    height: 0.5
+    y: -0.23770492
+    width: 0.99877065
+    height: 1.4754097
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

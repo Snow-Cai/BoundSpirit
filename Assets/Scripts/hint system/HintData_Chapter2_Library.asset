@@ -38,7 +38,7 @@ MonoBehaviour:
   - editorLabel: "Ch2 \u2013 paitning done, need to go to cipher"
     hintText: Now that you've solved the painting, go check out the cipher again!
     requiredPuzzleID: 
-    requiredDialogueID: Chapter2_libraryClue
+    requiredDialogueID: Chapter2_cipherReaction
     requiredStoryFlag: 
     gatedBehindPuzzleID: PaintingPuzzle
     gatedBehindDialogueID: 
@@ -49,4 +49,4 @@ MonoBehaviour:
     requiredDialogueID: 
     requiredStoryFlag: 
     gatedBehindPuzzleID: 
-    gatedBehindDialogueID: Chapter2_libraryClue
+    gatedBehindDialogueID: Chapter2_cipherReaction
