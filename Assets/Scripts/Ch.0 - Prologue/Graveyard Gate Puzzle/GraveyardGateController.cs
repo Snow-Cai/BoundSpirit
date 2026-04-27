@@ -7,7 +7,7 @@ public class GraveyardGateController : MonoBehaviour
     [SerializeField] private float interactionRange = 2f;
 
     [Header("Requirements")]
-    [SerializeField] private DialogueAsset requiredIntroDialogue; // Player must view this before leaving to next area
+    [SerializeField] private DialogueAsset requiredIntroDialogue; //Player must view this before leaving to next area
     [SerializeField] private string gatePuzzleID = "Chapter0_graveyard_gate";
 
     [Header("Ghost requirements")]
@@ -26,8 +26,8 @@ public class GraveyardGateController : MonoBehaviour
         "Help the spirits in the graveyard to get the gate code.";
 
     [Header("Dialogue Feedback")]
-    [SerializeField] private DialogueAsset lockedWithoutNameDialogue; // Shown if player has not learned their name
-    [SerializeField] private DialogueAsset lockedBeforeGateClueDialogue; // After name known; gate gravestone clue not read yet
+    [SerializeField] private DialogueAsset lockedWithoutNameDialogue; //Shown if player has not learned their name
+    [SerializeField] private DialogueAsset lockedBeforeGateClueDialogue; //After name known; gate gravestone clue not read yet
     [Tooltip("Banner when the player should read the engraving on the stone beneath the gate first.")]
     [SerializeField] private string gateClueObjectiveMessage =
         "Examine the stone around the gate and read the engraving.";
@@ -508,10 +508,6 @@ public class GraveyardGateController : MonoBehaviour
 
         enabled = false;
     }
-
-    /// <summary>
-    /// Call when save data is updated at runtime (e.g. dev shortcuts) so the gate hides if the puzzle is already solved.
-    /// </summary>
     public void SyncUnlockedStateWithSave()
     {
         if (!IsGatePuzzleSolved())

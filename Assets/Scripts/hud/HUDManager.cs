@@ -17,7 +17,6 @@ public class HUDManager : MonoBehaviour
     [Tooltip("Fade speed when showing/hiding the HUD.")]
     [SerializeField] private float fadeSpeed = 8f;
 
-    // ------------------------------------------------------------------
     private float targetAlpha = 1f;
 
     private void Awake()
@@ -72,7 +71,7 @@ public class HUDManager : MonoBehaviour
 
         bool visible = hudCanvasGroup.alpha > 0.01f;
         hudCanvasGroup.interactable = visible;
-        hudCanvasGroup.blocksRaycasts = false; //HUD never blocks gameplay clicks
+        hudCanvasGroup.blocksRaycasts = visible; //HUD never blocks gameplay clicks
     }
 
     private bool ShouldShowHUD()
@@ -97,7 +96,7 @@ public class HUDManager : MonoBehaviour
         if (InputLock.Instance != null && !InputLock.Instance.GameplayInputEnabled)
             return false;
 
-        //hide when pause menu is open (Time.timeScale == 0 is a reliable proxy)
+        //hide when pause menu is open
         if (Time.timeScale == 0f)
             return false;
 
