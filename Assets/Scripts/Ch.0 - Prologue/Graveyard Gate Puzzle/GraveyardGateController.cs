@@ -123,8 +123,8 @@ public class GraveyardGateController : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Allow closing the puzzle with Escape while it is open.
-        if (puzzleOpen && Input.GetKeyDown(KeyCode.Escape))
+        // Use the gate interaction key for closing too so Chapter 0 stays on E.
+        if (puzzleOpen && Input.GetKeyDown(interactKey))
         {
             ClosePuzzleUI();
             return;
