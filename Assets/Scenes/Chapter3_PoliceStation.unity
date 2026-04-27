@@ -8615,7 +8615,7 @@ MonoBehaviour:
   - {fileID: 1467527150}
   - {fileID: 1527784486}
   correctCode: 020000000900000005000000030000000700000004000000
-  policeFileObtainedDialogue: {fileID: 11400000, guid: 0bd92613026a4b541873feac57dc4f10, type: 2}
+  policeFileObtainedDialogue: {fileID: 11400000, guid: 578688303e114af4cadbe6dd257352a3, type: 2}
   puzzleID: StationLocker
   puzzleInteractable: {fileID: 0}
 --- !u!1 &891089591
@@ -9149,8 +9149,8 @@ MonoBehaviour:
   correctYear: 2019
   correctcaseIndex: 3
   interactDialogue: {fileID: 11400000, guid: 7d2f34f69d8a0874c87e85bb28a99aa5, type: 2}
-  filesReactionDialogue: {fileID: 11400000, guid: 578688303e114af4cadbe6dd257352a3, type: 2}
-  alarmEventTriggeredDialogue: {fileID: 11400000, guid: 2c071386655ff0e41a3384504c5760cd, type: 2}
+  filesReactionDialogue: {fileID: 11400000, guid: 2c071386655ff0e41a3384504c5760cd, type: 2}
+  alarmEventTriggeredDialogue: {fileID: 0}
   puzzleID: StationComputerPuzzle
   puzzleInteractable: {fileID: 0}
 --- !u!114 &907082002

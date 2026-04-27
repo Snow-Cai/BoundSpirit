@@ -15,8 +15,16 @@ MonoBehaviour:
   dialogueID: Chapter3_filesReaction
   lines:
   - speakerName: Akila
+    dialogueText: "This is\u2026 a police file about me? And Eden was involved. But...
+      This isn't what I thought happened to me."
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
     dialogueText: The files say Eden was defending herself. That I followed her.
       That I had a weapon.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: "Wait\u2026 The hill? That\u2019s\u2026 where I died. I have a
+      feeling that\u2019s where I need to go."
     voiceClip: {fileID: 0}
   choices:
   - choiceText: ...I did this. I brought the knife. She was afraid of me.
