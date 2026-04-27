@@ -8981,6 +8981,7 @@ MonoBehaviour:
   displayText: {fileID: 1248302942}
   dialogueOnPaintingSolve: {fileID: 11400000, guid: 2cca676ed0eb66547bad2750cefdc6d5, type: 2}
   puzzleReady: 0
+  puzzleID: PaintingPuzzle
 --- !u!1 &1125612418
 GameObject:
   m_ObjectHideFlags: 0
@@ -10578,9 +10579,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.10490693
-    width: 1.4119885
-    height: 0.9137056
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -11399,7 +11400,7 @@ SpriteRenderer:
   m_SortingLayerID: -1175544165
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3712825890203000235, guid: 83b7a54abf3d67048b88d538051b7314, type: 3}
+  m_Sprite: {fileID: -7959765904209040428, guid: 7466cd09679c9b541a3989f95195c104, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
