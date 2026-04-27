@@ -8816,7 +8816,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357102266}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18a05495e0bedb848b6c6c9b0d77d89b, type: 3}
   m_Name: 
@@ -8834,7 +8834,7 @@ MonoBehaviour:
   repeatDialogue: {fileID: 0}
   missingItemDialogue: {fileID: 0}
   setFoundHiddenTombstoneOnInteract: 0
-  isPuzzle: 0
+  isPuzzle: 1
   puzzleID: Chapter0_graveyard_gate
   puzzleUI: {fileID: 1528216646}
   isPuzzleOpen: 0
@@ -9650,9 +9650,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.031516742
+    y: 0
     width: 1
-    height: 1.0636901
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -27578,6 +27578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputLock
   GameplayInputEnabled: 1
+  CanToggleJournal: 1
   CanToggleInventory: 1
   AllowInspect: 1
   InteractEnabled: 1
