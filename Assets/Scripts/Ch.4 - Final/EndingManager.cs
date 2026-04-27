@@ -133,6 +133,7 @@ public class EndingManager : MonoBehaviour
         if (InputLock.Instance != null)
             InputLock.Instance.GameplayInputEnabled = false;
 
+        DialogueSystem.Instance.AutoAdvance = true;
         //play the walking monologue
         if (walkingDialogue != null && DialogueSystem.Instance != null)
         {
@@ -142,8 +143,7 @@ public class EndingManager : MonoBehaviour
         //Step 2: walk the player to the tree
         if (ppc != null) ppc.enabled = false;
         yield return StartCoroutine(FadeFromBlack());
-
-        DialogueSystem.Instance.AutoAdvance = true;
+        
         yield return new WaitForSeconds(2f);
         yield return StartCoroutine(WalkToPoint(treePoint));
         yield return new WaitForSeconds(1.5f);

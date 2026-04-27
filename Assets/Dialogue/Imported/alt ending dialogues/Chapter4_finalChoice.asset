@@ -15,10 +15,6 @@ MonoBehaviour:
   dialogueID: 
   lines:
   - speakerName: Akila
-    dialogueText: I've been blaming Eden this whole time. But I walked up this hill
-      with a knife. She was defending herself.
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
     dialogueText: Eden. I don't know if you can hear me. But I need to say something.
     voiceClip: {fileID: 0}
   choices:

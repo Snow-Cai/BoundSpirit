@@ -212,7 +212,7 @@ public class DialogueSystem : MonoBehaviour
         if (currentDialogue == null || currentLineIndex < 0 || currentLineIndex >= currentDialogue.lines.Count) yield break;
         DialogueLine line = currentDialogue.lines[currentLineIndex];
         // Change delay appropriately based on dialogue length.
-        float scaledDelay = Mathf.Clamp(line.dialogueText.Length * 0.04f, 1.5f, 5f);
+        float scaledDelay = Mathf.Clamp(line.dialogueText.Length * 0.05f, 1.5f, 5f);
         yield return new WaitForSeconds(scaledDelay);
 
         if (State == DialogueState.WaitingForAdvance && AutoAdvance) AdvanceLine();

@@ -31,9 +31,6 @@ MonoBehaviour:
     dialogueText: And all I could think about was how much I loved her. I thought
       love made it okay.
     voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Eden. I don't know if you can hear me. But I need to say something.
-    voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
