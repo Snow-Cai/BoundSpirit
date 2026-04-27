@@ -16,7 +16,7 @@ public class EndingManager : MonoBehaviour
     [Header("Ending Dialogue Assets")]
     public DialogueAsset revengeEndingDialogue;
     public DialogueAsset forgiveEndingDialogue;
-    public DialogueAsset secretEndingDialogue;
+    public DialogueAsset secretEndingDialogue, secretEndingDialogue2;
     public DialogueAsset walkingDialogue;
 
     [Header("End Screen")]
@@ -40,6 +40,7 @@ public class EndingManager : MonoBehaviour
     public CameraFollow camFollow;
     public PixelPerfectCamera ppc;
     public SpriteRenderer gateSR;
+    public GameObject EDEN;
 
     public AudioSource musicAudio;
 
@@ -191,7 +192,7 @@ public class EndingManager : MonoBehaviour
         string titleText, subtitleText;
         GetEndingCardText(ending, out titleText, out subtitleText);
 
-        if (ending == EndingType.Forgive || ending == EndingType.Secret)
+        if (ending == EndingType.Forgive)
         {
             yield return StartCoroutine(FadeInGate());
             yield return new WaitForSecondsRealtime(2f);
@@ -268,7 +269,12 @@ public class EndingManager : MonoBehaviour
     {
         if (secretEndingDialogue != null && DialogueSystem.Instance != null)
         {
+            yield return StartCoroutine(FadeInGate());
+            yield return new WaitForSecondsRealtime(2f);
             DialogueSystem.Instance.QueueDialogue(secretEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+            EDEN.SetActive(true);
+            DialogueSystem.Instance.QueueDialogue(secretEndingDialogue2);
             yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
         }
 
