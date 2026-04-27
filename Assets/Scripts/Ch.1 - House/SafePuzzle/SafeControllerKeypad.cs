@@ -225,6 +225,10 @@ public class SafeControllerKeypad : MonoBehaviour
         safeCanvas.blocksRaycasts = false;
         FindFirstObjectByType<SafeInteraction>().SetOpen();
         FindFirstObjectByType<SafeInteraction>().SetSolved();
+        //Queue the weapon reaction clarity choice
+        DialogueAsset weaponReaction = Resources.Load<DialogueAsset>("Chapter1_weaponReaction");
+        if (weaponReaction != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(weaponReaction);
         InputLock.Instance.CanToggleInventory = true;
         InputLock.Instance.GameplayInputEnabled = true;
         InputLock.Instance.InteractEnabled = true;

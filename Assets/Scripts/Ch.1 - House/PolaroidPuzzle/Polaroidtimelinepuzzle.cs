@@ -9,6 +9,9 @@ using TMPro;
 
 public class PolaroidTimelinePuzzle : MonoBehaviour
 {
+    [Header("Clarity Choice")]
+    public DialogueAsset polaroidReactionDialogue;
+
     [Header("Puzzle Identity")]
     public string puzzleID = "Chapter1_polaroid_timeline";
 
@@ -269,7 +272,11 @@ public class PolaroidTimelinePuzzle : MonoBehaviour
         }
 
         if (onSolveDialogue != null && DialogueSystem.Instance != null)
-            DialogueSystem.Instance.StartDialogue(onSolveDialogue);
+            DialogueSystem.Instance.QueueDialogue(onSolveDialogue);
+
+        // Queue the polaroid reaction clarity choice after the solve dialogue
+        if (polaroidReactionDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(polaroidReactionDialogue);
 
         Debug.Log("POLAROID PUZZLE: Solved!");
     }

@@ -1546,6 +1546,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &298430925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298430927}
+  - component: {fileID: 298430926}
+  m_Layer: 0
+  m_Name: ClarityChoiceHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &298430926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298430925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::ClarityChoiceHandler
+--- !u!4 &298430927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298430925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.45231, y: 119.43137, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317713491
 GameObject:
   m_ObjectHideFlags: 0
@@ -9353,6 +9397,7 @@ MonoBehaviour:
   correctYear: 2019
   correctcaseIndex: 3
   interactDialogue: {fileID: 11400000, guid: 7d2f34f69d8a0874c87e85bb28a99aa5, type: 2}
+  filesReactionDialogue: {fileID: 11400000, guid: 578688303e114af4cadbe6dd257352a3, type: 2}
   alarmEventTriggeredDialogue: {fileID: 11400000, guid: 2c071386655ff0e41a3384504c5760cd, type: 2}
   puzzleID: StationComputerPuzzle
   puzzleInteractable: {fileID: 0}
@@ -10028,9 +10073,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.54098356
+    width: 2.8096116
+    height: 4.4262295
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -13532,7 +13577,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 88.32, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640661960
 MonoBehaviour:
@@ -19148,3 +19193,4 @@ SceneRoots:
   - {fileID: 1499355195}
   - {fileID: 1350610684}
   - {fileID: 879472567}
+  - {fileID: 298430927}

@@ -24,4 +24,4 @@ MonoBehaviour:
   choices: []
   choicesAfterLineIndex: -1
   saveAfterDialogue: 1
-  showChoicesAtEnd: 0
+  showChoicesAtEnd: 1

@@ -10,7 +10,7 @@ public class EndingManager : MonoBehaviour
     public static EndingManager Instance { get; private set; }
 
     [Header("Choice Entry")]
-    [Tooltip("Dialogue played when the player interacts with the hill gate.")]
+    [Tooltip("Assign the Chapter4_finalChoice DialogueAsset here.")]
     public DialogueAsset finalChoiceDialogue;
 
     [Header("Ending Dialogue Assets")]
@@ -59,11 +59,6 @@ public class EndingManager : MonoBehaviour
     private bool gateSequenceActive;
     public bool IsEndingPresentationActive => gateSequenceActive;
 
-    private void Start()
-    {
-        if(autoStartOnSceneLoad) StartCoroutine(AutoStartEnding());
-    }
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -79,6 +74,11 @@ public class EndingManager : MonoBehaviour
             endScreenCanvas.alpha = 0f;
             endScreenCanvas.gameObject.SetActive(false);
         }
+    }
+
+    private void Start()
+    {
+        if (autoStartOnSceneLoad) StartCoroutine(AutoStartEnding());
     }
 
     private IEnumerator AutoStartEnding()
@@ -101,6 +101,8 @@ public class EndingManager : MonoBehaviour
         StartCoroutine(RunEndingSequence());
     }
 
+    //secret flag helpers
+
     public bool HasMenuSecretForEnding()
     {
         if (overrideSecretFlagsInInspector)
@@ -122,6 +124,8 @@ public class EndingManager : MonoBehaviour
         return HasMenuSecretForEnding() && HasHiddenTombstoneForEnding();
     }
 
+    //main sequence
+
     private IEnumerator RunEndingSequence()
     {
         gateSequenceActive = true;
@@ -129,21 +133,70 @@ public class EndingManager : MonoBehaviour
         if (InputLock.Instance != null)
             InputLock.Instance.GameplayInputEnabled = false;
 
+        //play the walking monologue
+        if (walkingDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(walkingDialogue);
+        }
+
+        //Step 2: walk the player to the tree
+        if (ppc != null) ppc.enabled = false;
+        yield return StartCoroutine(FadeFromBlack());
+
+        DialogueSystem.Instance.AutoAdvance = true;
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(WalkToPoint(treePoint));
+        yield return new WaitForSeconds(1.5f);
+        yield return StartCoroutine(ZoomOutCamera());
+
+        // Wait for the walking dialogue to finish before showing the choice
+        yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        DialogueSystem.Instance.AutoAdvance = false;
+
+        //step 3: present the branching final choice
+        if (finalChoiceDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.StartDialogue(finalChoiceDialogue);
+
+            // Wait until the player has picked a choice and dialogue is fully done
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+
+            // One extra frame so ClarityChoiceHandler UnityEvents have written their flags
+            yield return null;
+        }
+
+        //Step 4: resolve which ending was earned
         EndingType ending = ResolveSelectedEnding();
-        Debug.Log("EndingManager: Playing the ending for: -> " + ending);
+        Debug.Log("EndingManager: Resolved ending -> " + ending);
 
-        yield return StartCoroutine(PlayEndingCutscene(ending));
+        if (musicAudio != null) musicAudio.Play();
 
+        //Step 5: play the ending-specific cutscene 
+        switch (ending)
+        {
+            case EndingType.Forgive:
+                yield return StartCoroutine(ForgiveCutscene());
+                break;
+            case EndingType.Revenge:
+                yield return StartCoroutine(RevengeCutscene());
+                break;
+            case EndingType.Secret:
+                yield return StartCoroutine(SecretCutscene());
+                break;
+        }
+
+        //step 6: persist ending data then show end card
         ApplyEndingPersistence(ending);
 
-        string titleText;
-        string subtitleText;
+        string titleText, subtitleText;
         GetEndingCardText(ending, out titleText, out subtitleText);
+
         if (ending == EndingType.Forgive || ending == EndingType.Secret)
         {
             yield return StartCoroutine(FadeInGate());
             yield return new WaitForSecondsRealtime(2f);
         }
+
         yield return StartCoroutine(ShowEndScreen(titleText, subtitleText));
 
         if (InputLock.Instance != null)
@@ -152,23 +205,75 @@ public class EndingManager : MonoBehaviour
         gateSequenceActive = false;
     }
 
-    private EndingType ResolveSelectedEnding()                  // TEMPORARY: UPDATE WHEN SAVE SYSTEM IMPLEMENTS THE CHOICE FLAGS i.e. read from SaveSystem flags instead of dialogue system
+    //ending resolution
+
+    /// <summary>
+    /// Reads the story flags written by ClarityChoiceHandler to decide the ending.
+    /// Secret always wins if both secret flags AND the puzzle key are present.
+    /// Forgive requires TruthRevealed = true AND clarityScore >= threshold.
+    /// Revenge is the fallback.
+    /// </summary>
+    private EndingType ResolveSelectedEnding()
     {
-        return EndingType.Secret;
+        // Secret ending takes priority when all requirements are met
+        if (HasSecretEndingRequirements() &&
+            SaveSystem.Instance != null &&
+            SaveSystem.Instance.IsPuzzleSolved("secret_ending_unlocked"))
+        {
+            return EndingType.Secret;
+        }
 
-        //int resulting = 
-        //if (resultingChoice < 0)
-        //    return EndingType.Forgive;
+        if (SaveSystem.Instance == null)
+            return EndingType.Revenge;
 
-        //switch (resultingChoice)
-        //{
-        //    case 1:
-        //        return EndingType.Revenge;
-        //    case 2:
-        //        return EndingType.Secret;
-        //    default:
-        //        return EndingType.Forgive;
-        //}
+        SaveData data = SaveSystem.Instance.GetSaveData();
+        if (data == null)
+            return EndingType.Revenge;
+
+        // Forgive: player accepted the full truth AND accumulated enough clarity
+        if (data.truthRevealed && ClaritySystem.CanSeeForgiveEnding())
+            return EndingType.Forgive;
+
+        // Revenge: default when truth hasn't been accepted or clarity is too low
+        return EndingType.Revenge;
+    }
+
+    //Ending cutscenes
+
+    private IEnumerator ForgiveCutscene()
+    {
+        if (forgiveEndingDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(forgiveEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
+    }
+
+    private IEnumerator RevengeCutscene()
+    {
+        if (revengeEndingDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(revengeEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
+    }
+
+    private IEnumerator SecretCutscene()
+    {
+        if (secretEndingDialogue != null && DialogueSystem.Instance != null)
+        {
+            DialogueSystem.Instance.QueueDialogue(secretEndingDialogue);
+            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
+        }
+
+        yield return new WaitForSeconds(2f);
+        DialogueSystem.Instance.AutoAdvance = false;
     }
 
     private void ApplyEndingPersistence(EndingType ending)
@@ -216,7 +321,7 @@ public class EndingManager : MonoBehaviour
                 subtitle = "Some things can only be forgiven between the people involved.\n\nNeither of them was just a villain. Neither of them was just a victim. They were two people who didn't know how to say the hard things. They learned, eventually. Some things take longer than a lifetime.";
                 break;
 
-            default:
+            default: // Forgive
                 title = "FOUND SPIRIT";
                 subtitle = "Eden Reyes graduated in 2019. She studied psychology. She wanted to help people who feel like they have no other way out.\n\nSome people still visit Akila's grave with oranges and apples, because those were her favorites.\n\nAkila. 2001-2019. Loving daughter.";
                 break;
@@ -255,75 +360,6 @@ public class EndingManager : MonoBehaviour
         SceneManager.LoadScene(returnToScene);
     }
 
-    private IEnumerator PlayEndingCutscene(EndingType ending)
-    {
-        if (ppc != null) ppc.enabled = false;
-        yield return StartCoroutine(FadeFromBlack());
-
-        if (walkingDialogue != null)
-        {
-            DialogueSystem.Instance.QueueDialogue(walkingDialogue);
-        }
-        DialogueSystem.Instance.AutoAdvance = true;
-        yield return new WaitForSeconds(2f);
-
-        yield return StartCoroutine(WalkToPoint(treePoint));
-
-        yield return new WaitForSeconds(1.5f);
-        yield return StartCoroutine(ZoomOutCamera());
-
-        if (musicAudio != null) musicAudio.Play();
-
-        switch (ending)
-        {
-            case EndingType.Forgive:
-                yield return StartCoroutine(ForgiveCutscene());
-                break;
-            case EndingType.Revenge:
-                yield return StartCoroutine(RevengeCutscene());
-                break;
-            case EndingType.Secret:
-                yield return StartCoroutine(SecretCutscene());
-                break;
-        }
-    }
-
-    private IEnumerator ForgiveCutscene()
-    {
-        if(forgiveEndingDialogue != null)
-        {
-            DialogueSystem.Instance.QueueDialogue(forgiveEndingDialogue);
-            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
-        }
-
-        yield return new WaitForSeconds(2f);
-        DialogueSystem.Instance.AutoAdvance = false;
-    }
-
-    private IEnumerator RevengeCutscene()
-    {
-        if (revengeEndingDialogue != null)
-        {
-            DialogueSystem.Instance.QueueDialogue(revengeEndingDialogue);
-            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
-        }
-
-        yield return new WaitForSeconds(2f);
-        DialogueSystem.Instance.AutoAdvance = false;
-    }
-
-    private IEnumerator SecretCutscene()
-    {
-        if (secretEndingDialogue != null)
-        {
-            DialogueSystem.Instance.QueueDialogue(secretEndingDialogue);
-            yield return new WaitUntil(() => !DialogueSystem.Instance.IsDialogueActive());
-        }
-
-        yield return new WaitForSeconds(2f);
-        DialogueSystem.Instance.AutoAdvance = false;
-    }
-
     private IEnumerator WalkToPoint(Transform target)
     {
         while (Vector3.Distance(player.position, target.position) > 7f)
@@ -344,7 +380,7 @@ public class EndingManager : MonoBehaviour
         fadeCanvas.gameObject.SetActive(true);
         fadeCanvas.alpha = 1f;
         float t = 0f;
-        while(t < fadeInDuration)
+        while (t < fadeInDuration)
         {
             t += Time.deltaTime;
             fadeCanvas.alpha = 1f - (t / fadeInDuration);
@@ -365,7 +401,7 @@ public class EndingManager : MonoBehaviour
 
         gateSR.color = startColor;
 
-        while(t < fadeInDuration)
+        while (t < fadeInDuration)
         {
             t += Time.deltaTime;
             gateSR.color = Color.Lerp(startColor, targetColor, t / fadeInDuration);
@@ -376,16 +412,15 @@ public class EndingManager : MonoBehaviour
 
     private IEnumerator ZoomOutCamera()
     {
-        if (camFollow != null) camFollow.followEnabled = false;         // Allow zoom out
+        if (camFollow != null) camFollow.followEnabled = false;
 
         yield return null;
 
-        Vector3 startPos = mainCamera.transform.position; ;
+        Vector3 startPos = mainCamera.transform.position;
         Vector3 targetPos = startPos + new Vector3(0f, panUpAmount, 0f);
-        
+
         float startSize = mainCamera.orthographicSize;
         float targetSize = zoomOutSize;
-
         float t = 0f;
 
         while (t < zoomDuration)

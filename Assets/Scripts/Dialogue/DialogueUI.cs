@@ -314,6 +314,11 @@ public class DialogueUI : MonoBehaviour
             return SaveSystem.Instance.FoundMenuSecret();
         }
 
+        if (string.Equals(flagName, "clarityForForgive", System.StringComparison.OrdinalIgnoreCase))
+        {
+            return ClaritySystem.CanSeeForgiveEnding();
+        }
+
         if (SaveSystem.Instance == null)
             return false;
 

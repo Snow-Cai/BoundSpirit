@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
+  m_Name: Chapter4_finalChoice
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: 
+  lines:
+  - speakerName: Akila
+    dialogueText: I've been blaming Eden this whole time. But I walked up this hill
+      with a knife. She was defending herself.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: Eden. I don't know if you can hear me. But I need to say something.
+    voiceClip: {fileID: 0}
+  choices:
+  - choiceText: I'm sorry. For all of it.
+    nextDialogue: {fileID: 0}
+    requiredFlags:
+    - clarityForForgive
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+          m_MethodName: set_name
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ClarityChoiceHandler.OnForgiveChosen
+            m_BoolArgument: 0
+          m_CallState: 2
+  - choiceText: You took everything from me.
+    nextDialogue: {fileID: 0}
+    requiredFlags: []
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+          m_MethodName: set_name
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ClarityChoiceHandler.OnRevengeChosen
+            m_BoolArgument: 0
+          m_CallState: 2
+  - choiceText: There's somewhere else I need to go.
+    nextDialogue: {fileID: 0}
+    requiredFlags:
+    - foundHiddenTombstone
+    - foundMenuSecret
+    forbiddenFlags: []
+    onChoiceSelected:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+          m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+          m_MethodName: set_name
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ClarityChoiceHandler.OnSecretChosen
+            m_BoolArgument: 0
+          m_CallState: 2
+  choicesAfterLineIndex: -1
+  saveAfterDialogue: 1
+  showChoicesAtEnd: 1

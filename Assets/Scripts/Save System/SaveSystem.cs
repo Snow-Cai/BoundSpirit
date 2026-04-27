@@ -53,6 +53,7 @@ public class SaveData
     public bool truthRevealed;
     public bool foundMenuSecret;
     public bool foundHiddenTombstone;
+    public int clarityScore = 0;
 
     //Timestamps
     public string lastSaveTime;

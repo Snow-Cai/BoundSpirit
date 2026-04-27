@@ -24,6 +24,9 @@ public class PoliceDatabasePuzzle : MonoBehaviour
     [Tooltip("Played on initial interact.")]
     public DialogueAsset interactDialogue;
 
+    [Tooltip("Clarity choice shown after the player sees their police file.")]
+    public DialogueAsset filesReactionDialogue;
+
     [Tooltip("Played when the player succeeds.")]
     public DialogueAsset alarmEventTriggeredDialogue;
 
@@ -140,6 +143,9 @@ public class PoliceDatabasePuzzle : MonoBehaviour
         }
         Time.timeScale = 1f;
         DialogueSystem.Instance.QueueDialogue(alarmEventTriggeredDialogue);
+
+        if (filesReactionDialogue != null && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.QueueDialogue(filesReactionDialogue);
     }
 
     private void Update()

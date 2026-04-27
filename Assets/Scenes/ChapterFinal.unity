@@ -9866,6 +9866,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa0df071c04c9eb4ab8cf6d20b5ec28b, type: 3}
+--- !u!1 &988025400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988025402}
+  - component: {fileID: 988025401}
+  m_Layer: 0
+  m_Name: ClarityChoiceHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &988025401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988025400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1e751ef80f51fe49a2597cb2d3f6f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: BoundSpiritRuntime::ClarityChoiceHandler
+--- !u!4 &988025402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988025400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.45231, y: 119.43137, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003062667
 GameObject:
   m_ObjectHideFlags: 0
@@ -15719,9 +15763,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.042301185
-    width: 0.99904853
-    height: 0.9137056
+    y: -0.54098356
+    width: 2.8096116
+    height: 4.4262295
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -16140,7 +16184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0662c2a571553b42af12f520f9598b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: BoundSpiritRuntime::EndingManager
-  finalChoiceDialogue: {fileID: 11400000, guid: d136e6c76d6eab547a933f537d5468b7, type: 2}
+  finalChoiceDialogue: {fileID: 11400000, guid: fa4d7aec8acbbee42a35a0f48190a7ce, type: 2}
   revengeEndingDialogue: {fileID: 11400000, guid: 62c127e868d5bb445bf170cfa83fd0ca, type: 2}
   forgiveEndingDialogue: {fileID: 11400000, guid: f9b7a963dcd976f4691eee29e69d5607, type: 2}
   secretEndingDialogue: {fileID: 11400000, guid: e3cbc488efb0f4743970030780340aa4, type: 2}
@@ -17611,3 +17655,4 @@ SceneRoots:
   - {fileID: 978392150}
   - {fileID: 575668449}
   - {fileID: 238506170}
+  - {fileID: 988025402}
