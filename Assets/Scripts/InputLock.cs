@@ -5,6 +5,7 @@ public class InputLock : MonoBehaviour
     public static InputLock Instance;
 
     public bool GameplayInputEnabled = true;
+    public bool CanToggleJournal = true;            // Can press H to open/close handbook
     public bool CanToggleInventory = true;          // Can press I to open/close inventory
     public bool AllowInspect = true;                // Can inspect window
     public bool InteractEnabled = true;             // Can press E to open/close windows

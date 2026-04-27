@@ -25,6 +25,13 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
+        UICluePopup cluePopup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
+        bool cluePopupOpen = cluePopup != null && cluePopup.IsBlockingHotkeys();
+        if (cluePopupOpen)
+        {
+            return;
+        }
+
         if(InputLock.Instance.CanToggleInventory && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
         {
             ToggleInventory();
