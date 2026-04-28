@@ -1218,7 +1218,7 @@ RectTransform:
   m_Father: {fileID: 809089440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.2, y: 1}
   m_AnchoredPosition: {x: -13.7239, y: -0}
   m_SizeDelta: {x: -24.4578, y: 15.8279}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28479,9 +28479,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.057407405
+    width: 0.753125
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -35278,7 +35278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1973412645
 MonoBehaviour:
   m_ObjectHideFlags: 0
