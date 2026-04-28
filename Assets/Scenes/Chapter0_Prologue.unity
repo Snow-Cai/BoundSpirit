@@ -9277,9 +9277,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.11522048
-    width: 0.9991111
-    height: 0.76813656
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -46294,7 +46294,7 @@ MonoBehaviour:
   promptText: {fileID: 45952718}
   promptDistance: 3
   interactSound: {fileID: 0}
-  glowWhenInRange: 1
+  glowWhenInRange: 0
   glow: {fileID: 2020699516489247185}
 --- !u!114 &2020699516489247185
 MonoBehaviour:

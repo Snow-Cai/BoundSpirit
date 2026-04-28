@@ -15,12 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_GraveDecor 7
   lines:
   - speakerName: Akila
-    dialogueText: '"Rest in peace Snow Cai"
-
-      "She really liked cats, meow"'
-    voiceClip: {fileID: 0}
-  - speakerName: Akila
-    dialogueText: Meow meow!
+    dialogueText: '"R.I.P. Snow Cai"'
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
