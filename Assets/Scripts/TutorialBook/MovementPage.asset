@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13461709dc07e24da1c1018a915d5d7, type: 3}
   m_Name: MovementPage
   m_EditorClassIdentifier: BoundSpiritRuntime::JournalPage
-  leftPageText: 'MOVEMENT:
+  leftPageText: '<b>MOVEMENT:</b>
 
-    To move, you may use the arrow keys or WASD for the
-    respective direction you wish to float.'
-  rightPageText: 'INTERACTION:
+    To move, you may use the arrow keys or WASD
+    for the respective direction you wish to float.'
+  rightPageText: '<b>INTERACTION:</b>
 
-    You can interact with objects! Interactable objects
-    will have a prompt, letting you know you can interact with them. Interact by
-    pressing ''E''. Sometimes, this will cause a popup to appear. To exit an interaction
-    popup, press ''E'' again.'
+    You can interact with objects! You can
+    interact by pressing ''E''. Sometimes, this will cause a popup to appear. To
+    exit an interaction popup, press ''E'' again.'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}

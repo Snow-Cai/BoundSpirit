@@ -15,15 +15,10 @@ MonoBehaviour:
   leftPageText: 'What..? You wanted more? Find the rest out for yourself! I wish
     you luck in your afterlife journeys.
 
-    -G.B
+    -G.B'
+  rightPageText: '<b>p.s
 
-
-    p.s
-
-    You can access
-    this book anytime by pressing ''H''. You may close it by pressing ''H'' again.'
-  rightPageText: ':p
-
-'
+    You can access this book anytime by pressing ''H''.
+    You may close it by pressing ''H'' again.</b>'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}

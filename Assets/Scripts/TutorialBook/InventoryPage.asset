@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13461709dc07e24da1c1018a915d5d7, type: 3}
   m_Name: InventoryPage
   m_EditorClassIdentifier: BoundSpiritRuntime::JournalPage
-  leftPageText: 'DIALOGUE:
+  leftPageText: '<b>DIALOGUE:</b>
 
     Some people love to blabber. When in a dialogue,
     press ''Space'' to speed through or progress to the next line of dialogue.'
-  rightPageText: 'INVENTORY:
+  rightPageText: '<b>INVENTORY:</b>
 
-    Some of the things you interact with get picked
-    up. These go into your inventory. Access inventory by pressing ''I''. While in
-    the inventory, you can click or hover objects to read more about them. You may
-    close inventory by again pressing ''I''.'
+    Some of the things you interact with get
+    put into an inventory. Access this by pressing ''I''. While in the inventory,
+    you can click or hover objects to read more about them. You may close inventory
+    by again pressing ''I''.'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}
