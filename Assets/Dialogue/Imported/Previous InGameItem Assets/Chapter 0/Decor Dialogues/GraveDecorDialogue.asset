@@ -15,7 +15,7 @@ MonoBehaviour:
   dialogueID: Chapter0_GraveDecor
   lines:
   - speakerName: Akila
-    dialogueText: I can't tell what the writing on the tomb say.
+    dialogueText: I can't tell what the writing on the tomb says.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

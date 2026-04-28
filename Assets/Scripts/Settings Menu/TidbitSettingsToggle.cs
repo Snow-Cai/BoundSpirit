@@ -22,10 +22,17 @@ public class TidbitSettingsToggle : MonoBehaviour
             return;
         }
 
+        SettingsData.InformationalTidbitsEnabledChanged += HandleInformationalTidbitsEnabledChanged;
+
         bool isEnabled = SettingsData.GetInformationalTidbitsEnabled(
             settingsData == null || settingsData.informationalTidbitsEnabled
         );
         informationalTidbitsToggle.SetIsOnWithoutNotify(isEnabled);
+    }
+
+    private void OnDisable()
+    {
+        SettingsData.InformationalTidbitsEnabledChanged -= HandleInformationalTidbitsEnabledChanged;
     }
 
     private void Start()
@@ -62,5 +69,13 @@ public class TidbitSettingsToggle : MonoBehaviour
             settingsData.informationalTidbitsEnabled = isEnabled;
             settingsData.Save();
         }
+    }
+
+    private void HandleInformationalTidbitsEnabledChanged(bool isEnabled)
+    {
+        if (informationalTidbitsToggle == null)
+            return;
+
+        informationalTidbitsToggle.SetIsOnWithoutNotify(isEnabled);
     }
 }

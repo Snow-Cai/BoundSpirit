@@ -16,8 +16,10 @@ MonoBehaviour:
   lines:
   - speakerName: Akila
     dialogueText: Uh oh. The alarm is going off... But surely I can't get in trouble
-      as a ghost, right? There does appear to be some kind of code on the computer
-      screens...
+      as a ghost, right?
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: There does appear to be some kind of code on the computer screens...
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: Maybe I could enter it as a passcode somewhere to find the police

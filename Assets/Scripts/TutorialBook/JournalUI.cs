@@ -45,6 +45,12 @@ public class JournalUI : MonoBehaviour
             return;
         }
 
+        bool handbookToggleAllowed = InputLock.Instance == null || InputLock.Instance.CanToggleJournal;
+        if (!handbookToggleAllowed && !journalPanel.activeSelf)
+        {
+            return;
+        }
+
         bool canToggle =
             (InputLock.Instance != null && InputLock.Instance.GameplayInputEnabled &&
              !GameInputState.DialogueActive)
@@ -71,6 +77,7 @@ public class JournalUI : MonoBehaviour
         {
             InputLock.Instance.GameplayInputEnabled = !isOpen;
             InputLock.Instance.CanToggleInventory = !isOpen;
+            InputLock.Instance.CanToggleJournal = true;
         }
     }
 
@@ -88,6 +95,7 @@ public class JournalUI : MonoBehaviour
             {
                 InputLock.Instance.GameplayInputEnabled = false;
                 InputLock.Instance.CanToggleInventory = false;
+                InputLock.Instance.CanToggleJournal = true;
             }
         }
     }
@@ -106,6 +114,7 @@ public class JournalUI : MonoBehaviour
             {
                 InputLock.Instance.GameplayInputEnabled = true;
                 InputLock.Instance.CanToggleInventory = true;
+                InputLock.Instance.CanToggleJournal = true;
             }
         }
     }

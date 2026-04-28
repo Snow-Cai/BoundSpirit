@@ -63,6 +63,21 @@ public class GraveyardGateController : MonoBehaviour
         {
             puzzleInteractable = GetComponent<InteractableObject>();
         }
+
+        if (puzzleInteractable == null)
+        {
+            puzzleInteractable = FindMatchingPuzzleInteractable();
+        }
+
+        if (puzzleInteractable != null)
+        {
+            puzzleInteractable.useExternalInteractionHandler = true;
+
+            if (puzzleUI != null && puzzleInteractable.puzzleUI == null)
+            {
+                puzzleInteractable.puzzleUI = puzzleUI;
+            }
+        }
     }
 
     private void Start()
@@ -121,10 +136,10 @@ public class GraveyardGateController : MonoBehaviour
             return;
         }
 
-        float distance = Vector2.Distance(transform.position, player.position);
+        float distance = GetDistanceTo(player);
 
-        // Allow closing the puzzle with Escape while it is open.
-        if (puzzleOpen && Input.GetKeyDown(KeyCode.Escape))
+        // Use the gate interaction key for closing too so Chapter 0 stays on E.
+        if (puzzleOpen && Input.GetKeyDown(interactKey))
         {
             ClosePuzzleUI();
             return;
@@ -542,6 +557,11 @@ public class GraveyardGateController : MonoBehaviour
             return float.MaxValue;
         }
 
+        if (puzzleInteractable != null)
+        {
+            return puzzleInteractable.GetDistanceTo(targetPlayer);
+        }
+
         return Vector2.Distance(transform.position, targetPlayer.position);
     }
 
@@ -553,6 +573,34 @@ public class GraveyardGateController : MonoBehaviour
         }
 
         return puzzleUI != null && puzzleUI.activeSelf;
+    }
+
+    private InteractableObject FindMatchingPuzzleInteractable()
+    {
+        InteractableObject[] interactables = FindObjectsByType<InteractableObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (InteractableObject interactable in interactables)
+        {
+            if (interactable == null)
+            {
+                continue;
+            }
+
+            if (puzzleUI != null && interactable.puzzleUI == puzzleUI)
+            {
+                return interactable;
+            }
+
+            if (!string.IsNullOrEmpty(gatePuzzleID) && interactable.puzzleID == gatePuzzleID)
+            {
+                return interactable;
+            }
+        }
+
+        return null;
     }
 
     public float InteractionRange => interactionRange;

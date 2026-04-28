@@ -4,6 +4,8 @@ using System.Collections;
 
 public class UICluePopup : MonoBehaviour
 {
+    public static UICluePopup Instance { get; private set; }
+
     public CanvasGroup popupCanvas;
     public TextMeshProUGUI clueText;
     public float fadeDuration = 0.4f;
@@ -13,9 +15,17 @@ public class UICluePopup : MonoBehaviour
     private CharMovement movementScript;
     private Rigidbody2D playerRigidbody;
     private bool popupOpen = false;
+    private bool previousCanToggleInventory = true;
+    private bool previousCanToggleJournal = true;
+    private bool restoredInputToggles = true;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         if (popupCanvas == null)
         {
             popupCanvas = GetComponent<CanvasGroup>();
@@ -95,6 +105,7 @@ public class UICluePopup : MonoBehaviour
         popupOpen = true;
         GameInputState.MovementLocked = true;
         StopPlayerImmediately();
+        ApplyInputToggleLock();
 
         // Freeze player
         if (movementScript != null)
@@ -146,6 +157,7 @@ public class UICluePopup : MonoBehaviour
         if (movementScript != null)
             movementScript.enabled = true;
 
+        RestoreInputToggleLock();
         GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
@@ -155,6 +167,13 @@ public class UICluePopup : MonoBehaviour
     public bool IsPopupOpen()
     {
         return popupOpen;
+    }
+
+    public bool IsBlockingHotkeys()
+    {
+        return popupCanvas != null &&
+               popupCanvas.gameObject.activeInHierarchy &&
+               popupCanvas.alpha > 0f;
     }
 
     private bool AreInformationalTidbitsEnabled()
@@ -174,6 +193,33 @@ public class UICluePopup : MonoBehaviour
     {
         closeRequested = true;
     }
+
+    private void ApplyInputToggleLock()
+    {
+        if (InputLock.Instance == null || !restoredInputToggles)
+            return;
+
+        previousCanToggleInventory = InputLock.Instance.CanToggleInventory;
+        previousCanToggleJournal = InputLock.Instance.CanToggleJournal;
+
+        InputLock.Instance.CanToggleInventory = false;
+        InputLock.Instance.CanToggleJournal = false;
+        restoredInputToggles = false;
+    }
+
+    private void RestoreInputToggleLock()
+    {
+        if (InputLock.Instance == null || restoredInputToggles)
+            return;
+
+        bool popupInactive = popupCanvas == null ||
+                             !popupCanvas.gameObject.activeInHierarchy;
+
+        InputLock.Instance.CanToggleInventory = popupInactive ? true : previousCanToggleInventory;
+        InputLock.Instance.CanToggleJournal = popupInactive ? true : previousCanToggleJournal;
+        restoredInputToggles = true;
+    }
+
     private void OnDisable()
     {
         if (movementScript != null)
@@ -181,8 +227,17 @@ public class UICluePopup : MonoBehaviour
             movementScript.enabled = true;
         }
 
+        RestoreInputToggleLock();
         GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 }

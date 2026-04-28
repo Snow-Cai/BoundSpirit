@@ -26,6 +26,9 @@
 
 # Visual Studio cache directory
 .vs/
+.dotnet/
+.dotnet-home/
+.codex-dotnet/
 
 # Gradle cache directory
 .gradle/

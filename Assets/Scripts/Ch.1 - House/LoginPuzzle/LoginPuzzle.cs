@@ -47,19 +47,44 @@ public class LoginPuzzle : MonoBehaviour
     private Coroutine recoveryPopupCoroutine;
     private bool computerScrollHooked;
 
-    private RectTransform usernameShakeTarget;
-    private RectTransform passwordShakeTarget;
-    private Vector2 usernameOriginalPos;
-    private Vector2 passwordOriginalPos;
+    private RectTransform usernameFeedbackRect;
+    private RectTransform passwordFeedbackRect;
+    private Graphic usernameGraphic;
+    private Graphic passwordGraphic;
+    [SerializeField] public RectTransform usernameShakeTarget;
+    [SerializeField] public RectTransform passwordShakeTarget;
+    private Color usernameOriginalColor;
+    private Color passwordOriginalColor;
+    private Vector2 usernameOriginalAnchoredPosition;
+    private Vector2 passwordOriginalAnchoredPosition;
+    private Vector2 usernameInputOriginalAnchoredPosition;
+    private Vector2 passwordInputOriginalAnchoredPosition;
+    private Vector2 usernameShakeTargetOriginalAnchoredPosition;
+    private Vector2 passwordShakeTargetOriginalAnchoredPosition;
     private int wrongPasswordAttempts;
     private bool hasShownRecoveryThisSession;
+    private float lastSubmitRealtime = -10f;
 
     void Awake()
     {
-        usernameShakeTarget = GetShakeTarget(usernameInput);
-        passwordShakeTarget = GetShakeTarget(passwordInput);
-        usernameOriginalPos = usernameShakeTarget != null ? usernameShakeTarget.anchoredPosition : Vector2.zero;
-        passwordOriginalPos = passwordShakeTarget != null ? passwordShakeTarget.anchoredPosition : Vector2.zero;
+        usernameFeedbackRect = usernameInput.GetComponent<RectTransform>();
+        passwordFeedbackRect = passwordInput.GetComponent<RectTransform>();
+        usernameGraphic = usernameInput.targetGraphic;
+        passwordGraphic = passwordInput.targetGraphic;
+        usernameOriginalColor = usernameGraphic != null ? usernameGraphic.color : Color.white;
+        passwordOriginalColor = passwordGraphic != null ? passwordGraphic.color : Color.white;
+        usernameOriginalAnchoredPosition =
+            usernameFeedbackRect != null ? usernameFeedbackRect.anchoredPosition : Vector2.zero;
+        passwordOriginalAnchoredPosition =
+            passwordFeedbackRect != null ? passwordFeedbackRect.anchoredPosition : Vector2.zero;
+        usernameInputOriginalAnchoredPosition =
+            usernameInput != null ? usernameInput.GetComponent<RectTransform>().anchoredPosition : Vector2.zero;
+        passwordInputOriginalAnchoredPosition =
+            passwordInput != null ? passwordInput.GetComponent<RectTransform>().anchoredPosition : Vector2.zero;
+        usernameShakeTargetOriginalAnchoredPosition =
+            usernameShakeTarget != null ? usernameShakeTarget.anchoredPosition : Vector2.zero;
+        passwordShakeTargetOriginalAnchoredPosition =
+            passwordShakeTarget != null ? passwordShakeTarget.anchoredPosition : Vector2.zero;
         ResolveLoginPanelRoot();
         HookComputerScrollBar();
     }
@@ -89,8 +114,16 @@ public class LoginPuzzle : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            SubmitLogin();
+            TrySubmitFromKeyboard();
         }
+    }
+
+    void LateUpdate()
+    {
+        if (!isActiveAndEnabled || IsOpenComputerPanelActive())
+            return;
+
+        RestoreInputFieldVisualPositions();
     }
 
     public void ResetFields()
@@ -123,16 +156,21 @@ public class LoginPuzzle : MonoBehaviour
         wrongPasswordAttempts = 0;
         hasShownRecoveryThisSession = false;
 
-        if (usernameShakeTarget != null)
-            usernameShakeTarget.anchoredPosition = usernameOriginalPos;
-        if (passwordShakeTarget != null)
-            passwordShakeTarget.anchoredPosition = passwordOriginalPos;
+        if (usernameGraphic != null)
+        {
+            usernameGraphic.color = usernameOriginalColor;
+        }
+        if (passwordGraphic != null)
+        {
+            passwordGraphic.color = passwordOriginalColor;
+        }
 
         if (usernameInput.gameObject.activeInHierarchy)
         {
             SelectInputField(usernameInput);
         }
 
+        RestoreInputFieldVisualPositions();
         RefreshComputerPanelState();
     }
 
@@ -155,53 +193,56 @@ public class LoginPuzzle : MonoBehaviour
         UnhookComputerScrollBar();
     }
 
-    private IEnumerator ShakeUI(RectTransform target, Vector2 originalPos, float duration = 0.25f, float magnitude = 5f)
+    private IEnumerator ShakeGraphicInPlace(RectTransform rect, Vector2 originalPosition, float duration = 0.25f, float strength = 10f)
     {
-        float elapsed = 0f;
+        Debug.Log("Shake started!");
+        if (rect == null)
+            yield break;
 
+        rect.anchoredPosition = originalPosition;
+        float elapsed = 0f;
         while (elapsed < duration)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-
-            target.anchoredPosition = originalPos + new Vector2(x, y);
-
             elapsed += Time.unscaledDeltaTime;
+            float horizontalOffset = Mathf.Sin(elapsed * 55f) * strength;
+            rect.anchoredPosition = originalPosition + new Vector2(horizontalOffset, 0f);
             yield return null;
         }
 
-        target.anchoredPosition = originalPos;
+        rect.anchoredPosition = originalPosition;
     }
 
     void ShakeUsername()
     {
-        RectTransform rt = usernameShakeTarget;
-        if (rt == null)
+        if (usernameFeedbackRect == null)
             return;
 
         if (usernameShakeCoroutine != null)
+        {
             StopCoroutine(usernameShakeCoroutine);
-
-        rt.anchoredPosition = usernameOriginalPos;
+            if (usernameFeedbackRect != null)
+                usernameFeedbackRect.anchoredPosition = usernameOriginalAnchoredPosition;
+        }
 
         usernameShakeCoroutine = StartCoroutine(
-            ShakeUI(rt, usernameOriginalPos)
+            ShakeGraphicInPlace(usernameShakeTarget, usernameShakeTargetOriginalAnchoredPosition)
         );
     }
 
     void ShakePassword()
     {
-        RectTransform rt = passwordShakeTarget;
-        if (rt == null)
+        if (passwordFeedbackRect == null)
             return;
 
         if (passwordShakeCoroutine != null)
+        {
             StopCoroutine(passwordShakeCoroutine);
-
-        rt.anchoredPosition = passwordOriginalPos;
+            if (passwordFeedbackRect != null)
+                passwordFeedbackRect.anchoredPosition = passwordOriginalAnchoredPosition;
+        }
 
         passwordShakeCoroutine = StartCoroutine(
-            ShakeUI(rt, passwordOriginalPos)
+            ShakeGraphicInPlace(passwordShakeTarget, passwordInputOriginalAnchoredPosition)
         );
     }
 
@@ -253,7 +294,28 @@ public class LoginPuzzle : MonoBehaviour
 
     private void SubmitLogin()
     {
+        if (Time.unscaledTime - lastSubmitRealtime < 0.15f)
+        {
+            return;
+        }
+
+        lastSubmitRealtime = Time.unscaledTime;
         TryLogin();
+    }
+
+    private void TrySubmitFromKeyboard()
+    {
+        if (EventSystem.current != null)
+        {
+            GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
+            if (selectedObject != usernameInput?.gameObject &&
+                selectedObject != passwordInput?.gameObject)
+            {
+                return;
+            }
+        }
+
+        SubmitLogin();
     }
 
     private IEnumerator SelectUsernameNextFrame()
@@ -526,6 +588,8 @@ public class LoginPuzzle : MonoBehaviour
 
     private void ResetComputerScroll()
     {
+        ForceComputerScrollLayoutRefresh();
+
         if (computerScrollBar != null)
         {
             computerScrollBar.SetValueWithoutNotify(0f);
@@ -552,9 +616,14 @@ public class LoginPuzzle : MonoBehaviour
             return;
         }
 
-        float maxScroll = Mathf.Max(0f, computerScrollContent.rect.height - viewport.rect.height);
+        ForceComputerScrollLayoutRefresh();
+
+        float contentHeight = computerScrollContent.rect.height * computerScrollContent.localScale.y;
+        float viewportHeight = viewport.rect.height * viewport.localScale.y;
+        float topY = ((1f - viewport.pivot.y) * viewportHeight) - ((1f - computerScrollContent.pivot.y) * contentHeight);
+        float bottomY = (-viewport.pivot.y * viewportHeight) + (computerScrollContent.pivot.y * contentHeight);
         Vector2 anchoredPosition = computerScrollContent.anchoredPosition;
-        anchoredPosition.y = Mathf.Clamp01(sliderValue) * maxScroll;
+        anchoredPosition.y = Mathf.Lerp(topY, bottomY, Mathf.Clamp01(sliderValue));
         computerScrollContent.anchoredPosition = anchoredPosition;
     }
 
@@ -575,18 +644,33 @@ public class LoginPuzzle : MonoBehaviour
         computerScrollBar.value = nextValue;
     }
 
-    private static RectTransform GetShakeTarget(TMP_InputField inputField)
+    private void ForceComputerScrollLayoutRefresh()
     {
-        if (inputField == null)
+        Canvas.ForceUpdateCanvases();
+
+        if (computerScrollViewport != null)
         {
-            return null;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(computerScrollViewport);
         }
 
-        if (inputField.targetGraphic != null)
+        if (computerScrollContent != null)
         {
-            return inputField.targetGraphic.rectTransform;
+            LayoutRebuilder.ForceRebuildLayoutImmediate(computerScrollContent);
         }
+    }
 
-        return inputField.GetComponent<RectTransform>();
+    private void RestoreInputFieldVisualPositions()
+    {
+        if (usernameInput != null)
+            usernameInput.GetComponent<RectTransform>().anchoredPosition = usernameInputOriginalAnchoredPosition;
+
+        if (passwordInput != null)
+            passwordInput.GetComponent<RectTransform>().anchoredPosition = passwordInputOriginalAnchoredPosition;
+
+        if (usernameFeedbackRect != null && usernameShakeCoroutine == null)
+            usernameFeedbackRect.anchoredPosition = usernameOriginalAnchoredPosition;
+
+        if (passwordFeedbackRect != null && passwordShakeCoroutine == null)
+            passwordFeedbackRect.anchoredPosition = passwordOriginalAnchoredPosition;
     }
 }

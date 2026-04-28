@@ -21,6 +21,12 @@ public class CollectibleObject : MonoBehaviour
     [Tooltip("If true, pressing interact again after pickup still queues pickupDialogue (e.g. re-read a clue).")]
     public bool repeatPickupDialogueAfterCollect = false;
 
+    [Header("First Pickup Preview")]
+    [Tooltip("If enabled, this collectible opens the shared InspectUI canvas with a related image the first time it is picked up.")]
+    [SerializeField] private bool showPreviewCanvasOnFirstPickup = false;
+    [SerializeField] private GameObject previewCanvasOverride;
+    [SerializeField] private Sprite previewSpriteOverride;
+
     [Header("Visual Highlight")]
     [Tooltip("If enabled, sparkle only appears when the player is within collect distance. If disabled, sparkle stays visible whenever gameplay allows.")]
     [SerializeField] private bool glowWhenInRange = false;
@@ -46,6 +52,7 @@ public class CollectibleObject : MonoBehaviour
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
         EnsureGlowReference();
+        RestoreCollectedStateFromSave();
         if (p != null)
             player = p.transform;
     }
@@ -93,6 +100,8 @@ public class CollectibleObject : MonoBehaviour
     void PickUp()
     {
         PlayerInventory inv = player.GetComponent<PlayerInventory>();
+        bool firstPickup = false;
+
         if (inv != null && item != null && !collected)
         {
             inv.PickUpItem(item);
@@ -100,10 +109,9 @@ public class CollectibleObject : MonoBehaviour
                 SaveSystem.Instance.CollectItem(item.itemID);
             if (pickupSound != null)
                 SfxPlayback.PlayClipAtPoint(pickupSound, transform.position);
-            if (pickupDialogue != null && DialogueSystem.Instance != null)
-                DialogueSystem.Instance.QueueDialogue(pickupDialogue);
             FindFirstObjectByType<PrologueInventoryHintController>()?.TryShowTutorial();
             collected = true;
+            firstPickup = true;
         }
         else if (
             collected &&
@@ -114,15 +122,93 @@ public class CollectibleObject : MonoBehaviour
             DialogueSystem.Instance.QueueDialogue(pickupDialogue);
         }
 
+        bool showedPreview = false;
+        if (firstPickup)
+        {
+            showedPreview = TryShowFirstPickupPreview();
+
+            if (!showedPreview && pickupDialogue != null && DialogueSystem.Instance != null)
+                DialogueSystem.Instance.QueueDialogue(pickupDialogue);
+        }
+
         if (showCluePopup)
         {
-            if (popup != null)
+            if (!showedPreview && popup != null && clue != null)
                 popup.ShowMessage(clue.clueText);
         }
 
         if (disappearOnPickup)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private bool TryShowFirstPickupPreview()
+    {
+        if (!showPreviewCanvasOnFirstPickup)
+        {
+            return false;
+        }
+
+        if (previewCanvasOverride != null)
+        {
+            PickupPreviewCanvas previewCanvas = previewCanvasOverride.GetComponent<PickupPreviewCanvas>();
+            if (previewCanvas == null)
+            {
+                previewCanvas = previewCanvasOverride.GetComponentInChildren<PickupPreviewCanvas>(true);
+            }
+
+            if (previewCanvas != null)
+            {
+                previewCanvas.Show(pickupDialogue);
+                return true;
+            }
+
+            previewCanvasOverride.SetActive(true);
+
+            if (InputLock.Instance != null)
+            {
+                InputLock.Instance.CanToggleInventory = false;
+                InputLock.Instance.GameplayInputEnabled = false;
+            }
+
+            return true;
+        }
+
+        if (InspectUI.Instance == null)
+            return false;
+
+        Sprite previewSprite = previewSpriteOverride;
+        if (previewSprite == null && clue != null && clue.clueIcon != null)
+            previewSprite = clue.clueIcon;
+        if (previewSprite == null && item != null)
+            previewSprite = item.icon;
+        if (previewSprite == null)
+            return false;
+
+        string previewTitle = item != null ? item.itemName : gameObject.name;
+        string previewDescription =
+            clue != null && !string.IsNullOrWhiteSpace(clue.clueText)
+                ? clue.clueText
+                : item != null
+                    ? item.description
+                    : string.Empty;
+
+        InspectUI.Instance.ShowPreview(previewTitle, previewDescription, previewSprite, pickupDialogue);
+        return true;
+    }
+
+    private void RestoreCollectedStateFromSave()
+    {
+        if (item == null || SaveSystem.Instance == null || !SaveSystem.Instance.WasWorldItemCollected(item.itemID))
+            return;
+
+        collected = true;
+        SetGlow(false);
+
+        if (disappearOnPickup)
+        {
+            gameObject.SetActive(false);
         }
     }
 

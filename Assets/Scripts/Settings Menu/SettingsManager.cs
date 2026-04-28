@@ -40,7 +40,13 @@ public class SettingsManager : MonoBehaviour
 
     void OnEnable()
     {
+        SettingsData.InformationalTidbitsEnabledChanged += HandleInformationalTidbitsEnabledChanged;
         SyncInformationalTidbitsToggle();
+    }
+
+    void OnDisable()
+    {
+        SettingsData.InformationalTidbitsEnabledChanged -= HandleInformationalTidbitsEnabledChanged;
     }
 
     void OnDestroy()
@@ -91,15 +97,41 @@ public class SettingsManager : MonoBehaviour
         if (informationalTidbitsToggle != null)
             return;
 
-        Toggle[] toggles = GetComponentsInChildren<Toggle>(true);
+        informationalTidbitsToggle = FindInformationalTidbitsToggle(mainSettingsPanel);
+
+        if (informationalTidbitsToggle == null)
+            informationalTidbitsToggle = FindInformationalTidbitsToggle(audioSettingsPanel);
+
+        if (informationalTidbitsToggle == null)
+            informationalTidbitsToggle = FindInformationalTidbitsToggle(graphicsSettingsPanel);
+
+        if (informationalTidbitsToggle == null)
+        {
+            Toggle[] toggles = FindObjectsByType<Toggle>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (Toggle toggle in toggles)
+            {
+                if (toggle != null && toggle.name == "InformationalTidbitsToggle")
+                {
+                    informationalTidbitsToggle = toggle;
+                    break;
+                }
+            }
+        }
+    }
+
+    private static Toggle FindInformationalTidbitsToggle(GameObject root)
+    {
+        if (root == null)
+            return null;
+
+        Toggle[] toggles = root.GetComponentsInChildren<Toggle>(true);
         foreach (Toggle toggle in toggles)
         {
             if (toggle != null && toggle.name == "InformationalTidbitsToggle")
-            {
-                informationalTidbitsToggle = toggle;
-                break;
-            }
+                return toggle;
         }
+
+        return null;
     }
 
     private void BindInformationalTidbitsToggle()
@@ -134,6 +166,19 @@ public class SettingsManager : MonoBehaviour
         {
             settingsData.informationalTidbitsEnabled = isEnabled;
             settingsData.Save();
+        }
+    }
+
+    private void HandleInformationalTidbitsEnabledChanged(bool isEnabled)
+    {
+        if (informationalTidbitsToggle == null)
+            return;
+
+        informationalTidbitsToggle.SetIsOnWithoutNotify(isEnabled);
+
+        if (settingsData != null)
+        {
+            settingsData.informationalTidbitsEnabled = isEnabled;
         }
     }
 }

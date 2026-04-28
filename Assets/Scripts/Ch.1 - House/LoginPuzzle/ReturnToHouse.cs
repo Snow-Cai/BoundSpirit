@@ -11,9 +11,14 @@ public class ReturnToHouse : MonoBehaviour
             if (PlayerReturnSystem.Instance != null)
             {
                 string sceneName = PlayerReturnSystem.Instance.returnSceneName;
-                SceneManager.sceneLoaded += OnSceneLoaded;
 
-             
+                if (SaveSystem.Instance != null)
+                {
+                    SaveSystem.Instance.SaveGame();
+                    SaveSystem.Instance.SetTransitioning(true);
+                }
+
+                SceneManager.sceneLoaded += OnSceneLoaded;
                 SceneManager.LoadScene(sceneName);
             }
         }

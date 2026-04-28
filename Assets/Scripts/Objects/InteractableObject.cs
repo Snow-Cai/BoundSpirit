@@ -109,7 +109,7 @@ public class InteractableObject : MonoBehaviour
             player = playerObj.transform;
         }
 
-        if (useLocalInteractPrompt && interactPrompt != null)
+        if (useLocalInteractPrompt && interactPrompt != null && !IsSharedInteractionHintPrompt())
         {
             interactPrompt.SetActive(false);
         }
@@ -232,6 +232,11 @@ public class InteractableObject : MonoBehaviour
             return;
         }
 
+        if (IsSharedInteractionHintPrompt())
+        {
+            return;
+        }
+
         if (promptText != null)
         {
             promptText.text = "Press " + interactKey.ToString() + " to interact";
@@ -243,6 +248,11 @@ public class InteractableObject : MonoBehaviour
     void HidePrompt()
     {
         if (!useLocalInteractPrompt || interactPrompt == null)
+        {
+            return;
+        }
+
+        if (IsSharedInteractionHintPrompt())
         {
             return;
         }
@@ -289,6 +299,17 @@ public class InteractableObject : MonoBehaviour
         }
 
         return false;
+    }
+
+    private bool IsSharedInteractionHintPrompt()
+    {
+        if (interactPrompt == null)
+        {
+            return false;
+        }
+
+        return interactPrompt.GetComponent<InteractionHintUI>() != null ||
+               interactPrompt.GetComponentInParent<InteractionHintUI>() != null;
     }
 
     private bool IsPlayerWithinInteractionRange()
@@ -722,6 +743,11 @@ public class InteractableObject : MonoBehaviour
     public bool CanBeInteractedWith(Transform targetPlayer)
     {
         if (targetPlayer == null || !isActiveAndEnabled)
+        {
+            return false;
+        }
+
+        if (useExternalInteractionHandler)
         {
             return false;
         }
