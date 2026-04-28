@@ -158,19 +158,6 @@ public class GhostOfferUI : MonoBehaviour
     {
         List<ItemData> inventoryItems = playerInventory.GetItems() ?? new List<ItemData>();
         List<ItemData> offerItems = new List<ItemData>();
-        ItemData requiredItem = ghost.RequiredItem;
-
-        if (requiredItem != null)
-        {
-            for (int i = 0; i < inventoryItems.Count; i++)
-            {
-                if (IsSameItem(inventoryItems[i], requiredItem))
-                {
-                    offerItems.Add(inventoryItems[i]);
-                    break;
-                }
-            }
-        }
 
         for (int i = 0; i < inventoryItems.Count; i++)
         {
