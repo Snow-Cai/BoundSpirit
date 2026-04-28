@@ -16,6 +16,11 @@ public class GhostOfferUI : MonoBehaviour
         panelRoot.activeSelf &&
         currentGhost != null;
 
+    private void OnDisable()
+    {
+        Close();
+    }
+
     private void Awake()
     {
         Close();
@@ -78,6 +83,7 @@ public class GhostOfferUI : MonoBehaviour
         SetGameplayInputEnabled(false);
         if (InputLock.Instance != null)
         {
+            InputLock.Instance.CanToggleInventory = false;
             InputLock.Instance.AllowInspect = false;
         }
     }
@@ -98,6 +104,7 @@ public class GhostOfferUI : MonoBehaviour
         SetGameplayInputEnabled(true);
         if (InputLock.Instance != null)
         {
+            InputLock.Instance.CanToggleInventory = true;
             InputLock.Instance.AllowInspect = true;
         }
     }
@@ -151,19 +158,6 @@ public class GhostOfferUI : MonoBehaviour
     {
         List<ItemData> inventoryItems = playerInventory.GetItems() ?? new List<ItemData>();
         List<ItemData> offerItems = new List<ItemData>();
-        ItemData requiredItem = ghost.RequiredItem;
-
-        if (requiredItem != null)
-        {
-            for (int i = 0; i < inventoryItems.Count; i++)
-            {
-                if (IsSameItem(inventoryItems[i], requiredItem))
-                {
-                    offerItems.Add(inventoryItems[i]);
-                    break;
-                }
-            }
-        }
 
         for (int i = 0; i < inventoryItems.Count; i++)
         {
