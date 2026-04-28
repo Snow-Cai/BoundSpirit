@@ -18,9 +18,9 @@ MonoBehaviour:
     respective direction you wish to float.'
   rightPageText: 'INTERACTION:
 
-    There will be many objects you can interact with.
-    Interactable objects will have a prompt, letting you know you can interact with
-    them. Interact by pressing ''E''. Sometimes, this will cause a popup to appear.
-    To exit an interaction popup, press ''E'' again.'
+    You can interact with objects! Interactable objects
+    will have a prompt, letting you know you can interact with them. Interact by
+    pressing ''E''. Sometimes, this will cause a popup to appear. To exit an interaction
+    popup, press ''E'' again.'
   leftImage: {fileID: 0}
   rightImage: {fileID: 0}

@@ -413,30 +413,94 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1677839486}
     m_Modifications:
+    - target: {fileID: 406642477454211796, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3504361
+      objectReference: {fileID: 0}
+    - target: {fileID: 406642477454211796, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.46992823
+      objectReference: {fileID: 0}
+    - target: {fileID: 406642477454211796, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7075472
+      objectReference: {fileID: 0}
     - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Name
       value: HelpBookCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1151727839920889697, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.13385546
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.19584937
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.13737096
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.20784928
+      objectReference: {fileID: 0}
+    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.46226418
       objectReference: {fileID: 0}
     - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 167453864}
-    - target: {fileID: 3819837534115098399, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PrevPage
+    - target: {fileID: 5545231712272898645, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3504361
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545231712272898645, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.g
+      value: 0.46992823
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545231712272898645, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7075472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.13385546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.19584937
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.6037736
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.13737096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.20784928
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.46226418
       objectReference: {fileID: 0}
     - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 167453864}
-    - target: {fileID: 6011625095245484817, guid: be55368f501716a40b43760001c4dadc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextPage
-      objectReference: {fileID: 0}
     - target: {fileID: 8284555310878972062, guid: be55368f501716a40b43760001c4dadc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2139,6 +2203,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1677839486}
     m_Modifications:
+    - target: {fileID: 2762292200298045227, guid: 33ef4cb59084d7c48a917415edd74ead, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762292200298045227, guid: 33ef4cb59084d7c48a917415edd74ead, type: 3}
+      propertyPath: m_Color.b
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762292200298045227, guid: 33ef4cb59084d7c48a917415edd74ead, type: 3}
+      propertyPath: m_Color.r
+      value: 0.1302858
+      objectReference: {fileID: 0}
     - target: {fileID: 4271547248191070117, guid: 33ef4cb59084d7c48a917415edd74ead, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -16060,9 +16136,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.057851236
-    width: 1
-    height: 1.1157024
+    y: 0.055829227
+    width: 0.9989743
+    height: 0.8866995
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
