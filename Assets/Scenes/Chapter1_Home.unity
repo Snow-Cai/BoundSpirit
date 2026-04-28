@@ -27656,9 +27656,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.087037034
+    width: 0.8260417
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -33665,7 +33665,7 @@ MonoBehaviour:
   interactKey: 101
   interactionRange: 2
   itemRequired: 0
-  requiredItem: {fileID: 0}
+  requiredItem: {fileID: 11400000, guid: dcf0c19817b9cc441be516a822f3a373, type: 2}
   objectDialogue: {fileID: 0}
   hasDialogue: 0
   triggerEndingSequence: 0
