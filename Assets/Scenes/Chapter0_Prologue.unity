@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &11399264
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,7 +2200,7 @@ MonoBehaviour:
   interactionRange: 2
   itemRequired: 0
   requiredItem: {fileID: 0}
-  objectDialogue: {fileID: 11400000, guid: b27ed35913d7740419db41bb94b2f72d, type: 2}
+  objectDialogue: {fileID: 11400000, guid: 7b90c838ee220644c940a1b430d5f6b7, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
@@ -9273,9 +9273,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: -0.18315019
-    width: 1.6201372
-    height: 0.989011
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -26158,6 +26158,10 @@ PrefabInstance:
       propertyPath: interactPrompt
       value: 
       objectReference: {fileID: 1520638324}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: objectDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e111afdfab0f55f4da0f3846b05f81c4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45422,7 +45426,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4.3199997, y: -62.2}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &161170656290634634
 Canvas:
@@ -45891,7 +45895,7 @@ MonoBehaviour:
   interactionRange: 2
   itemRequired: 0
   requiredItem: {fileID: 0}
-  objectDialogue: {fileID: 11400000, guid: 16376d17adb693a4f9b2a36639407000, type: 2}
+  objectDialogue: {fileID: 11400000, guid: 76a1efe137050f24ca6d1a270af3bc9c, type: 2}
   hasDialogue: 1
   triggerEndingSequence: 0
   playPrimaryOnlyOnce: 0
@@ -46798,7 +46802,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 52.16, y: -18.9}
-  m_SizeDelta: {x: 88.32, y: 27.8}
+  m_SizeDelta: {x: 88.32, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4689296588604731605
 MonoBehaviour:

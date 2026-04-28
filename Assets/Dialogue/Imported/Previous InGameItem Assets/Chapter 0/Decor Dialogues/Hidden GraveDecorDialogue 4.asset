@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
   m_Name: Hidden GraveDecorDialogue 4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: Chapter0_Hidden GraveDecor 4
+  dialogueID: Chapter0_Hidden GraveDecor
   lines:
   - speakerName: Akila
     dialogueText: "This tomb saids \"For those who hurt others and were hurt themselves.
