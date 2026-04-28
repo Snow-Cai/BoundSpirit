@@ -9270,9 +9270,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.087037034
+    width: 0.8260417
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -27060,7 +27060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1528216648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27161,10 +27161,18 @@ MonoBehaviour:
   - {fileID: 1898034516}
   - {fileID: 1482123788}
   - {fileID: 2081535314}
+  runeImages:
+  - {fileID: 896658867}
+  - {fileID: 1757292548}
+  - {fileID: 1330721362}
   symbolOptions:
   - "\u25CF"
   - "\u25B2"
   - "\u25A0"
+  symbolSprites:
+  - {fileID: -6231044458718751821, guid: 606c023a7d6b2894faa8361c5bd52592, type: 3}
+  - {fileID: 9164359298635338950, guid: 85361fb06bb26e3468a9865bb3f387cf, type: 3}
+  - {fileID: -1843197933104017171, guid: c7b02ee0e2870444d823579194efac42, type: 3}
   correctPattern: 000000000100000002000000
   wrongPatternDialogue: {fileID: 11400000, guid: 8c44e4c7e83e06245a5315b68a6440e1, type: 2}
   puzzleCompleteDialogue: {fileID: 11400000, guid: f5134415eab12524f8800b59a0a5ceae, type: 2}

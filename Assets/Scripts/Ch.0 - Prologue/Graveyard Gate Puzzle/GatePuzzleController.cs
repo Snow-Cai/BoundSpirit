@@ -1,20 +1,25 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GatePuzzleController : MonoBehaviour
 {
     [Header("Gate Link")]
     [SerializeField] private GraveyardGateController gateController;
 
-    [Header("Rune Slots")]
+    [Header("Rune Slots (Legacy Text)")]
     [SerializeField] private TextMeshProUGUI[] runeTexts;
 
+    [Header("Rune Images")]
+    [SerializeField] private Image[] runeImages;
+
     [Header("Symbol Options")]
-    [SerializeField] private string[] symbolOptions = { "●", "▲", "■" }; // Circle, Triangle, Square
+    [SerializeField] private string[] symbolOptions = { "Circle", "Triangle", "Square" };
+    [SerializeField] private Sprite[] symbolSprites;
 
     [Header("Correct Pattern (Single Stage)")]
-    [Tooltip("Indices into symbolOptions, length must match runeTexts.")]
-    [SerializeField] private int[] correctPattern = { 0, 1, 2 }; // ● ▲ ■
+    [Tooltip("Indices into the symbol options, length must match the rune slot count.")]
+    [SerializeField] private int[] correctPattern = { 0, 1, 2 }; // circle, triangle, square
 
     [Header("Feedback")]
     [SerializeField] private DialogueAsset wrongPatternDialogue;
@@ -25,17 +30,20 @@ public class GatePuzzleController : MonoBehaviour
 
     private void Awake()
     {
-        if (runeTexts == null || runeTexts.Length == 0)
+        ResolveRuneImages();
+
+        int runeCount = GetRuneSlotCount();
+        if (runeCount == 0)
         {
             return;
         }
 
-        if (correctPattern == null || correctPattern.Length != runeTexts.Length)
+        if (correctPattern == null || correctPattern.Length != runeCount)
         {
-            Debug.LogWarning("GatePuzzleController: correctPattern must match runeTexts length.");
+            Debug.LogWarning("GatePuzzleController: correctPattern must match rune slot count.");
         }
 
-        currentPattern = new int[runeTexts.Length];
+        currentPattern = new int[runeCount];
 
         for (int i = 0; i < currentPattern.Length; i++)
         {
@@ -65,9 +73,9 @@ public class GatePuzzleController : MonoBehaviour
 
         gateController?.OnGatePuzzleInputStarted();
 
-        if (runeTexts == null ||
-            symbolOptions == null ||
-            symbolOptions.Length == 0 ||
+        int optionCount = GetOptionCount();
+        if (GetRuneSlotCount() == 0 ||
+            optionCount == 0 ||
             currentPattern == null)
         {
             return;
@@ -79,7 +87,7 @@ public class GatePuzzleController : MonoBehaviour
             return;
         }
 
-        currentPattern[index] = (currentPattern[index] + 1) % symbolOptions.Length;
+        currentPattern[index] = (currentPattern[index] + 1) % optionCount;
         RefreshRunes();
     }
 
@@ -109,18 +117,78 @@ public class GatePuzzleController : MonoBehaviour
 
     private void RefreshRunes()
     {
-        if (runeTexts == null ||
-            symbolOptions == null ||
-            symbolOptions.Length == 0 ||
-            currentPattern == null)
+        bool usingSprites = symbolSprites != null && symbolSprites.Length > 0;
+        bool usingText = symbolOptions != null && symbolOptions.Length > 0;
+
+        if ((!usingSprites && !usingText) || currentPattern == null)
         {
             return;
         }
 
+        if (usingSprites && runeImages != null)
+        {
+            for (int i = 0; i < runeImages.Length; i++)
+            {
+                if (runeImages[i] == null)
+                    continue;
+
+                int symbolIndex = Mathf.Clamp(currentPattern[i], 0, symbolSprites.Length - 1);
+                runeImages[i].sprite = symbolSprites[symbolIndex];
+                runeImages[i].color = Color.white;
+                runeImages[i].preserveAspect = true;
+            }
+        }
+
+        if (runeTexts == null)
+            return;
+
         for (int i = 0; i < runeTexts.Length; i++)
         {
-            int symbolIndex = Mathf.Clamp(currentPattern[i], 0, symbolOptions.Length - 1);
-            runeTexts[i].text = symbolOptions[symbolIndex];
+            if (runeTexts[i] == null)
+                continue;
+
+            if (usingText)
+            {
+                int symbolIndex = Mathf.Clamp(currentPattern[i], 0, symbolOptions.Length - 1);
+                runeTexts[i].text = symbolOptions[symbolIndex];
+            }
+
+            runeTexts[i].enabled = !usingSprites;
+        }
+    }
+
+    private int GetRuneSlotCount()
+    {
+        if (runeImages != null && runeImages.Length > 0)
+            return runeImages.Length;
+
+        return runeTexts != null ? runeTexts.Length : 0;
+    }
+
+    private int GetOptionCount()
+    {
+        if (symbolSprites != null && symbolSprites.Length > 0)
+            return symbolSprites.Length;
+
+        return symbolOptions != null ? symbolOptions.Length : 0;
+    }
+
+    private void ResolveRuneImages()
+    {
+        if (runeImages != null && runeImages.Length > 0)
+            return;
+
+        if (runeTexts == null || runeTexts.Length == 0)
+            return;
+
+        runeImages = new Image[runeTexts.Length];
+
+        for (int i = 0; i < runeTexts.Length; i++)
+        {
+            if (runeTexts[i] == null)
+                continue;
+
+            runeImages[i] = runeTexts[i].GetComponentInParent<Image>();
         }
     }
 
