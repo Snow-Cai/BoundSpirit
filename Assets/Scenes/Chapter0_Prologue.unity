@@ -9277,9 +9277,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: -0.087037034
+    width: 0.8260417
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -45887,6 +45887,10 @@ PrefabInstance:
     - target: {fileID: 2970072147901176232, guid: ece584eba17e5a04993de73c58ff6a96, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -18.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056669858963298325, guid: ece584eba17e5a04993de73c58ff6a96, type: 3}
+      propertyPath: m_margin.z
+      value: -259.8551
       objectReference: {fileID: 0}
     - target: {fileID: 5323751836373146559, guid: ece584eba17e5a04993de73c58ff6a96, type: 3}
       propertyPath: m_SizeDelta.x
