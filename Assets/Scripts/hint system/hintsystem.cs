@@ -21,6 +21,7 @@ public class HintSystem : MonoBehaviour
 
     [Tooltip("Close/dismiss button inside the popup.")]
     [SerializeField] private Button closeButton;
+    [SerializeField] private Button xButton;
 
     [Tooltip("Optional label that shows the cooldown countdown.")]
     [SerializeField] private TextMeshProUGUI cooldownLabel;
@@ -52,6 +53,9 @@ public class HintSystem : MonoBehaviour
 
         if (closeButton != null)
             closeButton.onClick.AddListener(ClosePopup);
+
+        if (xButton != null)
+            xButton.onClick.AddListener(ClosePopup);
     }
 
     private void Update()
