@@ -49,12 +49,20 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     [SerializeField] private TMP_Text encodedText;
     [SerializeField] private TMP_Text mappingText;
     [SerializeField] private TMP_Text shiftValueText;
+    [SerializeField] private GameObject shiftHeaderObject;
     [SerializeField] private TMP_InputField answerInput;
     [SerializeField] private RectTransform answerSlotsRoot;
     [SerializeField] private TMP_Text feedbackText;
     [SerializeField] private Button submitButton;
     [SerializeField] private Button shiftBackwardButton;
     [SerializeField] private Button shiftForwardButton;
+
+    [Header("Wheel Visual")]
+    [SerializeField] private RectTransform wheelVisualRoot;
+    [SerializeField] private RectTransform rotatingInnerWheel;
+    [SerializeField] private float wheelPointerRadius = 135f;
+    [SerializeField] private float wheelAngleOffset = 0f;
+    [SerializeField] private bool keepAlphabetStripVisible = true;
 
     [Header("Answer Slots")]
     [SerializeField] private int[] wordsPerRow = { 3, 2, 2 };
@@ -95,10 +103,10 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private string savedAnswer = string.Empty;
     private bool suppressProgressSave;
     private bool suppressSlotCallbacks;
-
     private void Awake()
     {
         instance = this;
+        ResolveWheelVisualReferences();
     }
 
     private void OnEnable()
@@ -141,6 +149,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private void InitializeOrGate()
     {
         ResolveDependencies();
+        ResolveWheelVisualReferences();
 
         if(resultPaperPanel != null) resultPaperPanel.SetActive(false);
 
@@ -208,6 +217,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         ApplyEncodedTextPresentation();
         SetEncodedWritingVisible(true);
+        SetWheelVisualVisible(true);
         encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
 
@@ -240,6 +250,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
         SetAnswerSlotsRootVisible(false);
         SetEncodedWritingVisible(false);
+        SetWheelVisualVisible(false);
         feedbackText.text = "The final message has been decoded.";
 
         if (triggerSolveEffects)
@@ -306,6 +317,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         ApplyEncodedTextPresentation();
         SetEncodedWritingVisible(true);
+        SetWheelVisualVisible(true);
         encodedText.text = GetDisplayedEncodedText();
         RefreshShiftPreview();
         feedbackText.text = "Decoded!";
@@ -327,6 +339,7 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         bool showShiftPreview = false)
     {
         SetEncodedWritingVisible(showEncodedWriting);
+        SetWheelVisualVisible(showShiftPreview);
         if (encodedText != null)
             encodedText.text = showEncodedWriting ? GetDisplayedEncodedText() : string.Empty;
 
@@ -335,6 +348,15 @@ public sealed class CaesarDecodePanel : MonoBehaviour
 
         if (shiftValueText != null)
             shiftValueText.text = showShiftPreview ? $"+{currentPreviewShift}" : string.Empty;
+
+        if (shiftHeaderObject != null)
+            shiftHeaderObject.SetActive(showShiftPreview);
+
+        if (shiftBackwardButton != null)
+            shiftBackwardButton.gameObject.SetActive(showShiftPreview);
+
+        if (shiftForwardButton != null)
+            shiftForwardButton.gameObject.SetActive(showShiftPreview);
 
         if (feedbackText != null)
             feedbackText.text = message;
@@ -479,10 +501,23 @@ public sealed class CaesarDecodePanel : MonoBehaviour
     private void RefreshShiftPreview()
     {
         if (mappingText != null)
-            mappingText.text = CaesarCipher.BuildAlphabetStrip(-currentPreviewShift);
+            mappingText.text = keepAlphabetStripVisible
+                ? CaesarCipher.BuildAlphabetStrip(-currentPreviewShift)
+                : string.Empty;
 
         if (shiftValueText != null)
             shiftValueText.text = $"+{currentPreviewShift}";
+
+        if (shiftHeaderObject != null && !shiftHeaderObject.activeSelf)
+            shiftHeaderObject.SetActive(true);
+
+        if (shiftBackwardButton != null && !shiftBackwardButton.gameObject.activeSelf)
+            shiftBackwardButton.gameObject.SetActive(true);
+
+        if (shiftForwardButton != null && !shiftForwardButton.gameObject.activeSelf)
+            shiftForwardButton.gameObject.SetActive(true);
+
+        UpdateWheelPointerVisual();
     }
 
     private void SetShiftControlsInteractable(bool interactable)
@@ -1060,6 +1095,12 @@ public sealed class CaesarDecodePanel : MonoBehaviour
             encodedText.gameObject.SetActive(visible);
     }
 
+    private void SetWheelVisualVisible(bool visible)
+    {
+        if (wheelVisualRoot != null)
+            wheelVisualRoot.gameObject.SetActive(visible);
+    }
+
     private void SetAnswerSlotTextVisible(bool visible)
     {
         for (int i = 0; i < answerSlots.Count; i++)
@@ -1170,6 +1211,39 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         }
 
         return popup;
+    }
+
+    private void ResolveWheelVisualReferences()
+    {
+        if (wheelVisualRoot == null)
+        {
+            Transform paperBackground = transform.Find("Paper Background");
+            if (paperBackground != null)
+                wheelVisualRoot = paperBackground as RectTransform;
+        }
+
+        if (wheelVisualRoot == null)
+            return;
+
+        if (rotatingInnerWheel == null)
+        {
+            Transform innerWheel = wheelVisualRoot.Find("Inner wheel");
+            if (innerWheel == null)
+                innerWheel = wheelVisualRoot.Find("Inner Wheel");
+
+            if (innerWheel != null)
+                rotatingInnerWheel = innerWheel as RectTransform;
+        }
+
+    }
+
+    private void UpdateWheelPointerVisual()
+    {
+        float degreesPerShift = 360f / 26f;
+        float zRotation = wheelAngleOffset - (currentPreviewShift * degreesPerShift);
+
+        if (rotatingInnerWheel != null)
+            rotatingInnerWheel.localEulerAngles = new Vector3(0f, 0f, zRotation);
     }
 
     private IEnumerator PlayFinalDialogueAfterTidbitCloses()
