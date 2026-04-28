@@ -33,11 +33,15 @@ public class PickupPreviewCanvas : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("PickupPreview Update running");
         if (!popupOpen)
             return;
 
-        if (Input.GetKeyDown(closeKey) || Input.GetKeyUp(closeKey))
+        if (Input.GetKeyDown(closeKey))
+        {
+            Debug.Log("E detected - CLOSING");
             ClosePreview();
+        }
     }
 
     public void Show(DialogueAsset dialogueAfterClose = null)
