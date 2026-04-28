@@ -47,32 +47,44 @@ public class LoginPuzzle : MonoBehaviour
     private Coroutine recoveryPopupCoroutine;
     private bool computerScrollHooked;
 
-    private Graphic usernameFeedbackGraphic;
-    private Graphic passwordFeedbackGraphic;
+    private RectTransform usernameFeedbackRect;
+    private RectTransform passwordFeedbackRect;
+    private Graphic usernameGraphic;
+    private Graphic passwordGraphic;
+    [SerializeField] public RectTransform usernameShakeTarget;
+    [SerializeField] public RectTransform passwordShakeTarget;
     private Color usernameOriginalColor;
     private Color passwordOriginalColor;
     private Vector2 usernameOriginalAnchoredPosition;
     private Vector2 passwordOriginalAnchoredPosition;
     private Vector2 usernameInputOriginalAnchoredPosition;
     private Vector2 passwordInputOriginalAnchoredPosition;
+    private Vector2 usernameShakeTargetOriginalAnchoredPosition;
+    private Vector2 passwordShakeTargetOriginalAnchoredPosition;
     private int wrongPasswordAttempts;
     private bool hasShownRecoveryThisSession;
     private float lastSubmitRealtime = -10f;
 
     void Awake()
     {
-        usernameFeedbackGraphic = usernameInput != null ? usernameInput.targetGraphic : null;
-        passwordFeedbackGraphic = passwordInput != null ? passwordInput.targetGraphic : null;
-        usernameOriginalColor = usernameFeedbackGraphic != null ? usernameFeedbackGraphic.color : Color.white;
-        passwordOriginalColor = passwordFeedbackGraphic != null ? passwordFeedbackGraphic.color : Color.white;
+        usernameFeedbackRect = usernameInput.GetComponent<RectTransform>();
+        passwordFeedbackRect = passwordInput.GetComponent<RectTransform>();
+        usernameGraphic = usernameInput.targetGraphic;
+        passwordGraphic = passwordInput.targetGraphic;
+        usernameOriginalColor = usernameGraphic != null ? usernameGraphic.color : Color.white;
+        passwordOriginalColor = passwordGraphic != null ? passwordGraphic.color : Color.white;
         usernameOriginalAnchoredPosition =
-            usernameFeedbackGraphic != null ? usernameFeedbackGraphic.rectTransform.anchoredPosition : Vector2.zero;
+            usernameFeedbackRect != null ? usernameFeedbackRect.anchoredPosition : Vector2.zero;
         passwordOriginalAnchoredPosition =
-            passwordFeedbackGraphic != null ? passwordFeedbackGraphic.rectTransform.anchoredPosition : Vector2.zero;
+            passwordFeedbackRect != null ? passwordFeedbackRect.anchoredPosition : Vector2.zero;
         usernameInputOriginalAnchoredPosition =
             usernameInput != null ? usernameInput.GetComponent<RectTransform>().anchoredPosition : Vector2.zero;
         passwordInputOriginalAnchoredPosition =
             passwordInput != null ? passwordInput.GetComponent<RectTransform>().anchoredPosition : Vector2.zero;
+        usernameShakeTargetOriginalAnchoredPosition =
+            usernameShakeTarget != null ? usernameShakeTarget.anchoredPosition : Vector2.zero;
+        passwordShakeTargetOriginalAnchoredPosition =
+            passwordShakeTarget != null ? passwordShakeTarget.anchoredPosition : Vector2.zero;
         ResolveLoginPanelRoot();
         HookComputerScrollBar();
     }
@@ -144,15 +156,13 @@ public class LoginPuzzle : MonoBehaviour
         wrongPasswordAttempts = 0;
         hasShownRecoveryThisSession = false;
 
-        if (usernameFeedbackGraphic != null)
+        if (usernameGraphic != null)
         {
-            usernameFeedbackGraphic.color = usernameOriginalColor;
-            usernameFeedbackGraphic.rectTransform.anchoredPosition = usernameOriginalAnchoredPosition;
+            usernameGraphic.color = usernameOriginalColor;
         }
-        if (passwordFeedbackGraphic != null)
+        if (passwordGraphic != null)
         {
-            passwordFeedbackGraphic.color = passwordOriginalColor;
-            passwordFeedbackGraphic.rectTransform.anchoredPosition = passwordOriginalAnchoredPosition;
+            passwordGraphic.color = passwordOriginalColor;
         }
 
         if (usernameInput.gameObject.activeInHierarchy)
@@ -183,60 +193,56 @@ public class LoginPuzzle : MonoBehaviour
         UnhookComputerScrollBar();
     }
 
-    private IEnumerator ShakeGraphicInPlace(Graphic target, Vector2 originalPosition, float duration = 0.25f, float strength = 10f)
+    private IEnumerator ShakeGraphicInPlace(RectTransform rect, Vector2 originalPosition, float duration = 0.25f, float strength = 10f)
     {
-        if (target == null)
+        Debug.Log("Shake started!");
+        if (rect == null)
             yield break;
 
-        RectTransform rectTransform = target.rectTransform;
-        if (rectTransform == null)
-            yield break;
-
-        rectTransform.anchoredPosition = originalPosition;
+        rect.anchoredPosition = originalPosition;
         float elapsed = 0f;
-
         while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
             float horizontalOffset = Mathf.Sin(elapsed * 55f) * strength;
-            rectTransform.anchoredPosition = originalPosition + new Vector2(horizontalOffset, 0f);
+            rect.anchoredPosition = originalPosition + new Vector2(horizontalOffset, 0f);
             yield return null;
         }
 
-        rectTransform.anchoredPosition = originalPosition;
+        rect.anchoredPosition = originalPosition;
     }
 
     void ShakeUsername()
     {
-        if (usernameFeedbackGraphic == null)
+        if (usernameFeedbackRect == null)
             return;
 
         if (usernameShakeCoroutine != null)
         {
             StopCoroutine(usernameShakeCoroutine);
-            if (usernameFeedbackGraphic != null)
-                usernameFeedbackGraphic.rectTransform.anchoredPosition = usernameOriginalAnchoredPosition;
+            if (usernameFeedbackRect != null)
+                usernameFeedbackRect.anchoredPosition = usernameOriginalAnchoredPosition;
         }
 
         usernameShakeCoroutine = StartCoroutine(
-            ShakeGraphicInPlace(usernameFeedbackGraphic, usernameOriginalAnchoredPosition)
+            ShakeGraphicInPlace(usernameShakeTarget, usernameShakeTargetOriginalAnchoredPosition)
         );
     }
 
     void ShakePassword()
     {
-        if (passwordFeedbackGraphic == null)
+        if (passwordFeedbackRect == null)
             return;
 
         if (passwordShakeCoroutine != null)
         {
             StopCoroutine(passwordShakeCoroutine);
-            if (passwordFeedbackGraphic != null)
-                passwordFeedbackGraphic.rectTransform.anchoredPosition = passwordOriginalAnchoredPosition;
+            if (passwordFeedbackRect != null)
+                passwordFeedbackRect.anchoredPosition = passwordOriginalAnchoredPosition;
         }
 
         passwordShakeCoroutine = StartCoroutine(
-            ShakeGraphicInPlace(passwordFeedbackGraphic, passwordOriginalAnchoredPosition)
+            ShakeGraphicInPlace(passwordShakeTarget, passwordInputOriginalAnchoredPosition)
         );
     }
 
@@ -661,10 +667,10 @@ public class LoginPuzzle : MonoBehaviour
         if (passwordInput != null)
             passwordInput.GetComponent<RectTransform>().anchoredPosition = passwordInputOriginalAnchoredPosition;
 
-        if (usernameFeedbackGraphic != null && usernameShakeCoroutine == null)
-            usernameFeedbackGraphic.rectTransform.anchoredPosition = usernameOriginalAnchoredPosition;
+        if (usernameFeedbackRect != null && usernameShakeCoroutine == null)
+            usernameFeedbackRect.anchoredPosition = usernameOriginalAnchoredPosition;
 
-        if (passwordFeedbackGraphic != null && passwordShakeCoroutine == null)
-            passwordFeedbackGraphic.rectTransform.anchoredPosition = passwordOriginalAnchoredPosition;
+        if (passwordFeedbackRect != null && passwordShakeCoroutine == null)
+            passwordFeedbackRect.anchoredPosition = passwordOriginalAnchoredPosition;
     }
 }
