@@ -250,7 +250,6 @@ public sealed class CaesarDecodePanel : MonoBehaviour
         if (resultPaperPanel != null) resultPaperPanel.SetActive(true);
         SetAnswerSlotsRootVisible(false);
         SetEncodedWritingVisible(false);
-        SetWheelVisualVisible(false);
         feedbackText.text = "The final message has been decoded.";
 
         if (triggerSolveEffects)
