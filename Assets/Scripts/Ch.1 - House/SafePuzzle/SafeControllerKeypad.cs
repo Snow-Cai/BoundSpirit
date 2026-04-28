@@ -236,6 +236,7 @@ public class SafeControllerKeypad : MonoBehaviour
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe
     {
+        InputLock.Instance.InteractEnabled = false;
         if (audioSource && knobTurnSound)
             audioSource.PlayOneShot(knobTurnSound);
         float duration = 0.5f;
@@ -249,6 +250,7 @@ public class SafeControllerKeypad : MonoBehaviour
             yield return null;
         }
         knob.localRotation = endRotation;
+        InputLock.Instance.InteractEnabled = true;
     }
 
     public void InsertKey()     //call when inserting key in safe interaction
