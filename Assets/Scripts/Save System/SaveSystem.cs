@@ -26,6 +26,7 @@ public class SaveData
     public bool keyCollected;
     public bool laptopUnlocked;
     public List<string> collectedItems = new List<string>();
+    public List<string> worldCollectedItems = new List<string>();
     public List<string> solvedPuzzles = new List<string>();
 
     //Dialogue Progress
@@ -117,6 +118,8 @@ public class SaveSystem : MonoBehaviour
         {
             currentSave = new SaveData();
         }
+
+        EnsureSaveCollections();
 
         string activeSceneName = SceneManager.GetActiveScene().name;
         if (string.Equals(activeSceneName, "MenuScene", StringComparison.Ordinal))
@@ -221,6 +224,7 @@ public class SaveSystem : MonoBehaviour
         {
             string json = PlayerPrefs.GetString(SAVE_KEY);
             currentSave = JsonUtility.FromJson<SaveData>(json);
+            EnsureSaveCollections();
             currentSave.foundMenuSecret = currentSave.foundMenuSecret || PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("Game Loaded!");
         }
@@ -228,6 +232,7 @@ public class SaveSystem : MonoBehaviour
         {
             //Create new save if none exists
             currentSave = new SaveData();
+            EnsureSaveCollections();
             currentSave.foundMenuSecret = PlayerPrefs.GetInt(MENU_SECRET_KEY, 0) == 1;
             Debug.Log("No save found. Creating new save.");
         }
@@ -237,9 +242,9 @@ public class SaveSystem : MonoBehaviour
     {
         if (HasPlayableSaveData())
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(currentSave.currentScene);
-            //after scene loads, restore game state
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            //after scene loads, restore game state
+            UnityEngine.SceneManagement.SceneManager.LoadScene(currentSave.currentScene);
         }
         else
         {
@@ -284,7 +289,7 @@ public class SaveSystem : MonoBehaviour
                 {
                     CollectibleObject co = item.GetComponent<CollectibleObject>();
                     string id = co != null ? co.item.itemID : item.name;
-                    if (currentSave.collectedItems.Contains(id))
+                    if (WasWorldItemCollected(id))
                     {
                         if (co != null && co.disappearOnPickup)
                         {
@@ -465,9 +470,23 @@ public class SaveSystem : MonoBehaviour
 
     public void CollectItem(string itemName)
     {
+        if (currentSave == null)
+            currentSave = new SaveData();
+
+        EnsureSaveCollections();
+
+        if (!currentSave.worldCollectedItems.Contains(itemName))
+        {
+            currentSave.worldCollectedItems.Add(itemName);
+        }
+
         if (!currentSave.collectedItems.Contains(itemName))
         {
             currentSave.collectedItems.Add(itemName);
+            SaveGame();
+        }
+        else
+        {
             SaveGame();
         }
     }
@@ -475,6 +494,17 @@ public class SaveSystem : MonoBehaviour
     public bool HasItem(string itemName)
     {
         return currentSave.collectedItems.Contains(itemName);
+    }
+
+    public bool WasWorldItemCollected(string itemName)
+    {
+        if (currentSave == null)
+            return false;
+
+        EnsureSaveCollections();
+
+        return currentSave.worldCollectedItems.Contains(itemName) ||
+               currentSave.collectedItems.Contains(itemName);
     }
 
     public void MarkDialogueViewed(string dialogueID)
@@ -611,6 +641,37 @@ public class SaveSystem : MonoBehaviour
 
         currentSave.foundHiddenTombstone = value;
         SaveGame();
+    }
+
+    private void EnsureSaveCollections()
+    {
+        if (currentSave == null)
+            return;
+
+        if (currentSave.collectedItems == null)
+            currentSave.collectedItems = new List<string>();
+
+        if (currentSave.worldCollectedItems == null)
+            currentSave.worldCollectedItems = new List<string>();
+
+        for (int i = 0; i < currentSave.collectedItems.Count; i++)
+        {
+            string itemId = currentSave.collectedItems[i];
+            if (!string.IsNullOrWhiteSpace(itemId) && !currentSave.worldCollectedItems.Contains(itemId))
+                currentSave.worldCollectedItems.Add(itemId);
+        }
+
+        if (currentSave.solvedPuzzles == null)
+            currentSave.solvedPuzzles = new List<string>();
+
+        if (currentSave.viewedDialogues == null)
+            currentSave.viewedDialogues = new List<string>();
+
+        if (currentSave.dialogueChoices == null)
+            currentSave.dialogueChoices = new List<SaveData.DialogueChoiceEntry>();
+
+        if (currentSave.puzzleProgress == null)
+            currentSave.puzzleProgress = new List<SaveData.PuzzleProgressEntry>();
     }
 
 }
