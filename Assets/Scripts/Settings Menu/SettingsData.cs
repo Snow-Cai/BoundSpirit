@@ -4,6 +4,7 @@ using UnityEngine;
 public class SettingsData : ScriptableObject
 {
     public const string InformationalTidbitsEnabledKey = "InformationalTidbitsEnabled";
+    public static event System.Action<bool> InformationalTidbitsEnabledChanged;
 
     [Header("Audio Settings")]
     [Range(0f, 1f)] public float masterVolume = 0.75f;
@@ -25,6 +26,10 @@ public class SettingsData : ScriptableObject
 
     public void Save()
     {
+        // Keep the tidbit preference sourced from the shared persisted value so unrelated
+        // settings saves do not overwrite it with a stale ScriptableObject field.
+        informationalTidbitsEnabled = GetInformationalTidbitsEnabled(informationalTidbitsEnabled);
+
         PlayerPrefs.SetFloat("MasterVolume", masterVolume);
         PlayerPrefs.SetFloat("MusicVolume", musicVolume);
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
@@ -66,5 +71,6 @@ public class SettingsData : ScriptableObject
     {
         PlayerPrefs.SetInt(InformationalTidbitsEnabledKey, enabled ? 1 : 0);
         PlayerPrefs.Save();
+        InformationalTidbitsEnabledChanged?.Invoke(enabled);
     }
 }

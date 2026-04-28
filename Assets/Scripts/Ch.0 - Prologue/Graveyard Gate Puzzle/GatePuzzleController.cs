@@ -21,6 +21,7 @@ public class GatePuzzleController : MonoBehaviour
     [SerializeField] private DialogueAsset puzzleCompleteDialogue;
 
     private int[] currentPattern;
+    private bool waitingForCompletionDialogue;
 
     private void Awake()
     {
@@ -42,6 +43,17 @@ public class GatePuzzleController : MonoBehaviour
         }
 
         RefreshRunes();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeFromDialogueEnded();
+        waitingForCompletionDialogue = false;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromDialogueEnded();
     }
 
     public void CycleRune(int index)
@@ -149,17 +161,54 @@ public class GatePuzzleController : MonoBehaviour
     {
         if (puzzleCompleteDialogue != null && DialogueSystem.Instance != null)
         {
+            waitingForCompletionDialogue = true;
+            DialogueSystem.Instance.OnDialogueEnded -= HandlePuzzleCompleteDialogueEnded;
+            DialogueSystem.Instance.OnDialogueEnded += HandlePuzzleCompleteDialogueEnded;
             DialogueSystem.Instance.StartDialogue(puzzleCompleteDialogue);
+            return;
         }
 
+        CompleteGateUnlock();
+    }
+
+    private void HandlePuzzleCompleteDialogueEnded(DialogueAsset finishedDialogue)
+    {
+        if (!waitingForCompletionDialogue || !DialogueMatches(puzzleCompleteDialogue, finishedDialogue))
+            return;
+
+        waitingForCompletionDialogue = false;
+        UnsubscribeFromDialogueEnded();
+        CompleteGateUnlock();
+    }
+
+    private void CompleteGateUnlock()
+    {
         if (gateController != null)
         {
             gateController.OnGatePuzzleSolved();
+            return;
         }
-        else
+
+        gameObject.SetActive(false);
+        GameInputState.DialogueActive = false;
+    }
+
+    private void UnsubscribeFromDialogueEnded()
+    {
+        if (DialogueSystem.Instance != null)
         {
-            gameObject.SetActive(false);
-            GameInputState.DialogueActive = false;
+            DialogueSystem.Instance.OnDialogueEnded -= HandlePuzzleCompleteDialogueEnded;
         }
+    }
+
+    private static bool DialogueMatches(DialogueAsset expected, DialogueAsset finished)
+    {
+        if (expected == null || finished == null)
+            return false;
+
+        if (!string.IsNullOrEmpty(expected.dialogueID) && !string.IsNullOrEmpty(finished.dialogueID))
+            return expected.dialogueID == finished.dialogueID;
+
+        return ReferenceEquals(expected, finished);
     }
 }
