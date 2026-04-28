@@ -11547,7 +11547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24629667, g: 0.19544317, b: 0.33962262, a: 1}
+  m_Color: {r: 0.66234016, g: 0.6020826, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12877,6 +12877,10 @@ PrefabInstance:
     - target: {fileID: 4849148674635965573, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
       propertyPath: m_Name
       value: HUDCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012061031110635779, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.999878
       objectReference: {fileID: 0}
     - target: {fileID: 9153174214869798333, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
       propertyPath: m_Pivot.x
