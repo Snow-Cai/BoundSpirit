@@ -32,7 +32,14 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        if(InputLock.Instance.CanToggleInventory && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
+        bool inventoryToggleAllowed = isOpen ||
+            ((InputLock.Instance == null ||
+             (InputLock.Instance.CanToggleInventory &&
+              InputLock.Instance.GameplayInputEnabled)) &&
+             !GameInputState.DialogueActive &&
+             !GameInputState.MovementLocked);
+
+        if(inventoryToggleAllowed && Input.GetKeyDown(KeyCode.I))                     //toggle inventory with I key
         {
             ToggleInventory();
         }
