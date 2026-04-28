@@ -12889,6 +12889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: xButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2804342831270951675, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4447790901150586543, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
       propertyPath: xButton
       value: 
