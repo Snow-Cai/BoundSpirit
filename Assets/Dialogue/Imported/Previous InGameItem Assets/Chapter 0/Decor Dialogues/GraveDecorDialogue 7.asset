@@ -17,7 +17,7 @@ MonoBehaviour:
   - speakerName: Akila
     dialogueText: '"Rest in peace Snow Cai"
 
-      "She really like cats, meow"'
+      "She really liked cats, meow"'
     voiceClip: {fileID: 0}
   - speakerName: Akila
     dialogueText: Meow meow!

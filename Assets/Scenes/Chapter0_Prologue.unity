@@ -8295,6 +8295,10 @@ PrefabInstance:
       propertyPath: interactPrompt
       value: 
       objectReference: {fileID: 1520638324}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: objectDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 16376d17adb693a4f9b2a36639407000, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9273,9 +9277,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.11522048
+    width: 0.9991111
+    height: 0.76813656
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -45274,6 +45278,10 @@ PrefabInstance:
       propertyPath: interactPrompt
       value: 
       objectReference: {fileID: 1520638324}
+    - target: {fileID: 7003169475834429627, guid: 432961028b7af3e46b7c66f3b60c6adc, type: 3}
+      propertyPath: objectDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e9db70ce41ac38a4d935f87e2a518879, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
