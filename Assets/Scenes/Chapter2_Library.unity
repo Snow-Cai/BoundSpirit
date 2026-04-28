@@ -16378,9 +16378,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.042301185
-    width: 1
-    height: 0.9137056
+    y: -0.057407405
+    width: 0.753125
+    height: 0.5
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -17535,8 +17535,8 @@ MonoBehaviour:
   allowSolvedPuzzleReopen: 0
   timeRemainsOn: 0
   puzzleFirstApproachDialogue: {fileID: 0}
-  puzzleSolvedDialogue: {fileID: 0}
-  puzzleSolvedRepeatDialogue: {fileID: 0}
+  puzzleSolvedDialogue: {fileID: 11400000, guid: 712802727b565cd4d8bcbd5b57631d4e, type: 2}
+  puzzleSolvedRepeatDialogue: {fileID: 11400000, guid: 712802727b565cd4d8bcbd5b57631d4e, type: 2}
   puzzlePlaySolvedDialogueOnlyOnce: 1
   openPuzzleAfterFirstApproachDialogue: 1
   puzzleFirstApproachViewedKeyOverride: 
