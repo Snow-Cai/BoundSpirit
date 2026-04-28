@@ -44,7 +44,7 @@ public class CutsceneController : MonoBehaviour
                 camFollow.enabled = true;
             if (charMovement != null)
                 charMovement.enabled = true;
-            InputLock.Instance.CanToggleInventory = true;
+            RestoreGameplayStateAfterCutscene();
 
             IsCutsceneActive = false;
         }
@@ -58,7 +58,7 @@ public class CutsceneController : MonoBehaviour
             charMovement.enabled = false;
         if (camFollow != null)       //disable CameraFollow during cutscene
             camFollow.enabled = false;
-        InputLock.Instance.CanToggleInventory = false;
+        ApplyGameplayStateForCutscene();
 
         //Play the Timeline if it exists
         if (cutsceneTimeline != null)
@@ -80,7 +80,7 @@ public class CutsceneController : MonoBehaviour
             camFollow.enabled = true;   //re-enable camera follow
         if (charMovement != null)
             charMovement.enabled = true;   //Re-enable player movement
-        InputLock.Instance.CanToggleInventory = true;
+        RestoreGameplayStateAfterCutscene();
         IsCutsceneActive = false;
     }
 
@@ -97,5 +97,37 @@ public class CutsceneController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ApplyGameplayStateForCutscene()
+    {
+        GameInputState.MovementLocked = true;
+        GameInputState.DialogueActive = true;
+
+        if (InputLock.Instance == null)
+        {
+            return;
+        }
+
+        InputLock.Instance.GameplayInputEnabled = false;
+        InputLock.Instance.InteractEnabled = false;
+        InputLock.Instance.CanToggleInventory = false;
+        InputLock.Instance.CanToggleJournal = false;
+    }
+
+    private void RestoreGameplayStateAfterCutscene()
+    {
+        GameInputState.MovementLocked = false;
+        GameInputState.DialogueActive = false;
+
+        if (InputLock.Instance == null)
+        {
+            return;
+        }
+
+        InputLock.Instance.GameplayInputEnabled = true;
+        InputLock.Instance.InteractEnabled = true;
+        InputLock.Instance.CanToggleInventory = true;
+        InputLock.Instance.CanToggleJournal = true;
     }
 }
