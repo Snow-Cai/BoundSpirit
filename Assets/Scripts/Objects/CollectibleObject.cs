@@ -46,6 +46,7 @@ public class CollectibleObject : MonoBehaviour
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         popup = Object.FindFirstObjectByType<UICluePopup>(FindObjectsInactive.Include);
         EnsureGlowReference();
+        RestoreCollectedStateFromSave();
         if (p != null)
             player = p.transform;
     }
@@ -123,6 +124,20 @@ public class CollectibleObject : MonoBehaviour
         if (disappearOnPickup)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void RestoreCollectedStateFromSave()
+    {
+        if (item == null || SaveSystem.Instance == null || !SaveSystem.Instance.WasWorldItemCollected(item.itemID))
+            return;
+
+        collected = true;
+        SetGlow(false);
+
+        if (disappearOnPickup)
+        {
+            gameObject.SetActive(false);
         }
     }
 

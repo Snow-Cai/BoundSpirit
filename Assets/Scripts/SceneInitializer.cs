@@ -234,24 +234,14 @@ public class SceneInitializer : MonoBehaviour
             Debug.LogWarning("Player is missing a PlayerInventory component!");
             return;
         }
-        inventory.inventory.Clear();
         if (ItemDatabase.Instance == null)
         {
-            Debug.LogError("ItemDatabase.Instance is null in scene: " +
+            Debug.LogWarning("ItemDatabase.Instance is null in scene: " +
                 UnityEngine.SceneManagement.SceneManager.GetActiveScene().name +
-                " - inventory will not load!");
+                " - inventory load will rely on any cached item data.");
         }
-        else
-        {
-            foreach (string itemID in saveData.collectedItems)
-            {
-                ItemData item = ItemDatabase.Instance.GetItemByID(itemID);
-                if (item != null)
-                    inventory.inventory.Add(item);
-                else
-                    Debug.LogWarning("Saved item ID not found in ItemDatabase: " + itemID);
-            }
-        }
+
+        inventory.LoadInventoryFromIDs(saveData.collectedItems);
         InventoryUI ui = FindFirstObjectByType<InventoryUI>();
         if (ui != null)
             ui.RefreshUI();

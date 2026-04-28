@@ -35,6 +35,8 @@ public class ClueObject : MonoBehaviour
 
         if (promptUI != null)
             promptUI.SetActive(false);
+
+        RestoreCollectedStateFromSave();
     }
 
     void Update()
@@ -77,6 +79,9 @@ public class ClueObject : MonoBehaviour
         if (playerInventory != null)
             playerInventory.PickUpItem(clue);
 
+        if (SaveSystem.Instance != null && clue != null && !string.IsNullOrWhiteSpace(clue.itemID))
+            SaveSystem.Instance.CollectItem(clue.itemID);
+
         // add to journal
         if (clueJournal != null)
             clueJournal.AddClue(clue);
@@ -86,6 +91,22 @@ public class ClueObject : MonoBehaviour
 
         if (outlineRenderer != null)
             outlineRenderer.enabled = false;
+
+        gameObject.SetActive(false);
+    }
+
+    void RestoreCollectedStateFromSave()
+    {
+        if (clue == null || SaveSystem.Instance == null || !SaveSystem.Instance.WasWorldItemCollected(clue.itemID))
+            return;
+
+        collected = true;
+
+        if (outlineRenderer != null)
+            outlineRenderer.enabled = false;
+
+        if (promptUI != null)
+            promptUI.SetActive(false);
 
         gameObject.SetActive(false);
     }

@@ -48,6 +48,9 @@ public class PlayerInventory : MonoBehaviour
     public void LoadInventoryFromIDs(List<string> ids)
     {
         inventory.Clear();
+        if (ids == null)
+            return;
+
         foreach (string id in ids)
         {
             if (string.IsNullOrWhiteSpace(id) || id == EmptySlotMarker)
@@ -56,9 +59,15 @@ public class PlayerInventory : MonoBehaviour
                 continue;
             }
 
-            ItemData item = ItemDatabase.Instance.GetItemByID(id);
+            ItemData item = ItemDatabase.Instance != null ? ItemDatabase.Instance.GetItemByID(id) : null;
             if(item != null)
+            {
                 inventory.Add(item);
+            }
+            else
+            {
+                Debug.LogWarning("PlayerInventory: Saved item ID not found in ItemDatabase: " + id);
+            }
         }
     }
 
