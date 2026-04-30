@@ -10,6 +10,7 @@ public class SafeInteraction : MonoBehaviour
     private CanvasGroup cg;
     public bool isOpen = false;
     private bool isSolved = false;
+    private bool transitionLocked = false;
 
     public CanvasGroup weaponCanvas;
     public Image weaponObject;
@@ -28,6 +29,9 @@ public class SafeInteraction : MonoBehaviour
     private void Update()
     {
         if (playerTransform == null) return;
+
+        if (transitionLocked)
+            return;
 
         if (!isOpen &&
             InputLock.Instance != null &&
@@ -130,5 +134,10 @@ public class SafeInteraction : MonoBehaviour
     public void SetOpen()
     {
         isOpen = false;
+    }
+
+    public void SetTransitionLocked(bool locked)
+    {
+        transitionLocked = locked;
     }
 }

@@ -47,6 +47,7 @@ public class SafeControllerKeypad : MonoBehaviour
 
     private StringBuilder currentInput = new StringBuilder();
     private bool hasUnlockedSuccessfully;
+    private SafeInteraction cachedSafeInteraction;
 
     private void Awake()
     {
@@ -58,6 +59,8 @@ public class SafeControllerKeypad : MonoBehaviour
                 puzzleInteractable = safeInteraction.GetComponent<InteractableObject>();
             }
         }
+
+        cachedSafeInteraction = FindFirstObjectByType<SafeInteraction>();
     }
 
     public void OnDigitPressed(string digit)
@@ -136,7 +139,7 @@ public class SafeControllerKeypad : MonoBehaviour
         if (hasUnlockedSuccessfully)
             return;
         hasUnlockedSuccessfully = true;
-        InputLock.Instance.InteractEnabled = false;
+        SetSafeTransitionInputLocked(true);
 
         if (successLight != null)
             successLight.color = UnityEngine.Color.green;
@@ -221,22 +224,32 @@ public class SafeControllerKeypad : MonoBehaviour
         if (safeCanvas != null) safeCanvas.gameObject.SetActive(false);
         if (weaponObject != null) weaponObject.gameObject.SetActive(false);
         if (weaponCanvas != null) weaponCanvas.alpha = 0f;
-        safeCanvas.interactable = false;
-        safeCanvas.blocksRaycasts = false;
-        FindFirstObjectByType<SafeInteraction>().SetOpen();
-        FindFirstObjectByType<SafeInteraction>().SetSolved();
+        if (safeCanvas != null)
+        {
+            safeCanvas.interactable = false;
+            safeCanvas.blocksRaycasts = false;
+        }
+
+        if (cachedSafeInteraction == null)
+            cachedSafeInteraction = FindFirstObjectByType<SafeInteraction>();
+
+        if (cachedSafeInteraction != null)
+        {
+            cachedSafeInteraction.SetOpen();
+            cachedSafeInteraction.SetSolved();
+            cachedSafeInteraction.SetTransitionLocked(false);
+        }
+
         //Queue the weapon reaction clarity choice
         DialogueAsset weaponReaction = Resources.Load<DialogueAsset>("Chapter1_weaponReaction");
         if (weaponReaction != null && DialogueSystem.Instance != null)
             DialogueSystem.Instance.QueueDialogue(weaponReaction);
-        InputLock.Instance.CanToggleInventory = true;
-        InputLock.Instance.GameplayInputEnabled = true;
-        InputLock.Instance.InteractEnabled = true;
+        SetSafeTransitionInputLocked(false);
     }
 
     IEnumerator RotateKnob()        //rotate knob animation on success for opening safe
     {
-        InputLock.Instance.InteractEnabled = false;
+        SetSafeTransitionInputLocked(true);
         if (audioSource && knobTurnSound)
             audioSource.PlayOneShot(knobTurnSound);
         float duration = 0.5f;
@@ -250,7 +263,22 @@ public class SafeControllerKeypad : MonoBehaviour
             yield return null;
         }
         knob.localRotation = endRotation;
-        InputLock.Instance.InteractEnabled = true;
+    }
+
+    private void SetSafeTransitionInputLocked(bool locked)
+    {
+        if (InputLock.Instance != null)
+        {
+            InputLock.Instance.CanToggleInventory = !locked;
+            InputLock.Instance.GameplayInputEnabled = !locked;
+            InputLock.Instance.InteractEnabled = !locked;
+        }
+
+        if (cachedSafeInteraction == null)
+            cachedSafeInteraction = FindFirstObjectByType<SafeInteraction>();
+
+        if (cachedSafeInteraction != null)
+            cachedSafeInteraction.SetTransitionLocked(locked);
     }
 
     public void InsertKey()     //call when inserting key in safe interaction
