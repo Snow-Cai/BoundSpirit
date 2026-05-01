@@ -12985,6 +12985,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9200575738311872683, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
+      propertyPath: hiddenInScenes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9200575738311872683, guid: d170b5989f8d57844b97fda4046ba434, type: 3}
+      propertyPath: 'hiddenInScenes.Array.data[1]'
+      value: CreditsScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
