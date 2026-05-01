@@ -15,6 +15,9 @@ MonoBehaviour:
   dialogueID: Chapter1_Office_PictureFrameClue
   lines:
   - speakerName: Akila
+    dialogueText: '*Eden and Akila! The inseperable duo.*'
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
     dialogueText: Huh... Eden... I don't seem to remember her. But I was a friendly
       child, so she must be an old friend.
     voiceClip: {fileID: 0}
