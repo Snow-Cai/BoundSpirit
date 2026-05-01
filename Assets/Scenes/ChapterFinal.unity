@@ -9600,57 +9600,6 @@ Transform:
   - {fileID: 2111111111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2111111110
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2111111111}
-  - component: {fileID: 2111111112}
-  m_Layer: 0
-  m_Name: MusicManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2111111111
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111111110}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 157.54475, y: 189.61198, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 859122053}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2111111112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111111110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e58801b0694a540a3566de80e7ddf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
-  mainMenuMusic: {fileID: 8300000, guid: 7932ea90b544d3d418bcea712cfba4b3, type: 3}
-  gameplayMusic: {fileID: 8300000, guid: d16e8a3bbd5b1a34981e627b4ee0f439, type: 3}
-  cutsceneMusic: {fileID: 0}
-  winMusic: {fileID: 8300000, guid: 6fee4ad7e025e3b4bb9cf1d8bf74c83e, type: 3}
-  musicVolume: 0.5
-  fadeSpeed: 1
-  musicGroup: {fileID: -2705577154578233204, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
 --- !u!1 &860895289
 GameObject:
   m_ObjectHideFlags: 0
@@ -15187,7 +15136,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 279b732a7122f3e47b56114aeb16f2fb, type: 3}
+  m_Resource: {fileID: 8300000, guid: e7e974f56e6b8644a897002f83621e92, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
@@ -18117,6 +18066,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &2111111110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111111111}
+  - component: {fileID: 2111111112}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111111111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111111110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 157.54475, y: 189.61198, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859122053}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2111111112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111111110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e58801b0694a540a3566de80e7ddf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  mainMenuMusic: {fileID: 8300000, guid: 7932ea90b544d3d418bcea712cfba4b3, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: d16e8a3bbd5b1a34981e627b4ee0f439, type: 3}
+  cutsceneMusic: {fileID: 0}
+  winMusic: {fileID: 8300000, guid: 6fee4ad7e025e3b4bb9cf1d8bf74c83e, type: 3}
+  musicVolume: 0.5
+  fadeSpeed: 1
+  musicGroup: {fileID: -2705577154578233204, guid: 3c24c6a2642883c44a8f0505d316bc81, type: 2}
 --- !u!1001 &2140001020
 PrefabInstance:
   m_ObjectHideFlags: 0
