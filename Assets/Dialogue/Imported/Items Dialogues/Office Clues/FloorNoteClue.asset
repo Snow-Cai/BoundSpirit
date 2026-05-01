@@ -15,16 +15,14 @@ MonoBehaviour:
   itemID: FLOOR_CLUE
   itemName: Floor Note
   icon: {fileID: 5169848108890779206, guid: 38afca6146dce5c46a834f5467452fd5, type: 3}
-  description: It appears to be a page torn out of a book. The writing says "...a
-    common password tactic is to include a meaningful number like birth year or age
-    and a meaningful word, name, or object to the user..."
+  description: 'It appears to be a page torn out of a book. The writing states that
+    a common password consists first of an important year and then an important name. '
   canInspect: 1
   clueID: floorclue
   clueName: FloorNote
   clueLetter: 
-  clueText: '*Looks like a torn page of a book*  "...a common password tactic is
-    to include a meaningful number like birth year or age and a meaningful word,
-    name, or object to the user..."'
+  clueText: 'It appears to be a page torn out of a book. The writing states that
+    a common password consists first of an important year and then an important name. '
   hintDescription: 
   clueIcon: {fileID: 2762278503595733111, guid: 8cd6127c8042e7940af3c5e27667606d, type: 3}
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

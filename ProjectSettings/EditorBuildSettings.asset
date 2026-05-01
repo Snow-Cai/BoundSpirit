@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoginPuzzle.unity
     guid: 3a851ed8151995a4abd591efba214fa7
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: a613905906477304f83997377628ac91
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

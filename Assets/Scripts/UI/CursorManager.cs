@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CursorManager : MonoBehaviour
@@ -19,44 +20,93 @@ public class CursorManager : MonoBehaviour
 
     bool usingTextCursor = false;
 
+    void Awake()
+    {
+        EnsureCursorTextures();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += HandleSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= HandleSceneLoaded;
+    }
+
     void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
-        tintedDefaultCursor = TintCursor(defaultCursor, defaultCursorColor);
-        tintedTextCursor = TintCursor(textCursor, textCursorColor);
-
-        Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
+        EnsureCursorTextures();
+        ApplyDefaultCursor();
     }
 
     void Update()
     {
         if (EventSystem.current == null)
+        {
+            if (usingTextCursor)
+                ApplyDefaultCursor();
             return;
+        }
 
         GameObject selected = EventSystem.current.currentSelectedGameObject;
 
         if (selected != null)
         {
-            TMP_InputField input = selected.GetComponent<TMP_InputField>();
+            TMP_InputField input = selected.GetComponentInParent<TMP_InputField>();
 
             if (input != null)
             {
                 if (!usingTextCursor)
-                {
-                    Cursor.SetCursor(tintedTextCursor, textHotspot, CursorMode.Auto);
-                    usingTextCursor = true;
-                }
+                    ApplyTextCursor();
                 return;
             }
         }
 
         if (usingTextCursor)
+            ApplyDefaultCursor();
+    }
+
+    void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (EventSystem.current != null)
         {
-            Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
-            usingTextCursor = false;
+            GameObject selected = EventSystem.current.currentSelectedGameObject;
+            if (selected != null && selected.GetComponentInParent<TMP_InputField>() != null)
+                EventSystem.current.SetSelectedGameObject(null);
         }
+
+        ApplyDefaultCursor();
+    }
+
+    void ApplyDefaultCursor()
+    {
+        EnsureCursorTextures();
+        Cursor.SetCursor(tintedDefaultCursor, defaultHotspot, CursorMode.Auto);
+        usingTextCursor = false;
+    }
+
+    void ApplyTextCursor()
+    {
+        EnsureCursorTextures();
+        Cursor.SetCursor(tintedTextCursor, textHotspot, CursorMode.Auto);
+        usingTextCursor = true;
+    }
+
+    void EnsureCursorTextures()
+    {
+        if (tintedDefaultCursor == null && defaultCursor != null)
+            tintedDefaultCursor = TintCursor(defaultCursor, defaultCursorColor);
+
+        if (tintedTextCursor == null && textCursor != null)
+            tintedTextCursor = TintCursor(textCursor, textCursorColor);
     }
 
     Texture2D TintCursor(Texture2D original, Color tint)

@@ -338,7 +338,8 @@ public class EndingManager : MonoBehaviour
     {
         if (endScreenCanvas == null)
         {
-            SceneManager.LoadScene(returnToScene);
+            //SceneManager.LoadScene(returnToScene);
+            SceneManager.LoadScene("CreditsScene");
             yield break;
         }
 
@@ -363,7 +364,8 @@ public class EndingManager : MonoBehaviour
         Time.timeScale = 1f;
         if (camFollow != null) camFollow.followEnabled = true;
         if (ppc != null) ppc.enabled = true;
-        SceneManager.LoadScene(returnToScene);
+        //SceneManager.LoadScene(returnToScene);
+        SceneManager.LoadScene("CreditsScene");
     }
 
     private IEnumerator WalkToPoint(Transform target)
