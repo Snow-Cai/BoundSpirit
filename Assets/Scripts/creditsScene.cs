@@ -74,6 +74,7 @@ public class CreditsRoller : MonoBehaviour
             yield return null;
         }
 
+        PersistentCreditsAudio.CleanupAll();
         SceneManager.LoadScene(returnScene);
     }
 }

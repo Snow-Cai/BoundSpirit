@@ -170,7 +170,11 @@ public class EndingManager : MonoBehaviour
         EndingType ending = ResolveSelectedEnding();
         Debug.Log("EndingManager: Resolved ending -> " + ending);
 
-        if (musicAudio != null) musicAudio.Play();
+        if (musicAudio != null)
+        {
+            musicAudio.Play();
+            PersistentCreditsAudio.Persist(musicAudio);
+        }
 
         //Step 5: play the ending-specific cutscene 
         switch (ending)
