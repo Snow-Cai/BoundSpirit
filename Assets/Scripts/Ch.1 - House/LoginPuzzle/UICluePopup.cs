@@ -4,8 +4,6 @@ using System.Collections;
 
 public class UICluePopup : MonoBehaviour
 {
-    private const float TidbitDialogueStartWindowSeconds = 2.25f;
-
     public static UICluePopup Instance { get; private set; }
 
     public CanvasGroup popupCanvas;
@@ -14,7 +12,6 @@ public class UICluePopup : MonoBehaviour
 
     private bool closeRequested = false;
     private Coroutine popupRoutine;
-    private Coroutine tidbitRoutine;
     private CharMovement movementScript;
     private Rigidbody2D playerRigidbody;
     private bool popupOpen = false;
@@ -98,10 +95,7 @@ public class UICluePopup : MonoBehaviour
         if (string.IsNullOrWhiteSpace(message))
             return;
 
-        if (tidbitRoutine != null)
-            StopCoroutine(tidbitRoutine);
-
-        tidbitRoutine = StartCoroutine(ShowTidbitAfterDialogueRoutine(message));
+        ShowMessage(message);
     }
 
     public void ShowClue(string message)
@@ -203,35 +197,6 @@ public class UICluePopup : MonoBehaviour
         closeRequested = true;
     }
 
-    private IEnumerator ShowTidbitAfterDialogueRoutine(string message)
-    {
-        yield return null;
-
-        float elapsed = 0f;
-        bool dialogueObserved = false;
-
-        while (elapsed < TidbitDialogueStartWindowSeconds)
-        {
-            if (DialogueSystem.Instance != null && DialogueSystem.Instance.HasPendingDialogue())
-            {
-                dialogueObserved = true;
-                break;
-            }
-
-            elapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        if (dialogueObserved)
-        {
-            yield return new WaitUntil(() =>
-                DialogueSystem.Instance == null || !DialogueSystem.Instance.HasPendingDialogue());
-        }
-
-        ShowMessage(message);
-        tidbitRoutine = null;
-    }
-
     private void ApplyInputToggleLock()
     {
         if (InputLock.Instance == null || !restoredInputToggles)
@@ -269,7 +234,6 @@ public class UICluePopup : MonoBehaviour
         GameInputState.MovementLocked = false;
         popupOpen = false;
         popupRoutine = null;
-        tidbitRoutine = null;
     }
 
     private void OnDestroy()

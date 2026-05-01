@@ -76,11 +76,6 @@ public class DialogueSystem : MonoBehaviour
         return State != DialogueState.Inactive;
     }
 
-    public bool HasPendingDialogue()
-    {
-        return State != DialogueState.Inactive || dialogueQueue.Count > 0;
-    }
-
     /// <summary>
     /// Begins a new dialogue immediately, replacing anything in the queue.
     /// </summary>
