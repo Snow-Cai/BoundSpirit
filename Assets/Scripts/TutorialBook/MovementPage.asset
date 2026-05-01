@@ -15,7 +15,14 @@ MonoBehaviour:
   leftPageText: '<b>MOVEMENT:</b>
 
     To move, you may use the arrow keys or WASD
-    for the respective direction you wish to float.'
+    for the respective direction you wish to float.
+
+
+    <b>INFO TIDBITS: </b>
+
+    When
+    you solve puzzles, info tidbits will show up. These are toggleable on and off
+    in settings!'
   rightPageText: '<b>INTERACTION:</b>
 
     You can interact with objects! You can

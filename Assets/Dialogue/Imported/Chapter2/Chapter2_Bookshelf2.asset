@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter1_piano
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: piano
+  m_Name: Chapter2_Bookshelf2
+  m_EditorClassIdentifier: BoundSpiritRuntime::DialogueAsset
+  dialogueID: Chapter2_paranormalBook
   lines:
   - speakerName: Akila
-    dialogueText: Dad loved the piano. He always said that he wished he could afford
-      lessons as a kid.
+    dialogueText: '"If Princesses Wore Hiking Boots"'
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: He hoped that I would learn to play. I should've been less stubborn
-      and not given up on playing.
+    dialogueText: ... my mom used to read that to me.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1

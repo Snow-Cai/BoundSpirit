@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463efc00e4760a0448b5b3272a98563c, type: 3}
-  m_Name: Chapter1_piano
+  m_Name: Chapter1_TV
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAsset
-  dialogueID: piano
+  dialogueID: 
   lines:
   - speakerName: Akila
-    dialogueText: Dad loved the piano. He always said that he wished he could afford
-      lessons as a kid.
+    dialogueText: '*An old martial arts movie plays*'
     voiceClip: {fileID: 0}
   - speakerName: Akila
-    dialogueText: He hoped that I would learn to play. I should've been less stubborn
-      and not given up on playing.
+    dialogueText: I used to watch this with Dad all the time, even though he said
+      they were corny.
+    voiceClip: {fileID: 0}
+  - speakerName: Akila
+    dialogueText: I guess he never stopped watching.
     voiceClip: {fileID: 0}
   choices: []
   choicesAfterLineIndex: -1
